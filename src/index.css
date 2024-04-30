@@ -1,3 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: svn-nexa-bold;
+  src: url("./assets/fonts/SVN-Nexa\ Bold.ttf");
+}
+@font-face {
+  font-family: svn-nexa-light;
+  src: url("./assets/fonts/SVN-Nexa\ Light.ttf");
+}
+
+@font-face {
+  font-family: svn-nexa;
+  src: url("./assets/fonts/Nexa\ Regular.otf");
+}
+
+@font-face {
+  font-family: svn-rust;
+  src: url("./assets/fonts/SVN-Nexa\ Rust\ Script.ttf");
+}
+
+@font-face {
+  font-family: shopee-bold;
+  src: url("./assets/fonts/ShopeeDisplay-Bold.ttf");
+}
+
+
+@font-face {
+  font-family: shopee-regular;
+  src: url("./assets/fonts/ShopeeDisplay-Regular.ttf");
+}
+
+
+@font-face {
+  font-family: shopee-medium;
+  src: url("./assets/fonts/ShopeeDisplay-Medium.ttf");
+}
+
+@font-face {
+  font-family: shopee-light;
+  src: url("./assets/fonts/ShopeeDisplay-Light.ttf");
+}
+
+@font-face {
+  font-family:jonitha-script;
+  src: url("./assets/fonts/SVN-Jonitha\ Script.otf");
+}
+
+@font-face {
+  font-family:chalkboard;
+  src: url("./assets/fonts/SVN-Chalkboard\ The\ Best.ttf");
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
