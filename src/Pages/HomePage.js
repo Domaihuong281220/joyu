@@ -1,11 +1,13 @@
 import React from 'react';
-import { Banner } from '../Component';
+import { Banner,Signature, Special } from '../Component';
 
 
 function HomePage() {
     return (
         <div className="">
             <Banner />
+            <Signature />
+            <Special />
         </div>
     );
 }

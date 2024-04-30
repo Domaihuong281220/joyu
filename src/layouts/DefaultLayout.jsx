@@ -7,6 +7,7 @@ import PrivateLayout from "./PrivateLayout";
 import PublicLayout from "./PublicLayout";
 import PublicRoute from "../utils/PublicRoute";
 import PrivateRoute from "../utils/PrivateRoute";
+import { Sidebar } from "../Component";
 
 const DefaultLayout = (props) => {
   //Routes
@@ -32,6 +33,7 @@ const DefaultLayout = (props) => {
       {/* <Header /> */}
       {/* <Routes>{showContentMenu(routes)}</Routes>
       <Footer /> */}
+      <Sidebar />
       <Routes>
         <Route element={<PublicLayout />}>{showContentMenu(PublicRoute)}</Route>
 
