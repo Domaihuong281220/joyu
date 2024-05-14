@@ -6,3 +6,5 @@ export { default as Special } from "./HomePage/Special";
 
 // Admin
 export { default as SidebarAd } from "./SidebarAd/SidebarAd";
+export { default as CardNewsProduct } from "./Events/CardNewsProduct";
+export { default as CardLocation } from "./Location/CardLocation";
