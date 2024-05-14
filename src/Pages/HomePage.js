@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { Banner, Signature, Special, Sidebar } from "../Component";
+import { Banner, Signature, Special, Sidebar } from "../components";
 
 function HomePage() {
   return (
