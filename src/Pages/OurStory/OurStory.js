@@ -7,10 +7,13 @@ import imgstory_2 from "../../assets/OurStory/story_2.png";
 const OurStory = () => {
   return (
     <div className="">
-      <img className="object-fill h-[100vh] w-full" src={imgBanner}></img>
-      <div className="w-[80%] mx-auto grid grid-cols-2 pt-[110px] gap-[160px]">
+      <img
+        className="object-fill h-[100vh] w-full pv:max-lg:h-[50vh]"
+        src={imgBanner}
+      ></img>
+      <div className="w-[82%] mx-auto grid grid-cols-2 pt-[110px] gap-[160px] pv:max-lg:grid-cols-1">
         <div className="text-start">
-          <p className="font-nexa_light text-[30px]">
+          <p className="font-nexa_light text-[30px] pv:max-lg:text-[20px] lg:max-xl:text-[20px]">
             Here at JOYU, our mission is simple: To create high quality drinks
             without compromising quality. This also applies to our team members!
             We encourage those who are serious about self-development, eager to
@@ -32,16 +35,23 @@ const OurStory = () => {
             JOYU family!!
           </p>
         </div>
-        <div className="flex flex-col justify-between ">
-          <img className="w-[490px] rounded-[50px]" src={imgstory_1}></img>
-          <img className="w-[490px] rounded-[50px]" src={imgstory_2}></img>
+        <div className="flex flex-col justify-between pv:max-lg:flex-row">
+          <img
+            className="w-[490px] rounded-[50px] lg:max-xl:w-[400px] pv:max-lg:w-[40%] pv:max-md:rounded-sm"
+            src={imgstory_1}
+          ></img>
+          <img
+            className="w-[490px] rounded-[50px] lg:max-xl:w-[400px]  pv:max-lg:w-[40%] pv:max-md:rounded-sm"
+            src={imgstory_2}
+          ></img>
         </div>
       </div>
       <div className="pt-[105px] w-[80%] mx-auto flex flex-col gap-2">
         <p className="text-start text-[50px] font-nexa_bold text-primary">
           Brewing Happiness
         </p>
-        <p className="text-[30px] font-nexa_light text-start ">
+        <div className="w-full  h-[1px] bg-black  mb-10"></div>
+        <p className="text-[30px] font-nexa_light text-start  pv:max-lg:text-[20px] lg:max-xl:text-[20px] ">
           JOYU Is A Viet Nam Term For The Act Of Offering The Best Tea To The
           Emperor. It Represents Teas And Beverages Of The Highest And Finest
           Quality, Fit For Royalty. Today, Gong Cha Is Dedicated To The Same
