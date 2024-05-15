@@ -4,7 +4,7 @@ import React from "react";
 import imgbg_phone from "../../assets/Catering/bg_phone.png";
 const Catering = () => {
   return (
-    <div className="pt-[150px] w-[76vw] pv:max-md:w-[90vw] mx-auto grid grid-cols-2 gap-20 pv:max-lg:grid-cols-1 pv:max-lg:gap-0">
+    <div className="pt-[10vw] w-[76vw] pv:max-md:w-[90vw] mx-auto grid grid-cols-2 gap-20 pv:max-lg:grid-cols-1 pv:max-lg:gap-0">
       <div className="w-[100%] mx-auto">
         <div className="flex  text-[36px]   font-bold text-primary">
           <p className="uppercase">Catering</p>

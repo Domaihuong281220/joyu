@@ -6,7 +6,7 @@ import { Banner, Signature, Special, Sidebar } from "../components";
 function HomePage() {
   return (
     <div className="">
-      <Sidebar/>
+      <Sidebar />
       <Banner />
       <Signature />
       <Special />

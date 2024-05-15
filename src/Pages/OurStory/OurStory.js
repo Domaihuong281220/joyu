@@ -8,7 +8,7 @@ const OurStory = () => {
   return (
     <div className="pb-10">
       <img
-        className="object-fill h-[100vh] w-full pv:max-lg:h-[50vh]"
+        className="object-cover h-[50vw] w-full pv:max-lg:h-[50vh]"
         src={imgBanner}
       ></img>
       <div className="w-[82%] mx-auto grid grid-cols-2 pt-[110px] gap-[160px] pv:max-md:grid-cols-1 pv:max-ph:w-[90%] pv:max-lg:pt-10  pv:max-lg:gap-10">

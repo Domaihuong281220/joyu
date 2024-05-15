@@ -18,7 +18,7 @@ const Location = () => {
 
   return (
     <div className="w-[76%] mx-auto pv:max-md:w-[95%] lg:max-xl:w-[95%] pv:max-lg:w-[90%] pb-10">
-      <div className="w-[100%] pt-[100px] mx-auto grid grid-cols-2 pv:max-md:w-[95%] lg:max-xl:w-[95%] pv:max-lg:grid-cols-1">
+      <div className="w-[100%] pt-[10vw] mx-auto grid grid-cols-2 pv:max-md:w-[95%] lg:max-xl:w-[95%] pv:max-lg:grid-cols-1">
         <div className="col-span-1  w-[76%] mx-auto pv:max-lg:col-span-1 pv:max-lg:w-[90%]">
           <div className="">
             <p className="text-[30px] font-nexa_bold text-start text-primary">
