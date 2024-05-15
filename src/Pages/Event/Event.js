@@ -24,7 +24,7 @@ const Event = () => {
   // };
   return (
     <div className=" w-[76%] mx-auto pv:max-ph:w-[90%] md:max-lg:w-[90%] ">
-      <div className="pt-[10vw] flex ">
+      <div className="pt-[12vw] flex ">
         <p className="font-nexa_bold text-[50px] pv:max-ph:text-[24px]  text-primary">
           EVENT
         </p>
