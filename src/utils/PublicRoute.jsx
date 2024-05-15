@@ -9,6 +9,7 @@ import {
   OurStory,
   Location,
   Careers,
+  ProductDetail,
 } from "../Pages";
 
 import { path } from "./Constant";
@@ -61,6 +62,12 @@ const routes = [
     exact: true,
     component: <Careers />,
     main: () => <Careers />,
+  },
+  {
+    path: path.PRODUCTDETAIL,
+    exact: true,
+    component: <ProductDetail />,
+    main: () => <ProductDetail />,
   },
 ];
 

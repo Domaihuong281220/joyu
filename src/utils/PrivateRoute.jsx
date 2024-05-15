@@ -20,6 +20,7 @@ import {
   CategoriesEdit,
   CategoriesManage,
   ProductView,
+  ProductDetail,
 } from "../Pages";
 const routes = [
   {

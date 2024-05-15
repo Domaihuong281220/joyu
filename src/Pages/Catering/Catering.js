@@ -4,17 +4,17 @@ import React from "react";
 import imgbg_phone from "../../assets/Catering/bg_phone.png";
 const Catering = () => {
   return (
-    <div className="pt-[150px] w-[76vw] mx-auto grid grid-cols-2 gap-20 pv:max-lg:grid-cols-1">
+    <div className="pt-[150px] w-[76vw] pv:max-md:w-[90vw] mx-auto grid grid-cols-2 gap-20 pv:max-lg:grid-cols-1 pv:max-lg:gap-0">
       <div className="w-[100%] mx-auto">
-        <div className="flex  text-[36px] font-bold text-primary">
+        <div className="flex  text-[36px]   font-bold text-primary">
           <p className="uppercase">Catering</p>
         </div>
-        <div className="h-[1px] w-full bg-black my-10"></div>
+        <div className="h-[1px] w-full bg-black my-10 "></div>
         <div className="">
-          <p className="text-start text-[#a2a158] font-nexa_bold text-[24px]">
+          <p className="text-start text-[#a2a158] font-nexa_bold text-[24px] pv:max-sm:text-[20px] pv:max-sm:pb-2">
             BRING JOYU TO YOUR NEXT PARTY!
           </p>
-          <p className="text-start text-[24px] font-nexa_light">
+          <p className="text-start text-[24px] font-nexa_light pv:max-sm:text-[20px]">
             Enjoy JOYU tea at your next special occasion. Tell us about your
             plans and let our talented catering coordinators help plan the
             perfect event!<br></br> <br></br>A catering order is not processed
@@ -31,17 +31,17 @@ const Catering = () => {
         <div className="h-[1px] w-full bg-black my-10"></div>
 
         <div className="mb-10">
-          <p className="flex text-[36px] font-bold text-primary uppercase">
-            Catering
+          <p className="flex  font-bold text-primary uppercase  text-[36px] pv:max-sm:pb-2">
+            Catering Form
           </p>
-          <p className="text-start text-[#a2a158] font-nexa_bold text-[24px]">
+          <p className="text-start text-[#a2a158] font-nexa_bold text-[24px] pv:max-sm:text-[20px]">
             PLEASE SUBMIT ALL THE INFORMATION AND WE WILL REACH OUT TO YOU AS
             SOON AS POSSIBLE.
           </p>
         </div>
       </div>
       <div
-        className="  mb-10 relative w-[100%] pv:max-lg:w-[80%] mx-auto"
+        className="  mb-10 relative w-[100%]  pv:max-ph:w-[100%] ph:max-lg:w-[80%] mx-auto"
         // style={{
         //   backgroundImage: `url(${imgbg_phone})`,
         // }}
@@ -101,20 +101,6 @@ const Catering = () => {
             </button>
           </div>
         </div>
-
-        {/* <div className=" text-right gap-10 items-center  absolute">
-          <div className="col-span-1">
-            <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
-              ZIP / POSTAL CODE:
-            </p>
-          </div>
-          <div className="col-span-2">
-            <input
-              className=" w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full py-2 px-6"
-              placeholder="Zip / Postal Code"
-            ></input>
-          </div>
-        </div> */}
       </div>
     </div>
   );

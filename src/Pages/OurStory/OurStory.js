@@ -11,7 +11,7 @@ const OurStory = () => {
         className="object-fill h-[100vh] w-full pv:max-lg:h-[50vh]"
         src={imgBanner}
       ></img>
-      <div className="w-[82%] mx-auto grid grid-cols-2 pt-[110px] gap-[160px] pv:max-lg:grid-cols-1">
+      <div className="w-[82%] mx-auto grid grid-cols-2 pt-[110px] gap-[160px] pv:max-md:grid-cols-1 pv:max-ph:w-[90%] pv:max-lg:pt-10  pv:max-lg:gap-10">
         <div className="text-start">
           <p className="font-nexa_light text-[30px] pv:max-lg:text-[20px] lg:max-xl:text-[20px]">
             Here at JOYU, our mission is simple: To create high quality drinks
@@ -35,19 +35,19 @@ const OurStory = () => {
             JOYU family!!
           </p>
         </div>
-        <div className="flex flex-col justify-between pv:max-lg:flex-row">
+        <div className="flex flex-col justify-between md:max-xl:gap-10 md:max-xl:justify-around pv:max-md:flex-row pv:max-md:justify-center pv:max-lg:gap-2">
           <img
-            className="w-[490px] rounded-[50px] lg:max-xl:w-[400px] pv:max-lg:w-[40%] pv:max-md:rounded-sm"
+            className="w-[490px] rounded-[50px] lg:max-xl:w-[400px] pv:max-md:w-[50%] pv:max-md:rounded-sm"
             src={imgstory_1}
           ></img>
           <img
-            className="w-[490px] rounded-[50px] lg:max-xl:w-[400px]  pv:max-lg:w-[40%] pv:max-md:rounded-sm"
+            className="w-[490px] rounded-[50px] lg:max-xl:w-[400px]  pv:max-md:w-[50%] pv:max-md:rounded-sm"
             src={imgstory_2}
           ></img>
         </div>
       </div>
-      <div className="pt-[105px] w-[80%] mx-auto flex flex-col gap-2">
-        <p className="text-start text-[50px] font-nexa_bold text-primary">
+      <div className="pt-[105px] w-[80%] mx-auto flex flex-col gap-2 pv:max-ph:w-[90%] pv:max-lg:pt-10 ">
+        <p className="text-start text-[36px] font-nexa_bold text-primary pv:max-sm:pt-0">
           Brewing Happiness
         </p>
         <div className="w-full  h-[1px] bg-black  mb-10"></div>
