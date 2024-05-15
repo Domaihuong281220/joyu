@@ -9,7 +9,8 @@ import {
   OurStory,
   Location,
   Careers,
-  Menu
+  ProductDetail,
+  Menu,
 } from "../Pages";
 
 import { path } from "./Constant";
@@ -68,6 +69,12 @@ const routes = [
     exact: true,
     component: <Menu />,
     main: () => <Menu />,
+  },
+  {
+    path: path.PRODUCTDETAIL,
+    exact: true,
+    component: <ProductDetail />,
+    main: () => <ProductDetail />,
   },
 ];
 

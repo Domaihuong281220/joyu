@@ -23,7 +23,7 @@ const CardLocation = ({ title, address, phone, status }) => {
         <div className="flex justify-start pt-4">
           <button
             className={` px-4 py-2 ${
-              status === "Coming Soon" ? "bg-primary " : "bg-red-500"
+              status === "Coming Soon" ? "bg-primary " : "bg-[#cb1313]"
             } rounded-lg`}
           >
             <p className="text-white font-nexa_bold ">{status}</p>
