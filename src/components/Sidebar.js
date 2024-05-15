@@ -4,12 +4,14 @@ import sidebarBG from "../assets/SideBar/sidebarbg.png"
 import logo from "../assets/SideBar/logo.png"
 
 const Sidebar = () => {
+
     const [openSidebar, setOpenSidebar] = useState(sessionStorage.getItem('openSidebar'))
     
     const HandleSideBar = () => {
+        // console.log("sidebar")
         
         // console.log(sessionStorage.getItem('openSidebar'));
-        if (openSidebar == true) {
+        if (openSidebar === true) {
             setOpenSidebar(false)
             sessionStorage.setItem('openSidebar', false)
         } else {
@@ -18,7 +20,11 @@ const Sidebar = () => {
         }
     }
 
-    if (openSidebar != true) {
+    useEffect(() => {
+        setOpenSidebar(sessionStorage.getItem('openSidebar'))
+    })
+
+    if (openSidebar !== true) {
         return (
 
             <div className='absolute z-10 top-0 left-0 w-full h-24 flex px-[12%] py-4'>
@@ -52,7 +58,7 @@ const Sidebar = () => {
     }
     else {
         return (
-            <div className='h-[58rem] w-full ${position} z-50 flex flex-row bg-primary " id="sidebar'>
+            <div className='h-[58rem] w-full z-50 flex flex-row bg-primary " id="sidebar'>
                 <div className='absolute z-10 top-0 left-0 w-full h-24 flex px-[12%] py-4'>
                     <svg id="Group_6" width="63.832" height="45" viewBox="0 0 63.832 61.952">
                         <defs>
