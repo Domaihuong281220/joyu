@@ -68,3 +68,6 @@ export { default as ProductManage } from "./Admin/Ecommerce/Product/ProductManag
 export { default as ProductEdit } from "./Admin/Ecommerce/Product/ProductEdit/ProductEdit.jsx";
 export { default as ProductAdd } from "./Admin/Ecommerce/Product/ProductAdd/ProductAdd.jsx";
 export { default as ProductView } from "./Admin/Ecommerce/Product/ProductView/ProductView.jsx";
+
+//Menu
+export { default as Menu } from "./Menu.js"

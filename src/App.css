@@ -93,3 +93,23 @@ select {
   transform: translate(-50%, 0);
 }
 
+/* Sidebar */
+.logoSidebar{
+  width: 4vw;
+  height: 4vw;
+}
+
+.buttonSidebar{
+  width: 2.3vw;
+  height: 2.3vw;
+}
+
+.BigLogoSidebar{
+  height: 7vw;
+  width: 17.5vw;
+}
+
+.logoFooter{
+  width: 16.5vw;
+  height: 7vw;
+}
