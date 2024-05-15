@@ -6,7 +6,7 @@ import imgstory_1 from "../../assets/OurStory/story_1.png";
 import imgstory_2 from "../../assets/OurStory/story_2.png";
 const OurStory = () => {
   return (
-    <div className="">
+    <div className="pb-10">
       <img
         className="object-fill h-[100vh] w-full pv:max-lg:h-[50vh]"
         src={imgBanner}

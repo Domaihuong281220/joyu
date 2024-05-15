@@ -71,7 +71,7 @@ const routes = [
     main: () => <Menu />,
   },
   {
-    path: path.PRODUCTDETAIL,
+    path: `${path.PRODUCTDETAIL}/:key`,
     exact: true,
     component: <ProductDetail />,
     main: () => <ProductDetail />,
