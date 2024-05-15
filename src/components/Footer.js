@@ -1,5 +1,10 @@
 import React from 'react';
 
+import Facebook from "../assets/Footer/Facebook.png"
+import IG from "../assets/Footer/IG.png"
+import Tiktok from "../assets/Footer/Tiktok.png"
+import Youtube from "../assets/Footer/Youtube.png"
+
 
 function Signature() {
     return (
@@ -7,8 +12,8 @@ function Signature() {
             <div className='w-full h-[0.05vw] bg-white '></div>
             <div className='w-[0.05vw] h-[17.5vw] bg-white absolute left-[40.3vw] '></div>
             <div className='absolute z-10 w-full h-full flex'>
-                <div className='w-[40vw] h-full flex flex-col'>
-                    <div className='w-[48vw] h-[13.5vw] flex justify-start items-end pb-[2vw] pl-[13.2vw]'>
+                <div className='w-[40.5vw] h-full flex flex-col'>
+                    <div className='w-full h-[13.5vw] flex justify-start items-end pb-[2vw] pl-[13.2vw]'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="250" height="90" viewBox="0 0 310.711 113.527" className='logoFooter'>
                             <g id="Group_166" data-name="Group 166" transform="translate(1.5 -4.059)">
                                 <path id="Path_23" data-name="Path 23" d="M782.528,264.447v-1.062a2.952,2.952,0,0,1,2.952-2.953h4.062a2.952,2.952,0,0,1,2.952,2.953q0,3.508,4.476,3.507h4.059a9.86,9.86,0,0,0,3.645-.461,2.97,2.97,0,0,0,1.708-3.046V244.375a2.952,2.952,0,0,1,2.952-2.952h4.339a2.952,2.952,0,0,1,2.953,2.952v19.84q0,6.506-3.692,8.952-3.091,2.03-10.612,2.029h-6.69q-7.2,0-10.15-2.445t-2.953-8.3" transform="translate(-655.567 -196.854)" fill="#fff" />
@@ -23,17 +28,41 @@ function Signature() {
                             </g>
                         </svg>
                     </div>
-                    <div className='pl-[13.2vw] pr-[4vw] text-white'>
-                    <p className="font-nexa_bold uppercase text-start pt-2 text-[1.5vw]">Sign up for our update</p>
+                    <div className='pl-[13.2vw] pt-[1.8vw] pr-[4vw] text-white'>
+                        <p className="font-nexa_bold uppercase text-start pt-2 text-[1.5vw]">Sign up for our update</p>
                         <p className="font-nexa_light text-start text-[1vw]">To stay up-to-date on our promotions, discounts, sales, special offers and more.</p>
                         <input type="email" className='font-nexa_light text-[#44614f46] mt-6 px-6 py-[1vw] w-full rounded-full' placeholder="Enter your email" ></input>
                     </div>
                 </div>
-                <div className='w-[59vw] h-full flex felx-col'>
-                    <div className='w-[59vw] h-[13.5vw] flex justify-start items-end text-[1.8vw] pl-[4vw] pb-[1.5vw]'>
+                <div className='w-[59vw] h-full flex flex-col'>
+                    <div className='w-full h-[13.5vw] flex justify-start items-end text-[1.8vw] pl-[3.2vw] pb-[1.5vw]'>
                         <p className='font-shopee_bold text-white '>FOLLOW</p>
-
                     </div>
+                    <div className='flex space-x-[1vw] pl-[3.2vw] pt-[2.6vw]'>
+                        {/* Facebook */}
+                        <img src={Facebook} alt='' />
+
+                        {/* Instagram */}
+                        <img src={IG} alt='' />
+
+                        {/* Tiktok */}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60.668" height="60.668" viewBox="0 0 60.668 60.668">
+                            <defs>
+                                <clipPath id="clip-path">
+                                    <rect id="Rectangle_211" width="31.828" height="36.393" transform="translate(0 0)" fill="none" />
+                                </clipPath>
+                            </defs>
+                            <g id="Group_167" transform="translate(-1538.856 -3073.001)">
+                                <path id="Rectangle_93" d="M11.207,0H48.462A11.206,11.206,0,0,1,59.668,11.206V48.461A11.207,11.207,0,0,1,48.461,59.668H11.207A11.207,11.207,0,0,1,0,48.461V11.207A11.207,11.207,0,0,1,11.207,0Z" transform="translate(1539.356 3073.501)" fill="none" stroke="#fff" strokeMiterlimit="10" strokeWidth="1" />
+                                <g id="Group_78" transform="translate(1553.276 3085.154)" clipPath="url(#clip-path)">
+                                    <path id="Path_13440" d="M31.036,8.5A7.894,7.894,0,0,1,23.142.6c0-.03,0-.061,0-.091h0V0H16.928V24.824A5.355,5.355,0,1,1,13,19.659V13.341a11.571,11.571,0,1,0,0,22.967A11.569,11.569,0,0,0,23.142,24.824V11.473a8.854,8.854,0,0,0,8.686,3.192V8.459q-.391.039-.793.039" transform="translate(0 -0.002)" fill="#fff" />
+                                </g>
+                            </g>
+                        </svg>
+                        {/* Youtube */}
+                        <img src={Youtube} alt='' />
+                    </div>
+                    <p className='w-full text-start pl-[3.2vw] font-nexa_light font-black  text-white text-[1.1vw] pt-[3.5vw]'>Copyright JoYu Tea & Coffee 2022. All Rights Reserved</p>
                 </div>
             </div>
         </div>
