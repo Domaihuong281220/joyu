@@ -3,11 +3,17 @@
 import React, { useEffect, useState } from "react";
 
 import sidebarBG from "../assets/SideBar/sidebarbg.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/SideBar/logo.png";
 import { path } from "../utils/Constant";
 
 const Sidebar = () => {
+
+  const location = useLocation(); // Get the current location
+
+  // Log the current path
+  console.log('Current path:', location.pathname);
+
   const [openSidebar, setOpenSidebar] = useState(
     sessionStorage.getItem("openSidebar")
   );
@@ -74,10 +80,18 @@ const Sidebar = () => {
         </svg>
 
         <div className="w-full h-full flex justify-end space-x-4 items-end">
-          <button className="font-nexa_light  font-black bg-primary uppercase text-white rounded-full px-[4vw] py-[1.1vw] text-[1vw] h-fit">
+          <button className="font-nexa_light  font-black bg-primary uppercase text-white rounded-full px-[4vw] py-[1.1vw] text-[1vw] h-fit" onClick={() => {
+            navigate("../" + path.LOCATION);
+            setOpenSidebar(false);
+            sessionStorage.setItem("openSidebar", false);
+          }}>
             Order now
           </button>
-          <button className="font-nexa_light uppercase border-[1px] border-[#1E1B1A] text-secondary h-fit rounded-full px-[4vw] py-[1.1vw] text-[1vw]">
+          <button className="font-nexa_light uppercase border-[1px] border-[#1E1B1A] text-secondary h-fit rounded-full px-[4vw] py-[1.1vw] text-[1vw]" onClick={() => {
+                navigate("../" + path.LOCATION);
+                setOpenSidebar(false);
+                sessionStorage.setItem("openSidebar", false);
+              }}>
             Menu
           </button>
           <button onClick={() => HandleSideBar()} className="h-[3.5vw]">
@@ -129,7 +143,7 @@ const Sidebar = () => {
   } else {
     return (
       <div className='h-[65.5vw] w-full z-50 flex flex-row items-end bg-primary " id="sidebar'>
-        <div className="absolute z-10 top-0 left-0 w-full h-[10vw] flex px-[11.7%] py-4">
+        <div className="absolute z-10 top-0 left-0 w-full h-[10vw] flex justify-center items-end px-[11.7%] py-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="62.868"
@@ -167,10 +181,18 @@ const Sidebar = () => {
           </svg>
 
           <div className="w-full h-full flex justify-end space-x-4 items-end">
-            <button className="font-nexa_light font-black bg-white uppercase text-primary rounded-full px-[4vw] py-[1.1vw] text-[1vw] h-fit">
+            <button className="font-nexa_light font-black bg-white uppercase text-primary rounded-full px-[4vw] py-[1.1vw] text-[1vw] h-fit" onClick={() => {
+              navigate("../" + path.LOCATION);
+              setOpenSidebar(false);
+              sessionStorage.setItem("openSidebar", false);
+            }}>
               Order now
             </button>
-            <button className="font-nexa_light uppercase border-[1px] border-[#1E1B1A] text-secondary h-fit rounded-full px-[4vw] py-[1.1vw] text-[1vw]">
+            <button className="font-nexa_light uppercase border-[1px] border-[#1E1B1A] text-secondary h-fit rounded-full px-[4vw] py-[1.1vw] text-[1vw]" onClick={() => {
+                navigate("../" + path.LOCATION);
+                setOpenSidebar(false);
+                sessionStorage.setItem("openSidebar", false);
+              }}>
               Menu
             </button>
             <button onClick={() => HandleSideBar()} className="h-[3.5vw]">
@@ -179,6 +201,7 @@ const Sidebar = () => {
                 width="50"
                 height="50"
                 viewBox="0 0 50 50"
+                className="buttonSidebar"
               >
                 <g
                   id="Group_166"
@@ -231,7 +254,7 @@ const Sidebar = () => {
         </div>
         <div className="w-[38vw] h-full relative">
           <img src={sidebarBG} alt="" className="object-cover h-full" />
-          <div className="absolute text-white bottom-0 left-0 w-full flex flex-col pt-7 pl-[16.8rem] pr-[9%] h-[25vw]  border-t-[1px] border-white">
+          <div className="absolute text-white bottom-0 left-0 w-full flex flex-col pt-[3vw] pl-[9vw] pr-[9%] h-[25vw]  border-t-[1px] border-white">
             {/* <img src={logo} alt='' className='w-full'/> */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -323,81 +346,88 @@ const Sidebar = () => {
             </p>
             <input
               type="email"
-              className="font-nexa_light text-[#44614f46] mt-6 px-6 py-[1vw] w-[21vw] rounded-full"
+              className="font-nexa_light text-[#44614f46] mt-[1vw] px-[1vw] py-[1vw] w-[21vw] text-[1vw] rounded-full"
               placeholder="Enter your email"
             ></input>
           </div>
         </div>
         <div className="w-3/5 h-full  relative">
-          <div className="w-full h-[75%] flex flex-col space-y-4 justify-center items-center text-white text-[2.2vw]">
-            <div className="flex justify-start items-center w-full h-fit space-x-10">
-              <div className="h-[2.5vw] w-1 bg-white"></div>
-              <p className="font-nexa_bold ">Menu</p>
+          <div className="w-full h-[75%] flex flex-col space-y-[0.7vw] justify-center items-center text-white text-[2.2vw]">
+          <div
+              className="flex w-full h-fit space-x-[3vw] cursor-pointer"
+              onClick={() => {
+                navigate("../" + path.MENU);
+                setOpenSidebar(false);
+                sessionStorage.setItem("openSidebar", false);
+              }}
+            >
+              <div className={`${(location.pathname === "/menu")?"h-[2.5vw] w-1 bg-white":"h-[2.5vw] w-1"}`}></div>
+              <p className="font-nexa_bold opacity-50">Menu</p>
             </div>
             <div
-              className="flex w-full h-fit space-x-10 cursor-pointer"
+              className="flex w-full h-fit space-x-[3vw] cursor-pointer"
               onClick={() => {
                 navigate("../" + path.LOCATION);
                 setOpenSidebar(false);
                 sessionStorage.setItem("openSidebar", false);
               }}
             >
-              <div className="h-full w-1 bgwhite"></div>
+              <div className={`${(location.pathname === path.LOCATION)?"h-[2.5vw] w-1 bg-white":"h-[2.5vw] w-1"}`}></div>
               <p className="font-nexa_bold opacity-50">Locations</p>
             </div>
             <div
-              className="flex w-full h-fit space-x-10 cursor-pointer"
+              className="flex w-full h-fit space-x-[3vw] cursor-pointer"
               onClick={() => {
                 navigate("../" + path.OURSTORY);
                 setOpenSidebar(false);
                 sessionStorage.setItem("openSidebar", false);
               }}
             >
-              <div className="h-full w-1 bg-"></div>
+              <div className={`${(location.pathname === path.OURSTORY)?"h-[2.5vw] w-1 bg-white":"h-[2.5vw] w-1"}`}></div>
               <p className="font-nexa_bold opacity-50">Our Story</p>
             </div>
             <div
-              className="flex w-full h-fit space-x-10 cursor-pointer"
+              className="flex w-full h-fit space-x-[3vw] cursor-pointer"
               onClick={() => {
                 navigate("../" + path.CATERING);
                 setOpenSidebar(false);
                 sessionStorage.setItem("openSidebar", false);
               }}
             >
-              <div className="h-full w-1 bg-"></div>
+              <div className={`${(location.pathname === path.CATERING)?"h-[2.5vw] w-1 bg-white":"h-[2.5vw] w-1"}`}></div>
               <p className="font-nexa_bold opacity-50 ">Catering</p>
             </div>
             <div
-              className="flex w-full h-fit space-x-10 cursor-pointer"
+              className="flex w-full h-fit space-x-[3vw] cursor-pointer"
               onClick={() => {
                 navigate("../" + path.CAREERS);
                 setOpenSidebar(false);
                 sessionStorage.setItem("openSidebar", false);
               }}
             >
-              <div className="h-full w-1 bg-"></div>
+              <div className={`${(location.pathname === path.CAREERS)?"h-[2.5vw] w-1 bg-white":"h-[2.5vw] w-1"}`}></div>
               <p className="font-nexa_bold opacity-50">Career</p>
             </div>
             <div
-              className="flex w-full h-fit space-x-10 cursor-pointer"
+              className="flex w-full h-fit space-x-[3vw] cursor-pointer"
               onClick={() => {
                 navigate("../" + path.FRANCHISING);
                 setOpenSidebar(false);
                 sessionStorage.setItem("openSidebar", false);
               }}
             >
-              <div className="h-full w-1 bg-"></div>
+              <div className={`${(location.pathname === path.FRANCHISING)?"h-[2.5vw] w-1 bg-white":"h-[2.5vw] w-1"}`}></div>
               <p className="font-nexa_bold opacity-50">Franchising</p>
             </div>
             <div
-              className="flex w-full h-fit space-x-10 cursor-pointer"
+              className="flex w-full h-fit space-x-[3vw] cursor-pointer"
               onClick={() => {
                 navigate("../" + path.EVENT);
                 setOpenSidebar(false);
                 sessionStorage.setItem("openSidebar", false);
               }}
             >
-              <div className="h-full w-1 bg-"></div>
+              <div className={`${(location.pathname === path.EVENT)?"h-[2.5vw] w-1 bg-white":"h-[2.5vw] w-1"}`}></div>
               <p className="font-nexa_bold opacity-50">Events</p>
             </div>
           </div>
