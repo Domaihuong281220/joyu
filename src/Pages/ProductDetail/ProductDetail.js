@@ -10,7 +10,7 @@ const ProductDetail = () => {
   console.log(data);
 
   return (
-    <div className="pt-[160px] grid grid-cols-2 w-[76vw] pv:max-md:w-[90vw] mx-auto pv:max-md:grid-cols-1 pv:max-md:gap-10 py-5 ">
+    <div className="pt-[10vw] grid grid-cols-2 w-[76vw] pv:max-md:w-[90vw] mx-auto pv:max-md:grid-cols-1 pv:max-md:gap-10 py-5 ">
       <div className="w-[80%] pv:max-md:w-[100%]">
         <div className="text-start">
           <p className="text-[50px] font-nexa_bold text-primary pv:max-md:text-[36px] md:max-xl:text-[30px]">
