@@ -7,7 +7,9 @@ import PrivateLayout from "./PrivateLayout";
 import PublicLayout from "./PublicLayout";
 import PublicRoute from "../utils/PublicRoute";
 import PrivateRoute from "../utils/PrivateRoute";
-import { Sidebar } from "../Component";
+import { Sidebar, Footer } from "../Component";
+import { useState, useEffect } from "react";
+
 
 const DefaultLayout = (props) => {
   //Routes
@@ -27,8 +29,8 @@ const DefaultLayout = (props) => {
     }
     return result;
   };
-
-  return (
+  
+    return (
     <>
       {/* <Header /> */}
       {/* <Routes>{showContentMenu(routes)}</Routes>
@@ -41,9 +43,11 @@ const DefaultLayout = (props) => {
           {showContentMenu(PrivateRoute)}
         </Route>
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
+
+  
 };
 
 export default DefaultLayout;

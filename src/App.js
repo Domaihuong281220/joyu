@@ -2,9 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import DefaultLayout from "./layouts/DefaultLayout";
+import { useEffect } from 'react';
 
 
 function App() {
+  useEffect(() => {
+    sessionStorage.setItem('openSidebar', false);
+  });
   return (
     <div className="App">
       <Router>
