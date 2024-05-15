@@ -4,17 +4,17 @@ import React from "react";
 import imgbg_phone from "../../assets/Catering/bg_phone.png";
 const Catering = () => {
   return (
-    <div className="pt-[10vw] w-[76vw] pv:max-md:w-[90vw] mx-auto grid grid-cols-2 gap-20 pv:max-lg:grid-cols-1 pv:max-lg:gap-0">
+    <div className="pt-[12vw] w-[76vw] pv:max-md:w-[90vw] mx-auto grid grid-cols-2 gap-20 pv:max-lg:grid-cols-1 pv:max-lg:gap-0">
       <div className="w-[100%] mx-auto">
-        <div className="flex  text-[36px]   font-bold text-primary">
+        <div className="flex  text-[2.5vw]   font-bold text-primary">
           <p className="uppercase">Catering</p>
         </div>
         <div className="h-[1px] w-full bg-black my-10 "></div>
         <div className="">
-          <p className="text-start text-[#a2a158] font-nexa_bold text-[24px] pv:max-sm:text-[20px] pv:max-sm:pb-2">
+          <p className="text-start text-[#a2a158] font-nexa_bold text-[1.4vw] pb-[1.2vw]">
             BRING JOYU TO YOUR NEXT PARTY!
           </p>
-          <p className="text-start text-[24px] font-nexa_light pv:max-sm:text-[20px]">
+          <p className="text-start text-[1.5vw] font-nexa_light">
             Enjoy JOYU tea at your next special occasion. Tell us about your
             plans and let our talented catering coordinators help plan the
             perfect event!<br></br> <br></br>A catering order is not processed
@@ -47,7 +47,7 @@ const Catering = () => {
         // }}
       >
         <img
-          className="h-[960px] w-full pv:max-md:h-[600px] md:max-lg:h-[960px]"
+          className="h-[60vw] w-full "
           src={imgbg_phone}
         ></img>
         <p className="custom_input absolute w-full top-[30px] font-shopee_bold text-[22px] text-primary pv:max-md:text-[14px]">
