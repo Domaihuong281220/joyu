@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
+import Footer from "../components/Footer"
 
 function PublicLayout() {
   const [openSidebar, setOpenSidebar] = useState(sessionStorage.getItem('openSidebar') === 'true');
@@ -23,6 +24,7 @@ function PublicLayout() {
     <>
     <Sidebar />
       <div id="content-wrapper"><Outlet /></div>
+      <Footer/>
     </>
   );
 }

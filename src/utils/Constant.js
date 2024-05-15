@@ -11,6 +11,7 @@ export const path = {
   LOCATION: "/location",
   OURSTORY: "/ourstory",
   CAREERS: "/careers",
+  MENU : "/menu",
 
   LOGIN: "/login",
   MANAGECATEGORY: "/manage-category",
