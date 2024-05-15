@@ -21,8 +21,12 @@ const Sidebar = () => {
     }
 
     useEffect(() => {
-        setOpenSidebar(sessionStorage.getItem('openSidebar'))
-    })
+        const interval = setInterval(() => {
+            setOpenSidebar(JSON.parse(sessionStorage.getItem('openSidebar')));
+        }, 1);
+
+        return () => clearInterval(interval);  // Cleanup interval on component unmount
+    }, []);
 
     if (openSidebar !== true) {
         return (
