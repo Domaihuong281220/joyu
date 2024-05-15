@@ -37,3 +37,59 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* Select */
+
+.custom-select {
+  min-width: 300px;
+  position: relative;
+}
+
+select {
+  appearance: none;
+  /*  safari  */
+  -webkit-appearance: none;
+  /*  other styles for aesthetics */
+  width: 100%;
+  font-size: 1.15rem;
+  padding: 0.675em 6em 0.675em 1em;
+  color: #000;
+  cursor: pointer;
+}
+
+.custom-select::before,
+.custom-select::after {
+  --size: 0.3rem;
+  content: "";
+  position: absolute;
+  right: 1rem;
+  pointer-events: none;
+  color: #4a4a4a;
+  
+}
+
+
+
+
+/* Style for the dropdown arrow */
+.custom-select::after {
+  content: '\25BC'; /* Unicode character for down arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #4a4a4a;
+
+}
+/* Style for the dropdown list */
+.custom-select select:focus + .dropdown-content {
+  display: block;
+}
+
+.custom_input {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
