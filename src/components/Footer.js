@@ -31,7 +31,7 @@ function Signature() {
                     <div className='pl-[13.2vw] pt-[1.8vw] pr-[4vw] text-white'>
                         <p className="font-nexa_bold uppercase text-start pt-2 text-[1.5vw]">Sign up for our update</p>
                         <p className="font-nexa_light text-start text-[1vw]">To stay up-to-date on our promotions, discounts, sales, special offers and more.</p>
-                        <input type="email" className='font-nexa_light text-[#44614f46] mt-6 px-6 py-[1vw] w-full rounded-full' placeholder="Enter your email" ></input>
+                        <input type="email" className='font-nexa_light text-[#44614f46] text-[1vw] mt-[1vw] px-6 py-[1vw] w-full rounded-full' placeholder="Enter your email" ></input>
                     </div>
                 </div>
                 <div className='w-[59vw] h-full flex flex-col'>
@@ -40,13 +40,13 @@ function Signature() {
                     </div>
                     <div className='flex space-x-[1vw] pl-[3.2vw] pt-[2.6vw]'>
                         {/* Facebook */}
-                        <img src={Facebook} alt='' />
+                        <img src={Facebook} alt=''  className='iconFooter'/>
 
                         {/* Instagram */}
-                        <img src={IG} alt='' />
+                        <img src={IG} alt='' className='iconFooter' />
 
                         {/* Tiktok */}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60.668" height="60.668" viewBox="0 0 60.668 60.668">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60.668" height="60.668" viewBox="0 0 60.668 60.668" className='iconFooter'>
                             <defs>
                                 <clipPath id="clip-path">
                                     <rect id="Rectangle_211" width="31.828" height="36.393" transform="translate(0 0)" fill="none" />
@@ -60,7 +60,7 @@ function Signature() {
                             </g>
                         </svg>
                         {/* Youtube */}
-                        <img src={Youtube} alt='' />
+                        <img src={Youtube} alt='' className='iconFooter'/>
                     </div>
                     <p className='w-full text-start pl-[3.2vw] font-nexa_light font-black  text-white text-[1.1vw] pt-[3.5vw]'>Copyright JoYu Tea & Coffee 2022. All Rights Reserved</p>
                 </div>
