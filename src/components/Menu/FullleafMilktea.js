@@ -22,7 +22,7 @@ function FullleafMilktea() {
     });
   };
   return (
-    <div className="flex flex-col justify-start items-start px-[11.7%] mt-[5vw]">
+    <div className="flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[52vw]">
       <p className="font-nexa_bold uppercase text-[2.7vw] leading-[2.2vw]">
         Fullleaf milktea
       </p>
