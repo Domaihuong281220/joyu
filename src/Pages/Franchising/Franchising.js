@@ -5,26 +5,26 @@ import img_Frachising from "../../assets/Frachising/frachising_1.png";
 const Franchising = () => {
   return (
     <div>
-      <div className="w-[76%] mx-auto pt-[10vw] pv:max-md:w-[95%] md:max-2xl:w-[90%] ">
-        <div className="pb-10 flex">
-          <p className=" text-primary font-nexa_bold text-[50px] pv:max-md:text-[24px] md:max-2xl:text-[30px]">
+      <div className="w-[76%] mx-auto pt-[12vw]  ">
+        <div className=" flex">
+          <p className=" text-primary font-nexa_bold text-[2.5vw] mb-[-2vw]">
             FRANCHISING
           </p>
         </div>
         <div className="">
           <div className="w-full h-[1px] bg-black mt-10"></div>
-          <div className="grid grid-cols-5 gap-20 py-10 pv:max-md:grid-cols-1">
-            <div className="flex flex-col gap-10 col-span-3">
-              <p className="text-start font-nexa_light text-[25px]">
+          <div className="grid grid-cols-5 gap-[5vw] py-[2vw] pv:max-md:grid-cols-1">
+            <div className="flex flex-col gap-[2vw] col-span-3">
+              <p className="text-start font-nexa_light text-[1.4vw]">
                 Have you ever thought about owning a Tea & Coffee shop but
                 worried about how to get it started and a lot more barriers to
                 keep you away from it!!!!
               </p>
-              <p className=" text-start font-nexa_bold text-[25px] underline uppercase">
+              <p className=" text-start font-nexa_light font-black text-[1.4vw] underline uppercase">
                 JOYU Tea & Coffee team will make it much more easier for you.
                 Please take a quick look on what we can offer:
               </p>
-              <ul className="font-nexa_bold text-[25px]  uppercase text-start list-disc">
+              <ul className="font-nexa_light font-bold text-[1.4vw]  uppercase text-start list-disc">
                 <li>Low and less risky investment.</li>
                 <li> Market & location survey.</li>
                 <li>Store construction & other related topics.</li>
@@ -34,7 +34,7 @@ const Franchising = () => {
               </ul>
             </div>
             <div className="w-full col-span-2 pv:max-md:col-span-3">
-              <img className="w-full" src={img_Frachising}></img>
+              <img className="w-full rounded-[2vw]" src={img_Frachising}></img>
             </div>
           </div>
           <div className="w-full h-[1px] bg-black mb-10"></div>

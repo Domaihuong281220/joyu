@@ -49,6 +49,10 @@ const Sidebar = () => {
           height="60.988"
           viewBox="0 0 62.868 60.988"
           className="logoSidebar"
+          onClick={()=>{navigate("/")
+            setOpenSidebar(false);
+            sessionStorage.setItem("openSidebar", false);
+            }}
         >
           <g
             id="Group_165"
@@ -88,7 +92,7 @@ const Sidebar = () => {
             Order now
           </button>
           <button className="font-nexa_light uppercase border-[1px] border-[#1E1B1A] text-secondary h-fit rounded-full px-[4vw] py-[1.1vw] text-[1vw]" onClick={() => {
-                navigate("../" + path.LOCATION);
+                navigate("../" + path.MENU);
                 setOpenSidebar(false);
                 sessionStorage.setItem("openSidebar", false);
               }}>
@@ -150,6 +154,10 @@ const Sidebar = () => {
             height="60.988"
             viewBox="0 0 62.868 60.988"
             className="logoSidebar"
+            onClick={()=>{navigate("/")
+            setOpenSidebar(false);
+            sessionStorage.setItem("openSidebar", false);
+            }}
           >
             <g
               id="Group_165"
@@ -189,7 +197,7 @@ const Sidebar = () => {
               Order now
             </button>
             <button className="font-nexa_light uppercase border-[1px] border-[#1E1B1A] text-secondary h-fit rounded-full px-[4vw] py-[1.1vw] text-[1vw]" onClick={() => {
-                navigate("../" + path.LOCATION);
+                navigate("../" + path.MENU);
                 setOpenSidebar(false);
                 sessionStorage.setItem("openSidebar", false);
               }}>
