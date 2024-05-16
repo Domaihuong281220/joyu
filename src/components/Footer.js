@@ -8,12 +8,12 @@ import Youtube from "../assets/Footer/Youtube.png"
 
 function Signature() {
     return (
-        <div className=" w-full h-[27vw] bg-primary flex justify-center items-center flex-col relative">
+        <div className=" w-full h-[31vw] bg-primary flex justify-center items-center flex-col relative">
             <div className='w-full h-[0.05vw] bg-white '></div>
             <div className='w-[0.05vw] h-[17.5vw] bg-white absolute left-[40.3vw] '></div>
             <div className='absolute z-10 w-full h-full flex'>
                 <div className='w-[40.5vw] h-full flex flex-col'>
-                    <div className='w-full h-[13.5vw] flex justify-start items-end pb-[2vw] pl-[13.2vw]'>
+                    <div className='w-full h-[15.5vw] flex justify-start items-end pb-[2vw] pl-[13.2vw]'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="250" height="90" viewBox="0 0 310.711 113.527" className='logoFooter'>
                             <g id="Group_166" data-name="Group 166" transform="translate(1.5 -4.059)">
                                 <path id="Path_23" data-name="Path 23" d="M782.528,264.447v-1.062a2.952,2.952,0,0,1,2.952-2.953h4.062a2.952,2.952,0,0,1,2.952,2.953q0,3.508,4.476,3.507h4.059a9.86,9.86,0,0,0,3.645-.461,2.97,2.97,0,0,0,1.708-3.046V244.375a2.952,2.952,0,0,1,2.952-2.952h4.339a2.952,2.952,0,0,1,2.953,2.952v19.84q0,6.506-3.692,8.952-3.091,2.03-10.612,2.029h-6.69q-7.2,0-10.15-2.445t-2.953-8.3" transform="translate(-655.567 -196.854)" fill="#fff" />
@@ -35,7 +35,7 @@ function Signature() {
                     </div>
                 </div>
                 <div className='w-[59vw] h-full flex flex-col'>
-                    <div className='w-full h-[13.5vw] flex justify-start items-end text-[1.8vw] pl-[3.2vw] pb-[1.5vw]'>
+                    <div className='w-full h-[15.5vw] flex justify-start items-end text-[1.8vw] pl-[3.2vw] pb-[1.5vw]'>
                         <p className='font-shopee_bold text-white '>FOLLOW</p>
                     </div>
                     <div className='flex space-x-[1vw] pl-[3.2vw] pt-[2.6vw]'>

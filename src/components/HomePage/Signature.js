@@ -5,7 +5,7 @@ import fruitjuice from "../../assets/HomePage/fruitjuice.png";
 
 function Signature() {
     return (
-        <div className=" h-[66.5vw] flex flex-col space-y-[3.5vw] justify-center items-center px-[9%]">
+        <div className=" h-[69.5vw] flex flex-col space-y-[4.5vw] justify-center items-center px-[9%]">
             <div className="flex w-full h-[27vw] space-x-6">
                 <div className="bg-[#F0F0F0] rounded-bl-[5vw] w-[59.1%] flex flex-col justify-center px-[4.5vw]">
                     <p className='uppercase text-start font-nexa_light font-black text-[3vw]'>Dreamy new cold brew</p>
