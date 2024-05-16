@@ -38,7 +38,7 @@ const Location = () => {
               ></Icon>
             </button>
           </div>
-          <div className="pt-10 h-[500px] overflow-y-scroll pv:max-md:h-[300px] lg:max-xl:h-[400px]  xl:max-2xl:h-[550px] ">
+          <div className="pt-10 h-[500px] overflow-y-scroll pv:max-md:h-[400px] lg:max-xl:h-[500px]  xl:max-2xl:h-[600px] ">
             <CardLocation
               title={"Virginia Beach"}
               address={"429 Southgate Ave, Virginia Beach,VA 23462"}

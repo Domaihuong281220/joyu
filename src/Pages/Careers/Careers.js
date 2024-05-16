@@ -5,13 +5,11 @@ import { carrerData, careerAddressData } from "../../models/mockdata";
 import { CardCareer, CardCareerAddress } from "../../components";
 const Careers = () => {
   return (
-    <div className=" w-[76%] mx-auto   pv:max-lg:w-[90%] ">
-      <div className="pt-[12vw] flex ">
-        <p className="font-nexa_bold text-[50px] pv:max-ph:text-[24px] text-primary">
-          CAREER
-        </p>
+    <div className=" w-[76vw] mx-auto   pv:max-lg:w-[90%] ">
+      <div className="pt-[12vw] flex pb-[3.6vw]">
+        <p className="font-nexa_bold text-[2.6vw]  text-primary">CAREER</p>
       </div>
-      <div className="flex flex-col gap-20">
+      <div className="flex flex-col gap-[5vw]">
         {carrerData.map((item, index) => {
           return (
             <>

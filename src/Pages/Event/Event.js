@@ -26,7 +26,7 @@ const Event = () => {
     <div className=" w-[76%] mx-auto pv:max-ph:w-[90%] md:max-lg:w-[90%] ">
       <div className="pt-[12vw] flex ">
         <p className="font-nexa_bold text-[50px] pv:max-ph:text-[24px]  text-primary">
-          EVENT
+          EVENTS
         </p>
       </div>
       <div className=" h-[1000px] overflow-y-scroll ">
