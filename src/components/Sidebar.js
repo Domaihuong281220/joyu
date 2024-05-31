@@ -4,15 +4,30 @@ import React, { useEffect, useState } from "react";
 
 import sidebarBG from "../assets/SideBar/sidebarbg.png";
 import { useNavigate, useLocation } from "react-router-dom";
-import logo from "../assets/SideBar/logo.png";
+// import logo from "../assets/SideBar/logo.png";
 import { path } from "../utils/Constant";
-
+import axios from "axios";
 const Sidebar = () => {
 
   const location = useLocation(); // Get the current location
 
-  // Log the current path
-  console.log('Current path:', location.pathname);
+  const [email, setEmail] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+  });
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    try{
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/customer`,formData
+      )
+      console.log(response);
+    }
+    catch(err){
+      console.log(err)
+    }
+  };
 
   const [openSidebar, setOpenSidebar] = useState(
     sessionStorage.getItem("openSidebar")
@@ -49,10 +64,11 @@ const Sidebar = () => {
           height="60.988"
           viewBox="0 0 62.868 60.988"
           className="logoSidebar"
-          onClick={()=>{navigate("/")
+          onClick={() => {
+            navigate("/")
             setOpenSidebar(false);
             sessionStorage.setItem("openSidebar", false);
-            }}
+          }}
         >
           <g
             id="Group_165"
@@ -92,10 +108,10 @@ const Sidebar = () => {
             Order now
           </button>
           <button className="font-nexa_light uppercase border-[1px] border-[#1E1B1A] text-secondary h-fit rounded-full px-[4vw] py-[1.1vw] text-[1vw]" onClick={() => {
-                navigate("../" + path.MENU);
-                setOpenSidebar(false);
-                sessionStorage.setItem("openSidebar", false);
-              }}>
+            navigate("../" + path.MENU);
+            setOpenSidebar(false);
+            sessionStorage.setItem("openSidebar", false);
+          }}>
             Menu
           </button>
           <button onClick={() => HandleSideBar()} className="h-[3.5vw]">
@@ -154,9 +170,10 @@ const Sidebar = () => {
             height="60.988"
             viewBox="0 0 62.868 60.988"
             className="logoSidebar"
-            onClick={()=>{navigate("/")
-            setOpenSidebar(false);
-            sessionStorage.setItem("openSidebar", false);
+            onClick={() => {
+              navigate("/")
+              setOpenSidebar(false);
+              sessionStorage.setItem("openSidebar", false);
             }}
           >
             <g
@@ -197,10 +214,10 @@ const Sidebar = () => {
               Order now
             </button>
             <button className="font-nexa_light uppercase border-[1px] border-[#1E1B1A] text-secondary h-fit rounded-full px-[4vw] py-[1.1vw] text-[1vw]" onClick={() => {
-                navigate("../" + path.MENU);
-                setOpenSidebar(false);
-                sessionStorage.setItem("openSidebar", false);
-              }}>
+              navigate("../" + path.MENU);
+              setOpenSidebar(false);
+              sessionStorage.setItem("openSidebar", false);
+            }}>
               Menu
             </button>
             <button onClick={() => HandleSideBar()} className="h-[3.5vw]">
@@ -352,16 +369,20 @@ const Sidebar = () => {
               To stay up-to-date on our promotions, discounts, sales, special
               offers and more.
             </p>
-            <input
-              type="email"
-              className="font-nexa_light text-[#44614f46] mt-[1vw] px-[1vw] py-[1vw] w-[21vw] text-[1vw] rounded-full"
-              placeholder="Enter your email"
-            ></input>
+            <form onSubmit={handleSubmit} className="flex justify-start">
+              <input
+                type="email"
+                className="font-nexa_light text-[#44614f46] mt-[1vw] px-[1vw] py-[1vw] w-[21vw] text-[1vw] rounded-full"
+                placeholder="Enter your email"
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              />
+              <button type="submit" style={{ display: 'none' }}>Submit</button>
+            </form>
           </div>
         </div>
         <div className="w-3/5 h-full  relative">
           <div className="w-full h-[75%] flex flex-col space-y-[0.7vw] justify-center items-center text-white text-[2.2vw]">
-          <div
+            <div
               className="flex w-full h-fit space-x-[3vw] cursor-pointer"
               onClick={() => {
                 navigate("../" + path.MENU);
@@ -369,7 +390,7 @@ const Sidebar = () => {
                 sessionStorage.setItem("openSidebar", false);
               }}
             >
-              <div className={`${(location.pathname === "/menu")?"h-[2.5vw] w-1 bg-white":"h-[2.5vw] w-1"}`}></div>
+              <div className={`${(location.pathname === "/menu") ? "h-[2.5vw] w-1 bg-white" : "h-[2.5vw] w-1"}`}></div>
               <p className="font-nexa_bold opacity-50">Menu</p>
             </div>
             <div
@@ -380,7 +401,7 @@ const Sidebar = () => {
                 sessionStorage.setItem("openSidebar", false);
               }}
             >
-              <div className={`${(location.pathname === path.LOCATION)?"h-[2.5vw] w-1 bg-white":"h-[2.5vw] w-1"}`}></div>
+              <div className={`${(location.pathname === path.LOCATION) ? "h-[2.5vw] w-1 bg-white" : "h-[2.5vw] w-1"}`}></div>
               <p className="font-nexa_bold opacity-50">Locations</p>
             </div>
             <div
@@ -391,7 +412,7 @@ const Sidebar = () => {
                 sessionStorage.setItem("openSidebar", false);
               }}
             >
-              <div className={`${(location.pathname === path.OURSTORY)?"h-[2.5vw] w-1 bg-white":"h-[2.5vw] w-1"}`}></div>
+              <div className={`${(location.pathname === path.OURSTORY) ? "h-[2.5vw] w-1 bg-white" : "h-[2.5vw] w-1"}`}></div>
               <p className="font-nexa_bold opacity-50">Our Story</p>
             </div>
             <div
@@ -402,7 +423,7 @@ const Sidebar = () => {
                 sessionStorage.setItem("openSidebar", false);
               }}
             >
-              <div className={`${(location.pathname === path.CATERING)?"h-[2.5vw] w-1 bg-white":"h-[2.5vw] w-1"}`}></div>
+              <div className={`${(location.pathname === path.CATERING) ? "h-[2.5vw] w-1 bg-white" : "h-[2.5vw] w-1"}`}></div>
               <p className="font-nexa_bold opacity-50 ">Catering</p>
             </div>
             <div
@@ -413,7 +434,7 @@ const Sidebar = () => {
                 sessionStorage.setItem("openSidebar", false);
               }}
             >
-              <div className={`${(location.pathname === path.CAREERS)?"h-[2.5vw] w-1 bg-white":"h-[2.5vw] w-1"}`}></div>
+              <div className={`${(location.pathname === path.CAREERS) ? "h-[2.5vw] w-1 bg-white" : "h-[2.5vw] w-1"}`}></div>
               <p className="font-nexa_bold opacity-50">Career</p>
             </div>
             <div
@@ -424,7 +445,7 @@ const Sidebar = () => {
                 sessionStorage.setItem("openSidebar", false);
               }}
             >
-              <div className={`${(location.pathname === path.FRANCHISING)?"h-[2.5vw] w-1 bg-white":"h-[2.5vw] w-1"}`}></div>
+              <div className={`${(location.pathname === path.FRANCHISING) ? "h-[2.5vw] w-1 bg-white" : "h-[2.5vw] w-1"}`}></div>
               <p className="font-nexa_bold opacity-50">Franchising</p>
             </div>
             <div
@@ -435,7 +456,7 @@ const Sidebar = () => {
                 sessionStorage.setItem("openSidebar", false);
               }}
             >
-              <div className={`${(location.pathname === path.EVENT)?"h-[2.5vw] w-1 bg-white":"h-[2.5vw] w-1"}`}></div>
+              <div className={`${(location.pathname === path.EVENT) ? "h-[2.5vw] w-1 bg-white" : "h-[2.5vw] w-1"}`}></div>
               <p className="font-nexa_bold opacity-50">Events</p>
             </div>
           </div>
