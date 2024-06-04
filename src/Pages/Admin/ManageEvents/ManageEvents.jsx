@@ -40,9 +40,10 @@ const ManageEvents = () => {
       .get(`${process.env.REACT_APP_SERVER_URL}/joyu/news`)
       .then((res) => {
         setNewsData(res.data.data);
-        console.table(newsData);
+        // console.log(res.data.count,"respone");
       })
       .catch((err) => {
+        setNewsData([])
         console.log(err);
       });
   };
