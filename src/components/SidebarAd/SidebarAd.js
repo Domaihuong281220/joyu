@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { path } from "../../utils/Constant";
 import imgLogo from "../../assets/Login/logo_admin.png";
 import { Menu, Popover, Button, Switch } from "antd";
+import { Popconfirm } from "antd";
 
 const SidebarAd = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -20,109 +21,6 @@ const SidebarAd = () => {
     setTheme(value ? "dark" : "light");
   };
 
-  //   {
-  //     key: "jobs",
-  //     icon: (
-  //       <Icon icon="oui:ml-outlier-detection-job" className="h-5 w-5"></Icon>
-  //     ),
-  //     label: (
-  //       <div
-  //         className=""
-  //         onClick={() => {
-  //           navigate("../" + path.JOBMANAGE);
-  //           console.log(1);
-  //         }}
-  //       >
-  //         <p className=" text-lg">Jobs</p>
-  //       </div>
-  //     ),
-  //   },
-  //   {
-  //     key: "news",
-  //     icon: <Icon icon="mdi:events-check" className="h-5 w-5"></Icon>,
-  //     label: (
-  //       <div
-  //         className=""
-  //         onClick={() => {
-  //           navigate("../" + path.EVENTMANAGE);
-  //         }}
-  //       >
-  //         <p className=" text-lg">News</p>
-  //       </div>
-  //     ),
-  //   },
-  //   {
-  //     key: "tags",
-  //     icon: <Icon icon={"tabler:tag"} className="h-5 w-5"></Icon>,
-  //     label: (
-  //       <div
-  //         className=""
-  //         onClick={() => {
-  //           navigate("../" + path.METATAG);
-  //         }}
-  //       >
-  //         <p className=" text-lg">Tags</p>
-  //       </div>
-  //     ),
-  //   },
-  //   {
-  //     key: "users",
-  //     icon: <Icon icon="mdi:user-outline" className="h-5 w-5"></Icon>,
-  //     label: (
-  //       <div
-  //         className=""
-  //         onClick={() => {
-  //           navigate("../" + path.USERMANAGE);
-  //         }}
-  //       >
-  //         <p className=" text-lg">Users</p>
-  //       </div>
-  //     ),
-  //   },
-  //   {
-  //     key: "ecommerce",
-  //     label: (
-  //       <div className="">
-  //         <p className="text-lg">E-commerce</p>
-  //       </div>
-  //     ),
-  //     icon: (
-  //       <Icon
-  //         className="h-5 w-5"
-  //         icon={"healthicons:market-stall-outline"}
-  //       ></Icon>
-  //     ),
-  //     children: [
-  //       {
-  //         key: "products",
-  //         label: (
-  //           <div
-  //             className=""
-  //             onClick={() => {
-  //               navigate("../" + path.PRODUCTMANAGE);
-  //             }}
-  //           >
-  //             <p className="text-lg">Products</p>
-  //           </div>
-  //         ),
-  //       },
-  //       {
-  //         key: "categories",
-  //         label: (
-  //           <div
-  //             className=""
-  //             onClick={() => {
-  //               navigate("../" + path.CATEGORYMANAGE);
-  //             }}
-  //           >
-  //             <p className="text-lg">Categories</p>
-  //           </div>
-  //         ),
-  //       },
-  //     ],
-  //   },
-  // ];
-  // Navigate
   const items = [
     {
       key: "jobs",
@@ -313,7 +211,7 @@ const SidebarAd = () => {
         </div>
 
         <div className={`w-[350px] ${collapsed ? "hidden" : "block"}`}>
-          <div className="flex justify-between items-center text-[14px] p-4">
+          {/* <div className="flex justify-between items-center text-[14px] p-4">
             <div className="flex items-center gap-1">
               <button>
                 <img
@@ -333,8 +231,17 @@ const SidebarAd = () => {
                 <p className="">nguyenvantay061999@gmail.com</p>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className={`p-2 flex justify-around items-center `}>
+          <Popconfirm
+          placement="bottomRight"
+          title="Log out"
+          description="Are you sure log out ?"
+          onConfirm={confirm}
+          onCancel={cancel}
+          okText="Log out"
+          cancelText="No"
+        >
             <Button
               type="primary"
               className={
@@ -345,6 +252,7 @@ const SidebarAd = () => {
             >
               <Icon icon={"material-symbols:logout"} className="w-6 h-6"></Icon>
             </Button>
+            </Popconfirm>
             <Switch
               checked={theme === "dark"}
               onChange={changeTheme}

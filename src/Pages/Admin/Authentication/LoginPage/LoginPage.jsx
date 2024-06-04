@@ -7,23 +7,42 @@ import { Icon } from "@iconify/react";
 import { path, useOnKeyPress } from "../../../../utils/Constant";
 import imgBackground from "../../../../assets/Login/background.png";
 import LogoAdmin from "../../../../assets/Login/logo_admin.png";
+import axios from "axios";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-
+  const user = JSON.parse(sessionStorage.getItem("UserInformation"));
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
   });
 
-  const handleLogin = () => {
-    if (loginData.username === "admin" && loginData.password === "123456") {
-      navigate("../" + path.USERMANAGE);
-      toast.success("login with admin");
-    } else {
-      toast.error(
-        "The email or password you entered is not connected to any account"
+  const handleLogin = async() => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/login`,
+        loginData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "x-secret-key": "admin123",
+          },
+        }
       );
+      if (response.status === 200 || response.status === 201) {
+        sessionStorage.setItem(
+          "UserInformation",
+          JSON.stringify(response.data.user)
+        );
+        toast.success("Login successfully!");
+        navigate("../" + path.USERMANAGE);
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        toast.error("User name or password  is wrong");
+      } else {
+        console.error("Login failed:", error);
+      }
     }
   };
   useOnKeyPress(handleLogin, "Enter");
