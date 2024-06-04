@@ -47,7 +47,7 @@ const ManageJobs = () => {
 
   const handledeleCareers = async (id) => {
     await axios
-      .delete(`${process.env.REACT_APP_SERVER_URL}/careers/${id}`)
+      .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/careers/${id}`)
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
           toast.success("Delete jobs successfully!");
@@ -129,7 +129,7 @@ const ManageJobs = () => {
               <button
                 className="w-auto h-auto p-2 rounded-lg border-2 border-green-300 hover:border-green-500 flex items-center gap-x-2 hover:shadow-lg"
                 onClick={() => {
-                  navigate("../" + path.JOBCREATE);
+                  navigate("../" + path.CREATEJOB);
                 }}
               >
                 <Icon

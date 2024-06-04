@@ -1,9 +1,9 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Input } from "@material-tailwind/react";
+// import { Input } from "@material-tailwind/react";
 import { Icon } from "@iconify/react";
-
+import {Input} from 'antd'
 import { Select } from "@chakra-ui/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -16,7 +16,7 @@ const EditJob = () => {
 
   const location = useLocation();
   let jobdetail = location.state;
-  console.log(jobdetail);
+  // console.log(jobdetail);
   const [formData, setFormData] = useState({
     position: jobdetail.position,
     description: jobdetail.description,
@@ -25,9 +25,11 @@ const EditJob = () => {
   });
 
   const handleEdit = async (id) => {
+    console.log(id);
     await axios
-      .put(`${process.env.REACT_APP_SERVER_URL}/joyu/careers${id}`, formData)
+      .put(`${process.env.REACT_APP_SERVER_URL}/joyu/careers/${id}`, formData)
       .then((res) => {
+        console.log(res,"res");
         if (res.status === 200 || res.status === 201) {
           toast.success("Edit job successfully!");
 

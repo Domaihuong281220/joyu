@@ -1,12 +1,12 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-
+import { Breadcrumbs, Input, Textarea } from "antd";
 import { Icon } from "@iconify/react";
 import { Select } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { message, Input } from "antd";
+import { message } from "antd";
 import { toast } from "react-toastify";
 
 import { path } from "./../../../../utils/Constant";
@@ -51,7 +51,7 @@ const CreateEvent = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/news`,
+        `${process.env.REACT_APP_SERVER_URL}/joyu/news`,
         formData,
         {
           headers: {
@@ -60,6 +60,7 @@ const CreateEvent = () => {
         }
       );
       if (response.status === 200) {
+        console.log(response,"new event");
         navigate("../" + path.EVENTMANAGE);
         toast.success("create news successfully!");
       } else {

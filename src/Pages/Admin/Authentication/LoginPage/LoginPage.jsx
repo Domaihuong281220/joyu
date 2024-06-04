@@ -25,7 +25,7 @@ const LoginPage = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            "x-secret-key": "admin123",
+            "x-secret-key": "Domoishi2024",
           },
         }
       );

@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Input } from "antd";
+import {  Input } from "antd";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -15,24 +15,24 @@ const CreateJob = () => {
   const [formData, setFormData] = useState({
     position: "",
     description: "",
-    responsibilities: "",
-    address: "",
+    availability: "",
+    linkform: "",
   });
 
-  // const handleCreateJob = async (id) => {
-  //   await axios
-  //     .post(`${process.env.REACT_APP_SERVER_URL}/careers`, formData)
-  //     .then((res) => {
-  //       if (res.status === 200 || res.status === 201) {
-  //         toast.success("Create new job successfully!");
+  const handleCreateJob = async (id) => {
+    await axios
+      .post(`${process.env.REACT_APP_SERVER_URL}/joyu/careers`, formData)
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
+          toast.success("Create new job successfully!");
 
-  //         navigate("../" + path.JOBMANAGE);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       toast.error("Create job wrong: " + err.message);
-  //     });
-  // };
+          navigate("../" + path.JOBMANAGE);
+        }
+      })
+      .catch((err) => {
+        toast.error("Create job wrong: " + err.message);
+      });
+  };
 
   return (
     <div className="">
@@ -55,54 +55,33 @@ const CreateJob = () => {
           </div>
 
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
-            <p className="text-lg">
-              Description{" "}
-              <span className="text-[10px] text-red-500">
-                (Limit 360 characters)
-              </span>
-            </p>
+            <p className="text-lg">Description</p>
             <textarea
               className="w-full h-[100px] border-[1px] p-2"
-              placeholder="Description"
-              maxLength="360"
+              placeholder="Subtitle"
+              maxLength="260"
               value={formData.description}
               onChange={(e) =>
                 setFormData({ ...formData, description: e.target.value })
               }
             />
             <div className="text-right w-full text-sm text-gray-600">
-              {formData.description.length}/360
+              {formData.description.length}/260
             </div>
           </div>
+
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
-            <p className="text-lg">
-              Responsibilities{" "}
-              <span className="text-[10px] text-red-500">
-                (Limit 360 characters)
-              </span>
-            </p>
-            <textarea
-              className="w-full h-[100px] border-[1px] p-2"
-              placeholder="Responsibilities"
-              maxLength="360"
-              value={formData.responsibilities}
-              onChange={(e) =>
-                setFormData({ ...formData, responsibilities: e.target.value })
-              }
-            />
-            <div className="text-right w-full text-sm text-gray-600">
-              {formData.responsibilities.length}/360
-            </div>
-          </div>
-          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
-            <p className="text-lg">Address</p>
-            <Input
-              type="text"
-              className="w-full h-auto border-[1px] p-2"
-              placeholder="Address"
-              onChange={(e) =>
-                setFormData({ ...formData, address: e.target.value })
-              }
+            <p className="text-lg">Availability</p>
+            <input
+              className=" border-[1px] p-2"
+              placeholder="Subtitle"
+              type="checkbox"
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  availability: e.target.checked,
+                });
+              }}
             />
           </div>
 
@@ -117,7 +96,7 @@ const CreateJob = () => {
             </button>
             <button
               className="w-auto h-auto py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg "
-              // onClick={() => handleCreateJob()}
+              onClick={() => handleCreateJob()}
             >
               <p className="">Save</p>
             </button>
