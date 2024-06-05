@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
+import { Breadcrumbs, Input } from "@material-tailwind/react";
 import { Icon } from "@iconify/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -16,7 +17,7 @@ import {
 import { isValidInputsUser } from "../../../../helpers/validInputs";
 import { toast } from "react-toastify";
 import { path } from "../../../../utils/Constant";
-import { Input } from "antd";
+
 const UserEdit = () => {
   // const [startDate, setStartDate] = useState(new Date());
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ const UserEdit = () => {
   const handleEdit = async () => {
     await axios
       .put(
-        `${process.env.REACT_APP_SERVER_URL}/user/reset-password`,
+        `${process.env.REACT_APP_SERVER_URL}/joyu/user/reset-password`,
         formData,
         {
           headers: {
@@ -43,7 +44,7 @@ const UserEdit = () => {
           },
         }
       )
-
+      
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
           toast.success("Edit User successfully!");

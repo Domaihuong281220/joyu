@@ -22,7 +22,7 @@ const UserList = () => {
 
   const handleDeleteuser = async (id) => {
     await axios
-      .delete(`http://103.157.218.126:8000/admin/deleteuser/${id}`)
+      .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/user/${id}`)
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
           messageApi.success("delete user success");

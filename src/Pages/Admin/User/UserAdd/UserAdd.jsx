@@ -26,7 +26,7 @@ const UserAdd = () => {
     try {
       const response = await axios.post(
         // `${process.env.REACT_APP_SERVER_URL}/user`,
-        `${process.env.REACT_APP_SERVER_URL}/user`,
+        `${process.env.REACT_APP_SERVER_URL}/joyu/user`,
         formData,
         {
           headers: {

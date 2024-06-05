@@ -1,61 +1,64 @@
 /** @format */
-import { Icon } from "@iconify/react/dist/iconify.js";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Breadcrumbs } from "@material-tailwind/react";
+import { Icon } from "@iconify/react";
+import { Table, message } from "antd";
+import { InputGroup, Input, InputRightElement } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { Table } from "antd";
+import axios from "axios";
+import { toast } from "react-toastify";
 import { path } from "../../../../utils/Constant";
 const ManageUser = () => {
-  console.log("hihi");
-  // const [messageApi, contextHolder] = message.useMessage();
-  // const [userData, setUserData] = useState([]);
+  const [messageApi, contextHolder] = message.useMessage();
+  const [userData, setUserData] = useState([]);
   const [ismarked, setIsMasked] = useState(true);
   // API Get ALL user
-  // const handlegetUsers = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `${process.env.REACT_APP_SERVER_URL}/users`,
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           "x-secret-key": "Domoishi2024",
-  //         },
-  //       }
-  //     );
+  const handlegetUsers = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/users`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "x-secret-key": "Domoishi2024",
+          },
+        }
+      );
 
-  //     if (response.status === 200 || response.status === 201) {
-  //       setUserData(response.data);
-  //     } else {
-  //       setUserData([]);
-  //     }
-  //   } catch (error) {
-  //     console.log("error ", error);
-  //   }
-  // };
+      if (response.status === 200 || response.status === 201) {
+        setUserData(response.data);
+      } else {
+        setUserData([]);
+      }
+    } catch (error) {
+      console.log("error ", error);
+    }
+  };
   // API delete User
 
-  // const handledeleUser = async (id) => {
-  //   await axios
-  //     .delete(`${process.env.REACT_APP_SERVER_URL}/user/${id}`, {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         // "x-secret-key": `${process.env.REACT_APP_SECRET_KEY}`,
-  //         "x-secret-key": "Domoishi2024",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       if (res.status === 200 || res.status === 201) {
-  //         toast.success("Delete User successfully!");
-  //         handlegetUsers();
-  //         navigate("../" + path.USERMANAGE);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       toast.error("Delete User wrong: " + err.message);
-  //     });
-  // };
-  // useEffect(() => {
-  //   handlegetUsers();
-  // }, []);
+  const handledeleUser = async (id) => {
+    await axios
+      .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/user/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          // "x-secret-key": `${process.env.REACT_APP_SECRET_KEY}`,
+          "x-secret-key": "Domoishi2024",
+        },
+      })
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
+          toast.success("Delete User successfully!");
+          handlegetUsers();
+          navigate("../" + path.USERMANAGE);
+        }
+      })
+      .catch((err) => {
+        toast.error("Delete User wrong: " + err.message);
+      });
+  };
+  useEffect(() => {
+    handlegetUsers();
+  }, []);
   // console.log(userData);
 
   // console.log(user)
@@ -132,16 +135,16 @@ const ManageUser = () => {
       width: 100,
       render: (_, record) => (
         <div className="flex items-center justify-center gap-x-2">
-          <button
-            className="hover:underline cursor-pointer hover:text-blue-500 "
+          {/* <button
+            className="hover:underline cursor-pointer hover:text-blue-500 hover:font-bold"
             onClick={() => handleEditUser(record)}
           >
             <p className="">Edit</p>
-          </button>
+          </button> */}
 
           <button
-            className="hover:underline cursor-pointer hover:text-blue-500"
-            // onClick={() => handledeleUser(record._id)}
+            className="hover:underline cursor-pointer hover:text-blue-500 hover:font-bold"
+            onClick={() => handledeleUser(record._id)}
           >
             <p className="">Delete</p>
           </button>
@@ -156,13 +159,26 @@ const ManageUser = () => {
       key: "1",
 
       name: "John Doe",
-      username: "John Doe",
-      phonenumber: "0909090909",
+      phone: "0909090909",
       role: "Admin",
       dateofbirth: "20/12/2000",
-      password: "123456",
     },
   ];
+  // const [userData, setuserData] = useState([]);
+  // for (let i = 0; i < userData.length; i++) {
+  //   data.push({
+  //     key: i,
+  //     id: userData[i].id,
+  //     name: userData[i].name,
+  //     avatar: userData[i].avatar,
+  //     phone: userData[i].phone,
+  //     address: userData[i].address,
+  //     email: userData[i].email,
+  //     role: userData[i].role,
+  //     dateofbirth: "20/12/2000",
+  //     // status: ["Online"],
+  //   });
+  // }
 
   // useEffect(() => {
   //   handleGetUserList();
@@ -170,6 +186,10 @@ const ManageUser = () => {
 
   return (
     <div className="">
+      {contextHolder}
+
+      {/* Start Table UserList */}
+
       <div className="w-[90%] mx-auto h-auto bg-white shadow-xl rounded-lg p-1">
         <div className="flex p-2">
           <p className="text-2xl">USER LIST</p>
@@ -182,7 +202,6 @@ const ManageUser = () => {
                 onClick={() => navigate("../" + path.CREATEUSER)}
               >
                 <Icon icon="mdi:user-add" width={24} height={24}></Icon>
-
                 <p className="">Add New User</p>
               </button>
             </div>
@@ -191,7 +210,7 @@ const ManageUser = () => {
             <div className="w-[95%]">
               <Table
                 columns={columns}
-                dataSource={data}
+                dataSource={userData}
                 pagination={{ pageSize: 5, position: ["bottomCenter"] }}
                 scroll={{
                   x: "max-content",

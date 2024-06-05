@@ -1,77 +1,113 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-import { Input } from "antd";
-import { Icon } from "@iconify/react";
+import {  Input } from "antd";
 import { Select } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { message } from "antd";
-import { toast } from "react-toastify";
-import { isValidInputProduct } from "../../../../../helpers/validInputs";
+import { toast } from "sonner";
+import { path } from "../../../../../utils/Constant";
 
 const ProductAdd = () => {
   const navigate = useNavigate();
   const [value, setValue] = useState(1);
+  const [image, setImage] = useState();
+  const [productName, setProductName] = useState();
+  const [price, setPrice] = useState();
+  const [categories, setCategories] = useState([])
+  const [categoriesName, setCategoriesName] = useState([])
 
-  const [imageproduct, setimageproduct] = useState("");
-  const [formData, setFormData] = useState({
-    id: "",
-    name: "",
-    price: "",
-    description: "",
-    image: "",
-    categoryId: 1,
-  });
+  const [categoryID, setCategoryID] = useState()
+  const [gfsInitialized, setGfsInitialized] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const handleCategoryChange = (e) => {
+    const selectedCategory = e.target.value;
+    const categoryobj = categories.filter(category => category.name === selectedCategory)
+    setCategoryID(categoryobj[0]._id);
+  };
 
   useEffect(() => {
-    setFormData({
-      ...formData,
-      image: imageproduct,
-    });
-  }, [imageproduct]);
+    handlegetCategories()
+    // console.log(formData);
+  }, []);
 
-  const [messageApi, contextHolder] = message.useMessage();
-
-  const [file, setFile] = useState();
-
-  const handleFile = (e) => {
-    setFile(e.target.files[0]);
-  };
-  const handleUpload = () => {
-    const dataimage = new FormData();
-    dataimage.append("profile-pic", file);
-    axios
-      .post("http://103.157.218.126:8000/upload", dataimage)
+  const handlegetCategories = async () => {
+    await axios
+      .get("http://localhost:4000/joyu/categories")
       .then((res) => {
-        if (res.status === 200 || res.status === 201) {
-          {
-            setimageproduct(
-              `http://103.157.218.126:8000/images/${res.data.image}`
-            );
-          }
-        }
+        // console.log(res, "category");
+
+        // Assuming res.data.data is an array of objects with a "name" property
+        const names = res.data.data.map(category => category.name);
+        setCategories(res.data.data)
+        setCategoriesName(names)
+
+        // setproductData(res.data.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
-  const handleaddAPI = async () => {
-    let check = isValidInputProduct(formData, toast);
-    if (check === true) {
-      await axios
-        .post("http://103.157.218.126:8000/admin/addproduct", formData)
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            toast.success("create product success");
-            navigate("/productmanage");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-    return;
+  // Handle changes to the file inputs
+  const handleFileChange = (image) => {
+    setImage(image); // Update the state
   };
+
+  const handleUpload = async () => {
+    if (!image) {
+      toast.error("Please select an image!");
+      return;
+    }
+
+    if (!productName) {
+      toast.error("Please enter the product name!");
+      return;
+    }
+
+    if (!price) {
+      toast.error("Please enter the valid product price!");
+      return;
+    }
+
+    if (!categoryID) {
+      toast.error("Please select a category!");
+      return;
+    }
+
+    console.log("Starting upload...");
+
+    const formData = new FormData();
+    formData.append("price", price); // Use priceNumber instead of price
+    formData.append("categoryID", categoryID);
+    formData.append("image", image);
+    formData.append("name", productName);
+
+    
+
+    try {
+      const response = await axios.post(
+        `http://localhost:4000/joyu/products`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      // console.log(response);
+      if (response.status === 201) {
+        navigate("../" + path.PRODUCTMANAGE);
+        toast.success("Product created successfully!");
+      } else {
+        toast.error("Failed to create product.");
+      }
+    } catch (error) {
+      toast.error("Failed to create product: " + error.message);
+    }
+  };
+
 
   return (
     <div className="">
@@ -88,18 +124,7 @@ const ProductAdd = () => {
               className="w-full h-auto border-[1px] p-2"
               placeholder="Name Product"
               onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
-              }
-            />
-          </div>
-
-          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
-            <p className="text-lg">Description</p>
-            <textarea
-              className="w-full h-[300px] border-[1px] p-2"
-              placeholder="Subtitle"
-              onChange={(e) =>
-                setFormData({ ...formData, description: e.target.value })
+                setProductName(e.target.value)
               }
             />
           </div>
@@ -108,8 +133,9 @@ const ProductAdd = () => {
             <Input
               className="w-full h-full border-[1px] p-2"
               placeholder="Price"
+              type="number"
               onChange={(e) =>
-                setFormData({ ...formData, price: e.target.value })
+                setPrice(e.target.value)
               }
             />
           </div>
@@ -119,43 +145,24 @@ const ProductAdd = () => {
             <Select
               icon={false}
               placeholder="Please select category"
-              className="border-[1px] p-2 w-full h-auto "
-              // onChange={(e) =>
-              //   setFormData({ ...formData, category: e.target.value })
-              // }
+              className="border-[1px] p-2 w-full h-auto"
+              onChange={handleCategoryChange}
             >
-              <option className="">Tea</option>
-              <option className="">Milk</option>
-              <option className="">Beverage</option>
+              {categoriesName.map((item, index) => (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              ))}
             </Select>
           </div>
 
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
-            <div className="flex justify-between">
-              <input type="file" onChange={handleFile} className="p-3  " />
-
-              <button
-                className="h-auto w-auto p-2 bg-blue-400 rounded-lg"
-                onClick={handleUpload}
-              >
-                Upload
-              </button>
-            </div>
-            <div className="">
-              {imageproduct ? (
-                <img
-                  src={imageproduct}
-                  className="object-cover w-32 h-32 rounded-lg"
-                />
-              ) : (
-                <img
-                  src="https://t3.ftcdn.net/jpg/02/18/21/86/360_F_218218632_jF6XAkcrlBjv1mAg9Ow0UBMLBaJrhygH.jpg"
-                  className="object-cover w-32 h-32 rounded-lg"
-                />
-              )}
-            </div>
-
-            <p className="">jpg , png , jpeg</p>
+            <p className="text-lg">Image</p>
+            <input
+              type="file"
+              accept="image/jpeg, image/png"
+              onChange={(e) => handleFileChange(e.target.files[0])} // Manage the first file
+            />
           </div>
           <div className="flex justify-center items-center gap-x-4">
             <button
@@ -169,7 +176,7 @@ const ProductAdd = () => {
 
             <button
               className="w-auto h-auto py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg "
-              onClick={() => handleaddAPI()}
+              onClick={() => handleUpload()}
             >
               <p className="">Save</p>
             </button>
