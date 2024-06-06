@@ -15,8 +15,7 @@ const ProductManage = () => {
   const navigate = useNavigate();
   const [productData, setproductData] = useState([]);
   const data = [];
-  
-
+  x``;
   for (let i = 0; i < productData.length; i++) {
     data.push({
       key: i,
@@ -41,7 +40,6 @@ const ProductManage = () => {
     onChange: onSelectChange,
   };
 
-  
   const handlegetProduct = async () => {
     try {
       const response = await axios.get("http://localhost:4000/joyu/products");
@@ -69,9 +67,9 @@ const ProductManage = () => {
         console.log(err);
       });
   };
-  const handleEditProduct = (id) => {
-    navigate("../" + path.PRODUCTEDIT + `/${id}`, {
-      state: productData[id],
+  const handleEditProduct = (record) => {
+    navigate("../" + path.PRODUCTEDIT + `/${record._id}`, {
+      state: record,
     });
   };
 
@@ -121,7 +119,7 @@ const ProductManage = () => {
       title: "Categories",
       dataIndex: ["categoryID", "name"],
       key: "categories",
-  },
+    },
 
     {
       title: "Action",
@@ -130,11 +128,9 @@ const ProductManage = () => {
       width: 200,
       render: (_, record) => (
         <div className="flex items-center justify-center gap-x-2">
-          
-
           <button
             className="hover:underline cursor-pointer hover:text-blue-500 hover:font-bold"
-            onClick={() => handleEditProduct(record?._id)}
+            onClick={() => handleEditProduct(record)}
           >
             <p className="">Edit</p>
           </button>
