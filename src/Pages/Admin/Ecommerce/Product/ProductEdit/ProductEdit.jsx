@@ -49,6 +49,7 @@ const ProductEdit = () => {
   };
 
   const apiEditProduct = async (productData) => {
+    console.log(productData);
     const formData = new FormData();
     formData.append("name", productData.name);
     formData.append("price", productData.price);

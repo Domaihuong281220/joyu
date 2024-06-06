@@ -34,8 +34,10 @@ const CategoriesManage = () => {
 
   const handleAPIDeleteCategory = async (id) => {
     await axios
-      .delete(`http://103.157.218.126:8000/admin/deletecategory/${id}`)
+      .delete(`http://localhost:4000/joyu/categories/${id}`)
       .then((res) => {
+        console.log(res);
+
         if (res.status === 200 || res.status === 201) {
           messageApi.success("delete category success");
           handlergetCategoryList();
@@ -47,9 +49,10 @@ const CategoriesManage = () => {
   };
   const handlergetCategoryList = async () => {
     await axios
-      .get("http://103.157.218.126:8000/public/getallcategory")
+      .get("http://localhost:4000/joyu/categories")
       .then((res) => {
-        setcategoryData(res.data);
+        // console.log(res);
+        setcategoryData(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -71,15 +74,15 @@ const CategoriesManage = () => {
   const columns = [
     {
       title: "ID",
-      dataIndex: "id",
-      key: "id",
+      dataIndex: "_id",
+      key: "_id",
       fixed: "left",
       width: 100,
     },
     {
       title: "Name Category",
-      dataIndex: "namecategory",
-      key: "namecategories",
+      dataIndex: "name",
+      key: "name",
       fixed: "left",
       // filters: [
       //   {
@@ -92,21 +95,21 @@ const CategoriesManage = () => {
       // onFilter: (value, record) => record.name.includes(value),
       // onFilter: (name, record) => record.name.indexOf(name) === 0,
     },
-    {
-      title: "Image",
-      dataIndex: "img",
-      key: "img",
-      render: (_, record) => (
-        <div className="flex items-center justify-center">
-          <div className="w-[200px] h-[200px]">
-            <img
-              src={record?.img}
-              className="object-contain w-full h-full"
-            ></img>
-          </div>
-        </div>
-      ),
-    },
+    // {
+    //   title: "Image",
+    //   dataIndex: "img",
+    //   key: "img",
+    //   render: (_, record) => (
+    //     <div className="flex items-center justify-center">
+    //       <div className="w-[200px] h-[200px]">
+    //         <img
+    //           src={record?.img}
+    //           className="object-contain w-full h-full"
+    //         ></img>
+    //       </div>
+    //     </div>
+    //   ),
+    // },
 
     {
       title: "Action",
@@ -115,16 +118,16 @@ const CategoriesManage = () => {
       width: 200,
       render: (_, record) => (
         <div className="flex items-center justify-center gap-x-2">
-          <button
+          {/* <button
             className="hover:underline cursor-pointer hover:text-blue-500 "
             onClick={() => handleEditCategory(record?.id - 1)}
           >
             <p className="">Edit</p>
-          </button>
+          </button> */}
 
           <button
             className="hover:underline cursor-pointer hover:text-blue-500"
-            // onClick={() => handledeleteProduct(record.id)}
+            onClick={() => handleAPIDeleteCategory(record._id)}
           >
             <p className="">Delete</p>
           </button>
@@ -196,7 +199,7 @@ const CategoriesManage = () => {
           <div className="w-[100%]">
             <Table
               columns={columns}
-              dataSource={mockData}
+              dataSource={categoryData}
               pagination={{ pageSize: 5, position: ["bottomCenter"] }}
 
               // scroll={{

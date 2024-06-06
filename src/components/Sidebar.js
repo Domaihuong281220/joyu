@@ -112,7 +112,7 @@ const Sidebar = () => {
             setOpenSidebar(false);
             sessionStorage.setItem("openSidebar", false);
           }}>
-            Menu
+            {location.pathname === "/menu" ? "Download menu" : "Menu"}
           </button>
           <button onClick={() => HandleSideBar()} className="h-[3.5vw]">
             <svg
