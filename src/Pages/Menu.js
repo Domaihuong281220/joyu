@@ -7,7 +7,7 @@ function Menu() {
 
     const handlegetMenu = async () => {
         try {
-            const response = await axios.get("http://localhost:4000/joyu/menu");
+            const response = await axios.get("http://103.157.218.115:8802/joyu/menu");
             const categories = response.data.data.map((category, index) => ({
                 ...category,
                 key: index + 1, // Add key property for unique identification
@@ -39,7 +39,7 @@ function Menu() {
                     //   hanndleNavigate(index);
                     // }}
                   >
-                    <img src={`http://localhost:4000/${product.img}`} className="w-fit h-[17.5vw]" alt=""></img>
+                    <img src={`${process.env.REACT_APP_SERVER_URL}/${product.image}`} className="w-fit h-[17.5vw]" alt=""></img>
                     <p className="text-[1.15vw] h-[3.2vw]">{product.name}</p>
                     <p className="text-[1vw] text-primary">{product.price}</p>
                   </div>
