@@ -4,7 +4,7 @@ import React from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 const CardLocation = ({ title, address, phone, status, delivery }) => {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4 w-full">
       <div className="flex flex-col gap-2">
         <p className=" text-start uppercase font-nexa_bold text-[1.2vw]">
           {title}

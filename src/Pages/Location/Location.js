@@ -174,7 +174,7 @@ const Location = () => {
         </div>
       </div>
       <div className="w-full h-[1px] bg-black"></div>
-      <div className="flex  justify-between py-6">
+      <div className="flex  justify-between py-6 overflow-x-scroll">
         <CardLocation
           title={"BUCKNER RETAIL SHOPPING CENTER"}
           address={"3545 Bucker Blvd #105 , Virgbia Beacg , VA 23453"}
