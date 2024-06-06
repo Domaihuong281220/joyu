@@ -1,12 +1,10 @@
-/** @format */
-
 import React, { useEffect, useState } from "react";
 import { Input } from "antd";
 import { Select } from "@chakra-ui/react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { isValidInputProduct } from "../../../../../helpers/validInputs";
+import { path } from "../../../../../utils/Constant";
 
 const ProductEdit = () => {
   const [productData, setProductData] = useState({});
@@ -50,25 +48,34 @@ const ProductEdit = () => {
     setCategoryID(categoryObj._id);
   };
 
-  const apiEditProduct = async (id) => {
-    console.log(productData.name);
-    let check = isValidInputProduct();
-    if (check === true) {
-      const formData = new FormData();
-      formData.append("name", productData.name);
-      formData.append("price", productData.price);
-      formData.append("categoryID", categoryID);
-      formData.append("image", productData.image);
+  const apiEditProduct = async (productData) => {
+    const formData = new FormData();
+    formData.append("name", productData.name);
+    formData.append("price", productData.price);
+    formData.append("categoryID", categoryID);
+    if (productData.image) {
+      formData.append("image", productData.image); // Only append image if it's present
+    }
 
-      try {
-        const res = await axios.put(`http://localhost:4000/joyu/products/${id}`, formData);
-        if (res.status === 200 || res.status === 201) {
-          toast.success("Edit product success");
-          navigate("/productmanage");
+    try {
+      const response = await axios.put(
+        `http://localhost:4000/joyu/products/${id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      } catch (err) {
-        console.log(err);
+      );
+
+      if (response.status === 200) {
+        toast.success("Product updated successfully!");
+        navigate(`../${path.PRODUCTMANAGE}`);
+      } else {
+        toast.error("Failed to update product.");
       }
+    } catch (error) {
+      toast.error("Failed to update product: " + error.message);
     }
   };
 
@@ -128,8 +135,6 @@ const ProductEdit = () => {
                 className="w-20 h-20 object-cover"
                 src={`http://localhost:4000/${productData.image}`}
                 alt="Product"
-                // This onChange handler should be for file input, not image src
-                // onChange={(e) => setProductData({ ...productData, image: e.target.value })}
               />
             </button>
             <p className="">jpg, png, jpeg</p>
@@ -146,7 +151,7 @@ const ProductEdit = () => {
 
             <button
               className="w-auto h-auto py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg"
-              onClick={() => apiEditProduct(productData._id)}
+              onClick={apiEditProduct}
             >
               <p className="">Save</p>
             </button>

@@ -8,7 +8,7 @@ import { InputGroup, Input, InputRightElement } from "@chakra-ui/react";
 import axios from "axios";
 
 import { useNavigate, useLocation } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { path } from "../../../../../utils/Constant";
 
 const ProductManage = () => {
