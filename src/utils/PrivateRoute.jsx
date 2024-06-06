@@ -21,6 +21,11 @@ import {
   CategoriesManage,
   ProductView,
   ProductDetail,
+  HomePageBanner,
+  EditHomePageBanner,
+  CreateLocation,
+  EditLocation,
+  LocationManage,
 } from "../Pages";
 const routes = [
   {
@@ -144,6 +149,43 @@ const routes = [
     exact: true,
     component: <CategoriesEdit />,
     main: () => <CategoriesEdit />,
+  },
+  {
+    path: path.HOMEPAGEBANNER,
+    exact: true,
+    component: <HomePageBanner />,
+    main: () => <HomePageBanner />,
+  },
+
+  {
+    path: `${path.HOMEPAGEBANNEREDIT}/:id`,
+    exact: true,
+    component: <EditHomePageBanner />,
+    main: () => <EditHomePageBanner />,
+  },
+
+  // Locations
+
+  {
+    path: path.LOCATIONMANAGE,
+    exact: true,
+    component: <LocationManage />,
+    main: () => <LocationManage />,
+    role: ["admin"],
+  },
+  {
+    path: path.CREATELOCATION,
+    exact: true,
+    component: <CreateLocation />,
+    main: () => <CreateLocation />,
+    role: ["admin"],
+  },
+  {
+    path: path.EDITLOCATION,
+    exact: true,
+    component: <EditLocation />,
+    main: () => <EditLocation />,
+    role: ["admin"],
   },
 ];
 

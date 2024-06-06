@@ -131,6 +131,42 @@ const SidebarAd = () => {
       ],
       type: "",
     },
+    {
+      key: "homepagebanner",
+      label: (
+        <div
+          className=""
+          onClick={() => {
+            navigate("../" + path.HOMEPAGEBANNER);
+          }}
+        >
+          <p className=" text-lg">HomePage Banner</p>
+        </div>
+      ),
+      icon: (
+        <Icon icon="material-symbols:image-outline" className="h-5 w-5"></Icon>
+      ),
+      children: "",
+      type: "",
+    },
+    {
+      key: "locations",
+      label: (
+        <div
+          className=""
+          onClick={() => {
+            navigate("../" + path.LOCATIONMANAGE);
+          }}
+        >
+          <p className=" text-lg">Location</p>
+        </div>
+      ),
+      icon: (
+        <Icon icon="material-symbols:image-outline" className="h-5 w-5"></Icon>
+      ),
+      children: "",
+      type: "",
+    },
   ];
   const confirm = (e) => {
     navigate("../" + path.HOME);
@@ -233,25 +269,28 @@ const SidebarAd = () => {
             </div>
           </div> */}
           <div className={`p-2 flex justify-around items-center `}>
-          <Popconfirm
-          placement="bottomRight"
-          title="Log out"
-          description="Are you sure log out ?"
-          onConfirm={confirm}
-          onCancel={cancel}
-          okText="Log out"
-          cancelText="No"
-        >
-            <Button
-              type="primary"
-              className={
-                theme === "dark"
-                  ? " mx-1  bg-transparent hover:bg-[#1677ff] flex justify-center items-center text-white hover:text-black"
-                  : "mx-1  bg-transparent hover:bg-[#1677ff] flex justify-center items-center text-black hover:text-white"
-              }
+            <Popconfirm
+              placement="bottomRight"
+              title="Log out"
+              description="Are you sure log out ?"
+              onConfirm={confirm}
+              onCancel={cancel}
+              okText="Log out"
+              cancelText="No"
             >
-              <Icon icon={"material-symbols:logout"} className="w-6 h-6"></Icon>
-            </Button>
+              <Button
+                type="primary"
+                className={
+                  theme === "dark"
+                    ? " mx-1  bg-transparent hover:bg-[#1677ff] flex justify-center items-center text-white hover:text-black"
+                    : "mx-1  bg-transparent hover:bg-[#1677ff] flex justify-center items-center text-black hover:text-white"
+                }
+              >
+                <Icon
+                  icon={"material-symbols:logout"}
+                  className="w-6 h-6"
+                ></Icon>
+              </Button>
             </Popconfirm>
             <Switch
               checked={theme === "dark"}
