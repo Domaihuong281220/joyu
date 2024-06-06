@@ -16,10 +16,7 @@ const ProductAdd = () => {
   const [price, setPrice] = useState();
   const [categories, setCategories] = useState([])
   const [categoriesName, setCategoriesName] = useState([])
-
   const [categoryID, setCategoryID] = useState()
-  const [gfsInitialized, setGfsInitialized] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(null);
 
   const handleCategoryChange = (e) => {
     const selectedCategory = e.target.value;

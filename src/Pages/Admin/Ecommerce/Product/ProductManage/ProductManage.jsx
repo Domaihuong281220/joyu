@@ -41,38 +41,39 @@ const ProductManage = () => {
     onChange: onSelectChange,
   };
 
-  // const handleClickView = (id) => {
-  //   navigate("../" + path.PRODUCTVIEW + `/${id}`, { state: mockData[id] });
-  // };
+  
   const handlegetProduct = async () => {
+    try {
+      const response = await axios.get("http://localhost:4000/joyu/products");
+      const products = response.data.data.map((product, index) => ({
+        ...product,
+        key: index + 1, // Add key property for STT column
+      }));
+      // console.log(products);
+      setproductData(products); // Assuming you have a state variable for products
+    } catch (error) {
+      console.error("Failed to fetch products:", error);
+    }
+  };
+  const handledeleteProduct = async (id) => {
+    console.log(id);
     await axios
-      .get("http://localhost:4000/joyu/products")
+      .delete(`http://localhost:4000/joyu/products/${id}`)
       .then((res) => {
-        console.log(res,"products");
-        setproductData(res.data.data);
+        if (res.status === 200 || res.status === 201) {
+          toast.success("delete product success");
+          handlegetProduct();
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  // const handledeleteProduct = async (id) => {
-  //   await axios
-  //     .delete(`http://103.157.218.126:8000/admin/deleteproduct/${id}`)
-  //     .then((res) => {
-  //       if (res.status === 200 || res.status === 201) {
-  //         toast.success("delete product success");
-  //         handlegetProduct();
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-  // const handleEditProduct = (id) => {
-  //   navigate("../" + path.PRODUCTEDIT + `/${id}`, {
-  //     state: mockData[id],
-  //   });
-  // };
+  const handleEditProduct = (id) => {
+    navigate("../" + path.PRODUCTEDIT + `/${id}`, {
+      state: productData[id],
+    });
+  };
 
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -116,7 +117,11 @@ const ProductManage = () => {
       key: "price",
     },
 
-    { title: "Categories", dataIndex: "categories", key: "categories" },
+    {
+      title: "Categories",
+      dataIndex: ["categoryID", "name"],
+      key: "categories",
+  },
 
     {
       title: "Action",
@@ -125,25 +130,18 @@ const ProductManage = () => {
       width: 200,
       render: (_, record) => (
         <div className="flex items-center justify-center gap-x-2">
-          <button
-            className="hover:underline cursor-pointer hover:text-blue-500 hover:font-bold"
-            // onClick={() => {
-            //   handleClickView(record?.key - 1);
-            // }}
-          >
-            <p className="">View</p>
-          </button>
+          
 
           <button
             className="hover:underline cursor-pointer hover:text-blue-500 hover:font-bold"
-            // onClick={() => handleEditProduct(record?.key - 1)}
+            onClick={() => handleEditProduct(record?._id)}
           >
             <p className="">Edit</p>
           </button>
 
           <button
             className="hover:underline cursor-pointer hover:text-blue-500 hover:font-bold"
-            // onClick={() => handledeleteProduct(record.id)}
+            onClick={() => handledeleteProduct(record._id)}
           >
             <p className="">Delete</p>
           </button>
