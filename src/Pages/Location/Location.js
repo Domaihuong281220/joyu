@@ -17,8 +17,8 @@ const Location = () => {
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
   return (
-    <div className="w-[76%] mx-auto pv:max-md:w-[95%] lg:max-xl:w-[95%] pv:max-lg:w-[90%] pb-10">
-      <div className="w-[100%] pt-[12vw] mx-auto grid grid-cols-2 pv:max-md:w-[95%] lg:max-xl:w-[95%] pv:max-lg:grid-cols-1">
+    <div className="w-[76vw] mx-auto pv:max-md:w-[95%] lg:max-xl:w-[95%] pv:max-lg:w-[90%] pb-10">
+      {/* <div className="w-[100%] pt-[12vw] mx-auto grid grid-cols-2 pv:max-md:w-[95%] lg:max-xl:w-[95%] pv:max-lg:grid-cols-1">
         <div className="col-span-1  w-[76%] mx-auto pv:max-lg:col-span-1 pv:max-lg:w-[90%]">
           <div className="">
             <p className="text-[30px] font-nexa_bold text-start text-primary">
@@ -135,6 +135,135 @@ const Location = () => {
           </div>
         </div>
       </div>
+      <div className="w-[100%] mx-auto pt-20">
+        <div
+          className="h-[500px] w-full pv:max-lg:h-[50vh] lg:max-2xl:h-[70vh]"
+          // style={{ height: "800px", width: "100%" }}
+        >
+          <GoogleMapReact
+            bootstrapURLKeys={{
+              key: "AIzaSyB116ei7Yo4JSPj9_7zOVJJc06eykeZRmQ",
+            }}
+            defaultCenter={defaultProps.center}
+            defaultZoom={defaultProps.zoom}
+          >
+            <AnyReactComponent
+              lat={59.955413}
+              lng={30.337844}
+              text="My Marker"
+            />
+          </GoogleMapReact>
+        </div>
+      </div> */}
+
+      <div className="w-full flex justify-between items-center pt-[12vw]">
+        <div className="">
+          <p className="text-[2.5vw] font-nexa_bold text-[#44614f]">LOCATION</p>
+        </div>
+        <div className="flex py-6  w-[60%]">
+          <input
+            className="p-[0.5vw]  rounded-l-[2vw] w-full border-[0.1vw] border-gray-400"
+            placeholder="Find A Location By Zip Code Or City, State"
+          ></input>
+          <button className=" bg-primary p-[0.5vw]">
+            <Icon
+              icon={"tabler:location-filled"}
+              className="w-[2.5vw] h-[2.5vw] text-white"
+            ></Icon>
+          </button>
+        </div>
+      </div>
+      <div className="w-full h-[1px] bg-black"></div>
+      <div className="flex  justify-between py-6">
+        <CardLocation
+          title={"BUCKNER RETAIL SHOPPING CENTER"}
+          address={"3545 Bucker Blvd #105 , Virgbia Beacg , VA 23453"}
+          phone={"+1 (757) 301 2384"}
+          status={"PICK UP"}
+          delivery={true}
+        />
+
+        <CardLocation
+          title={"MERCURY PLAZA"}
+          address={"109 Marketplace Dr, #106 , Hampton, VA 23666"}
+          phone={"+1 (757) 301 2384"}
+          status={"COMING SOON"}
+          delivery={false}
+        />
+      </div>
+      <div className="flex  justify-between">
+        <div className="">
+          <div className="py-4">
+            <p className="text-[1.2vw] font-nexa_bold text-start">
+              WORKING HOUR
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-[10vw]">
+            <p className="text-[1.2vw] font-nexa_bold text-start ">MONDAY</p>
+            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
+          </div>
+          <div className="grid grid-cols-2 gap-[10vw]">
+            <p className="text-[1.2vw] font-nexa_bold text-start">TUESDAY</p>
+            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
+          </div>
+          <div className="grid grid-cols-2 gap-[10vw]">
+            <p className="text-[1.2vw] font-nexa_bold text-start">WESNESDAY</p>
+            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
+          </div>
+          <div className="grid grid-cols-2 gap-[10vw]">
+            <p className="text-[1.2vw] font-nexa_bold text-start">THURDAY</p>
+            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
+          </div>
+          <div className="grid grid-cols-2 gap-[10vw]">
+            <p className="text-[1.2vw] font-nexa_bold text-start">FRIDAY</p>
+            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
+          </div>
+          <div className="grid grid-cols-2 gap-[10vw]">
+            <p className="text-[1.2vw] font-nexa_bold text-start">SATURDAY</p>
+            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
+          </div>
+          <div className="grid grid-cols-2 gap-[10vw]">
+            <p className="text-[1.2vw] font-nexa_bold text-start">SUNDAY</p>
+            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
+          </div>
+        </div>
+        <div className="">
+          <div className="py-4">
+            <p className="text-[1.2vw] font-nexa_bold text-start">
+              WORKING HOUR
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-[10vw]">
+            <p className="text-[1.2vw] font-nexa_bold text-start">MONDAY</p>
+            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
+          </div>
+          <div className="grid grid-cols-2 gap-[10vw]">
+            <p className="text-[1.2vw] font-nexa_bold text-start">TUESDAY</p>
+            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
+          </div>
+          <div className="grid grid-cols-2 gap-[10vw]">
+            <p className="text-[1.2vw] font-nexa_bold text-start">WESNESDAY</p>
+            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
+          </div>
+          <div className="grid grid-cols-2 gap-[10vw]">
+            <p className="text-[1.2vw] font-nexa_bold text-start">THURDAY</p>
+            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
+          </div>
+          <div className="grid grid-cols-2 gap-[10vw]">
+            <p className="text-[1.2vw] font-nexa_bold text-start">FRIDAY</p>
+            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
+          </div>
+          <div className="grid grid-cols-2 gap-[10vw]">
+            <p className="text-[1.2vw] font-nexa_bold text-start">SATURDAY</p>
+            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
+          </div>
+          <div className="grid grid-cols-2 gap-[10vw]">
+            <p className="text-[1.2vw] font-nexa_bold text-start">SUNDAY</p>
+            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
+          </div>
+        </div>
+      </div>
+
       <div className="w-[100%] mx-auto pt-20">
         <div
           className="h-[500px] w-full pv:max-lg:h-[50vh] lg:max-2xl:h-[70vh]"
