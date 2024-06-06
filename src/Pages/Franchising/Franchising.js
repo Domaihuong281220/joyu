@@ -32,11 +32,23 @@ const Franchising = () => {
                 <li>Brand promoting and marketing.</li>
                 <li>Transparent reports.</li>
               </ul>
+              <div className="">
+                <p className="text-start font-nexa_light text-[1.4vw]">
+                  Visit www.joyupro.com for more detail and please contact us
+                  via info@joyuteacoffe.com or (757) 264 8881 for any concerns
+                  or questions
+                </p>
+              </div>
             </div>
-            <div className="w-full col-span-2 pv:max-md:col-span-3">
-              <img className="w-full rounded-[2vw]" src={img_Frachising}></img>
+
+            <div className="w-full col-span-2 pv:max-md:col-span-3  flex flex-col justify-center items-center">
+              <img
+                className="w-full rounded-[2vw] h-[80%]"
+                src={img_Frachising}
+              ></img>
             </div>
           </div>
+
           <div className="w-full h-[1px] bg-black mb-10"></div>
         </div>
 
@@ -104,7 +116,7 @@ const Franchising = () => {
                 </p>
               </div>
               <div className="flex justify-end pv:max-md:w-full md:max-2xl:w-full 2xl:max-dh_max:w-full">
-                <input className=" w-full pv:max-md:w-full md:max-2xl:w-full 2xl:max-dh_max:w-full   h-14 border-[1px] border-[#707070] rounded-full p-2"></input>
+                <textarea className=" w-full pv:max-md:w-full md:max-2xl:w-full 2xl:max-dh_max:w-full  h-[150px] border-[1px] border-[#707070] rounded-md p-2"></textarea>
               </div>
             </div>
           </div>
@@ -335,10 +347,10 @@ const Franchising = () => {
               </p>
             </div>
             <div className="col-span-3 ">
-              <input
-                className=" w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full py-2 px-6"
+              <textarea
+                className=" w-full pv:max-md:w-full md:max-2xl:w-full h-[200px] border-[1px] border-[#707070] rounded-md py-2 px-6"
                 placeholder=""
-              ></input>
+              ></textarea>
             </div>
           </div>
           <div className="">

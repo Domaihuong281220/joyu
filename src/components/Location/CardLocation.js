@@ -2,34 +2,50 @@
 
 import React from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
-const CardLocation = ({ title, address, phone, status }) => {
+const CardLocation = ({ title, address, phone, status, delivery }) => {
   return (
-    <div>
+    <div className="flex items-center gap-4 w-full">
       <div className="flex flex-col gap-2">
-        <p className=" text-start uppercase font-nexa_bold text-[24px]">
+        <p className=" text-start uppercase font-nexa_bold text-[1.2vw]">
           {title}
         </p>
         <div className="flex flex-col gap-1">
           <div className="flex gap-2">
-            <Icon className="w-6 h-6" icon={"mdi:location"}></Icon>
-            <p className="font-nexa_light text-start">{address}</p>
+            <Icon className="w-[1.2vw] h-[1.2vw]" icon={"mdi:location"}></Icon>
+            <p className="font-nexa_light text-start text-[1vw]">{address}</p>
           </div>
           <div className="flex gap-2">
-            <Icon className="w-6 h-6" icon={"ic:baseline-phone"}></Icon>
-            <p className="font-nexa_light text-start">{phone}</p>
+            <Icon
+              className="w-[1.2vw] h-[1.2vw]"
+              icon={"ic:baseline-phone"}
+            ></Icon>
+            <p className="font-nexa_light text-start text-[1vw]">{phone}</p>
           </div>
         </div>
-
-        <div className="flex justify-start pt-4">
-          <button
-            className={` px-4 py-2 ${
-              status === "Coming Soon" ? "bg-primary " : "bg-[#cb1313]"
-            } rounded-lg`}
+      </div>
+      <div className="flex flex-col items-center justify-center gap-2 ">
+        <button
+          className={` ${
+            status === "PICK UP" ? "bg-primary " : "bg-white"
+          } rounded-lg w-[8vw] py-[0.5vw] border-[0.1vw] border-gray-300`}
+        >
+          <p
+            className={` font-nexa_bold text-[1vw] ${
+              status === "PICK UP" ? "text-white " : "text-black"
+            }   `}
           >
-            <p className="text-white font-nexa_bold ">{status}</p>
+            {status}
+          </p>
+        </button>
+        {delivery === true ? (
+          <button
+            className={` bg-black w-[8vw] py-[0.5vw] rounded-lg  border-[0.1vw]`}
+          >
+            <p className="text-white font-nexa_bold text-[1vw] ">DELIVERY</p>
           </button>
-        </div>
-        <div className="w-full h-[1px] bg-black my-4"></div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
