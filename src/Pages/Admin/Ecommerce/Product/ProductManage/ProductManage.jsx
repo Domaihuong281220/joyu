@@ -15,7 +15,7 @@ const ProductManage = () => {
   const navigate = useNavigate();
   const [productData, setproductData] = useState([]);
   const data = [];
-  x``;
+
   for (let i = 0; i < productData.length; i++) {
     data.push({
       key: i,
