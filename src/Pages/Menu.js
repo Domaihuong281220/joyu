@@ -13,7 +13,7 @@ function Menu() {
                 key: index + 1, // Add key property for unique identification
             }));
             setMenu(categories); // Setting the fetched categories to the state.
-            console.log(categories);
+            console.log(categories[0].products.length);
         } catch (error) {
             console.error("Failed to fetch menu:", error);
         }
@@ -26,7 +26,7 @@ function Menu() {
     return (
         <div className='pt-[12vw]'>
             {menu.map((category, index) => (
-                <div key={index} className="flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-auto">
+                <div key={index} className={`${category.products.length < 7 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[30vw]' : category.products.length < 13 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[52vw]' : 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[79vw]'}`}>
                     <p className="font-nexa_bold uppercase text-[2.7vw] leading-[2.2vw]">
                         {category.category}
                     </p>

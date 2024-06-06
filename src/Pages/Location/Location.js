@@ -1,11 +1,27 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CardLocation } from "../../components";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import GoogleMapReact from "google-map-react";
+import axios from "axios";
 
 const Location = () => {
+  const [frame, setFrame] = useState("")
+  const handleGetFrame = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/locationframe`
+      );
+      setFrame(response.data[0].src)
+      console.log(response.data);
+    } catch (error) {
+      console.error("Failed to fetch products:", error);
+    }
+  }; 
+  useEffect(() => {
+    handleGetFrame();
+  }, []);
   const defaultProps = {
     center: {
       lat: 10.99835602,
@@ -268,20 +284,12 @@ const Location = () => {
         <div
           className="h-[500px] w-full pv:max-lg:h-[50vh] lg:max-2xl:h-[70vh]"
           // style={{ height: "800px", width: "100%" }}
-        >
-          <GoogleMapReact
-            bootstrapURLKeys={{
-              key: "AIzaSyB116ei7Yo4JSPj9_7zOVJJc06eykeZRmQ",
-            }}
-            defaultCenter={defaultProps.center}
-            defaultZoom={defaultProps.zoom}
-          >
-            <AnyReactComponent
-              lat={59.955413}
-              lng={30.337844}
-              text="My Marker"
-            />
-          </GoogleMapReact>
+        ><div
+        className="h-[800px] w-full pv:max-lg:h-[50vh] lg:max-2xl:h-[70vh] relative"
+      >
+        <div className="w-full absolute h-[5vw] top-0 bg-white pv:max-md:h-[16vw] md:max-mdmax:h-[8vw] mdmax:max-lgmax:h-[6vw]"></div>
+          <iframe src={frame} className="w-full h-full mapframe" title="map" frameBorder="0"></iframe>
+        </div>
         </div>
       </div>
     </div>
