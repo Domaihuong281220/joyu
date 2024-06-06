@@ -1,6 +1,7 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import { Icon } from "@iconify/react";
 import { Table } from "antd";
@@ -19,9 +20,10 @@ const HomePageBanner = () => {
   const navigate = useNavigate();
   const handleEdit = async (id) => {
     navigate("../" + path.HOMEPAGEBANNEREDIT + `/${id}`, {
-      state: mockdata[id],
+      state: data[0],
     });
   };
+
   const columns = [
     {
       title: "Image",
@@ -31,7 +33,7 @@ const HomePageBanner = () => {
         <div className="flex items-center justify-center">
           <div className="w-28 h-28">
             <img
-              src={record.img}
+              src={`${process.env.REACT_APP_SERVER_URL}/${record.image}`}
               className="object-contain w-full h-full"
             ></img>
           </div>
@@ -56,17 +58,21 @@ const HomePageBanner = () => {
       ),
     },
   ];
-  const [mockdata, setMockdata] = useState([
-    { _id: "dakdhsak", img: imgCate_1 },
-  ]);
+  const [data, setData] = useState();
 
-  //   for (let i = 0; i < categoryData.length; i++) {
-  //     data.push({
-  //       id: categoryData[i].id,
-  //       namecategories: categoryData[i].name,
-  //       title: categoryData[i].title,
-  //     });
-  //   }
+  const handlegetHomePageBanner = async () => {
+    await axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/joyu/banner`)
+      .then((res) => {
+        setData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    handlegetHomePageBanner();
+  }, []);
   return (
     <div className="">
       <div className="w-[90%] mx-auto h-auto bg-white shadow-xl rounded-lg p-1">
@@ -79,7 +85,7 @@ const HomePageBanner = () => {
           <div className="w-[100%]">
             <Table
               columns={columns}
-              dataSource={mockdata}
+              dataSource={data}
               pagination={{ pageSize: 5, position: ["bottomCenter"] }}
 
               // scroll={{

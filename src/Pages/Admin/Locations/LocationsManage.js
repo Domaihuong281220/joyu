@@ -9,53 +9,53 @@ import { Icon } from "@iconify/react";
 import { Table } from "antd";
 const LocationsManage = () => {
   const [locationData, setlocationData] = useState([]);
-  // API Get ALL user
-  // const handlegetLocations = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `${process.env.REACT_APP_SERVER_URL}/locations`
-  //       // {
-  //       //   headers: {
-  //       //     "Content-Type": "application/json",
-  //       //     "x-secret-key": "Domoishi2024",
-  //       //   },
-  //       // }
-  //     );
 
-  //     if (response.status === 200 || response.status === 201) {
-  //       setlocationData(response.data);
-  //     } else {
-  //       setlocationData([]);
-  //     }
-  //   } catch (error) {
-  //     console.log("error ", error);
-  //   }
-  // };
-  // API delete User
-  // console.log(locationData);
-  // const handleDeleteLocation = async (id) => {
-  //   await axios
-  //     .delete(`${process.env.REACT_APP_SERVER_URL}/locations/${id}`, {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         // "x-secret-key": `${process.env.REACT_APP_SECRET_KEY}`,
-  //         "x-secret-key": "Domoishi2024",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       if (res.status === 200 || res.status === 201) {
-  //         toast.success("Delete Locations successfully!");
-  //         handlegetLocations();
-  //         navigate("../" + path.LOCATIONMANAGE);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       toast.error("Delete Location wrong: " + err.message);
-  //     });
-  // };
-  // useEffect(() => {
-  //   handlegetLocations();
-  // }, []);
+  const handlegetLocations = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/locations`
+        // {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //     "x-secret-key": "Domoishi2024",
+        //   },
+        // }
+      );
+
+      if (response.status === 200 || response.status === 201) {
+        setlocationData(response.data);
+      } else {
+        setlocationData([]);
+      }
+    } catch (error) {
+      console.log("error ", error);
+    }
+  };
+
+  console.log(locationData);
+  const handleDeleteLocation = async (id) => {
+    await axios
+      .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/locations/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          // "x-secret-key": `${process.env.REACT_APP_SECRET_KEY}`,
+          "x-secret-key": "Domoishi2024",
+        },
+      })
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
+          toast.success("Delete Locations successfully!");
+          handlegetLocations();
+          navigate("../" + path.LOCATIONMANAGE);
+        }
+      })
+      .catch((err) => {
+        toast.error("Delete Location wrong: " + err.message);
+      });
+  };
+  useEffect(() => {
+    handlegetLocations();
+  }, []);
 
   const handleEditLoaction = (record) => {
     navigate("../" + path.EDITLOCATION, {
@@ -104,7 +104,7 @@ const LocationsManage = () => {
 
           <button
             className="hover:underline cursor-pointer hover:text-blue-500"
-            // onClick={() => handleDeleteLocation(record._id)}
+            onClick={() => handleDeleteLocation(record._id)}
           >
             <p className="">Delete</p>
           </button>

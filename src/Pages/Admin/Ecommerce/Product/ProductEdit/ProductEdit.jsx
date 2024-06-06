@@ -86,8 +86,8 @@ const ProductEdit = () => {
       );
 
       if (response.status === 200 || response.status === 201) {
-        // toast.success("Product updated successfully!");
-        // navigate(`../${path.PRODUCTMANAGE}`);
+        toast.success("Product updated successfully!");
+        navigate(`../${path.PRODUCTMANAGE}`);
       } else {
         toast.error("Failed to update product.");
       }

@@ -20,27 +20,31 @@ const EditLocation = () => {
     website: data.website,
     _id: data._id,
   });
-  // const handleEdit = async (id) => {
-  //   await axios
-  //     .put(`${process.env.REACT_APP_SERVER_URL}/locations/${id}`, formData, {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         // "x-secret-key": `${process.env.REACT_APP_SECRET_KEY}`,
-  //         "x-secret-key": "Domoishi2024",
-  //       },
-  //     })
+  const handleEdit = async (id) => {
+    await axios
+      .put(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/locations/${id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            // "x-secret-key": `${process.env.REACT_APP_SECRET_KEY}`,
+            "x-secret-key": "Domoishi2024",
+          },
+        }
+      )
 
-  //     .then((res) => {
-  //       if (res.status === 200 || res.status === 201) {
-  //         toast.success("Edit Loction successfully!");
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
+          toast.success("Edit Loction successfully!");
 
-  //         navigate("../" + path.LOCATIONMANAGE);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       toast.error("Edit Location wrong: " + err.message);
-  //     });
-  // };
+          navigate("../" + path.LOCATIONMANAGE);
+        }
+      })
+      .catch((err) => {
+        toast.error("Edit Location wrong: " + err.message);
+      });
+  };
   return (
     <div className="">
       <div className="w-[90%] mx-auto h-auto bg-white shadow-xl rounded-lg p-1">
@@ -109,7 +113,7 @@ const EditLocation = () => {
             <button
               className="w-auto h-auto py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg"
               onClick={() => {
-                // handleEdit(data._id);
+                handleEdit(data._id);
               }}
             >
               <p className="">Save</p>

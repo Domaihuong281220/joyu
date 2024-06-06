@@ -19,30 +19,30 @@ const CreateLocation = () => {
     website: "",
   });
   // console.log(formData)
-  // const handleCreateLocation = async () => {
-  //   try {
-  //     const response = await axios.post(
-  //       // `${process.env.REACT_APP_SERVER_URL}/user`,
-  //       `${process.env.REACT_APP_SERVER_URL}/locations`,
-  //       formData,
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           "x-secret-key": "Domoishi2024",
-  //         },
-  //       }
-  //     );
+  const handleCreateLocation = async () => {
+    try {
+      const response = await axios.post(
+        // `${process.env.REACT_APP_SERVER_URL}/user`,
+        `${process.env.REACT_APP_SERVER_URL}/joyu/locations`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "x-secret-key": "Domoishi2024",
+          },
+        }
+      );
 
-  //     if (Object.keys(response.data).length < 2) {
-  //       toast.error(response.data.error);
-  //     } else {
-  //       toast.success("Create new localtion successfully!");
-  //       navigate("../" + path.LOCATIONMANAGE);
-  //     }
-  //   } catch (error) {
-  //     console.error("create failed:", error);
-  //   }
-  // };
+      if (Object.keys(response.data).length < 2) {
+        toast.error(response.data.error);
+      } else {
+        toast.success("Create new localtion successfully!");
+        navigate("../" + path.LOCATIONMANAGE);
+      }
+    } catch (error) {
+      console.error("create failed:", error);
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -109,14 +109,14 @@ const CreateLocation = () => {
           <div className="flex justify-center items-center gap-x-4">
             <button
               className="w-auto h-auto py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg "
-              // onClick={() => handleCreateLocation()}
+              onClick={() => handleCreateLocation()}
             >
               <p className="">Save</p>
             </button>
 
             <button
               className="w-auto h-auto py-2 px-4 bg-red-50 border-2 border-red-300 rounded-lg hover:bg-red-200 hover:shadow-lg"
-              // onClick={() => navigate(-1)}
+              onClick={() => navigate(-1)}
             >
               <p className="">Cancel</p>
             </button>
