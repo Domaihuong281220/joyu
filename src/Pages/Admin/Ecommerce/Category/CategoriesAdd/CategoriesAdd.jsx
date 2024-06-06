@@ -12,7 +12,7 @@ import { isValidInputCategory } from "../../../../../helpers/validInputs";
 const CategoriesAdd = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: ""
+    name: "",
   });
   const handleFile = (e) => {
     setFile(e.target.files[0]);
@@ -28,7 +28,7 @@ const CategoriesAdd = () => {
     let check = isValidInputCategory(formData, toast);
     if (check === true) {
       await axios
-        .post("http://localhost:4000/joyu/categories", formData)
+        .post(`${process.env.REACT_APP_SERVER_URL}/joyu/categories`, formData)
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
             toast.success("add categories success");

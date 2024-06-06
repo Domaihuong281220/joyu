@@ -25,6 +25,7 @@ const CategoriesManage = () => {
   const onSelectChange = (newSelectedRowKeys) => {
     setSelectedRowKeys(newSelectedRowKeys);
   };
+
   const rowSelection = {
     selectedRowKeys,
     onChange: onSelectChange,
@@ -34,7 +35,7 @@ const CategoriesManage = () => {
 
   const handleAPIDeleteCategory = async (id) => {
     await axios
-      .delete(`http://localhost:4000/joyu/categories/${id}`)
+      .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/categories/${id}`)
       .then((res) => {
         console.log(res);
 

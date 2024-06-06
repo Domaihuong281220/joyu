@@ -31,7 +31,9 @@ const ProductEdit = () => {
 
   const handleGetCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/joyu/categories");
+      const res = await axios.get(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/categories`
+      );
       const names = res.data.data.map((category) => category.name);
       setCategories(res.data.data);
       setCategoriesName(names);
@@ -43,7 +45,7 @@ const ProductEdit = () => {
   const handleGetProduct = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/joyu/products/${id}`
+        `${process.env.REACT_APP_SERVER_URL}/joyu/products/${id}`
       );
       setFormData(response.data.data);
       setCategoryID(response.data.data.categoryID._id);
@@ -74,7 +76,7 @@ const ProductEdit = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:4000/joyu/products/${productID}`,
+        `${process.env.REACT_APP_SERVER_URL}/products/${productID}`,
         formDataToSend,
         {
           headers: {

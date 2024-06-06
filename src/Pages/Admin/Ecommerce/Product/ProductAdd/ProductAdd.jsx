@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-import {  Input } from "antd";
+import { Input } from "antd";
 import { Select } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -14,31 +14,33 @@ const ProductAdd = () => {
   const [image, setImage] = useState();
   const [productName, setProductName] = useState();
   const [price, setPrice] = useState();
-  const [categories, setCategories] = useState([])
-  const [categoriesName, setCategoriesName] = useState([])
-  const [categoryID, setCategoryID] = useState()
+  const [categories, setCategories] = useState([]);
+  const [categoriesName, setCategoriesName] = useState([]);
+  const [categoryID, setCategoryID] = useState();
 
   const handleCategoryChange = (e) => {
     const selectedCategory = e.target.value;
-    const categoryobj = categories.filter(category => category.name === selectedCategory)
+    const categoryobj = categories.filter(
+      (category) => category.name === selectedCategory
+    );
     setCategoryID(categoryobj[0]._id);
   };
 
   useEffect(() => {
-    handlegetCategories()
+    handlegetCategories();
     // console.log(formData);
   }, []);
 
   const handlegetCategories = async () => {
     await axios
-      .get("http://localhost:4000/joyu/categories")
+      .get(`${process.env.REACT_APP_SERVER_URL}/joyu/categories`)
       .then((res) => {
         // console.log(res, "category");
 
         // Assuming res.data.data is an array of objects with a "name" property
-        const names = res.data.data.map(category => category.name);
-        setCategories(res.data.data)
-        setCategoriesName(names)
+        const names = res.data.data.map((category) => category.name);
+        setCategories(res.data.data);
+        setCategoriesName(names);
 
         // setproductData(res.data.data);
       })
@@ -81,11 +83,9 @@ const ProductAdd = () => {
     formData.append("image", image);
     formData.append("name", productName);
 
-    
-
     try {
       const response = await axios.post(
-        `http://localhost:4000/joyu/products`,
+        `${process.env.REACT_APP_SERVER_URL}/joyu/products`,
         formData,
         {
           headers: {
@@ -93,7 +93,8 @@ const ProductAdd = () => {
           },
         }
       );
-      // console.log(response);
+
+      console.log(response);
       if (response.status === 201) {
         navigate("../" + path.PRODUCTMANAGE);
         toast.success("Product created successfully!");
@@ -104,7 +105,6 @@ const ProductAdd = () => {
       toast.error("Failed to create product: " + error.message);
     }
   };
-
 
   return (
     <div className="">
@@ -120,9 +120,7 @@ const ProductAdd = () => {
             <Input
               className="w-full h-auto border-[1px] p-2"
               placeholder="Name Product"
-              onChange={(e) =>
-                setProductName(e.target.value)
-              }
+              onChange={(e) => setProductName(e.target.value)}
             />
           </div>
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
@@ -131,9 +129,7 @@ const ProductAdd = () => {
               className="w-full h-full border-[1px] p-2"
               placeholder="Price"
               type="number"
-              onChange={(e) =>
-                setPrice(e.target.value)
-              }
+              onChange={(e) => setPrice(e.target.value)}
             />
           </div>
 

@@ -42,7 +42,9 @@ const ProductManage = () => {
 
   const handlegetProduct = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/joyu/products");
+      const response = await axios.get(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/products`
+      );
       const products = response.data.data.map((product, index) => ({
         ...product,
         key: index + 1, // Add key property for STT column
@@ -56,7 +58,7 @@ const ProductManage = () => {
   const handledeleteProduct = async (id) => {
     console.log(id);
     await axios
-      .delete(`http://localhost:4000/joyu/products/${id}`)
+      .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/products/${id}`)
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
           toast.success("delete product success");
@@ -102,7 +104,7 @@ const ProductManage = () => {
         <div className="flex items-center justify-center">
           <div className="w-28 h-28">
             <img
-              src={`http://localhost:4000/${record.image}`}
+              src={`${process.env.REACT_APP_SERVER_URL}/${record.image}`}
               className="object-contain w-full h-full"
             ></img>
           </div>
