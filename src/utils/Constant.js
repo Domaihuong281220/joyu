@@ -44,6 +44,19 @@ export const path = {
   CATEGORYADD: "category-add",
   CATEGORYEDIT: "category-edit",
   CATEGORYMANAGE: "category-manage",
+
+  HOMEPAGEBANNER: "homepage-banner",
+  HOMEPAGEBANNERADD: "homepage-banner-add",
+  HOMEPAGEBANNEREDIT: "homepage-banner-edit",
+
+  // Locations
+
+  LOCATIONMANAGE: "/manage-location",
+  CREATELOCATION: "/create-location",
+  EDITLOCATION: "/edit-location",
+  // Location Frame
+  LOCATIONFRAME: "/location-frame",
+  EDITLOCATIONFRAME: "/edit-location-frame",
 };
 
 export const ScrollToTop = () => {

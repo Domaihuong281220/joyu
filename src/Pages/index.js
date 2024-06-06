@@ -70,4 +70,14 @@ export { default as ProductAdd } from "./Admin/Ecommerce/Product/ProductAdd/Prod
 export { default as ProductView } from "./Admin/Ecommerce/Product/ProductView/ProductView.jsx";
 
 //Menu
-export { default as Menu } from "./Menu.js"
+export { default as Menu } from "./Menu.js";
+
+// Home Page Banner
+
+export { default as HomePageBanner } from "./Admin/HomePageBanner/HomePageBanner.js";
+export { default as EditHomePageBanner } from "./Admin/HomePageBanner/EditHomePageBanner.js";
+
+// Location
+export { default as LocationManage } from "./Admin/Locations/LocationsManage.js";
+export { default as CreateLocation } from "./Admin/Locations/CreateLocation/CreateLocation.js";
+export { default as EditLocation } from "./Admin/Locations/EditLocation/EditLocation.js";
