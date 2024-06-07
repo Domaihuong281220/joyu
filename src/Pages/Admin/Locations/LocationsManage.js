@@ -83,11 +83,11 @@ const LocationsManage = () => {
       key: "phone",
     },
 
-    {
-      title: "Link Order",
-      dataIndex: "website",
-      key: "website",
-    },
+    // {
+    //   title: "Link Order",
+    //   dataIndex: "website",
+    //   key: "website",
+    // },
     {
       title: "Action",
       key: "action",

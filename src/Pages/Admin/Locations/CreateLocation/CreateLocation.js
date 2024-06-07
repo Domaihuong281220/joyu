@@ -16,7 +16,10 @@ const CreateLocation = () => {
     name: "",
     address: "",
     phone: "",
-    website: "",
+    pickuplink: "",
+    deliverylink: "",
+    available: false,
+
   });
   // console.log(formData)
   const handleCreateLocation = async () => {
@@ -97,12 +100,33 @@ const CreateLocation = () => {
             />
           </div>
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
-            <p className="text-lg">Link Order</p>
+            <p className="text-lg">Pickup link</p>
             <input
               className="w-full h-auto  border-b-2 border-gray-300 p-2 outline-none focus:border-blue-400 focus:ease-out duration-200"
-              placeholder="link order"
+              placeholder="pickup link"
               onChange={(e) =>
-                setFormData({ ...formData, website: e.target.value })
+                setFormData({ ...formData, pickuplink: e.target.value })
+              }
+            />
+          </div>
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+            <p className="text-lg">Delivery link</p>
+            <input
+              className="w-full h-auto  border-b-2 border-gray-300 p-2 outline-none focus:border-blue-400 focus:ease-out duration-200"
+              placeholder="delivery link"
+              onChange={(e) =>
+                setFormData({ ...formData, deliverylink: e.target.value })
+              }
+            />
+          </div>
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+            <p className="text-lg">Available</p>
+            <input
+              type="checkbox"
+              className="w-4 h-4"
+              checked={formData.available}
+              onChange={(e) =>
+                setFormData({ ...formData, available: e.target.checked })
               }
             />
           </div>

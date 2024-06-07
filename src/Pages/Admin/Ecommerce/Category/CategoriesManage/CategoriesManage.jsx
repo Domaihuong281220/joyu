@@ -50,7 +50,7 @@ const CategoriesManage = () => {
   };
   const handlergetCategoryList = async () => {
     await axios
-      .get("http://localhost:4000/joyu/categories")
+      .get(`${process.env.REACT_APP_SERVER_URL}/joyu/categories/`)
       .then((res) => {
         // console.log(res);
         setcategoryData(res.data.data);

@@ -3,293 +3,107 @@
 import React, { useEffect, useState } from "react";
 import { CardLocation } from "../../components";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import GoogleMapReact from "google-map-react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Location = () => {
-  const [frame, setFrame] = useState("")
+  const navigate = useNavigate();
+  const [frame, setFrame] = useState("");
+  const [locations, setLocations] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+  const [filteredLocations, setFilteredLocations] = useState([]);
+
   const handleGetFrame = async () => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_URL}/joyu/locationframe`
       );
-      setFrame(response.data[0].src)
-      console.log(response.data);
+      setFrame(response.data[0].src);
     } catch (error) {
-      console.error("Failed to fetch products:", error);
+      console.error("Failed to fetch frame:", error);
     }
-  }; 
-  useEffect(() => {
-    handleGetFrame();
-  }, []);
-  const defaultProps = {
-    center: {
-      lat: 10.99835602,
-      lng: 77.01502627,
-    },
-    zoom: 11,
   };
 
-  const AnyReactComponent = ({ text }) => <div>{text}</div>;
+  const handleGetLocations = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/locations`
+      );
+      setLocations(response.data);
+      setFilteredLocations(response.data);
+      // console.log(response.data);
+    } catch (error) {
+      console.error("Failed to fetch locations:", error);
+    }
+  };
+
+  useEffect(() => {
+    handleGetFrame();
+    handleGetLocations();
+  }, []);
+
+  useEffect(() => {
+    const filtered = locations.filter((location) =>
+      location.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+      location.address.toLowerCase().includes(searchInput.toLowerCase())
+    );
+    setFilteredLocations(filtered);
+    console.log(filteredLocations);
+  }, [searchInput, locations]);
 
   return (
-    <div className="w-[76vw] mx-auto pv:max-md:w-[95%] lg:max-xl:w-[95%] pv:max-lg:w-[90%] pb-10">
-      {/* <div className="w-[100%] pt-[12vw] mx-auto grid grid-cols-2 pv:max-md:w-[95%] lg:max-xl:w-[95%] pv:max-lg:grid-cols-1">
-        <div className="col-span-1  w-[76%] mx-auto pv:max-lg:col-span-1 pv:max-lg:w-[90%]">
-          <div className="">
-            <p className="text-[30px] font-nexa_bold text-start text-primary">
-              LOCATION
-            </p>
-          </div>
-
-          <div className="w-full flex py-6">
-            <input
-              className=" p-2 rounded-l-[30px] w-full border-[1px] border-gray-400"
-              placeholder="Find A Location By Zip Code Or City, State"
-            ></input>
-            <button className=" bg-primary p-2">
-              <Icon
-                icon={"tabler:location-filled"}
-                className="w-6 h-6 text-white"
-              ></Icon>
-            </button>
-          </div>
-          <div className="pt-10 h-[500px] overflow-y-scroll pv:max-md:h-[400px] lg:max-xl:h-[500px]  xl:max-2xl:h-[600px] ">
-            <CardLocation
-              title={"Virginia Beach"}
-              address={"429 Southgate Ave, Virginia Beach,VA 23462"}
-              phone={"(757) 264 888 1"}
-              status={"Coming Soon"}
-            />
-            <CardLocation
-              title={"Virginia Beach"}
-              address={"429 Southgate Ave, Virginia Beach,VA 23462"}
-              phone={"(757) 264 888 1"}
-              status={"Pick"}
-            />
-            <CardLocation
-              title={"Virginia Beach"}
-              address={"429 Southgate Ave, Virginia Beach,VA 23462"}
-              phone={"(757) 264 888 1"}
-              status={"Coming Soon"}
-            />
-            <CardLocation
-              title={"Virginia Beach"}
-              address={"429 Southgate Ave, Virginia Beach,VA 23462"}
-              phone={"(757) 264 888 1"}
-              status={"Coming Soon"}
-            />
-            <CardLocation
-              title={"Virginia Beach"}
-              address={"429 Southgate Ave, Virginia Beach,VA 23462"}
-              phone={"(757) 264 888 1"}
-              status={"Coming Soon"}
-            />
-            <CardLocation
-              title={"Virginia Beach"}
-              address={"429 Southgate Ave, Virginia Beach,VA 23462"}
-              phone={"(757) 264 888 1"}
-              status={"Coming Soon"}
-            />
-          </div>
-          <div className="w-full h-[1px] bg-gray-400 mt-2 md:hidden"></div>
-        </div>
-        <div className="col-span-1 py-10">
-          <p className="text-primary font-nexa_bold text-[50px] xl:max-2xl:text-[36px] lg:max-xl:text-[30px] pv:max-sm:text-4xl">
-            Working Hour
-          </p>
-          <div className="flex justify-center gap-10 pt-10 pv:max-sm:hidden">
-            <div className="uppercase font-nexa_bold text-[30px] text-start lg:max-xl:text-[20px] xl:max-2xl:text-[24px] md:max-lg:text-[24px] pv:max-md:text-[20px]">
-              <p className="">Monday</p>
-              <p className="">Tuesday</p>
-              <p className="">Wednesday</p>
-              <p className="">Thurday</p>
-              <p className="">Friday</p>
-              <p className="">Saturday</p>
-              <p className="">Sunday</p>
-            </div>
-            <div className="h-[full] w-[1px] bg-black"></div>
-            <div className=" font-nexa_light text-[30px] xl:max-2xl:text-[24px] lg:max-xl:text-[20px] md:max-lg:text-[24px] pv:max-md:text-[20px] text-start ">
-              <p className="">10AM - 9PM</p>
-              <p className="">11AM - 9:30PM</p>
-              <p className="">11AM - 9:30PM</p>
-              <p className="">11AM - 9:30PM</p>
-              <p className="">11AM - 9:30PM</p>
-              <p className="">11AM - 9:30PM</p>
-              <p className="">10AM - 10PM</p>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-10 pt-4 sm:hidden">
-            <div className="">
-              <p className="uppercase  font-nexa_bold">Monday</p>
-              <p className="">10AM - 9PM</p>
-            </div>
-            <div className="">
-              <p className=" font-nexa_bold">Tuesday</p>
-              <p className="">10AM - 9PM</p>
-            </div>
-            <div className="">
-              <p className=" font-nexa_bold">Wednesday</p>
-              <p className="">10AM - 9PM</p>
-            </div>{" "}
-            <div className="">
-              <p className=" font-nexa_bold">Thurday</p>
-              <p className="">10AM - 9PM</p>
-            </div>{" "}
-            <div className="">
-              <p className=" font-nexa_bold">Friday</p>
-              <p className="">10AM - 9PM</p>
-            </div>{" "}
-            <div className="">
-              <p className=" font-nexa_bold">Saturday</p>
-              <p className="">10AM - 9PM</p>
-            </div>
-            <div className="">
-              <p className=" font-nexa_bold">Sunday</p>
-              <p className="">10AM - 9PM</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="w-[100%] mx-auto pt-20">
-        <div
-          className="h-[500px] w-full pv:max-lg:h-[50vh] lg:max-2xl:h-[70vh]"
-          // style={{ height: "800px", width: "100%" }}
-        >
-          <GoogleMapReact
-            bootstrapURLKeys={{
-              key: "AIzaSyB116ei7Yo4JSPj9_7zOVJJc06eykeZRmQ",
-            }}
-            defaultCenter={defaultProps.center}
-            defaultZoom={defaultProps.zoom}
-          >
-            <AnyReactComponent
-              lat={59.955413}
-              lng={30.337844}
-              text="My Marker"
-            />
-          </GoogleMapReact>
-        </div>
-      </div> */}
-
+    <div className="w-[76vw] mx-auto pb-10">
       <div className="w-full flex justify-between items-center pt-[12vw]">
-        <div className="">
+        <div>
           <p className="text-[2.5vw] font-nexa_bold text-[#44614f]">LOCATION</p>
         </div>
-        <div className="flex py-6  w-[60%]">
+        <div className="flex py-6 w-[60%]">
           <input
-            className="p-[0.5vw]  rounded-l-[2vw] w-full border-[0.1vw] border-gray-400"
+            className="p-[0.5vw] rounded-l-[2vw] w-full border-[0.1vw] border-gray-400"
             placeholder="Find A Location By Zip Code Or City, State"
-          ></input>
-          <button className=" bg-primary p-[0.5vw]">
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
+          <button className="bg-primary p-[0.5vw]" 
+          // onClick={filteredLocations[0].available?()=>{window.location.assign(filteredLocations[0].deliverylink)}:()=>{navigate("/location")}}
+          >
             <Icon
               icon={"tabler:location-filled"}
               className="w-[2.5vw] h-[2.5vw] text-white"
-            ></Icon>
+            />
           </button>
         </div>
       </div>
       <div className="w-full h-[1px] bg-black"></div>
-      <div className="flex  justify-between py-6 overflow-x-scroll">
-        <CardLocation
-          title={"BUCKNER RETAIL SHOPPING CENTER"}
-          address={"3545 Bucker Blvd #105 , Virgbia Beacg , VA 23453"}
-          phone={"+1 (757) 301 2384"}
-          status={"PICK UP"}
-          delivery={true}
-        />
-
-        <CardLocation
-          title={"MERCURY PLAZA"}
-          address={"109 Marketplace Dr, #106 , Hampton, VA 23666"}
-          phone={"+1 (757) 301 2384"}
-          status={"COMING SOON"}
-          delivery={false}
-        />
+      <div className="grid grid-cols-2 gap-[1vw] pt-6 overflow-x-scroll">
+        {filteredLocations.map((location) => (
+          location.available ? (
+            <CardLocation
+              key={location.id}
+              title={location.name}
+              address={location.address}
+              phone={location.phone}
+              available={location.available}
+              delivery={location.deliverylink}
+              pickup={location.pickuplink}
+            />
+          ) : (
+            <CardLocation
+              key={location.id}
+              title={location.name}
+              address={location.address}
+              phone={location.phone}
+              available={location.available}
+            />
+          )
+        ))}
       </div>
-      <div className="flex  justify-between">
-        <div className="">
-          <div className="py-4">
-            <p className="text-[1.2vw] font-nexa_bold text-start">
-              WORKING HOUR
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-[10vw]">
-            <p className="text-[1.2vw] font-nexa_bold text-start ">MONDAY</p>
-            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
-          </div>
-          <div className="grid grid-cols-2 gap-[10vw]">
-            <p className="text-[1.2vw] font-nexa_bold text-start">TUESDAY</p>
-            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
-          </div>
-          <div className="grid grid-cols-2 gap-[10vw]">
-            <p className="text-[1.2vw] font-nexa_bold text-start">WESNESDAY</p>
-            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
-          </div>
-          <div className="grid grid-cols-2 gap-[10vw]">
-            <p className="text-[1.2vw] font-nexa_bold text-start">THURDAY</p>
-            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
-          </div>
-          <div className="grid grid-cols-2 gap-[10vw]">
-            <p className="text-[1.2vw] font-nexa_bold text-start">FRIDAY</p>
-            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
-          </div>
-          <div className="grid grid-cols-2 gap-[10vw]">
-            <p className="text-[1.2vw] font-nexa_bold text-start">SATURDAY</p>
-            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
-          </div>
-          <div className="grid grid-cols-2 gap-[10vw]">
-            <p className="text-[1.2vw] font-nexa_bold text-start">SUNDAY</p>
-            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
-          </div>
-        </div>
-        <div className="">
-          <div className="py-4">
-            <p className="text-[1.2vw] font-nexa_bold text-start">
-              WORKING HOUR
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-[10vw]">
-            <p className="text-[1.2vw] font-nexa_bold text-start">MONDAY</p>
-            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
-          </div>
-          <div className="grid grid-cols-2 gap-[10vw]">
-            <p className="text-[1.2vw] font-nexa_bold text-start">TUESDAY</p>
-            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
-          </div>
-          <div className="grid grid-cols-2 gap-[10vw]">
-            <p className="text-[1.2vw] font-nexa_bold text-start">WESNESDAY</p>
-            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
-          </div>
-          <div className="grid grid-cols-2 gap-[10vw]">
-            <p className="text-[1.2vw] font-nexa_bold text-start">THURDAY</p>
-            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
-          </div>
-          <div className="grid grid-cols-2 gap-[10vw]">
-            <p className="text-[1.2vw] font-nexa_bold text-start">FRIDAY</p>
-            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
-          </div>
-          <div className="grid grid-cols-2 gap-[10vw]">
-            <p className="text-[1.2vw] font-nexa_bold text-start">SATURDAY</p>
-            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
-          </div>
-          <div className="grid grid-cols-2 gap-[10vw]">
-            <p className="text-[1.2vw] font-nexa_bold text-start">SUNDAY</p>
-            <p className="text-[1.2vw] font-nexa text-start">10AM - 9PM</p>
-          </div>
-        </div>
-      </div>
-
       <div className="w-[100%] mx-auto pt-20">
-        <div
-          className="h-[500px] w-full pv:max-lg:h-[50vh] lg:max-2xl:h-[70vh]"
-          // style={{ height: "800px", width: "100%" }}
-        ><div
-        className="h-[800px] w-full pv:max-lg:h-[50vh] lg:max-2xl:h-[70vh] relative"
-      >
-        <div className="w-full absolute h-[5vw] top-0 bg-white pv:max-md:h-[16vw] md:max-mdmax:h-[8vw] mdmax:max-lgmax:h-[6vw]"></div>
-          <iframe src={frame} className="w-full h-full mapframe" title="map" frameBorder="0"></iframe>
-        </div>
+        <div className="h-[500px] w-full pv:max-lg:h-[50vh] lg:max-2xl:h-[70vh]">
+          <div className="h-[800px] w-full pv:max-lg:h-[50vh] lg:max-2xl:h-[70vh] relative">
+            <div className="w-full absolute h-[5vw] top-0 bg-white pv:max-md:h-[16vw] md:max-mdmax:h-[8vw] mdmax:max-lgmax:h-[6vw]"></div>
+            <iframe src={frame} className="w-full h-full mapframe" title="map" frameBorder="0"></iframe>
+          </div>
         </div>
       </div>
     </div>

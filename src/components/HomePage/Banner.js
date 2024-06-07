@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
-import BannerBG from "../../assets/HomePage/banner.png"
 import axios from 'axios';
 
 
