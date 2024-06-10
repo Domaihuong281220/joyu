@@ -11,14 +11,6 @@ const ManageEvents = () => {
   const navigate = useNavigate();
   const [newsData, setNewsData] = useState([]);
 
-  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const onSelectChange = (newSelectedRowKeys) => {
-    setSelectedRowKeys(newSelectedRowKeys);
-  };
-  const rowSelection = {
-    selectedRowKeys,
-    onChange: onSelectChange,
-  };
 
   const handleEditEvents = (record) => {
     navigate("../" + path.EDITEVENT + `/${record._id}`, {
@@ -39,6 +31,7 @@ const ManageEvents = () => {
     await axios
       .get(`${process.env.REACT_APP_SERVER_URL}/joyu/news`)
       .then((res) => {
+
         setNewsData(res.data.data);
         console.table(newsData);
       })
@@ -57,6 +50,7 @@ const ManageEvents = () => {
           toast.success("Delete news successfully!");
           handlegetNews();
           navigate("../" + path.EVENTMANAGE);
+          handlegetNews();
         }
       })
       .catch((err) => {
