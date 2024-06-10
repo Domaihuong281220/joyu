@@ -32,7 +32,6 @@ const LocationsManage = () => {
     }
   };
 
-  console.log(locationData);
   const handleDeleteLocation = async (id) => {
     await axios
       .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/locations/${id}`, {

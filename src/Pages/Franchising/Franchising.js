@@ -11,20 +11,18 @@ const Franchising = () => {
             FRANCHISING
           </p>
         </div>
+        <div className="w-full h-[1px] bg-black mt-10"></div>
         <div className="">
-          <div className="w-full h-[1px] bg-black mt-10"></div>
-          <div className="grid grid-cols-5 gap-[5vw] py-[2vw] pv:max-md:grid-cols-1">
-            <div className="flex flex-col gap-[2vw] col-span-3">
-              <p className="text-start font-nexa_light text-[1.4vw]">
-                Have you ever thought about owning a Tea & Coffee shop but
-                worried about how to get it started and a lot more barriers to
-                keep you away from it!!!!
+          
+          <div className="flex space-x-[3vw] py-[2vw] pv:max-md:grid-cols-1">
+            <div className="flex flex-col gap-[1vw] col-span-3">
+              <p className="text-start font-nexa_light text-[1.3vw]">
+              Have you ever thought about owning a Tea & Coffee shop but worried about how to get it started and a lot more barriers to keep you away from it!!!!
               </p>
-              <p className=" text-start font-nexa_light font-black text-[1.4vw] underline uppercase">
-                JOYU Tea & Coffee team will make it much more easier for you.
-                Please take a quick look on what we can offer:
+              <p className=" text-start font-nexa_light font-black text-[1.1vw] underline uppercase">
+              JOYU Tea & Coffee team will make it much more easier for you. Please take a quick look on what we can offer:
               </p>
-              <ul className="font-nexa_light font-bold text-[1.4vw]  uppercase text-start list-disc">
+              <ul className="font-nexa_light font-bold text-[1.1vw] pl-[1vw] list-circle  uppercase text-start list-disc">
                 <li>Low and less risky investment.</li>
                 <li> Market & location survey.</li>
                 <li>Store construction & other related topics.</li>
@@ -33,7 +31,7 @@ const Franchising = () => {
                 <li>Transparent reports.</li>
               </ul>
               <div className="">
-                <p className="text-start font-nexa_light text-[1.4vw]">
+                <p className="text-start font-nexa_light text-[1.3vw]">
                   Visit www.joyupro.com for more detail and please contact us
                   via info@joyuteacoffe.com or (757) 264 8881 for any concerns
                   or questions
@@ -41,15 +39,15 @@ const Franchising = () => {
               </div>
             </div>
 
-            <div className="w-full col-span-2 pv:max-md:col-span-3  flex flex-col justify-center items-center">
+            <div className="xl:w-[74%] w-full col-span-2 pv:max-md:col-span-3  flex flex-col justify-center items-center">
               <img
-                className="w-full rounded-[2vw] h-[80%]"
+                className="w-[90%] rounded-[2vw] h-full"
                 src={img_Frachising}
               ></img>
             </div>
           </div>
 
-          <div className="w-full h-[1px] bg-black mb-10"></div>
+          {/* <div className="w-full h-[1px] bg-black mb-10"></div> */}
         </div>
 
         {/* Mobile */}
@@ -202,7 +200,7 @@ const Franchising = () => {
         </div>
         {/* Desktop  */}
 
-        <div className="grid grid-cols-2 gap-5 pv:max-xl:hidden">
+        <div className="grid grid-cols-2 pt-[2vw] gap-5 pv:max-xl:hidden">
           <div className="grid grid-cols-3 text-right gap-10 items-center ">
             <div className="col-span-1">
               <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
@@ -353,7 +351,7 @@ const Franchising = () => {
               ></textarea>
             </div>
           </div>
-          <div className="">
+          <div className=" flex flex-col justify-end">
             <div className="grid grid-cols-3 text-right gap-10 items-center py-5">
               <div className="col-span-1">
                 <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">

@@ -14,6 +14,7 @@ const ProductAdd = () => {
   const [image, setImage] = useState();
   const [productName, setProductName] = useState();
   const [price, setPrice] = useState();
+  const [description, setDescription] = useState();
   const [categories, setCategories] = useState([]);
   const [categoriesName, setCategoriesName] = useState([]);
   const [categoryID, setCategoryID] = useState();
@@ -82,6 +83,7 @@ const ProductAdd = () => {
     formData.append("categoryID", categoryID);
     formData.append("image", image);
     formData.append("name", productName);
+    formData.append("description", description);
 
     try {
       const response = await axios.post(
@@ -121,6 +123,14 @@ const ProductAdd = () => {
               className="w-full h-auto border-[1px] p-2"
               placeholder="Name Product"
               onChange={(e) => setProductName(e.target.value)}
+            />
+          </div>
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+            <p className="text-lg">Description</p>
+            <textarea
+              className="w-full h-[200px] border-[1px] p-2"
+              placeholder="Description"
+              onChange={(e) => setDescription(e.target.value)}
             />
           </div>
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
