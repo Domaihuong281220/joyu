@@ -11,22 +11,22 @@ import axios from "axios";
 import { Radio, message } from "antd";
 import { isValidInputsUser } from "../../../../helpers/validInputs";
 import { path } from "../../../../utils/Constant";
-const UserAdd = () => {
-  const RoleOption = ["admin"];
-
+const CreateLocation = () => {
   const [formData, setFormData] = useState({
-    username: "",
     name: "",
-    phonenumber: "",
-    password: "",
-    role: "",
+    address: "",
+    phone: "",
+    pickuplink: "",
+    deliverylink: "",
+    available: false,
+
   });
   // console.log(formData)
-  const handleCreateUser = async () => {
+  const handleCreateLocation = async () => {
     try {
       const response = await axios.post(
         // `${process.env.REACT_APP_SERVER_URL}/user`,
-        `${process.env.REACT_APP_SERVER_URL}/joyu/user`,
+        `${process.env.REACT_APP_SERVER_URL}/joyu/locations`,
         formData,
         {
           headers: {
@@ -35,28 +35,15 @@ const UserAdd = () => {
           },
         }
       );
-      // const errorfind = response.data.find(data => data=== "error");
-      // console.log(response.data.error);
-
-      // if (response.status === 200 || response.status === 201) {
-      //   toast.success("Create new user successfully!");
-      //   navigate("../" + path.USERMANAGE);
-      // }
 
       if (Object.keys(response.data).length < 2) {
         toast.error(response.data.error);
-      }
-      else {
-        toast.success("Create new user successfully!");
-        navigate("../" + path.USERMANAGE);
+      } else {
+        toast.success("Create new localtion successfully!");
+        navigate("../" + path.LOCATIONMANAGE);
       }
     } catch (error) {
-      if (error.response && error.response.status === 500) {
-        // console.log(response);
-        toast.error("User name or password  is wrong");
-      } else {
-        console.error("create failed:", error);
-      }
+      console.error("create failed:", error);
     }
   };
 
@@ -64,12 +51,9 @@ const UserAdd = () => {
 
   return (
     <div className="">
-      {/* {contextHolder} */}
-
-      {/* Start form Add User */}
       <div className="w-[90%] mx-auto h-auto bg-white shadow-xl rounded-lg p-1">
         <div className="flex p-2 justify-between">
-          <p className="text-2xl">USER ADD</p>
+          <p className="text-2xl">Create Location</p>
 
           <button
             className="w-auto h-auto"
@@ -83,62 +67,73 @@ const UserAdd = () => {
 
         <div className="px-10 py-4 mx-auto w-[50%] ">
           <div className="flex pb-8">
-            <p className="text-3xl">Add User</p>
+            <p className="text-3xl">Create Location</p>
           </div>{" "}
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6 relative">
-            <p className="text-lg"> Name</p>
+            <p className="text-lg">location Name</p>
             <input
               className="w-full h-auto border-b-2 border-gray-300 p-2 outline-none focus:border-blue-400 focus:ease-out duration-200"
-              placeholder="Name"
+              placeholder="location name"
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
               }
             />
           </div>
-          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6 relative">
-            <p className="text-lg">User Name</p>
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+            <p className="text-lg">Location Detail</p>
             <input
-              className="w-full h-auto border-b-2 border-gray-300 p-2 outline-none focus:border-blue-400 focus:ease-out duration-200"
-              placeholder="User Name"
+              className="w-full h-auto  border-b-2 border-gray-300 p-2 outline-none focus:border-blue-400 focus:ease-out duration-200"
+              placeholder="location detail"
               onChange={(e) =>
-                setFormData({ ...formData, username: e.target.value })
+                setFormData({ ...formData, address: e.target.value })
               }
             />
           </div>
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Phone Number</p>
             <input
-              className="w-full h-auto border-b-2 border-gray-300 p-2 outline-none focus:border-blue-400 focus:ease-out duration-200"
-              placeholder="Phone Number"
+              className="w-full h-auto  border-b-2 border-gray-300 p-2 outline-none focus:border-blue-400 focus:ease-out duration-200"
+              placeholder="phonenumber"
               onChange={(e) =>
-                setFormData({ ...formData, phonenumber: e.target.value })
+                setFormData({ ...formData, phone: e.target.value })
               }
             />
           </div>
-          <div className="flex justify-start gap-x-4 items-center">
-            <p className="text-lg">Role</p>
-            <Radio.Group
-              options={RoleOption}
-              onChange={(e) =>
-                setFormData({ ...formData, role: e.target.value })
-              }
-              value={formData.role}
-            ></Radio.Group>
-          </div>
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
-            <p className="text-lg">Password</p>
+            <p className="text-lg">Pickup link</p>
             <input
               className="w-full h-auto  border-b-2 border-gray-300 p-2 outline-none focus:border-blue-400 focus:ease-out duration-200"
-              placeholder="Password"
+              placeholder="pickup link"
               onChange={(e) =>
-                setFormData({ ...formData, password: e.target.value })
+                setFormData({ ...formData, pickuplink: e.target.value })
+              }
+            />
+          </div>
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+            <p className="text-lg">Delivery link</p>
+            <input
+              className="w-full h-auto  border-b-2 border-gray-300 p-2 outline-none focus:border-blue-400 focus:ease-out duration-200"
+              placeholder="delivery link"
+              onChange={(e) =>
+                setFormData({ ...formData, deliverylink: e.target.value })
+              }
+            />
+          </div>
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+            <p className="text-lg">Available</p>
+            <input
+              type="checkbox"
+              className="w-4 h-4"
+              checked={formData.available}
+              onChange={(e) =>
+                setFormData({ ...formData, available: e.target.checked })
               }
             />
           </div>
           <div className="flex justify-center items-center gap-x-4">
             <button
               className="w-auto h-auto py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg "
-              onClick={() => handleCreateUser()}
+              onClick={() => handleCreateLocation()}
             >
               <p className="">Save</p>
             </button>
@@ -158,4 +153,4 @@ const UserAdd = () => {
   );
 };
 
-export default UserAdd;
+export default CreateLocation;

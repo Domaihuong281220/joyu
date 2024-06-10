@@ -17,7 +17,10 @@ const CategoriesEdit = () => {
   });
   const ApiEditCategory = async (id) => {
     await axios
-      .put(`http://103.157.218.126:8000/admin/updatecategory/${id}`, formData)
+      .put(
+        `${process.env.REACT_APP_SERVER_URL}/admin/updatecategory/${id}`,
+        formData
+      )
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
           console.log("edit success");

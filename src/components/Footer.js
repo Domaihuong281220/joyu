@@ -6,6 +6,7 @@ import Tiktok from "../assets/Footer/Tiktok.png"
 import Youtube from "../assets/Footer/Youtube.png"
 
 
+
 function Signature() {
     return (
         <div className=" w-full h-[31vw] bg-primary flex justify-center items-center flex-col relative">
@@ -38,15 +39,17 @@ function Signature() {
                     <div className='w-full h-[15.5vw] flex justify-start items-end text-[1.8vw] pl-[3.2vw] pb-[1.5vw]'>
                         <p className='font-shopee_bold text-white '>FOLLOW</p>
                     </div>
-                    <div className='flex space-x-[1vw] pl-[3.2vw] pt-[2.6vw]'>
+                    <div className='flex space-x-[1vw] pl-[3.2vw] pt-[2.6vw]' >
                         {/* Facebook */}
-                        <img src={Facebook} alt=''  className='iconFooter'/>
+                        <img src={Facebook} alt=''  className='iconFooter' onClick={()=>window.location.assign("https://www.facebook.com/JoYuTeaCoffee?mibextid=LQQJ4d")}/>
 
                         {/* Instagram */}
-                        <img src={IG} alt='' className='iconFooter' />
+                        <img src={IG} alt='' className='iconFooter' onClick={()=>window.location.assign("https://www.instagram.com/joyuteacoffee?igsh=eThtejIycmcyNGs2&utm_source=qr")}/>
 
                         {/* Tiktok */}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60.668" height="60.668" viewBox="0 0 60.668 60.668" className='iconFooter'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60.668" height="60.668" viewBox="0 0 60.668 60.668" className='iconFooter'
+                        onClick={()=>window.location.assign("https://www.tiktok.com/@joyuteacoffee?_t=8mz1o24QV26&_r=1")}
+                        >
                             <defs>
                                 <clipPath id="clip-path">
                                     <rect id="Rectangle_211" width="31.828" height="36.393" transform="translate(0 0)" fill="none" />
@@ -60,7 +63,7 @@ function Signature() {
                             </g>
                         </svg>
                         {/* Youtube */}
-                        <img src={Youtube} alt='' className='iconFooter'/>
+                        <img src={Youtube} alt='' className='iconFooter' onClick={()=>window.location.assign("https://m.youtube.com/@joyuteacoffee?si=cOhXUceyII9N8xxS")}/>
                     </div>
                     <p className='w-full text-start pl-[3.2vw] font-nexa_light font-black  text-white text-[1.1vw] pt-[3.5vw]'>Copyright JoYu Tea & Coffee 2022. All Rights Reserved</p>
                 </div>

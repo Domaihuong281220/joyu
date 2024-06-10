@@ -12,9 +12,9 @@ const CardNewsProduct = ({
   code,
 }) => {
   const navigate = useNavigate();
-  // const handleClick = (record) => {
-  //   navigate("../" + path.NEWS_DETAIL + `/${record._id}`);
-  // };
+  const handleClick = (newID) => {
+    navigate("../" + path.EVENTDATAIL + `/${newID}`);
+  };
 
   // const handleClick = (code) => {
   //   navigate("../" + path.NEWS_DETAIL + `/${code}`, {
@@ -42,9 +42,9 @@ const CardNewsProduct = ({
           <div className="flex justify-start">
             <button
               className="text-start text-[#a2a158] font-nexa_bold text-[40px] pv:max-md:text-[16px] md:max-xl:text-[20px] ph:max-md:text-[20px] underline hover:underline cursor-pointer "
-              // onClick={() => {
-              //   handleClick(code);
-              // }}
+              onClick={() => {
+                handleClick(code);
+              }}
             >
               <p className=" ">Detail</p>
             </button>
@@ -57,7 +57,7 @@ const CardNewsProduct = ({
           </div>
         </div>
         <div className="">
-          <img className="object-cover" src={imgTitle}></img>
+          <img className="object-cover" src={`${process.env.REACT_APP_SERVER_URL}/${imgTitle}`}></img>
         </div>
       </div>
     </div>

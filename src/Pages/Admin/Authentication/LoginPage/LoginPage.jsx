@@ -17,7 +17,8 @@ const LoginPage = () => {
     password: "",
   });
 
-  const handleLogin = async() => {
+  console.log();
+  const handleLogin = async () => {
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/joyu/login`,

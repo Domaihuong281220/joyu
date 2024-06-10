@@ -6,7 +6,7 @@ const Catering = () => {
   return (
     <div className="pt-[12vw] w-[76vw] pv:max-md:w-[90vw] mx-auto grid grid-cols-5 gap-20 pv:max-lg:grid-cols-1 pv:max-lg:gap-0">
       <div className="w-[100%] mx-auto col-span-3">
-        <div className="flex  text-[2.5vw] md:max-lg:text-[30px] pv:max-md:text-[24px] font-bold text-primary">
+        <div className="flex  text-[2.5vw] md:max-lg:text-[30px] pv:max-md:text-[24px] font-nexa_bold text-primary">
           <p className="uppercase">Catering</p>
         </div>
         <div className="h-[1px] w-full bg-black my-10 "></div>
@@ -24,14 +24,15 @@ const Catering = () => {
             business days and a minimum order of 30 drinks or more. To better
             assists you, please email us at cater@omomoteashoppe.com
             <br></br> <br></br>
-            You may also call any of our locations for assistance. Our catering
-            service is available for pick up only.*
+            You may also call any of our locations for assistance. 
+            <br></br>
+            <span className="text-primary font-bold">Our catering service is available for pick up only.*</span>
           </p>
         </div>
-        <div className="h-[1px] w-full bg-black my-10"></div>
+        {/* <div className="h-[1px] w-full bg-black my-10"></div> */}
 
-        <div className="mb-10">
-          <p className="flex  font-bold text-primary uppercase  text-[2.5vw] md:max-lg:text-[30px] md:max-lg:pb-2 pv:max-md:text-[24px] pv:max-sm:pb-2">
+        <div className="height-available flex flex-col justify-end">
+          <p className="flex font-nexa_bold text-primary uppercase  text-[2.5vw] md:max-lg:text-[30px] md:max-lg:pb-2 pv:max-md:text-[24px] pv:max-sm:pb-2">
             Catering Form
           </p>
           <p className="text-start text-[#a2a158] font-nexa_bold text-[1.4vw] md:max-lg:text-[24px]  pv:max-sm:text-[20px]">
@@ -50,7 +51,7 @@ const Catering = () => {
           className="h-[60vw] pv:max-md:h-full md:max-lg:h-[80vw] w-full md:max-lg:w-[50vw] mx-auto"
           src={imgbg_phone}
         ></img>
-        <p className="custom_input absolute w-full top-[1.5625vw] pv:max-md:top-[10vw]  font-shopee_bold text-[1.2vw] text-primary pv:max-md:text-[14px] md:max-lg:text-[16px]">
+        <p className="custom_input absolute w-full top-[1.5625vw] pv:max-md:top-[10vw]  font-nexa_bold text-[1.2vw] text-primary pv:max-md:text-[14px] md:max-lg:text-[16px]">
           CUSTOMER INFORMATION
         </p>
         <div className="custom_input absolute top-[4.1vw] pv:max-md:top-[20vw]  w-[70%] mx-auto flex flex-col gap-[0.625vw]  justify-between pv:max-md:w-[80%] pv:max-md:h-[500px]">
@@ -97,7 +98,7 @@ const Catering = () => {
           ></input>
           <div className="">
             <button className="w-[13.3vw] h-[3.65vw] pv:max-md:w-[40vw] pv:max-md:h-[10vw]   rounded-full bg-black">
-              <p className="text-white font-bold text-[1.05vw] pv:max-md:text-[14px] ">
+              <p className="text-white font-nexa_bold text-[1.05vw] pv:max-md:text-[14px] ">
                 Send
               </p>
             </button>
