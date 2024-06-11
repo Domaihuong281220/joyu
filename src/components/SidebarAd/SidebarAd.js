@@ -89,6 +89,22 @@ const SidebarAd = () => {
       type: "",
     },
     {
+      key: "customers",
+      label: (
+        <div
+          className=""
+          onClick={() => {
+            navigate("../" + path.CUSTOMERMANAGE);
+          }}
+        >
+          <p className=" text-lg">Customers</p>
+        </div>
+      ),
+      icon: <Icon icon="mdi:user-outline" className="h-5 w-5"></Icon>,
+      children: "",
+      type: "",
+    },
+    {
       key: "ecommerce",
       label: (
         <div className="">

@@ -26,6 +26,8 @@ import {
   CreateLocation,
   EditLocation,
   LocationManage,
+  ManageCustomer,
+  CustomerAdd,
 } from "../Pages";
 const routes = [
   {
@@ -186,6 +188,20 @@ const routes = [
     component: <EditLocation />,
     main: () => <EditLocation />,
     role: ["admin"],
+  },
+
+  // customer
+  {
+    path: path.CUSTOMERMANAGE,
+    exact: true,
+    component: <ManageCustomer />,
+    main: () => <ManageCustomer />,
+  },
+  {
+    path: path.CREATECUSTOMER,
+    exact: true,
+    component: <CustomerAdd />,
+    main: () => <CustomerAdd />,
   },
 ];
 
