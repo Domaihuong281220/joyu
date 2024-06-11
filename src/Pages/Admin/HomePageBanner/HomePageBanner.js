@@ -26,6 +26,13 @@ const HomePageBanner = () => {
 
   const columns = [
     {
+      title: "Type",
+      dataIndex: "bannerType",
+      key: "bannerType",
+      fixed: "left",
+      width: 200,
+    },
+    {
       title: "Image",
       dataIndex: "img",
       key: "img",

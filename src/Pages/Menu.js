@@ -34,11 +34,11 @@ function Menu() {
     
 
     return (
-        <div className='pt-[12vw] pb-[4vw]'>
+        <div className='pt-[12vw] pv:max-md:pt-[15vw] pb-[4vw]'>
             {menu.map((category, index) => (
                 <div key={index} 
-                className={`${category.products.length < 3 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[30vw] pv:max-md:h-[62vw]' :category.products.length < 5 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[30vw]  pv:max-md:h-[120vw]' :category.products.length < 7 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[30vw]  pv:max-md:h-[175vw]' : category.products.length < 9 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[55vw]  pv:max-md:h-[232vw]' :category.products.length < 11 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[55vw]  pv:max-md:h-[292vw]' :category.products.length < 13 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[55vw] pv:max-md:h-[345vw]' : 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[79vw]  pv:max-md:h-[400vw]'}`}>
-                    <p className="font-nexa_bold uppercase text-[2.7vw] leading-[2.2vw]">
+                className={`${category.products.length < 3 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[30vw] pv:max-md:h-[64vw]' :category.products.length < 5 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[30vw]  pv:max-md:h-[120vw]' :category.products.length < 7 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[30vw]  pv:max-md:h-[178vw]' : category.products.length < 9 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[55vw]  pv:max-md:h-[235vw]' :category.products.length < 11 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[55vw]  pv:max-md:h-[292vw]' :category.products.length < 13 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[55vw] pv:max-md:h-[345vw]' : 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[79vw]  pv:max-md:h-[400vw]'}`}>
+                    <p className="font-nexa_bold uppercase text-[2.7vw] pv:max-md:text-[4vw]  leading-[2.2vw]">
                         {category.category}
                     </p>
                     <div className="h-[0.05vw] w-[76.6vw] bg-black my-[2.4vw]"></div>

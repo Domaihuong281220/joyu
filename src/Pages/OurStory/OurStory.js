@@ -6,10 +6,10 @@ import imgstory_1 from "../../assets/OurStory/story_1.png";
 import imgstory_2 from "../../assets/OurStory/story_2.png";
 const OurStory = () => {
   return (
-    <div className="pb-10">
-      <img className="object-cover h-[65vw] w-full" src={imgBanner}></img>
-      <div className="w-[82%] mx-auto  pt-[110px] flex">
-        <div className="text-start w-[53vw] pr-[3vw]">
+    <div className="pb-10 pv:max-md:pt-[18vw] pv:max-md:flex flex-col items-center">
+      <img className="object-cover h-[65vw] w-full pv:max-md:w-[90%] pv:max-md:rounded-[10vw]" src={imgBanner}></img>
+      <div className="w-[82%] mx-auto  pt-[110px] pv:max-md:pt-[8vw] flex">
+        <div className="text-start w-[53vw] pr-[3vw] pv:max-md:pr-0 pv:max-md:w-full">
           <p className="font-nexa_light text-[1.8vw] pb-[2vw] font-black">
             JOYU TEA & COFFEE: A FUSION OF TRADITION, INNOVATION, AND CULINARY
             EXCELLENCE
@@ -38,12 +38,12 @@ const OurStory = () => {
             <br />
           </p>
         </div>
-        <div className="flex flex-col justify-evenly ">
+        <div className="flex flex-col justify-evenly pv:max-md:hidden ">
           <img className="w-[40vw] rounded-[2vw]" src={imgstory_1}></img>
           <img className="w-[40vw] rounded-[2vw]" src={imgstory_2}></img>
         </div>
       </div>
-      <div className=" w-[82%] mx-auto flex flex-col gap-2 pv:max-ph:w-[90%] pv:max-lg:pt-10 ">
+      <div className=" w-[82%] mx-auto flex flex-col gap-2  pv:max-lg:pt-10 ">
         <p className=" font-nexa_light text-start   text-[1.7vw]">
           Through a seamless integration of tradition, innovation, and
           unwavering dedication to customer satisfaction, Joyu Tea & Coffee has
