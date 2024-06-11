@@ -24,9 +24,11 @@ const Catering = () => {
             business days and a minimum order of 30 drinks or more. To better
             assists you, please email us at cater@omomoteashoppe.com
             <br></br> <br></br>
-            You may also call any of our locations for assistance. 
+            You may also call any of our locations for assistance.
             <br></br>
-            <span className="text-primary font-bold">Our catering service is available for pick up only.*</span>
+            <span className="text-primary font-bold">
+              Our catering service is available for pick up only.*
+            </span>
           </p>
         </div>
         {/* <div className="h-[1px] w-full bg-black my-10"></div> */}
@@ -35,7 +37,7 @@ const Catering = () => {
           <p className="flex font-nexa_bold text-primary uppercase  text-[2.5vw] md:max-lg:text-[30px] md:max-lg:pb-2 pv:max-md:text-[24px] pv:max-sm:pb-2">
             Catering Form
           </p>
-          <p className="text-start text-[#a2a158] font-nexa_bold text-[1.4vw] md:max-lg:text-[24px]  pv:max-sm:text-[20px]">
+          <p className="text-start text-[#a2a158] font-nexa_bold text-[1.4vw] md:max-lg:text-[24px]  pv:max-sm:text-[20px] pv:max-md:py-4">
             PLEASE SUBMIT ALL THE INFORMATION AND WE WILL REACH OUT TO YOU AS
             SOON AS POSSIBLE.
           </p>
