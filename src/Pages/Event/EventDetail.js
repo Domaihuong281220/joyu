@@ -25,8 +25,6 @@ const EventDetail = () => {
       console.log(err);
     }
   };
-  console.log(data);
-  // console.log(code);
 
   const navigate = useNavigate();
   return (
@@ -40,14 +38,16 @@ const EventDetail = () => {
         </p>
       </div> */}
       <div className="w-full h-full pt-[15px]">
-        <img className="object-cover w-full" src={`${process.env.REACT_APP_SERVER_URL}/${data.detailpic}`}></img>
+        <img
+          className="object-cover w-full pv:max-md:w-[90%] mx-auto rounded-lg h-[30vh]"
+          src={`${process.env.REACT_APP_SERVER_URL}/${data.detailpic}`}
+        ></img>
       </div>
-      <div className="pt-[108px] pb-[10px]  mx-auto w-[76%]  pv:max-ph:w-[90%] md:max-lg:w-[90%] pv:max-ph:pt-10">
-        
-          <p className="font-nexa_bold text-start text-[40px] pv:max-md:text-[24px]">
-            {data.title}
-          </p>
-        
+      <div className="pt-[108px] pb-[10px]  mx-auto w-[76%] pv:max-ph:w-[90%] md:max-lg:w-[90%] pv:max-ph:pt-10">
+        <p className="font-nexa_bold text-start text-[40px] pv:max-md:text-[24px]">
+          {data.title}
+        </p>
+
         {/* <div className="w-full h-[1px] bg-black "></div> */}
         <div className="pt-[80px] pv:max-md:pt-4 ">
           <p className="font-nexa_light text-[30px] text-left pv:max-md:text-[16px] ">

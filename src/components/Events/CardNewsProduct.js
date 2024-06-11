@@ -31,7 +31,7 @@ const CardNewsProduct = ({
 
   return (
     <div className="py-10">
-      <div className="w-[98%] h-[1px] bg-black"></div>
+      <div className="w-[98%] h-[1px] bg-black pv:max-md:hidden"></div>
       <div className="pt-[72px] grid grid-cols-2 gap-[15vw]  pv:max-md:grid pv:max-md:grid-cols-1  pv:max-md:pt-10 pv:max-md:gap-0 md:max-xl:grid-cols-2 md:max-xl:grid">
         <div className="flex flex-col gap-[30px] pv:max-ph:gap-4 md:max-xl:gap-4 ph:max-md:gap-2">
           <div className="flex  flex-col  gap-[20px]  pv:max-md:gap-4 ">
@@ -46,18 +46,21 @@ const CardNewsProduct = ({
                 handleClick(code);
               }}
             >
-              <p className=" ">Detail</p>
+              <p className="pv:max-md:text-[25px] ">Detail</p>
             </button>
           </div>
 
           <div className="pv:max-md:pb-5">
-            <p className=" line-clamp-4 text-start font-nexa_light text-[30px] pv:max-md:text-[16px] md:max-xl:text-[20px] ">
+            <p className=" md:line-clamp-4 text-start font-nexa_light text-[30px] pv:max-md:text-[16px] md:max-xl:text-[20px] ">
               {shortdescription}
             </p>
           </div>
         </div>
         <div className="">
-          <img className="object-cover" src={`${process.env.REACT_APP_SERVER_URL}/${imgTitle}`}></img>
+          <img
+            className="object-cover pv:max-md:w-[90%] pv:max-md:mx-auto pv:max-md:h-[300px] pv:max-ph:rounded-lg"
+            src={`${process.env.REACT_APP_SERVER_URL}/${imgTitle}`}
+          ></img>
         </div>
       </div>
     </div>

@@ -24,7 +24,8 @@ const Careers = () => {
           );
         })}
       </div>
-      <div className="py-10">
+      {/* Desktop */}
+      <div className="py-10 pv:max-md:hidden ">
         {careerAddressData.map((item, index) => {
           const isLastItem = index === careerAddressData.length - 1;
 
@@ -35,6 +36,35 @@ const Careers = () => {
                 address={item.address}
                 isLast={isLastItem}
               ></CardCareerAddress>
+            </>
+          );
+        })}
+      </div>
+
+      {/* Mobile */}
+      <div className="py-10 md:hidden ">
+        <div className="">
+          <p className="text-start pv:max-ph:text-[18px] ph:max-md:text-[22px] font-nexa_bold">
+            Please submit your remuse <br></br>
+            titled with Position-Location
+          </p>
+        </div>
+        {careerAddressData.map((item, index) => {
+          return (
+            <>
+              <div className="flex flex-col  py-4 gap-2">
+                <p className="text-start pv:max-ph:text-[20px] ph:max-md:text-[24px] text-primary font-nexa_bold">
+                  {item.title}
+                </p>
+                <p className="text-start pv:max-ph:text-[18px] ph:max-md:text-[22px]">
+                  {item.address}
+                </p>
+                <div className="flex justify-start  ">
+                  <button className="bg-[#a2a158] w-[30%] py-2 rounded-lg">
+                    <p className="text-white font-nexa_bold">Apply</p>
+                  </button>
+                </div>
+              </div>
             </>
           );
         })}
