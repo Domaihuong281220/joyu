@@ -4,9 +4,9 @@ import React from "react";
 import imgbg_phone from "../../assets/Catering/bg_phone.png";
 const Catering = () => {
   return (
-    <div className="pt-[12vw] w-[76vw] pv:max-md:w-[90vw] mx-auto grid grid-cols-5 gap-20 pv:max-lg:grid-cols-1 pv:max-lg:gap-0">
+    <div className="pt-[12vw] pv:max-md:pt-[18vw] w-[76vw] pv:max-md:w-[90vw] mx-auto grid grid-cols-5 gap-20 pv:max-lg:grid-cols-1 pv:max-lg:gap-0">
       <div className="w-[100%] mx-auto col-span-3">
-        <div className="flex  text-[2.5vw] md:max-lg:text-[30px] pv:max-md:text-[24px] font-nexa_bold text-primary">
+        <div className="flex  text-[2.5vw] md:max-lg:text-[30px] pv:max-md:text-[30px] font-nexa_bold text-primary">
           <p className="uppercase">Catering</p>
         </div>
         <div className="h-[1px] w-full bg-black my-10 "></div>

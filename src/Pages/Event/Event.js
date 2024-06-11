@@ -26,12 +26,12 @@ const Event = () => {
   };
   return (
     <div className=" w-[76%] mx-auto pv:max-md:w-[90%] md:max-lg:w-[90%] ">
-      <div className="pt-[12vw] flex ">
+      <div className="pt-[12vw]  pv:max-md:pt-[18vw] flex ">
         <p className="font-nexa_bold text-[50px] pv:max-ph:text-[24px]  text-primary">
           EVENTS
         </p>
       </div>
-      <div className=" md:h-[1000px] md:overflow-y-scroll  ">
+      <div className=" md:h-[1000px] pv:max-md:mt-[-2.5rem] md:overflow-y-scroll  ">
         {newsData.map((item, index) => {
           if (newsData) {
             return (

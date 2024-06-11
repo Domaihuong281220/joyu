@@ -53,7 +53,7 @@ const Location = () => {
   }, [searchInput, locations]);
 
   return (
-    <div className="w-[76vw] mx-auto pb-10 pv:max-md:w-[95vw]">
+    <div className="w-[76vw] mx-auto pb-10 pv:max-md:pt-[10vw] pv:max-md:w-[95vw]">
       <div className="w-full flex justify-between items-center pt-[12vw]">
         <div>
           <p className="text-[2.5vw] font-nexa_bold text-[#44614f] pv:max-md:text-[30px]">

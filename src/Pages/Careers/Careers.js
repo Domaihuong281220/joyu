@@ -5,9 +5,9 @@ import { carrerData, careerAddressData } from "../../models/mockdata";
 import { CardCareer, CardCareerAddress } from "../../components";
 const Careers = () => {
   return (
-    <div className=" w-[76vw] mx-auto   pv:max-lg:w-[90%] ">
+    <div className=" w-[76vw] mx-auto  pv:max-md:pt-[18vw] pv:max-lg:w-[90%] ">
       <div className="pt-[12vw] flex pb-[3.6vw]">
-        <p className="font-nexa_bold text-[2.6vw]  text-primary">CAREER</p>
+        <p className="font-nexa_bold text-[2.6vw] pv:max-md:text-[7vw] text-primary">CAREER</p>
       </div>
       <div className="flex flex-col gap-[5vw]">
         {carrerData.map((item, index) => {

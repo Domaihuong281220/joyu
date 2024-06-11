@@ -171,7 +171,7 @@ const Sidebar = () => {
           <img src={mobileLogo} alt=" mobile logo" onClick={() => navigate("/")} />
 
           <div className="w-full h-full flex justify-end space-x-[6vw] items-end">
-            <button className="font-nexa_light uppercase border-[1px] border-[#1E1B1A] text-secondary h-fit rounded-full py-[3vw]  w-[44vw] text-[3vw]" onClick={() => {
+            <button className={`${(location.pathname==="/menu")?"font-nexa_light uppercase text-white bg-primary h-fit rounded-full py-[3vw]  w-[44vw] text-[3vw]":"font-nexa_light uppercase border-[1px] border-[#1E1B1A] text-secondary h-fit rounded-full py-[3vw]  w-[44vw] text-[3vw]"}`} onClick={() => {
               navigate("../" + path.MENU);
               setOpenSidebar(false);
               sessionStorage.setItem("openSidebar", false);

@@ -5,7 +5,7 @@ import img_Frachising from "../../assets/Frachising/frachising_1.png";
 const Franchising = () => {
   return (
     <div>
-      <div className="w-[76%] mx-auto pt-[12vw] pv:max-md:w-[90%]  ">
+      <div className="w-[76%] mx-auto pt-[12vw] pv:max-md:pt-[18vw] pv:max-md:w-[90%]  ">
         <div className=" flex">
           <p className=" text-primary font-nexa_bold text-[2.5vw] mb-[-2vw] pv:max-md:text-[30px]">
             FRANCHISING
