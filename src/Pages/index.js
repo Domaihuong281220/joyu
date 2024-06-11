@@ -44,6 +44,10 @@ export { default as ManageUser } from "./Admin/User/ManageUser/ManageUser";
 export { default as UserAdd } from "./Admin/User/UserAdd/UserAdd";
 export { default as UserEdit } from "./Admin/User/UserEdit/UserEdit";
 
+// Customer
+export { default as ManageCustomer } from "./Admin/Customer/ManageCustomer/ManageCustomer.jsx";
+export { default as CustomerAdd } from "./Admin/Customer/CustomerAdd/CustomerAdd.jsx";
+
 // Jobs
 
 export { default as ManageJobs } from "./Admin/ManageJobs/ManageJobs.jsx";

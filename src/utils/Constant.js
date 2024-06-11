@@ -57,6 +57,10 @@ export const path = {
   // Location Frame
   LOCATIONFRAME: "/location-frame",
   EDITLOCATIONFRAME: "/edit-location-frame",
+
+  // customer
+  CUSTOMERMANAGE: "/manage-customer",
+  CREATECUSTOMER: "/create-customer",
 };
 
 export const ScrollToTop = () => {
