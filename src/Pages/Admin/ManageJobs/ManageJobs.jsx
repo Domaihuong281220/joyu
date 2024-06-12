@@ -67,11 +67,11 @@ const ManageJobs = () => {
       key: "position",
       fixed: "left",
     },
-    {
-      title: "Description",
-      dataIndex: "description",
-      key: "description",
-    },
+    // {
+    //   title: "Description",
+    //   dataIndex: "description",
+    //   key: "description",
+    // },
     {
       title: "Availability",
       dataIndex: "availability",

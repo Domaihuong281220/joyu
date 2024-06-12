@@ -21,7 +21,8 @@ const EditJob = () => {
     position: jobdetail.position,
     description: jobdetail.description,
     availability: jobdetail.availability,
-    linkform: jobdetail.linkform,
+    address: jobdetail.address,
+    responsibility: jobdetail.responsibility,
   });
 
   const handleEdit = async (id) => {
@@ -62,17 +63,17 @@ const EditJob = () => {
             />
           </div>
 
-          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+          {/* <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">
               Description
               <span className="text-[10px] text-red-500">
-                (Limit 260 characters)
+                (Limit 500 characters)
               </span>
             </p>
             <textarea
               className="w-full h-[300px] border-[1px] p-2"
               placeholder="Description"
-              maxLength="260"
+              maxLength="500"
               value={formData.description}
               onChange={(e) =>
                 setFormData({ ...formData, description: e.target.value })
@@ -83,14 +84,34 @@ const EditJob = () => {
             </div>
           </div>
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
-            <p className="text-lg">Linkform</p>
+            <p className="text-lg">
+              Responsibility
+              <span className="text-[10px] text-red-500">
+                (Limit 500 characters)
+              </span>
+            </p>
+            <textarea
+              className="w-full h-[300px] border-[1px] p-2"
+              placeholder="Description"
+              maxLength="500"
+              value={formData.responsibility}
+              onChange={(e) =>
+                setFormData({ ...formData, responsibility: e.target.value })
+              }
+            />
+            <div className="text-right w-full text-sm text-gray-600">
+              {formData.description.length}/260
+            </div>
+          </div> */}
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+            <p className="text-lg">Address</p>
             <Input
               type="text"
               className="w-full h-auto border-[1px] p-2"
-              placeholder="Link form"
-              defaultValue={jobdetail.position}
+              placeholder="Address"
+              defaultValue={jobdetail.address}
               onChange={(e) =>
-                setFormData({ ...formData, linkform: e.target.value })
+                setFormData({ ...formData, address: e.target.value })
               }
             />
           </div>

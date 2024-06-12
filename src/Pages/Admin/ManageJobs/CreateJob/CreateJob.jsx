@@ -15,14 +15,16 @@ const CreateJob = () => {
   const [formData, setFormData] = useState({
     position: "",
     description: "",
+    responsibility: "",
     availability: "",
-    linkform: "",
+    address: "",
   });
 
   const handleCreateJob = async (id) => {
     await axios
       .post(`${process.env.REACT_APP_SERVER_URL}/joyu/careers`, formData)
       .then((res) => {
+        console.log(res);
         if (res.status === 200 || res.status === 201) {
           toast.success("Create new job successfully!");
 
@@ -53,13 +55,24 @@ const CreateJob = () => {
               }
             />
           </div>
-
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+            <p className="text-lg">Address</p>
+            <Input
+              type="text"
+              className="w-full h-auto p-2 border-[1px] border-gray-200"
+              placeholder="Name Job"
+              onChange={(e) =>
+                setFormData({ ...formData, address: e.target.value })
+              }
+            />
+          </div>
+
+          {/* <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Description</p>
             <textarea
               className="w-full h-[100px] border-[1px] p-2"
               placeholder="Subtitle"
-              maxLength="260"
+              maxLength="500"
               value={formData.description}
               onChange={(e) =>
                 setFormData({ ...formData, description: e.target.value })
@@ -68,7 +81,22 @@ const CreateJob = () => {
             <div className="text-right w-full text-sm text-gray-600">
               {formData.description.length}/260
             </div>
-          </div>
+          </div> */}
+          {/* <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+            <p className="text-lg">Responsibility</p>
+            <textarea
+              className="w-full h-[100px] border-[1px] p-2"
+              placeholder="Subtitle"
+              maxLength="1000"
+              value={formData.responsibility}
+              onChange={(e) =>
+                setFormData({ ...formData, responsibility: e.target.value })
+              }
+            />
+            <div className="text-right w-full text-sm text-gray-600">
+              {formData.description.length}/260
+            </div>
+          </div> */}
 
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Availability</p>

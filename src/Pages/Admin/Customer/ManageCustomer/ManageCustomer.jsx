@@ -16,7 +16,7 @@ const ManageCustomer = () => {
   const handlegetUsers = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_SERVER_URL}/joyu/users`,
+        `${process.env.REACT_APP_SERVER_URL}/joyu/customer`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const ManageCustomer = () => {
 
   const handledeleUser = async (id) => {
     await axios
-      .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/user/${id}`, {
+      .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/customer/${id}`, {
         headers: {
           "Content-Type": "application/json",
           // "x-secret-key": `${process.env.REACT_APP_SECRET_KEY}`,
@@ -49,7 +49,7 @@ const ManageCustomer = () => {
         if (res.status === 200 || res.status === 201) {
           toast.success("Delete User successfully!");
           handlegetUsers();
-          navigate("../" + path.USERMANAGE);
+          navigate("../" + path.CUSTOMERMANAGE);
         }
       })
       .catch((err) => {
@@ -72,62 +72,12 @@ const ManageCustomer = () => {
   // Declare label for table
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
       fixed: "left",
     },
-    {
-      title: " User Name",
-      dataIndex: "username",
-      key: "username",
-      fixed: "left",
-    },
-    // {
-    //   title: "Avatar",
-    //   dataIndex: "avatar",
-    //   key: "avatar",
-    //   width: 100,
-    //   render: (_, record) => (
-    //     <div className="flex items-center justify-center gap-x-2">
-    //       <img src={record.avatar} className="w-10 h-10 rounded-full"></img>
-    //     </div>
-    //   ),
-    // },
-    {
-      title: "Phone Number",
-      dataIndex: "phonenumber",
-      key: "phonenumber",
-      // width: 100,
-    },
-    // {
-    //   title: "Email",
-    //   dataIndex: "email",
-    //   key: "email",
-    //   // width: 200
-    // },
-    { title: "Role", dataIndex: "role", key: "role" },
-
-    {
-      title: "Password",
-      dataIndex: "password",
-      key: "password",
-      render: (password) => {
-        return (
-          <p className="">
-            {ismarked ? "*".repeat(password.length) : password}
-          </p>
-        );
-      },
-    },
-
-    // {
-    //   title: "Date Of Birth",
-    //   dataIndex: "dateofbirth",
-    //   key: "dateofbirth",
-    //   // width: 100,
-    // },
-
+    
     {
       title: "Action",
       key: "action",
@@ -153,32 +103,7 @@ const ManageCustomer = () => {
     },
   ];
 
-  // Mock data
-  const data = [
-    {
-      key: "1",
-
-      name: "John Doe",
-      phone: "0909090909",
-      role: "Admin",
-      dateofbirth: "20/12/2000",
-    },
-  ];
-  // const [userData, setuserData] = useState([]);
-  // for (let i = 0; i < userData.length; i++) {
-  //   data.push({
-  //     key: i,
-  //     id: userData[i].id,
-  //     name: userData[i].name,
-  //     avatar: userData[i].avatar,
-  //     phone: userData[i].phone,
-  //     address: userData[i].address,
-  //     email: userData[i].email,
-  //     role: userData[i].role,
-  //     dateofbirth: "20/12/2000",
-  //     // status: ["Online"],
-  //   });
-  // }
+  
 
   // useEffect(() => {
   //   handleGetUserList();
@@ -192,7 +117,7 @@ const ManageCustomer = () => {
 
       <div className="w-[90%] mx-auto h-auto bg-white shadow-xl rounded-lg p-1">
         <div className="flex p-2">
-          <p className="text-2xl">USER LIST</p>
+          <p className="text-2xl">CUSTOMERS LIST</p>
         </div>
         <div className="">
           <div className="flex items-center justify-between px-4 py-4">
@@ -201,8 +126,8 @@ const ManageCustomer = () => {
                 className="w-auto h-auto p-2 rounded-lg border-2 border-green-300 hover:border-green-500 flex items-center gap-x-2 hover:shadow-lg"
                 onClick={() => navigate("../" + path.CREATECUSTOMER)}
               >
-                <Icon icon="mdi:user-add" width={24} height={24}></Icon>
-                <p className="">Add New User</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 36 36"><path fill="currentColor" d="M32.33 6a2 2 0 0 0-.41 0h-28a2 2 0 0 0-.53.08l14.45 14.39Z" class="clr-i-solid clr-i-solid-path-1"/><path fill="currentColor" d="m33.81 7.39l-14.56 14.5a2 2 0 0 1-2.82 0L2 7.5a2 2 0 0 0-.07.5v20a2 2 0 0 0 2 2h28a2 2 0 0 0 2-2V8a2 2 0 0 0-.12-.61M5.3 28H3.91v-1.43l7.27-7.21l1.41 1.41Zm26.61 0h-1.4l-7.29-7.23l1.41-1.41l7.27 7.21Z" class="clr-i-solid clr-i-solid-path-2"/><path fill="none" d="M0 0h36v36H0z"/></svg>
+                <p className="">Send email</p>
               </button>
             </div>
           </div>

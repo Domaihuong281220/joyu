@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FreshTea, FullleafMilktea, JoyuSpecials, PhinCoffee, Topping } from '../components';
 import axios from "axios";
+import { Helmet } from "react-helmet";
 import { path } from '../utils/Constant';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,9 +22,23 @@ function Menu() {
             console.error("Failed to fetch menu:", error);
         }
     };
+    const [metaTags, setMetaTags] = useState([]);
+
+  const handlegetMetaTag = async () => {
+    await axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/joyu/metatag`)
+      .then((res) => {
+        const HomepageTags = res.data.data.filter((tag)=>tag.page==="MenuPage")
+        setMetaTags(HomepageTags)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
     useEffect(() => {
         handlegetMenu();
+        handlegetMetaTag();
     }, []);
 
     const handleViewProduct = (product) => {
@@ -35,6 +50,16 @@ function Menu() {
 
     return (
         <div className='pt-[12vw] pv:max-md:pt-[15vw] pb-[4vw]'>
+            {metaTags === null || metaTags.length === 0 ? (
+        ""
+      ) : (
+        <Helmet>
+          <title>Home - Domoishi</title>
+          {metaTags.map((tag) => (
+            <meta name={tag.name} content={tag.content} key={tag._id} />
+          ))}
+        </Helmet>
+      )}
             {menu.map((category, index) => (
                 <div key={index} 
                 className={`${category.products.length < 3 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[30vw] pv:max-md:h-[64vw]' :category.products.length < 5 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[30vw]  pv:max-md:h-[120vw]' :category.products.length < 7 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[30vw]  pv:max-md:h-[178vw]' : category.products.length < 9 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[55vw]  pv:max-md:h-[235vw]' :category.products.length < 11 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[55vw]  pv:max-md:h-[292vw]' :category.products.length < 13 ? 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[55vw] pv:max-md:h-[345vw]' : 'flex flex-col justify-start items-start px-[11.7%] mt-[5vw] h-[79vw]  pv:max-md:h-[400vw]'}`}>

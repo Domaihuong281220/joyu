@@ -38,7 +38,7 @@ const columns = (handleEdit, handleDelete) => [
   },
 ];
 
-const HomePageMetaTag = () => {
+const MenuPageMetaTag = () => {
   const [data, setData] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
@@ -51,8 +51,8 @@ const HomePageMetaTag = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/joyu/metatag`);
-      const HomePageTag = response.data.data.filter((tag)=>tag.page ==="HomePage")
-      setData(HomePageTag);
+      const MenuTag = response.data.data.filter((tag)=>tag.page ==="MenuPage")
+      setData(MenuTag);
     } catch (error) {
       console.error('Failed to fetch data:', error);
     }
@@ -76,7 +76,7 @@ const HomePageMetaTag = () => {
   };
 
   const handleAddNew = () => {
-    setEditingItem({ title: "", name: "", content: "", page:"HomePage" });
+    setEditingItem({ title: "", name: "", content: "", page:"MenuPage" });
     setIsModalVisible(true);
     setIsCreatingNew(true);
   };
@@ -122,7 +122,7 @@ const HomePageMetaTag = () => {
   return (
     <div className="w-full h-fit">
       <Helmet>
-        <title>Home Page</title>
+        <title>Menu Page</title>
         <meta
           name="description"
           content="Home page with dynamic data from API"
@@ -177,4 +177,4 @@ const HomePageMetaTag = () => {
   );
 };
 
-export default HomePageMetaTag;
+export default MenuPageMetaTag;

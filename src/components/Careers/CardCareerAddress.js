@@ -21,7 +21,7 @@ const CardCareerAddress = ({ title, address, isLast }) => {
         </div>
         <div className="">
           <button className="col-span-1 bg-[#a2a158] px-6 py-2 rounded-xl text-[20px] font-nexa_bold pv:max-md:text-[16px] lg:max-2xl:text-[16px] pv:max-ph:text-[10px] ph:max-md:text-[12px] md:max-lg:text-[14px]">
-            <p className="text-white">APPLY</p>
+            <a className="text-white" href="mailto:info@joyuteacoffee.com">APPLY</a>
           </button>
         </div>
       </div>

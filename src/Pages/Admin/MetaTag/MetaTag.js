@@ -3,6 +3,7 @@
 import React from "react";
 import { Tabs } from 'antd';
 import HomePageMetaTag from "./UpdateMetaTag/HomePageMetaTag";
+import MenuPageMetaTag from "./UpdateMetaTag/MenuPageMetaTag";
 
 const onChange = (key) => {
     console.log(key);
@@ -13,11 +14,11 @@ const onChange = (key) => {
       label: 'Home Page',
       children: <HomePageMetaTag/>,
     },
-    // {
-    //   key: '2',
-    //   label: 'Locations',
-    //   children: <>abc</>,
-    // },
+    {
+      key: '2',
+      label: 'Menu Page',
+      children: <MenuPageMetaTag/>,
+    },
     // {
     //   key: '3',
     //   label: 'Franchising',
