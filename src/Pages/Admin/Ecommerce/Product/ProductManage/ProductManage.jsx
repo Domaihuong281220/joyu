@@ -117,6 +117,13 @@ const ProductManage = () => {
       render: (_, record) => (
         <div className="flex items-center justify-center gap-x-2">
           <button
+            className="hover:underline cursor-pointer hover:text-blue-500 "
+            onClick={() => handleEditProduct(record)}
+          >
+            <p className="">Edit</p>
+          </button>
+
+          <button
             className="hover:underline cursor-pointer hover:text-blue-500 hover:font-bold"
             onClick={() => handleDeleteProduct(record._id)}
           >
@@ -172,7 +179,7 @@ const ProductManage = () => {
             <Table
               columns={columns}
               dataSource={filteredProducts}
-              pagination={{ pageSize: 5, position: ["bottomCenter"] }}
+              pagination={{ pageSize: 15, position: ["bottomCenter"] }}
             />
           </div>
         </div>

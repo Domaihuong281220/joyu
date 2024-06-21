@@ -1,12 +1,7 @@
 /** @format */
 
 import React from "react";
-import OolongCoconutMilktea from "../../assets/Menu/FreshTea/OLOONGCOCONUTMILKTEA.png";
-import HazenutMilktea from "../../assets/Menu/FreshTea/HAZENUT MILKTEA.png";
-import JasmineMilktea from "../../assets/Menu/FreshTea/JASMINE MILKTEA.png";
-import Thaitea from "../../assets/Menu/FreshTea/THAI TEA.png";
-import DoubleMatchaMilktea from "../../assets/Menu/FreshTea/DOUBLE MATCHAMILKTEA.png";
-import BrownSugarFreshTea from "../../assets/Menu/FreshTea/BROWN SUGARFRESH TEA.png";
+
 import { freshteaData } from "../../models/mockdata";
 import { path } from "./../../utils/Constant";
 import { useNavigate } from "react-router-dom";

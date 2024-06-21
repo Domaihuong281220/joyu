@@ -5,17 +5,19 @@ import img_Frachising from "../../assets/Frachising/frachising_1.png";
 const Franchising = () => {
   return (
     <div>
-      <div className="w-[76%] mx-auto pt-[12vw] pv:max-md:pt-[18vw] pv:max-md:w-[90%]  ">
+      <div className="w-[76%] mx-auto pt-[12vw] pv:max-md:pt-[40vw] pv:max-md:w-[85%]  ">
         <div className=" flex">
           <p className=" text-primary font-nexa_bold text-[2.5vw] mb-[-2vw] pv:max-md:text-[30px]">
             FRANCHISING
           </p>
         </div>
+        <div className="h-[1px] w-full hidden pv:max-md:block bg-black my-10 pv:max-md:mt-4 pv:max-md:mb-0 "></div>
+
         <div className="w-full h-[1px] bg-black mt-10 pv:max-md:hidden"></div>
         <div className="pv:max-md:hidden">
           <div className="flex space-x-[3vw] py-[2vw] pv:max-md:grid-cols-1">
             <div className="flex flex-col gap-[1vw] col-span-3">
-              <p className="text-start font-nexa_light text-[1.3vw]">
+              <p className="text-start font-nexa_light pv:max-md:font-nexa text-[1.3vw]">
                 Have you ever thought about owning a Tea & Coffee shop but
                 worried about how to get it started and a lot more barriers to
                 keep you away from it!!!!
@@ -43,7 +45,7 @@ const Franchising = () => {
 
             <div className="xl:w-[74%] w-full col-span-2 pv:max-md:col-span-3  flex flex-col justify-center items-center">
               <img
-                className="w-[90%] rounded-[2vw] h-full"
+                className="w-[90%] pv:max-md:w-full rounded-[2vw] h-full"
                 src={img_Frachising}
               ></img>
             </div>
@@ -53,18 +55,18 @@ const Franchising = () => {
         </div>
         <div className="md:hidden flex flex-col gap-4 pt-10">
           <div className="text-[18px] font-nexa">
-            <img className="" src={img_Frachising}></img>
+            <img className="w-[90vw]" src={img_Frachising}></img>
           </div>
-          <p className="text-start ">
+          <p className="text-start  pv:max-md:pt-[6vw] pv:max-md:font-nexa pv:max-md:text-[4vw] pv:max-md:font-extralight">
             Have you ever thought about owning a Tea & Coffee shop but worried
             about how to get it started and a lot more barriers to keep you away
             from it!!!!
           </p>
-          <p className="font-bold underline text-start">
+          <p className="font-bold underline pv:max-md:font-nexa pv:max-md:leading-[5vw]  pv:max-md:text-[4vw]  pv:max-md:uppercase text-start">
             JOYU Tea & Coffee team will make it much more easier for you. Please
             take a quick look on what we can offer:
           </p>
-          <ul className="list-disc text-start w-[90%] mx-auto">
+          <ul className="list-disc font-nexa text-start font-bold pv:max-md:text-[3.8vw]  pv:max-md:uppercase w-[90%] mx-auto">
             <li>Low and less risky investment.</li>
             <li> Market & location survey.</li>
             <li>Store construction & other related topics.</li>
@@ -78,57 +80,57 @@ const Franchising = () => {
         <div className=" xl:hidden flex  justify-center gap-10 pt-10 pv:max-md:grid  pv:max-md:grid-cols-1 md:max-2xl:grid  md:max-2xl:grid-cols-2">
           <div className="flex flex-col gap-10">
             <div className="flex items-center justify-between pv:max-md:gap-4 pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start 2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 *FIRST NAME :
               </p>
               <input
-                className="w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full p-2"
+                className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                 placeholder="First Name"
               ></input>
             </div>
             <div className="flex items-center justify-between pv:max-md:gap-4 pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start ">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 *LAST NAME :{" "}
               </p>
               <input
-                className="w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full p-2"
+                className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                 placeholder="Last Name:"
               ></input>
             </div>
             <div className="flex items-center justify-between pv:max-md:gap-4 pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 *ADDRESS :{" "}
               </p>
               <input
-                className="w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full p-2"
+                className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                 placeholder="Address"
               ></input>
             </div>
             <div className="flex items-center justify-between pv:max-md:gap-4 pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 COUNTRY :
               </p>
               <div className="w-full">
                 <input
-                  className="w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full p-2"
+                  className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                   placeholder="Country"
                 ></input>
               </div>
             </div>
             <div className="flex items-center justify-between pv:max-md:gap-4 pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 *STATE PROVIDE:
               </p>
               <div className="w-full">
                 <input
-                  className="w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full p-2"
+                  className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                   placeholder="State provide"
                 ></input>
               </div>
             </div>
             <div className="flex flex-col gap-10 pv:max-md:gap-4 pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start pv:max-md:hidden">
               <div className="w-full flex justify-end">
-                <p className="w-[600px] text-right pv:max-md:text-center md:max-2xl:text-center  text-[20px] font-nexa_bold md:max-2xl:text-[14px]  2xl:max-dh_max:text-left pv:max-md:text-[14px] uppercase ">
+                <p className="w-[600px] text-right pv:max-md:text-center md:max-2xl:text-center  text-[20px] font-nexa_bold md:max-2xl:text-[14px]  2xl:max-dh_max:text-left pv:max-md:text-[4.5vw] uppercase ">
                   *Please describe your business background/restaurant
                   experience including name(s) of franchise brands :
                 </p>
@@ -140,72 +142,72 @@ const Franchising = () => {
           </div>
           <div className="flex flex-col justify-center gap-10">
             <div className="flex items-center justify-between pv:max-md:gap-4  pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start  ">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 CITY:{" "}
               </p>
               <div className="w-full">
                 <input
-                  className="w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full p-2"
+                  className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                   placeholder="City"
                 ></input>
               </div>
             </div>
             <div className="flex items-center justify-between  pv:max-md:gap-4  pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start ">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] pv:max-md:flex-col pv:max-md:items-start md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] pv:max-md:flex-col pv:max-md:items-start md:max-2xl:text-[14px]">
                 ZIP/POSTAL CODE:{" "}
               </p>
               <input
-                className="w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full p-2"
+                className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                 placeholder="Zip / Postal Code"
               ></input>
             </div>
             <div className="flex items-center justify-between pv:max-md:gap-4  pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 *EMAIL :{" "}
               </p>
               <input
-                className="w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full p-2"
+                className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                 placeholder="Email Ex: Doce@gmail.com"
               ></input>
             </div>
             <div className="flex items-center justify-between pv:max-md:gap-4 pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 *MOBILE :{" "}
               </p>
               <input
-                className="w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full p-2"
+                className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                 placeholder="Phone Ex: +1 (757) xxxxx"
               ></input>
             </div>
             <div className="flex items-center justify-between pv:max-md:gap-4  pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px] ">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px] ">
                 *PREFERRED CITY 1:{" "}
               </p>
               <input
-                className="w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full p-2"
+                className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                 placeholder="Preferred City 1"
               ></input>
             </div>
             <div className="flex flex-col gap-10 ">
               <div className="flex items-center justify-between pv:max-md:gap-4  pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start   2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start">
-                <p className="font-nexa_bold text-[20px] uppercase pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+                <p className="font-nexa_bold text-[20px] uppercase pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                   *Net Worth :
                 </p>
                 <div className="w-full">
                   <input
-                    className="w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full p-2"
+                    className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                     placeholder="  *Net Worth :"
                   ></input>
                 </div>
               </div>
               <div className="flex items-center justify-between pv:max-md:gap-4  pv:max-md:flex-col pv:max-md:items-start   md:max-2xl:flex-col md:max-2xl:items-start   2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start ">
-                <p className="font-nexa_bold text-[20px] uppercase pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+                <p className="font-nexa_bold text-[20px] uppercase pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                   *Cash Available <br /> for Investment :
                 </p>
                 <div className="w-full">
                   <textarea
-                    className="w-full  pv:max-md:w-full md:max-2xl:w-full pv:max-md:h-[200px] h-14 border-[1px] border-[#707070] rounded-md p-2"
-                    placeholder="Cash Available for Investment :"
+                    className="w-full  pv:max-md:w-full md:max-2xl:w-full  h-14 pv:max-md:h-[30vw] border-[1px] border-[#707070] rounded-2xl p-2"
+                    // placeholder="Cash Available for Investment :"
                   ></textarea>
                 </div>
               </div>
@@ -217,7 +219,7 @@ const Franchising = () => {
         <div className="grid grid-cols-2 pt-[2vw] gap-5 pv:max-xl:hidden">
           <div className="grid grid-cols-3 text-right gap-10 items-center ">
             <div className="col-span-1">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 *FIRST NAME :
               </p>
             </div>
@@ -231,7 +233,7 @@ const Franchising = () => {
           </div>
           <div className="grid grid-cols-3 text-right gap-10 items-center ">
             <div className="col-span-1">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 CITY :
               </p>
             </div>
@@ -244,7 +246,7 @@ const Franchising = () => {
           </div>
           <div className="grid grid-cols-3 text-right gap-10 items-center ">
             <div className="col-span-1">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 *LAST NAME :
               </p>
             </div>
@@ -257,7 +259,7 @@ const Franchising = () => {
           </div>
           <div className="grid grid-cols-3 text-right gap-10 items-center ">
             <div className="col-span-1">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 ZIP / POSTAL CODE:
               </p>
             </div>
@@ -270,7 +272,7 @@ const Franchising = () => {
           </div>
           <div className="grid grid-cols-3 text-right gap-10 items-center ">
             <div className="col-span-1">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 *ADDRESS :
               </p>
             </div>
@@ -283,7 +285,7 @@ const Franchising = () => {
           </div>
           <div className="grid grid-cols-3 text-right gap-10 items-center ">
             <div className="col-span-1">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 *EMAIL :
               </p>
             </div>
@@ -296,7 +298,7 @@ const Franchising = () => {
           </div>
           <div className="grid grid-cols-3 text-right gap-10 items-center ">
             <div className="col-span-1">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 COUNTRY :
               </p>
             </div>
@@ -309,7 +311,7 @@ const Franchising = () => {
           </div>
           <div className="grid grid-cols-3 text-right gap-10 items-center ">
             <div className="col-span-1">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 *MOBILE :
               </p>
             </div>
@@ -322,7 +324,7 @@ const Franchising = () => {
           </div>
           <div className="grid grid-cols-3 text-right gap-10 items-center ">
             <div className="col-span-1">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 *STATE / PROVINCE :
               </p>
             </div>
@@ -335,7 +337,7 @@ const Franchising = () => {
           </div>
           <div className="grid grid-cols-3 text-right gap-10 items-center ">
             <div className="col-span-1">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                 PREFERRED CITY 1 :
               </p>
             </div>
@@ -349,7 +351,7 @@ const Franchising = () => {
 
           <div className="grid grid-cols-3 text-right gap-5  items-center ">
             <div className="col-span-3">
-              <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px] uppercase">
+              <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px] uppercase">
                 *Please describe your business background/restaurant experience
                 including name(s) of franchise brands :
               </p>
@@ -364,7 +366,7 @@ const Franchising = () => {
           <div className=" flex flex-col justify-end">
             <div className="grid grid-cols-3 text-right gap-10 items-center py-5">
               <div className="col-span-1">
-                <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px]">
+                <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
                   *NET WORTH :
                 </p>
               </div>
@@ -377,7 +379,7 @@ const Franchising = () => {
             </div>
             <div className="grid grid-cols-3 text-right gap-10 items-center ">
               <div className="col-span-1">
-                <p className="font-nexa_bold text-[20px] pv:max-md:text-[14px] md:max-2xl:text-[14px] uppercase">
+                <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px] uppercase">
                   Cash Available for Investment :
                 </p>
               </div>
@@ -392,16 +394,16 @@ const Franchising = () => {
         </div>
       </div>
 
-      <div className="w-[76%] mx-auto  gap-10 pt-10 flex justify-center py-20">
+      <div className="w-[76%] pv:max-md:w-[84%] mx-auto  gap-10 pv:max-md:gap-4 pt-10 flex justify-center py-20">
         <div className="">
-          <button className="bg-[#cb1313] px-6 py-2 rounded-lg pv:max-md:bg-[#a2a157]">
+          <button className="bg-[#cb1313] pv:max-md:py-[3.5vw] pv:max-md:w-[38vw] pv:max-md:px-auto px-6 py-2 rounded-lg pv:max-md:bg-[#a2a157]">
             <p className=" text-white font-shopee_bold text-[27px] pv:max-xl:text-[16px] xl:max-2xl:text-[20px]">
               SUBMIT
             </p>
           </button>
         </div>
         <div className="">
-          <button className="bg-black px-6 py-2 rounded-lg">
+          <button className="bg-black px-6 pv:max-md:py-[3.5vw] pv:max-md:w-[38vw] pv:max-md:px-auto py-2 rounded-lg">
             <p className="text-white text-[27px] pv:max-xl:text-[16px] xl:max-2xl:text-[20px]">
               RESET
             </p>

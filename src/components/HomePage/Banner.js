@@ -42,7 +42,7 @@ function Banner() {
     
             // If there's at least one desktop banner, set it
             if (desktopBanners.length > 0) {
-                console.log(desktopBanners); // Log filtered banners
+                // console.log(desktopBanners); // Log filtered banners
                 setBannerDesktop(desktopBanners[0].image);
             } else {
                 console.warn("No desktop banners found.");
@@ -55,9 +55,9 @@ function Banner() {
     return (
         <div className="relative">
             <img src={`${process.env.REACT_APP_SERVER_URL}/${bannerDesktop}`} alt='' className='object-cover pv:max-md:hidden' />
-            <img src={`${process.env.REACT_APP_SERVER_URL}/${bannerMobile}`} alt='' className='object-cover pv:max-md:block hidden' />
-            <button className='font-nexa_bold text-primary uppercase bg-white absolute z-10 bottom-[5vw] right-[12vw] h-fit rounded-full px-[4vw] py-[1.1vw] text-[1.5vw] pv:max-md:hidden ' onClick={()=>navigate("/menu")}>See more</button>
-            <button className='font-nexa leading-[4vw] hidden pv:max-md:block bg-black text-white uppercase absolute z-10 bottom-[5vw] left-1/2 transform -translate-x-1/2 h-fit rounded-full w-fit px-[10vw] py-[5vw] text-[4.5vw] mt-[12vw] mb-[3vw]' onClick={()=>navigate("/menu")}>See more</button>
+            <img src={`${process.env.REACT_APP_SERVER_URL}/${bannerMobile}`} alt='' className='object-cover w-full pv:max-md:block hidden' />
+            <button className='font-nexa_bold text-primary uppercase bg-white absolute z-10 bottom-[5vw] right-[12vw] h-fit rounded-full px-[4vw] py-[1.1vw] text-[1.5vw] pv:max-md:hidden ' onClick={()=>navigate("/event")}>See more</button>
+            <button className='font-nexa font-black leading-[4vw] hidden pv:max-md:block bg-black text-white uppercase absolute z-10 bottom-[5vw] left-1/2 transform -translate-x-1/2 h-fit rounded-full w-fit px-[10vw] pb-[5vw] pt-[6vw] text-[6.5vw] mt-[12vw] mb-[3vw]' onClick={()=>navigate("/event")}>See more</button>
 
         </div>
     );

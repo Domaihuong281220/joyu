@@ -7,7 +7,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 function Signature() {
     const navigate = useNavigate()
     return (
-        <div className=" h-[69.5vw] pv:max-md:h-[300vw] flex flex-col space-y-[4.5vw] justify-center items-center px-[9%]">
+        <div className=" h-[69.5vw] pv:max-md:h-[360vw] flex flex-col space-y-[4.5vw] justify-center items-center px-[9%] pv:max-md:px-[5%]">
             {/* desktop */}
             <div className="pv:max-md:hidden flex w-full h-[27vw] space-x-6">
                 <div className="bg-[#F0F0F0] rounded-bl-[5vw] w-[59.1%] flex flex-col justify-center px-[4.5vw]">
@@ -29,23 +29,23 @@ function Signature() {
             </div>            
 
             {/* mobile */}
-            <div className="hidden pv:max-md:flex flex-col w-full h-[143vw] space-y-6">
+            <div className="hidden pv:max-md:flex flex-col w-full h-[190vw] space-y-6">
             <img src={coldbrew} alt='' className='w-full' />
-                <div className="bg-[#F0F0F0] w-full flex flex-col justify-center items-center h-fit p-[4.5vw]">
-                    <p className='uppercase  font-nexa font-black text-[4vw] mt-[4vw]'>Dreamy new cold brew</p>
-                    <div className='h-[0.1vw] w-full pr-[1vw] mb-[4vw] mt-[2vw] bg-black'></div>
-                    <p className='uppercase text-center font-nexa font-black text-[2vw] leading-[2.7vw]'>Introducing our super-smooth <br></br>Vietnamese Phin Coffee for a sweet <br></br>and energetic day.</p>
-                    <button className='font-nexa leading-[4vw] bg-black text-white uppercase rounded-full w-fit px-[10vw] py-[5vw] text-[4.5vw] mt-[12vw] mb-[3vw]' onClick={()=>navigate("/menu")}>Order now</button>
+                <div className="bg-[#F0F0F0] w-full flex flex-col justify-center items-center h-fit p-[4vw]">
+                    <p className='uppercase  font-nexa font-black text-[5vw] mt-[8vw]'>Dreamy new cold brew</p>
+                    <div className='h-[0.3vw] w-full pr-[1vw] mb-[5vw] mt-[2vw] bg-gray-600'></div>
+                    <p className=' text-center font-nexa font-black text-[4.2vw] leading-[6vw]'>Introducing our super-smooth <br></br>Vietnamese Phin Coffee for a sweet <br></br>and energetic day.</p>
+                    <button className='font-nexa font-black leading-[4vw] bg-[#1E1B1A] text-white uppercase rounded-full w-fit px-[10vw] pt-[6vw] pb-[5vw] text-[5.5vw] mt-[18vw] mb-[5vw]' onClick={()=>navigate("/location")}>Order now</button>
                 </div>
                 
             </div>
-            <div className="hidden pv:max-md:flex flex-col w-full h-[143vw] space-y-6">
+            <div className="hidden pv:max-md:flex flex-col w-full h-[180vw] space-y-6">
                 <img src={fruitjuice} alt='' className='w-full' />
                 <div className="bg-[#FCD990] w-full flex flex-col justify-center items-center h-fit p-[4.5vw]">
-                    <p className='uppercase  font-nexa font-black text-[4vw] mt-[4vw]'>Make a splash</p>
-                    <div className='h-[0.1vw] w-full pr-[1vw] mb-[4vw] mt-[2vw] bg-black'></div>
-                    <p className='uppercase text-center font-nexa font-black text-[2vw] leading-[2.7vw]'>Let try out our Sunset matcha made <br></br>from sweetened premium matcha <br></br>layered with any choice of milk and <br></br>bottomed with honey mandarin.</p>
-                    <button className='font-nexa leading-[4vw] bg-black text-white uppercase rounded-full w-fit px-[10vw] py-[5vw] text-[4.5vw] mt-[12vw] mb-[3vw]' onClick={()=>navigate("/menu")}>Order now</button>
+                    <p className='uppercase  font-nexa font-black text-[5vw] mt-[8vw]'>Make a splash</p>
+                    <div className='h-[0.3vw] w-full pr-[1vw] mb-[5vw] mt-[2vw] bg-gray-600'></div>
+                    <p className='text-center font-nexa font-black text-[4vw] leading-[6vw]'>Let try out our Sunset matcha made <br></br>from sweetened premium matcha <br></br>layered with any choice of milk and <br></br>bottomed with honey mandarin.</p>
+                    <button className='font-nexa font-black leading-[4vw] bg-[#1E1B1A] text-white uppercase rounded-full w-fit px-[10vw] pt-[6vw] pb-[5vw] text-[5.5vw] mt-[18vw] mb-[5vw]' onClick={()=>navigate("/location")}>Order now</button>
                 </div>
             </div>
         </div>

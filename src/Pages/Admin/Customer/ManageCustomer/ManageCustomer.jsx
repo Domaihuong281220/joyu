@@ -136,7 +136,7 @@ const ManageCustomer = () => {
               <Table
                 columns={columns}
                 dataSource={userData}
-                pagination={{ pageSize: 5, position: ["bottomCenter"] }}
+                pagination={{ pageSize: 15, position: ["bottomCenter"] }}
                 scroll={{
                   x: "max-content",
                 }}

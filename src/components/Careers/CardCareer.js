@@ -5,7 +5,7 @@ import React from "react";
 const CardCareer = ({ title, desc, subdesc, Responsibilities, img }) => {
   return (
     <div className="">
-      <div className="grid grid-cols-3 gap-20  pv:max-md:hidden ">
+      <div className="grid grid-cols-3 gap-20 pv:max-md:gap-8  pv:max-md:hidden ">
         <div className="col-span-2  ">
           <div className="text-start ">
             <p className="font-nexa_bold text-[1.875vw] ">{title}</p>
@@ -38,15 +38,17 @@ const CardCareer = ({ title, desc, subdesc, Responsibilities, img }) => {
             src={img}
           ></img>
         </div>
+                <div className="h-[1px] hidden pv:max-md:block w-full bg-black my-10 pv:max-md:mt-2 pv:max-md:mb-4 "></div>
+
       </div>
-      <div className="grid grid-cols-1 gap-20  md:hidden ">
+      <div className="grid grid-cols-1 gap-20  pv:max-md:gap-8 md:hidden ">
         <div className="col-span-1  ">
           <div className="text-start">
-            <p className="font-nexa_bold text-[36px] pv:max-ph:text-[28px]">
+            <p className="font-nexa_bold text-[36px] pv:max-md:pb-4 pv:max-ph:text-[28px]">
               {title}
             </p>
           </div>
-          <div className="w-full h-[1px] bg-black my-4"></div>
+          <div className="w-full h-[1px] bg-black my-4 pv:max-md:hidden"></div>
           <div className="text-start py-2">
             <p className="font-nexa_light text-[25px] pv:max-ph:text-[20px]">
               {desc}
@@ -75,11 +77,11 @@ const CardCareer = ({ title, desc, subdesc, Responsibilities, img }) => {
         </div>
         <div className="col-span-1  h-full">
           <img
-            className="rounded-[20px] pv:max-md:h-[300px] h-full w-[100%] mx-auto object-cover pv:max-ph:object-fill  md:max-lg:w-[90%]"
+            className="rounded-[20px] pv:max-md:h-[300px] h-full w-[100%] mx-auto object-cover pv:max-ph:object-cover  md:max-lg:w-[90%]"
             src={img}
           ></img>
         </div>
-        {/* <div className="w-full h-[1px] bg-black"></div> */}
+        <div className="w-full hidden pv:max-md:block h-[1px]  bg-black"></div>
       </div>
     </div>
   );

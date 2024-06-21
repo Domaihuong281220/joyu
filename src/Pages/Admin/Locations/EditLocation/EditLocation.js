@@ -7,18 +7,21 @@ import { toast } from "react-toastify";
 import { path } from "../../../../utils/Constant";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Input } from "antd";
+
 const EditLocation = () => {
-  // const [startDate, setStartDate] = useState(new Date());
   const navigate = useNavigate();
   const location = useLocation();
   let data = location.state;
+  console.log(data);
   const [formData, setFormData] = useState({
     name: data.name,
     address: data.address,
     phone: data.phone,
-    website: data.website,
-    _id: data._id,
+    pickuplink: data.pickuplink,
+    deliverylink: data.deliverylink,
+    available: data.available,
   });
+
   const handleEdit = async (id) => {
     await axios
       .put(
@@ -27,16 +30,13 @@ const EditLocation = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            // "x-secret-key": `${process.env.REACT_APP_SECRET_KEY}`,
             "x-secret-key": "Domoishi2024",
           },
         }
       )
-
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
-          toast.success("Edit Loction successfully!");
-
+          toast.success("Edit Location successfully!");
           navigate("../" + path.LOCATIONMANAGE);
         }
       })
@@ -44,6 +44,7 @@ const EditLocation = () => {
         toast.error("Edit Location wrong: " + err.message);
       });
   };
+
   return (
     <div className="">
       <div className="w-[90%] mx-auto h-auto bg-white shadow-xl rounded-lg p-1">
@@ -66,7 +67,7 @@ const EditLocation = () => {
             <p className="text-lg">Location Name</p>
             <Input
               className="w-full h-auto p-2"
-              placeholder="User Name"
+              placeholder="Location Name"
               defaultValue={data.name}
               onChange={(e) => {
                 setFormData({ ...formData, name: e.target.value });
@@ -78,7 +79,7 @@ const EditLocation = () => {
             <p className="text-lg">Location Detail</p>
             <Input
               className="w-full h-auto"
-              placeholder="Location Detail "
+              placeholder="Location Detail"
               defaultValue={data.address}
               onChange={(e) => {
                 setFormData({ ...formData, address: e.target.value });
@@ -97,14 +98,37 @@ const EditLocation = () => {
             />
           </div>
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
-            <p className="text-lg">Link Order</p>
+            <p className="text-lg">Pickup Link</p>
             <Input
               className="w-full h-auto"
-              placeholder="Link Order"
-              defaultValue={data.website}
+              placeholder="Pickup Link"
+              defaultValue={data.pickuplink}
               onChange={(e) => {
-                setFormData({ ...formData, website: e.target.value });
+                setFormData({ ...formData, pickuplink: e.target.value });
               }}
+            />
+          </div>
+
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+            <p className="text-lg">Delivery Link</p>
+            <Input
+              className="w-full h-auto"
+              placeholder="Delivery Link"
+              defaultValue={data.deliverylink}
+              onChange={(e) => {
+                setFormData({ ...formData, deliverylink: e.target.value });
+              }}
+            />
+          </div>
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+            <p className="text-lg">Available</p>
+            <input
+              type="checkbox"
+              className="w-4 h-4"
+              checked={formData.available}
+              onChange={(e) =>
+                setFormData({ ...formData, available: e.target.checked })
+              }
             />
           </div>
 

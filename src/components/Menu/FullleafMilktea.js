@@ -2,14 +2,6 @@
 
 import React from "react";
 
-import OolongCoconutMilktea from "../../assets/Menu/JoyuSpecials/OLOONGCOCONUTMILKTEA.png";
-import HazenutMilktea from "../../assets/Menu/JoyuSpecials/MATCHAJOYU.png";
-import JasmineMilktea from "../../assets/Menu/JoyuSpecials/JASMINEMILKTEA.png";
-import Thaitea from "../../assets/Menu/JoyuSpecials/THAITEA.png";
-import DoubleMatchaMilktea from "../../assets/Menu/JoyuSpecials/DOUBLE MATCHAMILKTEA.png";
-import BrownSugarFreshTea from "../../assets/Menu/JoyuSpecials/BROWNSUGARFRESH TEA.png";
-import VeryBerryFreshTea from "../../assets/Menu/JoyuSpecials/VERY BERRYFRESH TEA.png";
-import VeryBerryFreshTea2 from "../../assets/Menu/FullleafMilktea/VERYBERRYFRESHTEA1.png";
 import { useNavigate } from "react-router-dom";
 import { path } from "./../../utils/Constant";
 

@@ -201,7 +201,7 @@ const CategoriesManage = () => {
             <Table
               columns={columns}
               dataSource={categoryData}
-              pagination={{ pageSize: 5, position: ["bottomCenter"] }}
+              pagination={{ pageSize: 15, position: ["bottomCenter"] }}
 
               // scroll={{
               //   x: "max-content",

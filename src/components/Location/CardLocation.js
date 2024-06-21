@@ -11,6 +11,7 @@ const CardLocation = ({
   pickup,
   available,
 }) => {
+  
   const navigate = useNavigate();
   return (
     <div className="flex flex-col pt-[1vw] w-full locationcard">

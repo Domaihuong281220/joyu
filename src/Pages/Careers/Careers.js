@@ -52,10 +52,12 @@ const Careers = () => {
   }, []);
   console.log(careerData);
   return (
-    <div className=" w-[76vw] mx-auto  pv:max-md:pt-[18vw] pv:max-lg:w-[90%] ">
-      <div className="pt-[12vw] flex pb-[3.6vw]">
-        <p className="font-nexa_bold text-[2.6vw] pv:max-md:text-[7vw] text-primary">CAREER</p>
+    <div className=" w-[76vw] mx-auto  pv:max-md:pt-[30vw] pv:max-lg:w-[85%] ">
+      <div className="pt-[12vw] flex pb-[3.6vw] pv:max-md:pb-1">
+        <p className="font-nexa_bold pv:max-md:font-nexa pv:max-md:font-black text-[2.6vw] pv:max-md:text-[7vw] text-primary">CAREERS</p>
       </div>
+      <div className="h-[1px] w-full hidden pv:max-md:block bg-black my-10 pv:max-md:mt-0 pv:max-md:mb-4 "></div>
+
       <div className="flex flex-col gap-[5vw]">
         {carrerData.map((item, index) => {
           return (
@@ -107,8 +109,8 @@ const Careers = () => {
                   {item.address}
                 </p>
                 <div className="flex justify-start  ">
-                  <button className="bg-[#a2a158] w-[30%] py-2 rounded-lg">
-                    <a href="mailto:info@joyuteacoffee.com" className="text-white font-nexa_bold">Apply</a>
+                  <button className="bg-[#a2a158] w-[50%] py-2 rounded-lg">
+                    <a href="mailto:info@joyuteacoffee.com" className="text-white pv:max-md:font-nexa_bold pv:max-md:font-black pv:max-md:text-[4.5vw] pv:max-md:uppercase font-nexa_bold">Apply</a>
                   </button>
                 </div>
               </div>
