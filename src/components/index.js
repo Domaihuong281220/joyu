@@ -11,9 +11,4 @@ export { default as SidebarAd } from "./SidebarAd/SidebarAd";
 export { default as CardNewsProduct } from "./Events/CardNewsProduct";
 export { default as CardLocation } from "./Location/CardLocation";
 
-//Menu
-export { default as FreshTea } from "./Menu/Freshtea";
-export { default as FullleafMilktea } from "./Menu/FullleafMilktea";
-export { default as JoyuSpecials } from "./Menu/JoyuSpecials";
-export { default as PhinCoffee } from "./Menu/PhinCoffee";
-export { default as Topping } from "./Menu/Topping";
+

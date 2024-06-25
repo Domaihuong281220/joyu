@@ -25,7 +25,7 @@ const CardCareer = ({ title, desc, subdesc, Responsibilities, img }) => {
           <div className="text-start flex flex-col gap-2">
             {Responsibilities.map((item, index) => {
               return (
-                <p className="font-nexa_light text-[1.3vw] pb-[1vw] pv:max-md:text-[18px]">
+                <p className="font-nexa_light text-[1.3vw] pv:max-md:text-[18px]">
                   - {item}
                 </p>
               );
@@ -59,7 +59,7 @@ const CardCareer = ({ title, desc, subdesc, Responsibilities, img }) => {
               {subdesc}
             </p>
           </div>
-          <div className="text-start py-2">
+          <div className="text-start py-1">
             <p className="font-nexa_bold text-[25px] pv:max-ph:text-[20px] ">
               Responsibilities
             </p>

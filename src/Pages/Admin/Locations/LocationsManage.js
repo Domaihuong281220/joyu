@@ -1,25 +1,24 @@
-/** @format */
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { path } from "../../../utils/Constant";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
-import { Table } from "antd";
+import { Table, Modal, Input, Button } from "antd";
+
 const LocationsManage = () => {
   const [locationData, setlocationData] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [link, setLink] = useState("");
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    src: "",
+  });
 
   const handlegetLocations = async () => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_URL}/joyu/locations`
-        // {
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     "x-secret-key": "Domoishi2024",
-        //   },
-        // }
       );
 
       if (response.status === 200 || response.status === 201) {
@@ -37,7 +36,6 @@ const LocationsManage = () => {
       .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/locations/${id}`, {
         headers: {
           "Content-Type": "application/json",
-          // "x-secret-key": `${process.env.REACT_APP_SECRET_KEY}`,
           "x-secret-key": "Domoishi2024",
         },
       })
@@ -52,8 +50,22 @@ const LocationsManage = () => {
         toast.error("Delete Location wrong: " + err.message);
       });
   };
+
+  const handleGetFrame = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/locationframe`
+      );
+      setLink(response.data[0].src);
+      // console.log(response.data);
+    } catch (error) {
+      console.error("Failed to fetch frame:", error);
+    }
+  };
+
   useEffect(() => {
     handlegetLocations();
+    handleGetFrame();
   }, []);
 
   const handleEditLoaction = (record) => {
@@ -61,7 +73,9 @@ const LocationsManage = () => {
       state: record,
     });
   };
-  const navigate = useNavigate();
+
+
+
   const columns = [
     {
       title: "Location Name",
@@ -69,24 +83,16 @@ const LocationsManage = () => {
       key: "name",
       fixed: "left",
     },
-
     {
       title: "Location Detail",
       dataIndex: "address",
       key: "address",
     },
-
     {
       title: "Phone Number",
       dataIndex: "phone",
       key: "phone",
     },
-
-    // {
-    //   title: "Link Order",
-    //   dataIndex: "website",
-    //   key: "website",
-    // },
     {
       title: "Action",
       key: "action",
@@ -112,6 +118,40 @@ const LocationsManage = () => {
     },
   ];
 
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = async() => {
+    // console.log("Saved LINK:", link);
+    setFormData({ ...formData, src: link })
+    await axios
+      .put(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/locationframe/66619e7176088a4a740dd8a8`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "x-secret-key": "Domoishi2024",
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
+          toast.success("Edit Location successfully!");
+          navigate("../" + path.LOCATIONMANAGE);
+        }
+      })
+      .catch((err) => {
+        toast.error("Edit Location wrong: " + err.message);
+      });
+      setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <div className="">
       <div className="w-[90%] mx-auto h-auto bg-white shadow-xl rounded-lg p-1">
@@ -133,6 +173,19 @@ const LocationsManage = () => {
                 <p className="">Create New Location</p>
               </button>
             </div>
+            <div className="flex items-center gap-x-3">
+              <button
+                className="w-auto h-auto p-2 rounded-lg border-2 border-red-500 hover:border-red-700 flex items-center gap-x-2 hover:shadow-lg"
+                onClick={showModal}
+              >
+                <Icon
+                  icon="material-symbols:add-location"
+                  width={24}
+                  height={24}
+                ></Icon>
+                <p className="">Edit LocationFrame</p>
+              </button>
+            </div>
           </div>
           <div className="flex justify-center items-center">
             <div className="w-[95%]">
@@ -149,7 +202,26 @@ const LocationsManage = () => {
         </div>
       </div>
 
-      {/* End Table User List */}
+      <Modal
+        title="Edit LocationFrame"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={[
+          <Button key="back" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button key="submit" type="primary" onClick={handleOk}>
+            Save
+          </Button>,
+        ]}
+      >
+        <Input
+          placeholder="LINK"
+          value={link}
+          onChange={(e) => setLink(e.target.value)}
+        />
+      </Modal>
     </div>
   );
 };

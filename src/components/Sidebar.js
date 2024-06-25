@@ -123,12 +123,12 @@ const Sidebar = () => {
             }}>
               Order now
             </button>
-            <button className="font-nexa_light uppercase border-[1px] border-[#1E1B1A] text-secondary h-fit rounded-full px-[4vw] py-[1.1vw] text-[1vw]" onClick={() => {
+            <button className={` ${location.pathname === "/menu" ? "hidden" : "font-nexa_light uppercase border-[1px] border-[#1E1B1A] text-secondary h-fit rounded-full px-[4vw] py-[1.1vw] text-[1vw]"}`} onClick={() => {
               navigate("../" + path.MENU);
               setOpenSidebar(false);
               sessionStorage.setItem("openSidebar", false);
             }}>
-              {location.pathname === "/menu" ? "Download menu" : "Menu"}
+              Menu
             </button>
             <button onClick={() => HandleSideBar()} className="h-[3.5vw]">
               <svg
@@ -181,12 +181,12 @@ const Sidebar = () => {
           <img src={mobileLogo} alt=" mobile logo" onClick={() => navigate("/")} />
 
           <div className="w-full h-full flex justify-end space-x-[6vw] items-end">
-            <button className={`${(location.pathname === "/menu") ? "font-nexa uppercase text-white bg-primary h-fit rounded-full pb-[4vw] px-[3vw] pt-[5vw]  w-[48vw] text-[3.8vw] leading-[3vw]" : "font-nexa font-black uppercase border-[1px] border-[#1E1B1A] text-secondary h-fit rounded-full pb-[3vw] pt-[4vw] leading-[4vw]  w-[42vw] text-[5vw] flex justify-center items-center"}`} onClick={() => {
+            <button className={`${(location.pathname === "/menu") ? "hidden" : "font-nexa font-black uppercase border-[1px] border-[#1E1B1A] text-secondary h-fit rounded-full pb-[3vw] pt-[4vw] leading-[4vw]  w-[42vw] text-[5vw] flex justify-center items-center"}`} onClick={() => {
               navigate("../" + path.MENU);
               setOpenSidebar(false);
               sessionStorage.setItem("openSidebar", false);
             }}>
-              {location.pathname === "/menu" ? "Download menu" : "Menu"}
+              Menu
             </button>
             <button onClick={() => HandleSideBar()} className="h-[14vw]">
               <svg

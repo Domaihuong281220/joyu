@@ -36,7 +36,7 @@ const UserList = () => {
 
   const handleGetUserList = async () => {
     await axios
-      .get("http://103.157.218.126:8000/admin/getalluser")
+      .get(`${process.env.REACT_APP_SERVER_URL}/joyu/getalluser`)
       .then((res) => {
         setuserData(res.data);
       })

@@ -4,10 +4,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 const ProductDetail = () => {
   const location = useLocation();
   let product = location.state.product; // More concise nullish coalescing operator
-
+  let categoryID = location.state.categoryID;
+  console.log(categoryID);
   // console.log("Product name:", product.description);  // Use optional chaining to avoid errors
   const descriptionsplit = product.description.split("<br>")
-  console.log(descriptionsplit);
   if (!product) {
     return <div>No product data available.</div>;
   }
@@ -25,9 +25,9 @@ const ProductDetail = () => {
           <div className="h-[0.3vw] w-[88vw] hidden pv:max-md:block bg-gray-900 mb-[6vw]"></div>
         </div>
 
-        <div className="h-[112vw] hidden rounded-2xl pv:max-md:flex justify-center mb-[5vw]">
+        <div className={`h-[112vw] hidden rounded-2xl pv:max-md:flex justify-center mb-[5vw] ${(categoryID=="topping")?"h-fit":"h-[800px]"}`}>
           <img
-            className="h-full object-cover rounded-[260px] w-[520px] pv:max-md:w-[80%] pv:max-md:rounded-full"
+            className={`h-full object-cover rounded-[260px] w-[520px] pv:max-md:w-[80%] pv:max-md:rounded-full ${(categoryID=="topping")?"object-contain":"object-cover"}`}
             src={`${process.env.REACT_APP_SERVER_URL}/${product.image}`}
             alt={product.name}
           />
@@ -46,9 +46,9 @@ const ProductDetail = () => {
         )}
         </div>
       </div>
-      <div className="h-[800px] pv:max-md:hidden rounded-2xl flex justify-center pv:max-md:h-[300px] md:max-xl:h-[600px]">
+      <div className={` pv:max-md:hidden rounded-2xl flex justify-center pv:max-md:h-[300px] md:max-xl:h-[600px] ${(categoryID=="topping")?"h-fit":"h-[800px]"}`}>
         <img
-          className="h-full object-cover rounded-[260px] w-[520px] pv:max-md:w-[80%] pv:max-md:rounded-full"
+          className={`h-full rounded-[260px] w-[520px] pv:max-md:w-[80%] pv:max-md:rounded-full ${(categoryID=="topping")?"object-contain pb-[3vw]":"object-cover"}`}
           src={`${process.env.REACT_APP_SERVER_URL}/${product.image}`}
           alt={product.name}
         />

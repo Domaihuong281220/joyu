@@ -86,7 +86,7 @@ const HomePageMetaTag = () => {
     if (isCreatingNew) {
       try {
         const response = await axios.post(
-          "http://103.157.218.115:8802/joyu/metatag",
+          `${process.env.REACT_APP_SERVER_URL}/joyu/metatag`,
           editingItem
         );
         fetchData();

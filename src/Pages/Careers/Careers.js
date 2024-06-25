@@ -1,13 +1,14 @@
 /** @format */
 
 import React from "react";
-import { carrerData, careerAddressData } from "../../models/mockdata";
+import { carrerData } from "../../models/mockdata";
 import { CardCareer, CardCareerAddress } from "../../components";
 import axios from "axios";
 import { useState, useEffect } from "react";
 const Careers = () => {
   const [careerData, setCareerData] = useState([]);
   const [careersCount, setCareersCount] = useState(0);
+  const [careerAddressData, setCareerAddressData] = useState([]);
   const [availablePositions, setAvailablePositions] = useState([]);
   const [selected, setSelected] = useState();
   const [linkform, setLinkform] = useState();
@@ -38,11 +39,13 @@ const Careers = () => {
   useEffect(() => {
     const fetchCareers = async () => {
       try {
-        const response = await axios.get("http://103.157.218.115:8802/joyu/careers");
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/joyu/careers`);
         // Log the response to ensure your API returns the expected structure
         const availableCareers = response.data.data.filter((position) => position.availability==="true");
         setCareerData(availableCareers);
-       
+
+        const careerAddresses = availableCareers.map((career) => career.address);
+        setCareerAddressData(careerAddresses)
       } catch (error) {
         console.error("Error fetching data:", error);
       }
