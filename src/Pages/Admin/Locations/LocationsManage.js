@@ -123,7 +123,6 @@ const LocationsManage = () => {
   };
 
   const handleOk = async() => {
-    // console.log("Saved LINK:", link);
     setFormData({ ...formData, src: link })
     await axios
       .put(
@@ -141,6 +140,7 @@ const LocationsManage = () => {
           toast.success("Edit Location successfully!");
           navigate("../" + path.LOCATIONMANAGE);
         }
+        console.log(res,"success");
       })
       .catch((err) => {
         toast.error("Edit Location wrong: " + err.message);

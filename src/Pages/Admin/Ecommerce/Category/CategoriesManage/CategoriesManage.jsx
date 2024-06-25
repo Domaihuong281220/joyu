@@ -60,16 +60,7 @@ const CategoriesManage = () => {
       });
   };
 
-  const handleEditCategory = async (id) => {
-    navigate("../" + path.CATEGORYEDIT + `/${id}`, {
-      state: mockData[id],
-    });
-  };
-  // const handleEditProduct = (id) => {
-  //   navigate("../" + path.PRODUCTEDIT + `/${id}`, {
-  //     state: mockData[id],
-  //   });
-  // };
+
 
   // Declare label for vairiable
   const columns = [
@@ -136,34 +127,7 @@ const CategoriesManage = () => {
       ),
     },
   ];
-  const mockData = [
-    {
-      id: "1",
-      namecategory: "JOYU SPECIALS",
-      img: imgCate_1,
-    },
-    {
-      id: "2",
-      namecategory: "FRESH TEA",
-      img: imgCate_2,
-    },
-    {
-      id: "3",
-      namecategory: "Fullleaf Milktea",
-      img: imgCate_3,
-    },
-    {
-      id: "4",
-      namecategory: "PHIN COFFEE",
-      img: imgCate_4,
-    },
-    {
-      id: "5",
-      namecategory: "TOPPING",
-      img: imgCate_5,
-    },
-  ];
-
+ 
   for (let i = 0; i < categoryData.length; i++) {
     data.push({
       id: categoryData[i].id,
