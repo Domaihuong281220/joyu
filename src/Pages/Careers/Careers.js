@@ -97,7 +97,7 @@ const Careers = () => {
       <div className="py-10 md:hidden ">
         <div className="">
           <p className="text-start pv:max-ph:text-[18px] ph:max-md:text-[22px] font-nexa_bold">
-            Please submit your remuse <br></br>
+            Please submit your resume <br></br>
             titled with Position-Location
           </p>
         </div>

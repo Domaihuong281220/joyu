@@ -25,7 +25,7 @@ const ProductDetail = () => {
           <div className="h-[0.3vw] w-[88vw] hidden pv:max-md:block bg-gray-900 mb-[6vw]"></div>
         </div>
 
-        <div className={`h-[112vw] hidden rounded-2xl pv:max-md:flex justify-center mb-[5vw] ${(categoryID=="topping")?"h-fit":"h-[800px]"}`}>
+        <div className={` hidden rounded-2xl pv:max-md:flex justify-center mb-[5vw] ${(categoryID == "topping") ? "h-fit" :"h-[112vw]"}`}>
           <img
             className={`h-full object-cover rounded-[260px] w-[520px] pv:max-md:w-[80%] pv:max-md:rounded-full ${(categoryID=="topping")?"object-contain":"object-cover"}`}
             src={`${process.env.REACT_APP_SERVER_URL}/${product.image}`}
