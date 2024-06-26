@@ -12,7 +12,6 @@ const EditLocation = () => {
   const navigate = useNavigate();
   const location = useLocation();
   let data = location.state;
-  console.log(data);
   const [formData, setFormData] = useState({
     name: data.name,
     address: data.address,

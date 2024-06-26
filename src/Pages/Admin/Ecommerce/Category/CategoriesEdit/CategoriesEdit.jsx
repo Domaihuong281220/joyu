@@ -9,7 +9,6 @@ import axios from "axios";
 const CategoriesEdit = () => {
   const location = useLocation();
   let categoryDetails = location.state;
-  console.log(categoryDetails);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: categoryDetails.namecategory,
@@ -23,7 +22,6 @@ const CategoriesEdit = () => {
       )
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
-          console.log("edit success");
           navigate("/categoriesmanage");
         }
       })

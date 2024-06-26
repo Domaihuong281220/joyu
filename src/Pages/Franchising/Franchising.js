@@ -1,8 +1,71 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import img_Frachising from "../../assets/Frachising/frachising_1.png";
+import axios from "axios";
+import { toast } from "sonner";
 const Franchising = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    country: "",
+    stateProvince: "",
+    city: "",
+    zipPostalCode: "",
+    email: "",
+    mobile: "",
+    preferredCity1: "",
+    businessBackground: "",
+    netWorth: "",
+    cashAvailable: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    // e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/api/sendEmailFranchising`,
+        // `http://localhost:4000/api/sendEmailFranchising`,
+        formData
+      );
+
+      // alert("Form submitted successfully!");
+      toast.success("Form submitted successfully!");
+    } catch (error) {
+      console.error("Error submitting form", error);
+      toast.error("Failed to submit form.");
+      // alert("Failed to submit form.");
+    }
+  };
+
+  const handleReset = () => {
+    setFormData({
+      firstName: "",
+      lastName: "",
+      address: "",
+      country: "",
+      stateProvince: "",
+      city: "",
+      zipPostalCode: "",
+      email: "",
+      mobile: "",
+      preferredCity1: "",
+      businessBackground: "",
+      netWorth: "",
+      cashAvailable: "",
+    });
+    window.location.reload();
+  };
+
   return (
     <div>
       <div className="w-[76%] mx-auto pt-[12vw] pv:max-md:pt-[40vw] pv:max-md:w-[85%]  ">
@@ -86,6 +149,9 @@ const Franchising = () => {
               <input
                 className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                 placeholder="First Name"
+                value={formData.firstName}
+                name="firstName"
+                onChange={handleChange}
               ></input>
             </div>
             <div className="flex items-center justify-between pv:max-md:gap-4 pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start ">
@@ -95,6 +161,9 @@ const Franchising = () => {
               <input
                 className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                 placeholder="Last Name:"
+                value={formData.lastName}
+                name="lastName"
+                onChange={handleChange}
               ></input>
             </div>
             <div className="flex items-center justify-between pv:max-md:gap-4 pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start">
@@ -104,6 +173,9 @@ const Franchising = () => {
               <input
                 className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                 placeholder="Address"
+                onChange={handleChange}
+                value={formData.address}
+                name="address"
               ></input>
             </div>
             <div className="flex items-center justify-between pv:max-md:gap-4 pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start">
@@ -114,6 +186,9 @@ const Franchising = () => {
                 <input
                   className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                   placeholder="Country"
+                  onChange={handleChange}
+                  value={formData.country}
+                  name="country"
                 ></input>
               </div>
             </div>
@@ -125,6 +200,9 @@ const Franchising = () => {
                 <input
                   className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                   placeholder="State provide"
+                  onChange={handleChange}
+                  value={formData.stateProvince}
+                  name="stateProvince"
                 ></input>
               </div>
             </div>
@@ -136,7 +214,12 @@ const Franchising = () => {
                 </p>
               </div>
               <div className="flex justify-end pv:max-md:w-full md:max-2xl:w-full 2xl:max-dh_max:w-full">
-                <textarea className=" w-full pv:max-md:w-full md:max-2xl:w-full 2xl:max-dh_max:w-full  h-[150px] border-[1px] border-[#707070] rounded-md p-2"></textarea>
+                <textarea
+                  className=" w-full pv:max-md:w-full md:max-2xl:w-full 2xl:max-dh_max:w-full  h-[150px] border-[1px] border-[#707070] rounded-md p-2"
+                  onChange={handleChange}
+                  value={formData.businessBackground}
+                  name="businessBackground"
+                ></textarea>
               </div>
             </div>
           </div>
@@ -149,6 +232,9 @@ const Franchising = () => {
                 <input
                   className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                   placeholder="City"
+                  onChange={handleChange}
+                  value={formData.city}
+                  name="city"
                 ></input>
               </div>
             </div>
@@ -159,6 +245,9 @@ const Franchising = () => {
               <input
                 className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                 placeholder="Zip / Postal Code"
+                onChange={handleChange}
+                value={formData.zipPostalCode}
+                name="zipPostalCode"
               ></input>
             </div>
             <div className="flex items-center justify-between pv:max-md:gap-4  pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start">
@@ -168,6 +257,10 @@ const Franchising = () => {
               <input
                 className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                 placeholder="Email Ex: Doce@gmail.com"
+                type="email"
+                onChange={handleChange}
+                value={formData.email}
+                name="email"
               ></input>
             </div>
             <div className="flex items-center justify-between pv:max-md:gap-4 pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start">
@@ -177,6 +270,9 @@ const Franchising = () => {
               <input
                 className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                 placeholder="Phone Ex: +1 (757) xxxxx"
+                onChange={handleChange}
+                value={formData.mobile}
+                name="mobile"
               ></input>
             </div>
             <div className="flex items-center justify-between pv:max-md:gap-4  pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start">
@@ -186,6 +282,9 @@ const Franchising = () => {
               <input
                 className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                 placeholder="Preferred City 1"
+                onChange={handleChange}
+                value={formData.preferredCity1}
+                name="preferredCity1"
               ></input>
             </div>
             <div className="flex flex-col gap-10 ">
@@ -197,6 +296,9 @@ const Franchising = () => {
                   <input
                     className="w-full pv:max-md:w-full pv:max-md:uppercase pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
                     placeholder="  *Net Worth :"
+                    onChange={handleChange}
+                    value={formData.netWorth}
+                    name="netWorth"
                   ></input>
                 </div>
               </div>
@@ -208,6 +310,9 @@ const Franchising = () => {
                   <textarea
                     className="w-full  pv:max-md:w-full md:max-2xl:w-full  h-14 pv:max-md:h-[30vw] border-[1px] border-[#707070] rounded-2xl p-2"
                     // placeholder="Cash Available for Investment :"
+                    onChange={handleChange}
+                    value={formData.cashAvailable}
+                    name="cashAvailable"
                   ></textarea>
                 </div>
               </div>
@@ -226,8 +331,11 @@ const Franchising = () => {
 
             <div className="col-span-2">
               <input
+                name="firstName"
                 className=" w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full py-2 px-6"
                 placeholder="First Name"
+                value={formData.firstName}
+                onChange={handleChange}
               ></input>
             </div>
           </div>
@@ -241,6 +349,9 @@ const Franchising = () => {
               <input
                 className=" w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full py-2 px-6"
                 placeholder="Location Ex: Virginia "
+                onChange={handleChange}
+                name="city"
+                value={formData.city}
               ></input>
             </div>
           </div>
@@ -254,6 +365,9 @@ const Franchising = () => {
               <input
                 className=" w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full py-2 px-6"
                 placeholder="Last Name:"
+                onChange={handleChange}
+                name="lastName"
+                value={formData.lastName}
               ></input>
             </div>
           </div>
@@ -267,6 +381,9 @@ const Franchising = () => {
               <input
                 className=" w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full py-2 px-6"
                 placeholder="Zip / Postal Code"
+                onChange={handleChange}
+                name="zipPostalCode"
+                value={formData.zipPostalCode}
               ></input>
             </div>
           </div>
@@ -280,6 +397,9 @@ const Franchising = () => {
               <input
                 className=" w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full py-2 px-6"
                 placeholder="Address"
+                onChange={handleChange}
+                name="address"
+                value={formData.address}
               ></input>
             </div>
           </div>
@@ -293,6 +413,10 @@ const Franchising = () => {
               <input
                 className=" w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full py-2 px-6"
                 placeholder="Email Ex: Doce@gmail.com"
+                onChange={handleChange}
+                type="email"
+                value={formData.email}
+                name="email"
               ></input>
             </div>
           </div>
@@ -306,6 +430,9 @@ const Franchising = () => {
               <input
                 className=" w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full py-2 px-6"
                 placeholder="Country"
+                onChange={handleChange}
+                value={formData.country}
+                name="country"
               ></input>
             </div>
           </div>
@@ -319,6 +446,9 @@ const Franchising = () => {
               <input
                 className=" w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full py-2 px-6"
                 placeholder="Phone Ex: +1 (757) xxxxx"
+                onChange={handleChange}
+                value={formData.mobile}
+                name="mobile"
               ></input>
             </div>
           </div>
@@ -332,6 +462,9 @@ const Franchising = () => {
               <input
                 className=" w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full py-2 px-6"
                 placeholder="*STATE / PROVINCE :"
+                onChange={handleChange}
+                name="stateProvince"
+                value={formData.stateProvince}
               ></input>
             </div>
           </div>
@@ -345,6 +478,9 @@ const Franchising = () => {
               <input
                 className=" w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full py-2 px-6"
                 placeholder="Preferred City 1"
+                onChange={handleChange}
+                value={formData.preferredCity1}
+                name="preferredCity1"
               ></input>
             </div>
           </div>
@@ -360,6 +496,9 @@ const Franchising = () => {
               <textarea
                 className=" w-full pv:max-md:w-full md:max-2xl:w-full h-[200px] border-[1px] border-[#707070] rounded-md py-2 px-6"
                 placeholder=""
+                onChange={handleChange}
+                value={formData.businessBackground}
+                name={"businessBackground"}
               ></textarea>
             </div>
           </div>
@@ -374,6 +513,9 @@ const Franchising = () => {
                 <input
                   className=" w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full py-2 px-6"
                   placeholder="*NET WORTH :"
+                  onChange={handleChange}
+                  value={formData.netWorth}
+                  name="netWorth"
                 ></input>
               </div>
             </div>
@@ -387,6 +529,9 @@ const Franchising = () => {
                 <input
                   className=" w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full py-2 px-6"
                   placeholder="* Cash Available for Investment :"
+                  onChange={handleChange}
+                  value={formData.cashAvailable}
+                  name={"cashAvailable"}
                 ></input>
               </div>
             </div>
@@ -396,14 +541,24 @@ const Franchising = () => {
 
       <div className="w-[76%] pv:max-md:w-[84%] mx-auto  gap-10 pv:max-md:gap-4 pt-10 flex justify-center py-20">
         <div className="">
-          <button className="bg-[#cb1313] pv:max-md:py-[3.5vw] pv:max-md:w-[38vw] pv:max-md:px-auto px-6 py-2 rounded-lg pv:max-md:bg-[#a2a157]">
+          <button
+            className="bg-[#cb1313] pv:max-md:py-[3.5vw] pv:max-md:w-[38vw] pv:max-md:px-auto px-6 py-2 rounded-lg pv:max-md:bg-[#a2a157]"
+            onClick={() => {
+              handleSubmit();
+            }}
+          >
             <p className=" text-white font-shopee_bold text-[27px] pv:max-xl:text-[16px] xl:max-2xl:text-[20px]">
               SUBMIT
             </p>
           </button>
         </div>
         <div className="">
-          <button className="bg-black px-6 pv:max-md:py-[3.5vw] pv:max-md:w-[38vw] pv:max-md:px-auto py-2 rounded-lg">
+          <button
+            className="bg-black px-6 pv:max-md:py-[3.5vw] pv:max-md:w-[38vw] pv:max-md:px-auto py-2 rounded-lg"
+            onClick={() => {
+              handleReset();
+            }}
+          >
             <p className="text-white text-[27px] pv:max-xl:text-[16px] xl:max-2xl:text-[20px]">
               RESET
             </p>

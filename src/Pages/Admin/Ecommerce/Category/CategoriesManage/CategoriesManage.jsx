@@ -37,7 +37,6 @@ const CategoriesManage = () => {
     await axios
       .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/categories/${id}`)
       .then((res) => {
-        console.log(res);
 
         if (res.status === 200 || res.status === 201) {
           messageApi.success("delete category success");

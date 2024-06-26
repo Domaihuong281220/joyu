@@ -96,7 +96,6 @@ const ProductAdd = () => {
         }
       );
 
-      console.log(response);
       if (response.status === 201) {
         navigate("../" + path.PRODUCTMANAGE);
         toast.success("Product created successfully!");

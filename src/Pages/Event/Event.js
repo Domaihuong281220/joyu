@@ -19,7 +19,6 @@ const Event = () => {
       );
       const reversedData = [...response.data.data].reverse(); // Copy and reverse the array
       setNewsData(reversedData);
-      console.log(reversedData);
     } catch (err) {
       console.log(err);
     }

@@ -17,7 +17,6 @@ const LoginPage = () => {
     password: "",
   });
 
-  console.log();
   const handleLogin = async () => {
     try {
       const response = await axios.post(

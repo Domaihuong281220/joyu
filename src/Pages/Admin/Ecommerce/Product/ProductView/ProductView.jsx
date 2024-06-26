@@ -9,7 +9,6 @@ const ProductView = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const data = location.state;
-  console.log(data);
   let { id } = useParams();
   return (
     <div className=" ">

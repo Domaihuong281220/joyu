@@ -23,13 +23,11 @@ const Sidebar = () => {
   });
 
   const handleSubmit = async (e) => {
-    console.log(e);
     e.preventDefault();
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/joyu/customer`, formData
       )
-      console.log(response);
       if (response.status === 200) {
         toast.success("Thank you for subscribing!")
       }

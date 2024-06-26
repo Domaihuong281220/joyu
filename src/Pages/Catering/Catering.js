@@ -1,8 +1,50 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import imgbg_phone from "../../assets/Catering/bg_phone.png";
+import axios from "axios";
+import { toast } from "sonner";
 const Catering = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    date: "",
+    type: "",
+    location: "",
+    guestCount: "",
+    eventDetail: "",
+    specicalRequest: "",
+  });
+  console.log(`${process.env.REACT_APP_SERVER_URL}/api/sendEmailCatering`);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    // e.preventDefault();
+    try {
+      const response = await axios.post(
+        // `http://localhost:4000/api/sendEmailCatering`,
+        `${process.env.REACT_APP_SERVER_URL}/api/sendEmailCatering`,
+
+        formData
+      );
+
+      // alert("Form submitted successfully!");
+      toast.success("Form submitted successfully!");
+    } catch (error) {
+      console.error("Error submitting form", error);
+      toast.error("Failed to submit form.");
+      // alert("Failed to submit form.");
+    }
+  };
+
   return (
     <div className="pt-[12vw] pv:max-md:pt-[40vw] w-[76vw] pv:max-md:w-full mx-auto grid grid-cols-5 gap-20 pv:max-lg:grid-cols-1 pv:max-lg:gap-0">
       <div className="w-[100%] pv:max-md:w-[85vw] mx-auto col-span-3">
@@ -27,7 +69,8 @@ const Catering = () => {
             You may also call any of our locations for assistance.
             <br></br>
             <span className="text-primary font-bold">
-              Our catering service is available for pick up and qualified free delivery
+              Our catering service is available for pick up and qualified free
+              delivery
             </span>
           </p>
         </div>
@@ -37,7 +80,7 @@ const Catering = () => {
           <p className="flex font-nexa_bold text-primary uppercase  text-[2.5vw] md:max-lg:text-[30px] md:max-lg:pb-2 pv:max-md:text-[8vw] pv:max-sm:pb-2">
             Catering Form
           </p>
-        <div className="h-[1px] w-full bg-black my-10 pv:max-md:mt-2 pv:max-md:mb-2 "></div>
+          <div className="h-[1px] w-full bg-black my-10 pv:max-md:mt-2 pv:max-md:mb-2 "></div>
 
           <p className="text-start text-[#a2a158] font-nexa_bold text-[1.4vw] md:max-lg:text-[24px]  pv:max-sm:text-[4.2vw] pv:max-md:pt-4 pv:max-md:pb-12">
             PLEASE SUBMIT ALL THE INFORMATION AND WE WILL REACH OUT TO YOU AS
@@ -62,14 +105,23 @@ const Catering = () => {
           <input
             className=" w-full pv:max-md:w-full  md:max-2xl:w-full h-[4.2vw] pv:max-md:h-[18vw] pv:max-md:text-[3.5vw]  md:max-lg:h-12 md:max-lg:text-[14px]  md:max-lg:w-[90%] mx-auto border-[1px] border-[#707070] rounded-full py-2 px-6"
             placeholder="Name: "
+            value={formData.name}
+            name="name"
+            onChange={handleChange}
           ></input>
           <input
             className=" w-full pv:max-md:w-full md:max-2xl:w-full h-[4.2vw] pv:max-md:h-[18vw] pv:max-md:text-[3.5vw]  md:max-lg:h-12 md:max-lg:text-[14px] md:max-lg:w-[90%] mx-auto border-[1px] border-[#707070] rounded-full py-2 px-6"
             placeholder="Phone Ex: +1 (757) xxxxx"
+            value={formData.phone}
+            name="phone"
+            onChange={handleChange}
           ></input>
           <input
             className=" w-full pv:max-md:w-full md:max-2xl:w-full h-[4.2vw] pv:max-md:h-[18vw] pv:max-md:text-[3.5vw] md:max-lg:h-12 md:max-lg:text-[14px]  md:max-lg:w-[90%] mx-auto border-[1px] border-[#707070] rounded-full py-2 px-6"
             placeholder="Email Ex: Doce@gmail.com"
+            value={formData.email}
+            name="email"
+            onChange={handleChange}
           ></input>
 
           <p className=" font-shopee_bold text-[1.2vw] text-primary pv:max-md:text-[14px] md:max-lg:text-[16px]">
@@ -78,30 +130,53 @@ const Catering = () => {
           <input
             className=" w-full pv:max-md:w-full lg:max-2xl:w-full h-[4.2vw] pv:max-md:h-[16vw] pv:max-md:text-[3.5vw] md:max-lg:h-12 md:max-lg:text-[14px] md:max-lg:w-[90%] mx-auto border-[1px] border-[#707070] rounded-full py-2 px-6"
             placeholder="Date Ex: November 12, 2022"
+            value={formData.date}
+            name="date"
+            onChange={handleChange}
           ></input>
           <input
             className=" w-full pv:max-md:w-full md:max-2xl:w-full h-[4.2vw] pv:max-md:h-[16vw] pv:max-md:text-[3.5vw] md:max-lg:h-12 md:max-lg:text-[14px] md:max-lg:w-[90%] mx-auto border-[1px] border-[#707070] rounded-full py-2 px-6"
             placeholder="Type Ex: Wedding, Birthday, etc"
+            value={formData.type}
+            name="type"
+            onChange={handleChange}
           ></input>
           <input
             className=" w-full pv:max-md:w-full md:max-2xl:w-full h-[4.2vw] pv:max-md:h-[16vw] pv:max-md:text-[3.5vw] border-[1px] md:max-lg:h-12 md:max-lg:text-[14px] md:max-lg:w-[90%] mx-auto border-[#707070] rounded-full py-2 px-6"
             placeholder="Location Ex: Virginia "
+            value={formData.location}
+            name="location"
+            onChange={handleChange}
           ></input>
           <input
             className=" w-full pv:max-md:w-full md:max-2xl:w-full h-[4.2vw] pv:max-md:h-[16vw] pv:max-md:text-[3.5vw] border-[1px] md:max-lg:h-12 md:max-lg:text-[14px] md:max-lg:w-[90%] mx-auto border-[#707070] rounded-full py-2 px-6"
             placeholder="Guest Count Ex: 100 "
+            value={formData.guestCount}
+            name="guestCount"
+            onChange={handleChange}
           ></input>
           <textarea
             className=" w-full h-[7.8125vw] pv:max-md:w-full md:max-2xl:w-full pv:max-md:h-[35vw] pv:max-md:text-[3.5vw]  md:max-lg:text-[14px] md:max-lg:h-20 md:max-lg:w-[90%] mx-auto border-[1px] border-[#707070] rounded-xl py-2 px-6"
             placeholder="Event Detail: 
             Please explain your event in dept here"
+            value={formData.eventDetail}
+            name="eventDetail"
+            onChange={handleChange}
           ></textarea>
           <input
             className=" w-full pv:max-md:w-full md:max-2xl:w-full h-[4.2vw] pv:max-md:h-[16vw] pv:max-md:text-[3.5vw] md:max-lg:h-12 md:max-lg:text-[14px] border-[1px] md:max-lg:w-[90%] mx-auto border-[#707070] rounded-full py-2 px-6"
             placeholder="Special Request:"
+            value={formData.specicalRequest}
+            name="specicalRequest"
+            onChange={handleChange}
           ></input>
           <div className="">
-            <button className="w-[13.3vw] h-[3.65vw] pv:max-md:w-[40vw] pv:max-md:h-[10vw] pv:max-md:mt-[2vw]  rounded-full bg-black">
+            <button
+              className="w-[13.3vw] h-[3.65vw] pv:max-md:w-[40vw] pv:max-md:h-[10vw] pv:max-md:mt-[2vw]  rounded-full bg-black"
+              onClick={() => {
+                handleSubmit();
+              }}
+            >
               <p className="text-white pv:max-md:uppercase font-nexa_bold text-[1.05vw] pv:max-md:text-[4vw] ">
                 Send
               </p>

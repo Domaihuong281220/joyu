@@ -189,7 +189,6 @@ const SidebarAd = () => {
     sessionStorage.clear();
   };
   const cancel = (e) => {
-    console.log(e);
   };
   const content = (
     <div>

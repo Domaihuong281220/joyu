@@ -32,7 +32,7 @@ function HomePage() {
     <div className="">
       {metaTags.length > 0 && (
         <Helmet>
-          <title>Home - Domoishi</title>
+          <title>Home - Joyu</title>
           {metaTags.map((tag) => (
             <meta name={tag.name} content={tag.content} key={tag._id} />
           ))}

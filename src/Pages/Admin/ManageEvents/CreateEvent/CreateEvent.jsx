@@ -60,7 +60,6 @@ const CreateEvent = () => {
         }
       );
       if (response.status === 200) {
-        console.log(response,"new event");
         navigate("../" + path.EVENTMANAGE);
         toast.success("create news successfully!");
       } else {
