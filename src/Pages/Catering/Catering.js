@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import imgbg_phone from "../../assets/Catering/bg_phone.png";
 import axios from "axios";
 import { toast } from "sonner";
+import { isValidInputCatering } from "../../utils/common/validators";
+import { notification } from "antd";
 const Catering = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -28,20 +30,24 @@ const Catering = () => {
 
   const handleSubmit = async (e) => {
     // e.preventDefault();
-    try {
-      const response = await axios.post(
-        // `http://localhost:4000/api/sendEmailCatering`,
-        `${process.env.REACT_APP_SERVER_URL}/api/sendEmailCatering`,
 
-        formData
-      );
+    let check = isValidInputCatering(formData, toast);
+    if (check === true) {
+      try {
+        const response = await axios.post(
+          // `http://localhost:4000/api/sendEmailCatering`,
+          `${process.env.REACT_APP_SERVER_URL}/api/sendEmailCatering`,
 
-      // alert("Form submitted successfully!");
-      toast.success("Form submitted successfully!");
-    } catch (error) {
-      console.error("Error submitting form", error);
-      toast.error("Failed to submit form.");
-      // alert("Failed to submit form.");
+          formData
+        );
+
+        // alert("Form submitted successfully!");
+        toast.success("Form submitted successfully!");
+      } catch (error) {
+        console.error("Error submitting form", error);
+        toast.error("Failed to submit form.");
+        // alert("Failed to submit form.");
+      }
     }
   };
 

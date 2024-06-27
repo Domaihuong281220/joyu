@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import img_Frachising from "../../assets/Frachising/frachising_1.png";
 import axios from "axios";
-import { toast } from "sonner";
+import { Toaster, toast } from "sonner";
+import { isValidInputFrachising } from "../../utils/common/validators";
 const Franchising = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -31,19 +32,23 @@ const Franchising = () => {
 
   const handleSubmit = async (e) => {
     // e.preventDefault();
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/api/sendEmailFranchising`,
-        // `http://localhost:4000/api/sendEmailFranchising`,
-        formData
-      );
+    let check = isValidInputFrachising(formData, toast);
 
-      // alert("Form submitted successfully!");
-      toast.success("Form submitted successfully!");
-    } catch (error) {
-      console.error("Error submitting form", error);
-      toast.error("Failed to submit form.");
-      // alert("Failed to submit form.");
+    if (check === true) {
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_SERVER_URL}/api/sendEmailFranchising`,
+          // `http://localhost:4000/api/sendEmailFranchising`,
+          formData
+        );
+
+        // alert("Form submitted successfully!");
+        toast.success("Form submitted successfully!");
+      } catch (error) {
+        console.error("Error submitting form", error);
+        toast.error("Failed to submit form.");
+        // alert("Failed to submit form.");
+      }
     }
   };
 
