@@ -300,6 +300,7 @@ const Location = () => {
               available={location.available}
               delivery={location.deliverylink}
               pickup={location.pickuplink}
+              hours={location.hours}
             />
           ) : (
             <CardLocation
@@ -308,6 +309,7 @@ const Location = () => {
               address={location.address}
               phone={location.phone}
               available={location.available}
+              hours={location.hours}
             />
           )
         )}
