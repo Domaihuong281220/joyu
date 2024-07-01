@@ -34,7 +34,7 @@ const Event = () => {
 
       <div className=" md:h-[1000px] pv:max-md:mt-[-2.5rem] md:overflow-y-scroll  ">
         {newsData.map((item, index) => {
-          if (newsData && index<newsData.length-1) {
+          if (newsData && index < newsData.length - 1) {
             return (
               <>
                 <CardNewsProduct
@@ -45,12 +45,10 @@ const Event = () => {
                   longdescription={item.longdescription}
                   code={item._id}
                 />
-      <div className="h-[1px] hidden pv:max-md:block w-full bg-black pv:max-md:mt-[-2vw] pv:max-md:mb-[-8vw] "></div>
-
+                <div className="h-[1px] hidden pv:max-md:block w-full bg-black pv:max-md:mt-[-2vw] pv:max-md:mb-[-8vw] "></div>
               </>
             );
-          }
-          else{
+          } else {
             return (
               <>
                 <CardNewsProduct
@@ -65,54 +63,6 @@ const Event = () => {
             );
           }
         })}
-        {/* {eventProductData.map((item, index) => {
-          if (eventProductData) {
-            return (
-              <>
-                <CardNewsProduct
-                  title={item.title}
-                  imgTitle={item.img}
-                  imgDetail={item.img}
-                  shortdescription={item.desc}
-                  longdescription={item.longdescription}
-                  code={item._id}
-                />
-              </>
-            );
-          }
-        })}
-        {eventProductData.map((item, index) => {
-          if (eventProductData) {
-            return (
-              <>
-                <CardNewsProduct
-                  title={item.title}
-                  imgTitle={item.img}
-                  imgDetail={item.img}
-                  shortdescription={item.desc}
-                  longdescription={item.longdescription}
-                  code={item._id}
-                />
-              </>
-            );
-          }
-        })}
-        {eventProductData.map((item, index) => {
-          if (eventProductData) {
-            return (
-              <>
-                <CardNewsProduct
-                  title={item.title}
-                  imgTitle={item.img}
-                  imgDetail={item.img}
-                  shortdescription={item.desc}
-                  longdescription={item.longdescription}
-                  code={item._id}
-                />
-              </>
-            );
-          }
-        })} */}
       </div>
     </div>
   );

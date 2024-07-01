@@ -5,7 +5,7 @@ import { useEffect } from "react";
 export const path = {
   HOME: "/",
   CATERING: "/catering",
-  EVENT: "/event",
+  EVENT: "/events",
   EVENTDATAIL: "/event_detail",
   FRANCHISING: "/franchising",
   LOCATION: "/location",

@@ -11,7 +11,6 @@ const ManageEvents = () => {
   const navigate = useNavigate();
   const [newsData, setNewsData] = useState([]);
 
-
   const handleEditEvents = (record) => {
     navigate("../" + path.EDITEVENT + `/${record._id}`, {
       state: record,
@@ -31,12 +30,11 @@ const ManageEvents = () => {
     await axios
       .get(`${process.env.REACT_APP_SERVER_URL}/joyu/news`)
       .then((res) => {
-
         setNewsData(res.data.data);
         // console.log(res.data.count,"respone");
       })
       .catch((err) => {
-        setNewsData([])
+        setNewsData([]);
         console.log(err);
       });
   };
@@ -117,14 +115,14 @@ const ManageEvents = () => {
       render: (_, record) => (
         <div className="flex items-center justify-center gap-x-2">
           <button
-            className="hover:underline cursor-pointer hover:text-blue-500 hover:font-bold"
+            className="hover:underline cursor-pointer hover:text-blue-500 "
             onClick={() => handleEditEvents(record)}
           >
             <p className="">Edit</p>
           </button>
 
           <button
-            className="hover:underline cursor-pointer hover:text-blue-500 hover:font-bold"
+            className="hover:underline cursor-pointer hover:text-red-500"
             onClick={() => hanldedeleNews(record._id)}
           >
             <p className="">Delete</p>
