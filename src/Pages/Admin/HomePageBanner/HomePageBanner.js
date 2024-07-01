@@ -18,9 +18,9 @@ import { path } from "../../../utils/Constant";
 
 const HomePageBanner = () => {
   const navigate = useNavigate();
-  const handleEdit = async (id) => {
-    navigate("../" + path.HOMEPAGEBANNEREDIT + `/${id}`, {
-      state: data[0],
+  const handleEdit = async (record) => {
+    navigate("../" + path.HOMEPAGEBANNEREDIT + `/${record._id}`, {
+      state: record,
     });
   };
 
@@ -57,7 +57,7 @@ const HomePageBanner = () => {
         <div className="flex items-center justify-center gap-x-2">
           <button
             className="hover:underline cursor-pointer hover:text-blue-500 "
-            onClick={() => handleEdit(record._id)}
+            onClick={() => handleEdit(record)}
           >
             <p className="">Edit</p>
           </button>

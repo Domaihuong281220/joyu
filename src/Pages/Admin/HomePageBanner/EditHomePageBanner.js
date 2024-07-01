@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "antd";
 import { Icon } from "@iconify/react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -14,7 +14,7 @@ const EditHomePageBanner = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const data = location.state;
-  console.log(data);
+
   const [homepageImage, sethomepageImage] = useState(null);
 
   const [formData, setFormData] = useState({
@@ -24,7 +24,6 @@ const EditHomePageBanner = () => {
     setFile(e.target.files[0]);
   };
   const [file, setFile] = useState();
-
   const apiEditHomePageImage = async (id) => {
     const formDataToSend = new FormData();
     formDataToSend.append("image", homepageImage);
@@ -32,13 +31,15 @@ const EditHomePageBanner = () => {
     try {
       const response = await axios.put(
         `${process.env.REACT_APP_SERVER_URL}/joyu/banner/${id}`,
+        // `http://localhost:4000/joyu/banner/${id}`,
+
         formDataToSend,
         {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
       if (response.status === 200 || response.status === 201) {
-        // console.log(formDataToSend);
+        console.log(formDataToSend);
         toast.success("Edit image successfully!");
         navigate("../" + path.HOMEPAGEBANNER);
       }
@@ -91,7 +92,7 @@ const EditHomePageBanner = () => {
 
             <div className="w-full flex flex-col gap-y-2 pb-6">
               <img
-                src={process.env.REACT_APP_SERVER_URL + "/" + formData.image}
+                src={process.env.REACT_APP_SERVER_URL + "/" + data.image}
                 alt="1"
               />
               <input
@@ -123,8 +124,7 @@ const EditHomePageBanner = () => {
             </button>
             <button
               className="w-auto h-auto py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg "
-              onClick={() => {
-                console.log("Tap on edit");
+              onClick={(e) => {
                 apiEditHomePageImage(data._id);
               }}
             >
