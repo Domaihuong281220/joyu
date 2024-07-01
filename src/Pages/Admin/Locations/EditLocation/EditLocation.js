@@ -19,6 +19,7 @@ const EditLocation = () => {
     pickuplink: data.pickuplink,
     deliverylink: data.deliverylink,
     available: data.available,
+    hours: data.hours
   });
 
   const handleEdit = async (id) => {
@@ -42,6 +43,22 @@ const EditLocation = () => {
       .catch((err) => {
         toast.error("Edit Location wrong: " + err.message);
       });
+  };
+  const [errors, setErrors] = useState({});
+
+  const handleHoursChange = (day, type, value) => {
+    const newHours = {
+      ...formData.hours,
+      [day]: { ...formData.hours[day], [type]: value },
+    };
+
+    if (type === "end" && newHours[day].start && value < newHours[day].start) {
+      setErrors({ ...errors, [day]: "End time cannot be earlier than start time." });
+    } else {
+      setErrors({ ...errors, [day]: "" });
+    }
+
+    setFormData({ ...formData, hours: newHours });
   };
 
   return (
@@ -130,6 +147,37 @@ const EditLocation = () => {
               }
             />
           </div>
+
+
+
+
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+            <p className="text-lg">Operating Hours</p>
+            {Object.keys(formData.hours).map((day) => (
+              <div key={day} className="flex justify-between w-full">
+                <p className="capitalize">{day}</p>
+                <div className="flex gap-x-2 items-center">
+                  <input
+                    type="time"
+                    className="border-b-2 border-gray-300 p-2 outline-none focus:border-blue-400"
+                    value={formData.hours[day].start}
+                    onChange={(e) => handleHoursChange(day, "start", e.target.value)}
+                  />
+                  <input
+                    type="time"
+                    className="border-b-2 border-gray-300 p-2 outline-none focus:border-blue-400"
+                    value={formData.hours[day].end}
+                    onChange={(e) => handleHoursChange(day, "end", e.target.value)}
+                  />
+                </div>
+                {errors[day] && <p className="text-red-500 text-sm">{errors[day]}</p>}
+              </div>
+            ))}
+          </div>
+
+
+
+
 
           <div className="flex justify-between items-center">
             <button
