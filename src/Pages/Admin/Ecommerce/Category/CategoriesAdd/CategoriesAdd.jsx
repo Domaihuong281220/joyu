@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { message } from "antd";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { isValidInputCategory } from "../../../../../helpers/validInputs";
 
 const CategoriesAdd = () => {

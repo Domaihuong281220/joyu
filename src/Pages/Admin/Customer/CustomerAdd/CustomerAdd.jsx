@@ -2,7 +2,7 @@
 // @ts-expect-error
 
 import React, { useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Icon } from "@iconify/react";
@@ -15,15 +15,43 @@ const CustomerAdd = () => {
     img: "",
   });
   const [image, setImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState({
+    subject: "",
+    emailData: "",
+  });
 
   const navigate = useNavigate();
 
   const handleSendEmail = async () => {
+    // Validate subject and email content
+    if (!formData.subject.trim()) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        subject: "Subject is required",
+      }));
+      return;
+    }
+
+    if (!formData.emailData.trim()) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        emailData: "Email content is required",
+      }));
+      return;
+    }
+
+    setIsLoading(true);
+    const data = new FormData();
+    data.append("emailData", formData.emailData);
+    data.append("subject", formData.subject);
+    if (image) {
+      data.append("image", image);
+    }
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/joyu/sendemail`,
-        // `http://localhost:4000/joyu/sendemail`,
-        formData,
+        data,
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -33,9 +61,11 @@ const CustomerAdd = () => {
 
       if (response.data.success) {
         toast.success("Email sent successfully!");
+        setIsLoading(false);
         navigate("../" + path.CUSTOMERMANAGE);
       } else {
         toast.error("Failed to send email");
+        setIsLoading(false);
       }
     } catch (error) {
       if (error.response && error.response.status === 500) {
@@ -43,11 +73,29 @@ const CustomerAdd = () => {
       } else {
         console.error("Email sending failed:", error);
       }
+      setIsLoading(false);
     }
   };
+
   // Handle changes to the file inputs
-  const handleFileChange = (image) => {
-    setImage(image); // Update the state
+  const handleFileChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  // Handle input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    // Clear error message if user starts typing again
+    if (value.trim()) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: "",
+      }));
+    }
   };
 
   return (
@@ -67,36 +115,42 @@ const CustomerAdd = () => {
 
         <div className="px-10 py-4 mx-auto w-[50%]">
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6 relative">
-            <p className="text-lg">Subject Email</p>
+            <p className="text-lg">Subject Email *</p>
             <textarea
-              className="w-full h-20 border-b-2 border-gray-300 p-2 outline-none focus:border-blue-400 focus:ease-out duration-200"
+              className={`w-full h-20 border-b-2 ${
+                errors.subject ? "border-red-500" : "border-gray-300"
+              } p-2 outline-none focus:border-blue-400 focus:ease-out duration-200`}
               placeholder="Enter Subject email"
               value={formData.subject}
-              onChange={(e) =>
-                setFormData({ ...formData, subject: e.target.value })
-              }
+              onChange={handleInputChange}
+              name="subject"
             />
+            {errors.subject && (
+              <p className="text-red-500 text-sm">{errors.subject}</p>
+            )}
           </div>
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6 relative">
-            <p className="text-lg">EMAIL CONTENT</p>
+            <p className="text-lg">EMAIL CONTENT *</p>
             <textarea
-              className="w-full h-40 border-b-2 border-gray-300 p-2 outline-none focus:border-blue-400 focus:ease-out duration-200"
+              className={`w-full h-40 border-b-2 ${
+                errors.emailData ? "border-red-500" : "border-gray-300"
+              } p-2 outline-none focus:border-blue-400 focus:ease-out duration-200`}
               placeholder="Enter the email content here..."
               value={formData.emailData}
-              onChange={(e) =>
-                setFormData({ ...formData, emailData: e.target.value })
-              }
+              onChange={handleInputChange}
+              name="emailData"
             />
+            {errors.emailData && (
+              <p className="text-red-500 text-sm">{errors.emailData}</p>
+            )}
           </div>
 
-          {/* <label>
-            Attach Image:
+          <div className="flex justify-between">
+            <p className=""> Attach Image:</p>
             <input
               type="file"
               accept="image/jpeg, image/png"
-              onChange={(e) => handleFileChange(e.target.files[0])} // Manage the first file
-
-              // required
+              onChange={handleFileChange}
             />
             {image && (
               <img
@@ -105,7 +159,7 @@ const CustomerAdd = () => {
                 className="w-[200px] h-[200px] object-cover"
               />
             )}
-          </label> */}
+          </div>
 
           <button
             className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
@@ -115,6 +169,11 @@ const CustomerAdd = () => {
           </button>
         </div>
       </div>
+      {isLoading && (
+        <div className="fixed top-0 left-0 right-0 bottom-0 bg-gray-800 opacity-50 z-50 flex justify-center items-center">
+          <p className="text-white text-xl">Sending email to customers...</p>
+        </div>
+      )}
     </div>
   );
 };

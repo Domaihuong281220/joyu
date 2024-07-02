@@ -13,6 +13,65 @@ const Location = () => {
   const [searchInput, setSearchInput] = useState("");
   const [filteredLocations, setFilteredLocations] = useState([]);
 
+  const items = [
+    {
+      id: 1,
+      imageUrl: "https://via.placeholder.com/300",
+      name: "Item 1",
+      description: "Description for Item 1",
+      price: 19.99,
+    },
+    {
+      id: 2,
+      imageUrl: "https://via.placeholder.com/300",
+      name: "Item 2",
+      description: "Description for Item 2",
+      price: 29.99,
+    },
+    {
+      id: 3,
+      imageUrl: "https://via.placeholder.com/300",
+      name: "Item 3",
+      description: "Description for Item 3",
+      price: 24.99,
+    },
+    {
+      id: 4,
+      imageUrl: "https://via.placeholder.com/300",
+      name: "Item 4",
+      description: "Description for Item 4",
+      price: 34.99,
+    },
+    {
+      id: 5,
+      imageUrl: "https://via.placeholder.com/300",
+      name: "Item 5",
+      description: "Description for Item 5",
+      price: 14.99,
+    },
+    {
+      id: 5,
+      imageUrl: "https://via.placeholder.com/300",
+      name: "Item 5",
+      description: "Description for Item 5",
+      price: 14.99,
+    },
+    {
+      id: 5,
+      imageUrl: "https://via.placeholder.com/300",
+      name: "Item 5",
+      description: "Description for Item 5",
+      price: 14.99,
+    },
+    {
+      id: 5,
+      imageUrl: "https://via.placeholder.com/300",
+      name: "Item 5",
+      description: "Description for Item 5",
+      price: 14.99,
+    },
+  ];
+
   const handleGetFrame = async () => {
     try {
       const response = await axios.get(
@@ -60,23 +119,6 @@ const Location = () => {
             LOCATION
           </p>
         </div>
-        {/* <div className="flex py-6 w-[60%] pv:max-md:hidden">
-          <input
-            className="p-[0.5vw] rounded-l-[2vw] w-full border-[0.1vw] border-gray-400"
-            placeholder="Find A Location By Zip Code Or City, State"
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-          />
-          <button
-            className="bg-primary p-[0.5vw]"
-            // onClick={filteredLocations[0].available?()=>{window.location.assign(filteredLocations[0].deliverylink)}:()=>{navigate("/location")}}
-          >
-            <Icon
-              icon={"tabler:location-filled"}
-              className="w-[2.5vw] h-[2.5vw] text-white"
-            />
-          </button>
-        </div> */}
       </div>
 
       {/* mobile- tablet  */}
@@ -155,43 +197,71 @@ const Location = () => {
               </div>
               <div className="">
                 <div className="py-4">
-                  <p className=" font-nexa_bold text-start text-[5.5vw]">OPERATION HOURS</p>
+                  <p className=" font-nexa_bold text-start text-[5.5vw]">
+                    OPERATION HOURS
+                  </p>
                 </div>
                 <div className="grid grid-cols-2 gap-[10vw] pv:max-md:gap-0 w-full">
-                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">MONDAY</p>
-                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">10AM - 9PM</p>
+                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">
+                    MONDAY
+                  </p>
+                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">
+                    10AM - 9PM
+                  </p>
                 </div>
                 <div className="grid grid-cols-2 w-full">
-                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">TUESDAY</p>
-                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">10AM - 9PM</p>
+                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">
+                    TUESDAY
+                  </p>
+                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">
+                    10AM - 9PM
+                  </p>
                 </div>
                 <div className="grid grid-cols-2 w-full">
-                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">WESNESDAY</p>
-                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">10AM - 9PM</p>
+                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">
+                    WESNESDAY
+                  </p>
+                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">
+                    10AM - 9PM
+                  </p>
                 </div>
                 <div className="grid grid-cols-2 w-full">
-                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">THURDAY</p>
-                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">10AM - 9PM</p>
+                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">
+                    THURDAY
+                  </p>
+                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">
+                    10AM - 9PM
+                  </p>
                 </div>
                 <div className="grid grid-cols-2 w-full">
-                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">FRIDAY</p>
-                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">10AM - 9PM</p>
+                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">
+                    FRIDAY
+                  </p>
+                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">
+                    10AM - 9PM
+                  </p>
                 </div>
                 <div className="grid grid-cols-2 w-full">
-                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">SATURDAY</p>
-                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">10AM - 9PM</p>
+                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">
+                    SATURDAY
+                  </p>
+                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">
+                    10AM - 9PM
+                  </p>
                 </div>
                 <div className="grid grid-cols-2 w-full">
-                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">SUNDAY</p>
-                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">10AM - 9PM</p>
+                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">
+                    SUNDAY
+                  </p>
+                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">
+                    10AM - 9PM
+                  </p>
                 </div>
               </div>
               <div className="h-[0.3vw] w-full bg-gray-800 mt-[10vw] mb-[3vw]"></div>
-              
             </div>
           ) : (
             <div className="py-3">
-              
               <div className="flex flex-col gap-4">
                 <p className="text-[18px] font-nexa text-start">
                   {location.name}
@@ -254,42 +324,69 @@ const Location = () => {
                   <p className=" font-nexa_bold text-start">OPERATION HOURS</p>
                 </div>
                 <div className="grid grid-cols-2 gap-[10vw] pv:max-md:gap-0 w-full">
-                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">MONDAY</p>
-                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">10AM - 9PM</p>
+                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">
+                    MONDAY
+                  </p>
+                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">
+                    10AM - 9PM
+                  </p>
                 </div>
                 <div className="grid grid-cols-2 gap-[10vw] pv:max-md:gap-0 w-full">
-                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">TUESDAY</p>
-                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">10AM - 9PM</p>
+                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">
+                    TUESDAY
+                  </p>
+                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">
+                    10AM - 9PM
+                  </p>
                 </div>
                 <div className="grid grid-cols-2 gap-[10vw] pv:max-md:gap-0 w-full">
-                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">WESNESDAY</p>
-                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">10AM - 9PM</p>
+                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">
+                    WESNESDAY
+                  </p>
+                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">
+                    10AM - 9PM
+                  </p>
                 </div>
                 <div className="grid grid-cols-2 gap-[10vw] pv:max-md:gap-0 w-full">
-                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">THURDAY</p>
-                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">10AM - 9PM</p>
+                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">
+                    THURDAY
+                  </p>
+                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">
+                    10AM - 9PM
+                  </p>
                 </div>
                 <div className="grid grid-cols-2 gap-[10vw] pv:max-md:gap-0 w-full">
-                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">FRIDAY</p>
-                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">10AM - 9PM</p>
+                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">
+                    FRIDAY
+                  </p>
+                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">
+                    10AM - 9PM
+                  </p>
                 </div>
                 <div className="grid grid-cols-2 gap-[10vw] pv:max-md:gap-0 w-full">
-                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">SATURDAY</p>
-                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">10AM - 9PM</p>
+                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">
+                    SATURDAY
+                  </p>
+                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">
+                    10AM - 9PM
+                  </p>
                 </div>
                 <div className="grid grid-cols-2 gap-[10vw] pv:max-md:gap-0 w-full">
-                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">SUNDAY</p>
-                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">10AM - 9PM</p>
+                  <p className=" font-nexa_bold pv:max-md:text-[5vw] text-start">
+                    SUNDAY
+                  </p>
+                  <p className=" font-nexa pv:max-md:text-[5vw] text-start">
+                    10AM - 9PM
+                  </p>
                 </div>
               </div>
               <div className="h-[0.3vw] w-full bg-gray-800 mt-[10vw] mb-[3vw]"></div>
-
             </div>
           )
         )}
       </div>
       <div className="w-full h-[1px] bg-black pv:max-md:hidden"></div>
-      <div className="grid grid-cols-2 gap-[1vw] pt-6 overflow-x-scroll pv:max-md:hidden ">
+      <div className="flex py-4 flex-nowrap gap-[1vw] pt-6 overflow-x-scroll pv:max-md:hidden ">
         {filteredLocations.map((location) =>
           location.available ? (
             <CardLocation
@@ -314,6 +411,7 @@ const Location = () => {
           )
         )}
       </div>
+
       <div className="w-[100%] mx-auto pv:max-md:hidden">
         <div className="h-[45vw] w-full pv:max-lg:h-[50vh] lg:max-2xl:h-[70vh]">
           <div className="h-[800px] w-full mb-20 pv:max-lg:h-[50vh] lg:max-2xl:h-[70vh] relative">

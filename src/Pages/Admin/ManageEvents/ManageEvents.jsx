@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react";
 import { Table, message } from "antd";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { path } from "../../../utils/Constant";
 const ManageEvents = () => {
   const navigate = useNavigate();
@@ -32,6 +32,8 @@ const ManageEvents = () => {
       .then((res) => {
         setNewsData(res.data.data);
         // console.log(res.data.count,"respone");
+
+        // setNewsData(sortedData);
       })
       .catch((err) => {
         setNewsData([]);
@@ -63,7 +65,7 @@ const ManageEvents = () => {
       dataIndex: "title",
       key: "title",
       fixed: "left",
-      width: 200,
+      width: 100,
     },
     {
       title: "Image Title",
@@ -79,9 +81,11 @@ const ManageEvents = () => {
           </div>
         </div>
       ),
+      width: 100,
     },
+
     {
-      title: "Image Detial",
+      title: "Image Detail",
       dataIndex: "detailpic",
       key: "detailpic",
       render: (_, record) => (
@@ -94,6 +98,7 @@ const ManageEvents = () => {
           </div>
         </div>
       ),
+      width: 100,
     },
 
     {

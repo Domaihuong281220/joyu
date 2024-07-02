@@ -7,7 +7,7 @@ import {Input} from 'antd'
 import { Select } from "@chakra-ui/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { path } from "../../../../utils/Constant";
 // import { isValidInputProduct } from "../../../../helpers/validInputs";
 

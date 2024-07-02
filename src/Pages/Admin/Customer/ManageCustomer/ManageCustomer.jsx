@@ -6,7 +6,7 @@ import { Table, message } from "antd";
 import { InputGroup, Input, InputRightElement } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { path } from "../../../../utils/Constant";
 const ManageCustomer = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -19,7 +19,7 @@ const ManageCustomer = () => {
         `${process.env.REACT_APP_SERVER_URL}/joyu/customer`,
         {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json", 
             "x-secret-key": "Domoishi2024",
           },
         }

@@ -12,27 +12,27 @@ function HomePage() {
 
   const handlegetMetaTag = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/joyu/metatag`);
-      const HomepageTags = res.data.data.filter((tag) => tag.page === "HomePage");
+      const res = await axios.get(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/metatag`
+      );
+      const HomepageTags = res.data.data.filter(
+        (tag) => tag.page === "HomePage"
+      );
       setMetaTags(HomepageTags);
     } catch (err) {
       console.log(err);
     }
   };
 
-
   useEffect(() => {
     handlegetMetaTag();
-
   }, []);
-
-
 
   return (
     <div className="">
       {metaTags.length > 0 && (
         <Helmet>
-          <title>Home - Joyu</title>
+          <title>Joyu</title>
           {metaTags.map((tag) => (
             <meta name={tag.name} content={tag.content} key={tag._id} />
           ))}

@@ -15,7 +15,7 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { isValidInputsUser } from "../../../../helpers/validInputs";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { path } from "../../../../utils/Constant";
 
 const UserEdit = () => {

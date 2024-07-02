@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState } from "react";
 
 import Facebook from "../assets/Footer/Facebook.png";
@@ -139,7 +141,7 @@ function Signature() {
               >
                 <input
                   type="email"
-                  className="font-nexa_light h-[100%] text-[#1b231e46]  text-[1vw]  px-6 py-[1vw] w-full rounded-l-full "
+                  className="font-nexa_light h-[100%] text-black  text-[1vw]  px-6 py-[1vw] w-full rounded-l-full "
                   placeholder="Enter your email"
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
@@ -488,7 +490,7 @@ function Signature() {
         >
           <input
             type="email"
-            className="font-nexa_light text-[#1b231e46]  px-[1vw] text-center py-[4vw] w-[100%] text-[4vw] rounded-l-full"
+            className="font-nexa_light text-black  px-[1vw] text-center py-[4vw] w-[100%] text-[4vw] rounded-l-full"
             placeholder="Enter your email"
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })

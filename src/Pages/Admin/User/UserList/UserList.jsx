@@ -6,7 +6,7 @@ import { Table, message } from "antd";
 import { InputGroup, Input, InputRightElement } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 const UserList = () => {
   // set state
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
@@ -25,7 +25,7 @@ const UserList = () => {
       .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/user/${id}`)
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
-          messageApi.success("delete user success");
+          toast.success("delete user success");
           handleGetUserList();
         }
       })
@@ -44,7 +44,6 @@ const UserList = () => {
         console.log(err);
       });
   };
-
 
   const handleEditProduct = (record) => {
     navigate("/useredit", {
@@ -171,7 +170,6 @@ const UserList = () => {
     });
   }
 
-  
   useEffect(() => {
     handleGetUserList();
   }, []);

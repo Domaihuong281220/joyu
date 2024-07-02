@@ -7,7 +7,7 @@ import { InputGroup, Input, InputRightElement } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { path } from "../../../utils/Constant";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { Loading } from "../../../components";
 
 const ManageJobs = () => {

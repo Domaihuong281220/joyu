@@ -17,8 +17,8 @@ const Event = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_URL}/joyu/news`
       );
-      const reversedData = [...response.data.data].reverse(); // Copy and reverse the array
-      setNewsData(reversedData);
+      // const reversedData = [...response.data.data].reverse(); // Copy and reverse the array
+      setNewsData(response.data.data);
     } catch (err) {
       console.log(err);
     }

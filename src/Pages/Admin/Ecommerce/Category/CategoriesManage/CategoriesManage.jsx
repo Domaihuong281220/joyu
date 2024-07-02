@@ -13,6 +13,7 @@ import imgCate_2 from "../../../../../assets/cate_2.png";
 import imgCate_3 from "../../../../../assets/cate_3.png";
 import imgCate_4 from "../../../../../assets/cate_4.png";
 import imgCate_5 from "../../../../../assets/cate_5.png";
+import { toast } from "sonner";
 const CategoriesManage = () => {
   const navigate = useNavigate();
   // Call API data
@@ -37,9 +38,8 @@ const CategoriesManage = () => {
     await axios
       .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/categories/${id}`)
       .then((res) => {
-
         if (res.status === 200 || res.status === 201) {
-          messageApi.success("delete category success");
+          toast.success("delete category success");
           handlergetCategoryList();
         }
       })
@@ -58,8 +58,6 @@ const CategoriesManage = () => {
         console.log(err);
       });
   };
-
-
 
   // Declare label for vairiable
   const columns = [
@@ -126,7 +124,7 @@ const CategoriesManage = () => {
       ),
     },
   ];
- 
+
   for (let i = 0; i < categoryData.length; i++) {
     data.push({
       id: categoryData[i].id,

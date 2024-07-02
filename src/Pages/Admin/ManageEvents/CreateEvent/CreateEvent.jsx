@@ -7,7 +7,7 @@ import { Select } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { message } from "antd";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 import { path } from "./../../../../utils/Constant";
 const CreateEvent = () => {

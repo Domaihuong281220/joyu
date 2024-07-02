@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { path } from "../../../../utils/Constant";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Input } from "antd";

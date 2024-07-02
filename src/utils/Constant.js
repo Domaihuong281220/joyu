@@ -15,6 +15,7 @@ export const path = {
   PRODUCTDETAIL: "/product-detail",
   LOGIN: "/login",
   MANAGECATEGORY: "/manage-category",
+  UNSUBCRIBE: "/unsubscribe-confirmation",
 
   // user
   USERMANAGE: "/manage-user",
