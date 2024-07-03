@@ -1,8 +1,8 @@
 /** @format */
 
 export const isValidInputsUser = (formData, toast) => {
-  const vietnamPhoneNumberRegex = /^0\d{9,10}$/;
-  const usPhoneNumberRegex = /^(\(\d{3}\)\s?|\d{3}[-.])\d{3}[-.]\d{4}$/;
+  const regexPhoneNumber =
+    /^(0\d{9,10}|(\(\d{3}\)\s?|\d{3}[-.])\d{3}[-.]\d{4})$/;
   const regxEmail = /\S+@\S+\.\S+/;
   if (!formData.name) {
     toast.error("name is required");
@@ -13,12 +13,9 @@ export const isValidInputsUser = (formData, toast) => {
     toast.error("phone is required");
     return false;
   }
-  if (
-   !vietnamPhoneNumberRegex.test(formData.phonenumber) ||
-    !usPhoneNumberRegex.test(formData.phonenumber)
-  ) {
+  if (!regexPhoneNumber.test(formData.phonenumber)) {
     toast.info(
-      "please enter a unique valid phone number and must be more than 9 characters and less than 15 characters"
+      "Please enter a unique valid phone number!"
     );
     return false;
   }
@@ -92,9 +89,8 @@ export const isValidNews = (formData, toast) => {
 };
 
 export const isValidCreateNewUser = (formData, toast) => {
-  const vietnamPhoneNumberRegex = /^0\d{9,10}$/;
-  const usPhoneNumberRegex = /^(\(\d{3}\)\s?|\d{3}[-.])\d{3}[-.]\d{4}$/;
-
+  const regexPhoneNumber =
+    /^(0\d{9,10}|(\(\d{3}\)\s?|\d{3}[-.])\d{3}[-.]\d{4})$/;
   if (!formData.name) {
     toast.error("Name is required");
     return false;
@@ -107,12 +103,9 @@ export const isValidCreateNewUser = (formData, toast) => {
     toast.error("Phone is required");
     return false;
   }
-  if (
-    !vietnamPhoneNumberRegex.test(formData.phonenumber) ||
-    !usPhoneNumberRegex.test(formData.phonenumber)
-  ) {
+  if (!regexPhoneNumber.test(formData.phonenumber)) {
     toast.info(
-      "please enter a unique valid phone number and must be more than 9 characters and less than 15 characters"
+      "Please enter a unique valid phone number!"
     );
     return false;
   }
@@ -125,9 +118,8 @@ export const isValidCreateNewUser = (formData, toast) => {
   return true;
 };
 export const isValidInputCreateLocation = (formData, toast) => {
-  const vietnamPhoneNumberRegex = /^0\d{9,10}$/;
-  const usPhoneNumberRegex = /^(\(\d{3}\)\s?|\d{3}[-.])\d{3}[-.]\d{4}$/;
-  // regexPhoneNumber = /^(0\d{9,10}|(\(\d{3}\)\s?|\d{3}[-.])\d{3}[-.]\d{4})$/;
+  const regexPhoneNumber =
+    /^(0\d{9,10}|(\(\d{3}\)\s?|\d{3}[-.])\d{3}[-.]\d{4})$/;
   if (!formData.name) {
     toast.error(" Loaction name is required!");
     return false;
@@ -140,10 +132,7 @@ export const isValidInputCreateLocation = (formData, toast) => {
     toast.error("Phone Number is required!");
     return false;
   }
-  if (
-    !vietnamPhoneNumberRegex.test(formData.phone) ||
-    !usPhoneNumberRegex.test(formData.phone)
-  ) {
+  if (!regexPhoneNumber.test(formData.phone)) {
     toast.info("Please enter a unique valid phone number!");
     return false;
   }

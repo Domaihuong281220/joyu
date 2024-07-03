@@ -1,6 +1,8 @@
+/** @format */
+
 export const isValidInputCatering = (formData, toast) => {
-  const vietnamPhoneNumberRegex = /^0\d{9,10}$/;
-  const usPhoneNumberRegex = /^(\(\d{3}\)\s?|\d{3}[-.])\d{3}[-.]\d{4}$/;
+  const regexPhoneNumber =
+    /^(0\d{9,10}|(\(\d{3}\)\s?|\d{3}[-.])\d{3}[-.]\d{4})$/;
 
   const regxEmail = /\S+@\S+\.\S+/;
   if (!formData.name) {
@@ -11,10 +13,7 @@ export const isValidInputCatering = (formData, toast) => {
     toast.error("phone is required!");
     return false;
   }
-  if (
-    vietnamPhoneNumberRegex.test(formData.phone) ||
-    usPhoneNumberRegex.test(formData.phone)
-  ) {
+  if (!regexPhoneNumber.test(formData.phone)) {
     toast.info("Please enter a unique valid phone number!");
     return false;
   }
@@ -59,8 +58,8 @@ export const isValidInputsignUpFooter = (formData, toast) => {
 };
 
 export const isValidInputFrachising = (formData, toast) => {
-  const vietnamPhoneNumberRegex = /^0\d{9,10}$/;
-  const usPhoneNumberRegex = /^(\(\d{3}\)\s?|\d{3}[-.])\d{3}[-.]\d{4}$/;
+  const regexPhoneNumber =
+    /^(0\d{9,10}|(\(\d{3}\)\s?|\d{3}[-.])\d{3}[-.]\d{4})$/;
 
   const regxEmail = /\S+@\S+\.\S+/;
   if (!formData.firstName) {
@@ -95,10 +94,7 @@ export const isValidInputFrachising = (formData, toast) => {
     toast.error("Phone is required!");
     return false;
   }
-  if (
-    !vietnamPhoneNumberRegex.test(formData.mobile) ||
-    !usPhoneNumberRegex.test(formData.mobile)
-  ) {
+  if (!regexPhoneNumber.test(formData.mobile)) {
     toast.info("Please enter a unique valid phone number!");
     return false;
   }
