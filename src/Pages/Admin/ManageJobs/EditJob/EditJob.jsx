@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 // import { Input } from "@material-tailwind/react";
 import { Icon } from "@iconify/react";
-import {Input} from 'antd'
+import { Input } from "antd";
 import { Select } from "@chakra-ui/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -16,6 +16,7 @@ const EditJob = () => {
 
   const location = useLocation();
   let jobdetail = location.state;
+
   // console.log(jobdetail);
   const [formData, setFormData] = useState({
     position: jobdetail.position,
@@ -23,14 +24,25 @@ const EditJob = () => {
     availability: jobdetail.availability,
     address: jobdetail.address,
     responsibility: jobdetail.responsibility,
+    image: jobdetail.image,
   });
+  const [image, setImage] = useState(null);
 
   const handleEdit = async (id) => {
-    console.log(id);
+    const updateData = new FormData();
+    updateData.append("position", formData.position);
+    updateData.append("description", formData.description);
+    updateData.append("availability", formData.availability);
+    updateData.append("address", formData.address);
+    updateData.append("responsibility", formData.responsibility);
+    if (image) {
+      updateData.append("image", image);
+    } else {
+      updateData.append("image", formData.image); // Make sure the current image path is sent
+    }
     await axios
       .put(`${process.env.REACT_APP_SERVER_URL}/joyu/careers/${id}`, formData)
       .then((res) => {
-        console.log(res,"res");
         if (res.status === 200 || res.status === 201) {
           toast.success("Edit job successfully!");
 
@@ -63,7 +75,7 @@ const EditJob = () => {
             />
           </div>
 
-          {/* <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">
               Description
               <span className="text-[10px] text-red-500">
@@ -80,7 +92,7 @@ const EditJob = () => {
               }
             />
             <div className="text-right w-full text-sm text-gray-600">
-              {formData.description.length}/260
+              {formData.description.length}/500
             </div>
           </div>
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
@@ -100,9 +112,9 @@ const EditJob = () => {
               }
             />
             <div className="text-right w-full text-sm text-gray-600">
-              {formData.description.length}/260
+              {formData.description.length}/500
             </div>
-          </div> */}
+          </div>
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Address</p>
             <Input
@@ -132,6 +144,21 @@ const EditJob = () => {
               }}
             />
           </div>
+          {/* <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+            <p className="text-lg">Current Image</p>
+            {formData.image && (
+              <img
+                src={`${process.env.REACT_APP_SERVER_URL}/${formData.image}`}
+                alt="Product"
+                className="h-[200px] w-[200px] mb-4"
+              />
+            )}
+            <input
+              type="file"
+              accept="image/jpeg, image/png"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+          </div> */}
 
           <div className="flex justify-center items-center gap-x-4">
             <button

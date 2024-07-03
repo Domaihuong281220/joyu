@@ -145,7 +145,7 @@ const CustomerAdd = () => {
             )}
           </div>
 
-          <div className="flex justify-between">
+          {/* <div className="flex justify-between">
             <p className=""> Attach Image:</p>
             <input
               type="file"
@@ -159,7 +159,7 @@ const CustomerAdd = () => {
                 className="w-[200px] h-[200px] object-cover"
               />
             )}
-          </div>
+          </div> */}
 
           <button
             className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"

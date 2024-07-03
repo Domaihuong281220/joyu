@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import {  Input } from "antd";
+import { Input } from "antd";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -12,19 +12,34 @@ import { path } from "../../../../utils/Constant";
 
 const CreateJob = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    position: "",
-    description: "",
-    responsibility: "",
-    availability: "",
-    address: "",
-  });
+  // const [formData, setFormData] = useState({
+  //   position: "",
+  //   description: "",
+  //   responsibility: "",
+  //   availability: "",
+  //   address: "",
+  //   image: "",
+  // });
 
+  const [position, setPosition] = useState();
+  const [description, setdescription] = useState();
+  const [responsibility, setresponsibility] = useState();
+  const [availability, setavailability] = useState(false);
+  const [address, setaddress] = useState();
+  const [image, setImage] = useState();
+
+  // console.log(formData, "check");
   const handleCreateJob = async (id) => {
+    const formData = new FormData();
+    formData.append("position", position); // Use priceNumber instead of price
+    formData.append("description", description);
+    formData.append("responsibility", responsibility);
+    formData.append("image", image);
+    formData.append("availability", availability);
+    formData.append("address", address);
     await axios
       .post(`${process.env.REACT_APP_SERVER_URL}/joyu/careers`, formData)
       .then((res) => {
-        console.log(res);
         if (res.status === 200 || res.status === 201) {
           toast.success("Create new job successfully!");
 
@@ -34,6 +49,9 @@ const CreateJob = () => {
       .catch((err) => {
         toast.error("Create job wrong: " + err.message);
       });
+  };
+  const handleFileChange = (image) => {
+    setImage(image); // Update the state
   };
 
   return (
@@ -50,9 +68,7 @@ const CreateJob = () => {
               type="text"
               className="w-full h-auto p-2 border-[1px] border-gray-200"
               placeholder="Name Job"
-              onChange={(e) =>
-                setFormData({ ...formData, position: e.target.value })
-              }
+              onChange={(e) => setPosition(e.target.value)}
             />
           </div>
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
@@ -61,42 +77,32 @@ const CreateJob = () => {
               type="text"
               className="w-full h-auto p-2 border-[1px] border-gray-200"
               placeholder="Name Job"
-              onChange={(e) =>
-                setFormData({ ...formData, address: e.target.value })
-              }
+              onChange={(e) => setaddress(e.target.value)}
             />
           </div>
 
-          {/* <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Description</p>
             <textarea
               className="w-full h-[100px] border-[1px] p-2"
               placeholder="Subtitle"
               maxLength="500"
-              value={formData.description}
-              onChange={(e) =>
-                setFormData({ ...formData, description: e.target.value })
-              }
+              value={description}
+              onChange={(e) => setdescription(e.target.value)}
             />
-            <div className="text-right w-full text-sm text-gray-600">
-              {formData.description.length}/260
-            </div>
-          </div> */}
-          {/* <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+            <div className="text-right w-full text-sm text-gray-600">260</div>
+          </div>
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Responsibility</p>
             <textarea
               className="w-full h-[100px] border-[1px] p-2"
               placeholder="Subtitle"
               maxLength="1000"
-              value={formData.responsibility}
-              onChange={(e) =>
-                setFormData({ ...formData, responsibility: e.target.value })
-              }
+              value={responsibility}
+              onChange={(e) => setresponsibility(e.target.value)}
             />
-            <div className="text-right w-full text-sm text-gray-600">
-              {formData.description.length}/260
-            </div>
-          </div> */}
+            <div className="text-right w-full text-sm text-gray-600">260</div>
+          </div>
 
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Availability</p>
@@ -105,11 +111,19 @@ const CreateJob = () => {
               placeholder="Subtitle"
               type="checkbox"
               onChange={(e) => {
-                setFormData({
-                  ...formData,
-                  availability: e.target.checked,
-                });
+                setavailability(e.target.checked);
+
+                console.log(availability);
               }}
+            />
+          </div>
+
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+            <p className="text-lg">Image</p>
+            <input
+              type="file"
+              accept="image/jpeg, image/png"
+              onChange={(e) => handleFileChange(e.target.files[0])} // Manage the first file
             />
           </div>
 

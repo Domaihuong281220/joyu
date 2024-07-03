@@ -76,7 +76,6 @@ const ProductAdd = () => {
       return;
     }
 
-    console.log("Starting upload...");
 
     const formData = new FormData();
     formData.append("price", price); // Use priceNumber instead of price

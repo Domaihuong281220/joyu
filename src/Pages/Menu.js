@@ -21,7 +21,6 @@ function Menu() {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_URL}/joyu/menu`
       );
-      console.log(response);
       const categories = response.data.data.map((category, index) => ({
         ...category,
         key: index + 1, // Add key property for unique identification

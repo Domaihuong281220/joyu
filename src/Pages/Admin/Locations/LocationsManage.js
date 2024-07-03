@@ -140,7 +140,6 @@ const LocationsManage = () => {
           toast.success("Edit Location successfully!");
           navigate("../" + path.LOCATIONMANAGE);
         }
-        console.log(res,"success");
       })
       .catch((err) => {
         toast.error("Edit Location wrong: " + err.message);

@@ -25,7 +25,7 @@ const UserList = () => {
       .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/user/${id}`)
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
-          toast.success("delete user success");
+          toast.success("Delete user successfully");
           handleGetUserList();
         }
       })

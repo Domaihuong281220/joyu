@@ -7,7 +7,10 @@ import imgstory_2 from "../../assets/OurStory/story_2.png";
 const OurStory = () => {
   return (
     <div className="pb-10 pv:max-md:pt-[38vw] pv:max-md:flex flex-col items-center">
-      <img className="object-cover h-[65vw] pv:max-md:h-fit w-full pv:max-md:w-[90%] pv:max-md:rounded-[10vw]" src={imgBanner}></img>
+      <img
+        className="object-cover h-[65vw] pv:max-md:h-fit w-full pv:max-md:w-[90%] pv:max-md:rounded-[10vw]"
+        src={imgBanner}
+      ></img>
       <div className="w-[82%] pv:max-md:w-[85vw] mx-auto  pt-[110px] pv:max-md:pt-[8vw] flex">
         <div className="text-start w-[53vw] pr-[3vw] pv:max-md:pr-0 pv:max-md:w-full">
           <p className="font-nexa_light pv:max-md:font-nexa_bold pv:max-md:font-normal text-[1.8vw] pv:max-md:text-[4.5vw] pb-[2vw] pv:max-md:pb-[7vw] font-black">

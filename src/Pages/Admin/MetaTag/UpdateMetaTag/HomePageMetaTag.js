@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Table, Button, Modal, Form, Input } from "antd";
 import axios from "axios";
+import { toast } from "sonner";
 
 const columns = (handleEdit, handleDelete) => [
   {
@@ -43,18 +44,22 @@ const HomePageMetaTag = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [isCreatingNew, setIsCreatingNew] = useState(false);
-
+  const [form] = Form.useForm();
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/joyu/metatag`);
-      const HomePageTag = response.data.data.filter((tag)=>tag.page ==="HomePage")
+      const response = await axios.get(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/metatag`
+      );
+      const HomePageTag = response.data.data.filter(
+        (tag) => tag.page === "HomePage"
+      );
       setData(HomePageTag);
     } catch (error) {
-      console.error('Failed to fetch data:', error);
+      console.error("Failed to fetch data:", error);
     }
   };
 
@@ -62,27 +67,33 @@ const HomePageMetaTag = () => {
     setEditingItem({ ...record });
     setIsModalVisible(true);
     setIsCreatingNew(false);
+    form.setFieldsValue(record);
   };
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${process.env.REACT_APP_SERVER_URL}/joyu/metatag/${id}`);
+      await axios.delete(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/metatag/${id}`
+      );
       const newData = data.filter((item) => item._id !== id);
       setData(newData);
-      alert("Deletion successful");
+      toast.success("Deletion successful");
     } catch (error) {
-      alert("Deletion failed: " + error.message);
+      toast.error("Deletion failed: " + error.message);
     }
   };
 
   const handleAddNew = () => {
-    setEditingItem({ title: "", name: "", content: "", page:"HomePage" });
+    setEditingItem({ title: "", name: "", content: "", page: "HomePage" });
     setIsModalVisible(true);
     setIsCreatingNew(true);
+    form.resetFields();
   };
 
   const handleOk = async () => {
     setIsModalVisible(false);
+    const values = await form.validateFields();
+
     if (isCreatingNew) {
       try {
         const response = await axios.post(
@@ -90,9 +101,9 @@ const HomePageMetaTag = () => {
           editingItem
         );
         fetchData();
-        alert("MetaTag added successfully");
+        toast.success("MetaTag added successfully");
       } catch (error) {
-        alert("Failed to add MetaTag: " + error.message);
+        toast.error("Failed to add MetaTag: " + error.message);
       }
     } else {
       if (editingItem) {
@@ -102,9 +113,9 @@ const HomePageMetaTag = () => {
             editingItem
           );
           fetchData();
-          alert("Update successful");
+          toast.success("Update successful");
         } catch (error) {
-          alert("Update failed: " + error.message);
+          toast.error("Update failed: " + error.message);
         }
       }
     }
@@ -143,21 +154,33 @@ const HomePageMetaTag = () => {
         onCancel={handleCancel}
       >
         <Form labelCol={{ span: 8 }} wrapperCol={{ span: 16 }}>
-          <Form.Item label="Title">
+          <Form.Item
+            label="Title"
+            name="title"
+            rules={[{ required: true, message: "Please input the title!" }]}
+          >
             <Input
               name="title"
               value={editingItem?.title}
               onChange={handleChange}
             />
           </Form.Item>
-          <Form.Item label="Name">
+          <Form.Item
+            label="Name"
+            name="name"
+            rules={[{ required: true, message: "Please input the name!" }]}
+          >
             <Input
               name="name"
               value={editingItem?.name}
               onChange={handleChange}
             />
           </Form.Item>
-          <Form.Item label="Content">
+          <Form.Item
+            label="Content"
+            name="content"
+            rules={[{ required: true, message: "Please input the content!" }]}
+          >
             <Input
               name="content"
               value={editingItem?.content}

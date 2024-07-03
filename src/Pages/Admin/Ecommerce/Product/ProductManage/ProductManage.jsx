@@ -33,7 +33,6 @@ const ProductManage = () => {
   };
 
   const handleDeleteProduct = async (id) => {
-    console.log(id);
     await axios
       .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/products/${id}`)
       .then((res) => {

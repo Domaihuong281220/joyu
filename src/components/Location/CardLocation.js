@@ -43,7 +43,7 @@ const CardLocation = ({
   const formattedHours = formatHours(hours);
 
   return (
-    <div className="flex flex-col pt-[1vw] w-full locationcard">
+    <div className="flex flex-col pt-[1vw] w-full">
       <div className="flex items-start gap-4 w-full">
         <div className="flex flex-col gap-2">
           <p className="text-start uppercase font-nexa_bold text-[1.2vw]">
@@ -52,9 +52,7 @@ const CardLocation = ({
           <div className="flex flex-col gap-1">
             <div className="flex gap-2">
               <Icon className="w-[1.2vw] h-[1.2vw]" icon={"mdi:location"} />
-              <p className="font-nexa_light text-start text-[1vw]">
-                {address}
-              </p>
+              <p className="font-nexa_light text-start text-[1vw]">{address}</p>
             </div>
             <div className="flex gap-2">
               <Icon
@@ -82,7 +80,9 @@ const CardLocation = ({
           >
             <p
               className={` font-nexa_bold text-[1vw] ${
-                available ? "text-white " : "text-black w-fit px-[0.5vw] text-center "
+                available
+                  ? "text-white "
+                  : "text-black w-fit px-[0.5vw] text-center "
               }`}
             >
               {available ? "PICK UP" : "COMING SOON"}
@@ -95,7 +95,6 @@ const CardLocation = ({
                 window.location.assign(delivery);
               }}
             >
-              
               <p className="text-white font-nexa_bold text-[1vw] ">DELIVERY</p>
             </button>
           ) : (
@@ -105,7 +104,9 @@ const CardLocation = ({
       </div>
       <div className="">
         <div className="py-4">
-          <p className="text-[1.2vw] font-nexa_bold text-start">WORKING HOURS</p>
+          <p className="text-[1.2vw] font-nexa_bold text-start">
+            WORKING HOURS
+          </p>
         </div>
         <div className="grid grid-cols-2 w-[70%]">
           {Object.keys(formattedHours).map((day) => (

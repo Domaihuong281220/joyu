@@ -9,7 +9,7 @@ import axios from "axios";
 import { path } from "../../../utils/Constant";
 import { toast } from "sonner";
 import { Loading } from "../../../components";
-
+import { replaceNewlinesWithBreaks } from "../../../utils/Constant";
 const ManageJobs = () => {
   const navigate = useNavigate();
   const [CareersData, setCareersData] = useState([]);
@@ -67,11 +67,24 @@ const ManageJobs = () => {
       key: "position",
       fixed: "left",
     },
-    // {
-    //   title: "Description",
-    //   dataIndex: "description",
-    //   key: "description",
-    // },
+    {
+      title: "Description",
+      dataIndex: "description",
+      key: "description",
+      render: (description) => {
+        return (
+          <div className="">
+            <div>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: replaceNewlinesWithBreaks(description),
+                }}
+              />
+            </div>
+          </div>
+        );
+      },
+    },
     {
       title: "Availability",
       dataIndex: "availability",
@@ -85,6 +98,40 @@ const ManageJobs = () => {
         >
           {availability === "true" ? "Available" : "Unavailable"}
         </p>
+      ),
+    },
+    {
+      title: "Responsibility",
+      dataIndex: "responsibility",
+      key: "responsibility",
+      render: (responsibility) => {
+        return (
+          <div className="">
+            <div>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: replaceNewlinesWithBreaks(responsibility),
+                }}
+              />
+            </div>
+          </div>
+        );
+      },
+    },
+    {
+      title: "Image",
+      dataIndex: "image",
+      key: "image",
+      render: (_, record) => (
+        <div className="flex items-center justify-center">
+          <div className="w-28 h-28">
+            <img
+              src={`${process.env.REACT_APP_SERVER_URL}/${record.image}`}
+              className="object-contain w-full h-full"
+              alt={record.name}
+            ></img>
+          </div>
+        </div>
       ),
     },
 

@@ -26,12 +26,12 @@ export const path = {
   //JOBS
   JOBMANAGE: "/manage-job",
   CREATEJOB: "/create-job",
-  EDITJOB: "/eidt-job",
+  EDITJOB: "/edit-job",
 
   // EVENTS
   EVENTMANAGE: "/manage-event",
   CREATEVENT: "/create-event",
-  EDITEVENT: "/eidt-event",
+  EDITEVENT: "/edit-event",
 
   // Meta tags
   METATAG: "/metatag",
@@ -87,4 +87,9 @@ export const useOnKeyPress = (callback, targetkey, searchKey) => {
       };
     }
   }, [callback, targetkey]);
+};
+
+export const replaceNewlinesWithBreaks = (input) => {
+  if (!input) return "";
+  return input.replace(/(\r\n|\n|\r)/g, "<br></br>");
 };

@@ -11,7 +11,6 @@ function PublicLayout() {
       const currentSidebarState = sessionStorage.getItem('openSidebar') === 'true';
       if (currentSidebarState !== openSidebar) {
         setOpenSidebar(currentSidebarState);
-        // console.log(currentSidebarState)
       }
     }, 1); // Check every 1000 milliseconds (1 second)
 

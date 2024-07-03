@@ -45,9 +45,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   const HandleSideBar = () => {
-    // console.log("sidebar")
 
-    // console.log(sessionStorage.getItem('openSidebar'));
     if (openSidebar === true) {
       setOpenSidebar(false);
       sessionStorage.setItem("openSidebar", false);

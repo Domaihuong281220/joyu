@@ -10,5 +10,4 @@ export { default as CardCareerAddress } from "./Careers/CardCareerAddress";
 export { default as SidebarAd } from "./SidebarAd/SidebarAd";
 export { default as CardNewsProduct } from "./Events/CardNewsProduct";
 export { default as CardLocation } from "./Location/CardLocation";
-
-
+export { default as CardLocationMobile } from "./Location/CardLocationMobile";

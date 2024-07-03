@@ -18,7 +18,6 @@ const Catering = () => {
     eventDetail: "",
     specicalRequest: "",
   });
-  console.log(`${process.env.REACT_APP_SERVER_URL}/api/sendEmailCatering`);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,7 +61,7 @@ const Catering = () => {
           <p className="text-start text-[#a2a158] font-nexa_bold text-[1.4vw] pb-[1.2vw] pv:max-md:pb-[8vw] md:max-lg:text-[24px] pv:max-md:text-[4.5vw]">
             BRING JOYU TO YOUR NEXT PARTY!
           </p>
-          <p className="text-start text-[1.5vw] md:max-lg:text-[20px] pv:max-md:font-black pv:max-md:font-nexa pv:max-md:text-[3.7vw] font-nexa_light">
+          <p className="text-start text-[1.5vw] md:max-lg:text-[20px]  pv:max-md:font-nexa pv:max-md:text-[3.7vw] font-nexa_light">
             Enjoy JOYU tea at your next special occasion. Tell us about your
             plans and let our talented catering coordinators help plan the
             perfect event!<br></br> <br></br>A catering order is not processed
@@ -70,11 +69,11 @@ const Catering = () => {
             our talented catering coordinators will contact you to discuss your
             event. All catering events require a minimum advanced notice of 3
             business days and a minimum order of 30 drinks or more. To better
-            assists you, please email us at cater@omomoteashoppe.com
+            assists you, please email us at info@joyuteacoffee.com
             <br></br> <br></br>
             You may also call any of our locations for assistance.
             <br></br>
-            <span className="text-primary font-bold">
+            <span className="text-primary ">
               Our catering service is available for pick up and qualified free
               delivery
             </span>
@@ -88,7 +87,7 @@ const Catering = () => {
           </p>
           <div className="h-[1px] w-full bg-black my-10 pv:max-md:mt-2 pv:max-md:mb-2 "></div>
 
-          <p className="text-start text-[#a2a158] font-nexa_bold text-[1.4vw] md:max-lg:text-[24px]  pv:max-sm:text-[4.2vw] pv:max-md:pt-4 pv:max-md:pb-12">
+          <p className="text-start text-[#b6b57c] font-nexa_bold text-[1.4vw] md:max-lg:text-[24px]  pv:max-sm:text-[4.2vw] sm:max-md:text-[20px] pv:max-md:pt-4 pv:max-md:pb-12 md:max-xl:mb-4">
             PLEASE SUBMIT ALL THE INFORMATION AND WE WILL REACH OUT TO YOU AS
             SOON AS POSSIBLE.
           </p>

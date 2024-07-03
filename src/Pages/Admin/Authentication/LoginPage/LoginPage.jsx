@@ -71,7 +71,7 @@ const LoginPage = () => {
                 <p className="text-lg">User Name</p>
                 <input
                   className="w-full h-auto border-b-2 border-gray-300 p-2 outline-none focus:border-blue-400 focus:ease-out duration-200 bg-transparent placeholder-blue-500 placeholder:font-bold"
-                  placeholder="Email"
+                  placeholder="User Name"
                   type="text"
                   onChange={(e) =>
                     setLoginData({ ...loginData, username: e.target.value })

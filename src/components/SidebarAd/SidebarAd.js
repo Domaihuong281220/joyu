@@ -100,7 +100,12 @@ const SidebarAd = () => {
           <p className=" text-lg">Customers</p>
         </div>
       ),
-      icon: <Icon icon="mdi:user-outline" className="h-5 w-5"></Icon>,
+      icon: (
+        <Icon
+          icon="streamline:information-desk-customer"
+          className="h-5 w-5"
+        ></Icon>
+      ),
       children: "",
       type: "",
     },
@@ -177,9 +182,7 @@ const SidebarAd = () => {
           <p className=" text-lg">Location</p>
         </div>
       ),
-      icon: (
-        <Icon icon="material-symbols:image-outline" className="h-5 w-5"></Icon>
-      ),
+      icon: <Icon icon="mynaui:location" className="h-5 w-5"></Icon>,
       children: "",
       type: "",
     },
@@ -188,8 +191,7 @@ const SidebarAd = () => {
     navigate("../" + path.HOME);
     sessionStorage.clear();
   };
-  const cancel = (e) => {
-  };
+  const cancel = (e) => {};
   const content = (
     <div>
       <p className="text-black">Admin</p>

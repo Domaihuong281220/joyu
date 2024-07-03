@@ -39,7 +39,6 @@ const EditHomePageBanner = () => {
         }
       );
       if (response.status === 200 || response.status === 201) {
-        console.log(formDataToSend);
         toast.success("Edit image successfully!");
         navigate("../" + path.HOMEPAGEBANNER);
       }

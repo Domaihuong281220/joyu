@@ -6,7 +6,6 @@ import HomePageMetaTag from "./UpdateMetaTag/HomePageMetaTag";
 import MenuPageMetaTag from "./UpdateMetaTag/MenuPageMetaTag";
 
 const onChange = (key) => {
-    console.log(key);
   };
   const items = [
     {

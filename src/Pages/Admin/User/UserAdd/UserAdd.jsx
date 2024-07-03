@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Radio, message } from "antd";
-import { isValidInputsUser } from "../../../../helpers/validInputs";
+import { isValidCreateNewUser } from "../../../../helpers/validInputs";
 import { path } from "../../../../utils/Constant";
 const UserAdd = () => {
   const RoleOption = ["admin"];
@@ -21,41 +21,45 @@ const UserAdd = () => {
     password: "",
     role: "",
   });
+
   // console.log(formData)
   const handleCreateUser = async () => {
-    try {
-      const response = await axios.post(
-        // `${process.env.REACT_APP_SERVER_URL}/user`,
-        `${process.env.REACT_APP_SERVER_URL}/joyu/user`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "x-secret-key": "Domoishi2024",
-          },
+    let check = isValidCreateNewUser(formData, toast);
+
+    if (check) {
+      try {
+        const response = await axios.post(
+          // `${process.env.REACT_APP_SERVER_URL}/user`,
+          `${process.env.REACT_APP_SERVER_URL}/joyu/user`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "x-secret-key": "Domoishi2024",
+            },
+          }
+        );
+        // const errorfind = response.data.find(data => data=== "error");
+        // console.log(response.data.error);
+
+        // if (response.status === 200 || response.status === 201) {
+        //   toast.success("Create new user successfully!");
+        //   navigate("../" + path.USERMANAGE);
+        // }
+
+        if (Object.keys(response.data).length < 2) {
+          toast.error("Create new user wrong");
+        } else {
+          toast.success("Create new user successfully!");
+          navigate("../" + path.USERMANAGE);
         }
-      );
-      // const errorfind = response.data.find(data => data=== "error");
-      // console.log(response.data.error);
-
-      // if (response.status === 200 || response.status === 201) {
-      //   toast.success("Create new user successfully!");
-      //   navigate("../" + path.USERMANAGE);
-      // }
-
-      if (Object.keys(response.data).length < 2) {
-        toast.error(response.data.error);
-      }
-      else {
-        toast.success("Create new user successfully!");
-        navigate("../" + path.USERMANAGE);
-      }
-    } catch (error) {
-      if (error.response && error.response.status === 500) {
-        // console.log(response);
-        toast.error("User name or password  is wrong");
-      } else {
-        console.error("create failed:", error);
+      } catch (error) {
+        if (error.response && error.response.status === 500) {
+          // console.log(response);
+          toast.error("User name or password  is wrong");
+        } else {
+          console.error("create failed:", error);
+        }
       }
     }
   };

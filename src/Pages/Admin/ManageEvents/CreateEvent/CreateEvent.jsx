@@ -61,12 +61,12 @@ const CreateEvent = () => {
       );
       if (response.status === 200) {
         navigate("../" + path.EVENTMANAGE);
-        toast.success("create news successfully!");
+        toast.success("Create news successfully!");
       } else {
-        toast.error("create news wrong: ");
+        toast.error("Create news wrong: ");
       }
     } catch (error) {
-      toast.error("create news wrong: " + error.message);
+      toast.error("Create news wrong: " + error.message);
     }
   };
 
