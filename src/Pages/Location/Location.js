@@ -75,7 +75,8 @@ const Location = () => {
           </div>
         </div>
       </div>
-      <div className=" md:hidden w-[85%] pv:max-md:mt-[-5vw] mx-auto">
+      <div className=" md:hidden w-[80%] pv:max-md:mt-[-5vw] mx-auto">
+
         {filteredLocations.map((location) =>
           location.available ? (
             <CardLocationMobile
@@ -99,10 +100,12 @@ const Location = () => {
             />
           )
         )}
+
+        
       </div>
       <div className="w-full h-[1px] bg-black pv:max-md:hidden"></div>
 
-      <div className="flex py-4  gap-[2vw] pt-6 pv:max-md:hidden mx-auto  overflow-x-auto whitespace-nowrap ">
+      <div className="grid grid-cols-2 gap-[1vw] pt-6 overflow-x-scroll pv:max-md:hidden  ">
         {filteredLocations.map((location) =>
           location.available ? (
             <CardLocation

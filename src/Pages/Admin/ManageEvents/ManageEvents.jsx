@@ -7,6 +7,9 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { path } from "../../../utils/Constant";
+import { Button, Popconfirm  } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
+
 const ManageEvents = () => {
   const navigate = useNavigate();
   const [newsData, setNewsData] = useState([]);
@@ -126,12 +129,20 @@ const ManageEvents = () => {
             <p className="">Edit</p>
           </button>
 
-          <button
-            className="hover:underline cursor-pointer hover:text-red-500"
-            onClick={() => hanldedeleNews(record._id)}
-          >
-            <p className="">Delete</p>
-          </button>
+          <Popconfirm placement="rightTop"
+                      title="Confirm Deletion" 
+                       description="Are you sure you want to delete this event?"
+                        okText="Delete"
+                        cancelText="Cancel"
+                        onConfirm={() => hanldedeleNews(record._id)}
+                       icon={
+                        <QuestionCircleOutlined
+                          style={{
+                            color: 'red',
+                          }}
+                        /> }>
+                             <button>Delete</button>
+      </Popconfirm>
         </div>
       ),
     },

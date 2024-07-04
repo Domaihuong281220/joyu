@@ -73,7 +73,7 @@ const Sidebar = () => {
             width="62.868"
             height="60.988"
             viewBox="0 0 62.868 60.988"
-            className="logoSidebar"
+            className="logoSidebar cursor-pointer"
             onClick={() => {
               navigate("/");
               setOpenSidebar(false);
@@ -188,12 +188,23 @@ const Sidebar = () => {
             onClick={() => navigate("/")}
           />
 
-          <div className="w-full h-full flex justify-end space-x-[6vw] items-end">
+          {/* <div className="w-full h-full flex justify-end space-x-[6vw] items-end"> */}
+          <div className="w-full h-full flex justify-end space-x-4 items-end">
+            <button
+              className="font-nexa_light font-black bg-primary uppercase text-white rounded-full  pb-[2.5vw] pt-[3vw] leading-[4vw]  w-[25vw] text-[3vw] flex justify-center items-center h-fit"
+              onClick={() => {
+                navigate("../" + path.LOCATION);
+                setOpenSidebar(false);
+                sessionStorage.setItem("openSidebar", false);
+              }}
+            >
+              Order now
+            </button>
             <button
               className={`${
                 location.pathname === "/menu"
                   ? "hidden"
-                  : "font-nexa font-black uppercase border-[1px] border-[#1E1B1A] text-secondary h-fit rounded-full pb-[3vw] pt-[4vw] leading-[4vw]  w-[42vw] text-[5vw] flex justify-center items-center"
+                  : "font-nexa font-black uppercase border-[1px] border-[#1E1B1A] text-secondary h-fit rounded-full pb-[2.5vw] pt-[3vw] leading-[4vw]  w-[25vw] text-[3vw] flex justify-center items-center"
               }`}
               onClick={() => {
                 navigate("../" + path.MENU);
@@ -825,9 +836,20 @@ const Sidebar = () => {
               onClick={() => navigate("/")}
             />
 
-            <div className="w-full h-full flex justify-end space-x-[6vw] items-end">
+            {/* <div className="w-full h-full flex justify-end space-x-[6vw] items-end"> */}
+            <div className="w-full h-full flex justify-end space-x-3 items-end">
               <button
-                className="font-nexa font-black uppercase border-[1px] border-white text-white h-fit rounded-full  pb-[1.5vw] pt-[2.5vw]  w-[42vw] text-[5vw]"
+                className="font-nexa_light font-black bg-white uppercase text-primary rounded-full  pb-[1.5vw] pt-[2.5vw]  w-[25vw] text-[3vw] h-fit"
+                onClick={() => {
+                  navigate("../" + path.LOCATION);
+                  setOpenSidebar(false);
+                  sessionStorage.setItem("openSidebar", false);
+                }}
+              >
+                Order now
+              </button>
+              <button
+                className="font-nexa font-black uppercase border-[1px] border-white text-white h-fit rounded-full  pb-[1.5vw] pt-[2.5vw]  w-[25vw] text-[3vw]"
                 onClick={() => {
                   navigate("../" + path.MENU);
                   setOpenSidebar(false);

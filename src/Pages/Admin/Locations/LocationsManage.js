@@ -5,6 +5,8 @@ import { path } from "../../../utils/Constant";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { Table, Modal, Input, Button } from "antd";
+import { Popconfirm  } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 
 const LocationsManage = () => {
   const [locationData, setlocationData] = useState([]);
@@ -107,12 +109,20 @@ const LocationsManage = () => {
             <p className="">Edit</p>
           </button>
 
-          <button
-            className="hover:underline cursor-pointer hover:text-blue-500"
-            onClick={() => handleDeleteLocation(record._id)}
-          >
-            <p className="">Delete</p>
-          </button>
+          <Popconfirm placement="rightTop"
+                      title="Confirm Deletion" 
+                       description="Are you sure you want to delete this location?"
+                        okText="Delete"
+                        cancelText="Cancel"
+                        onConfirm={() => handleDeleteLocation(record._id)}
+                       icon={
+                        <QuestionCircleOutlined
+                          style={{
+                            color: 'red',
+                          }}
+                        /> }>
+                             <button>Delete</button>
+      </Popconfirm>
         </div>
       ),
     },

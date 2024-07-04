@@ -13,6 +13,9 @@ import imgCate_2 from "../../../../../assets/cate_2.png";
 import imgCate_3 from "../../../../../assets/cate_3.png";
 import imgCate_4 from "../../../../../assets/cate_4.png";
 import imgCate_5 from "../../../../../assets/cate_5.png";
+import { Button, Popconfirm  } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
+
 import { toast } from "sonner";
 const CategoriesManage = () => {
   const navigate = useNavigate();
@@ -120,12 +123,20 @@ const CategoriesManage = () => {
             <p className="">Edit</p>
           </button>
 
-          <button
-            className="hover:underline cursor-pointer hover:text-blue-500"
-            onClick={() => handleAPIDeleteCategory(record._id)}
-          >
-            <p className="">Delete</p>
-          </button>
+          <Popconfirm placement="rightTop"
+                      title="Confirm Deletion" 
+                       description="Are you sure you want to delete this category?"
+                        okText="Delete"
+                        cancelText="Cancel"
+                        onConfirm={() => handleAPIDeleteCategory(record._id)}
+                       icon={
+                        <QuestionCircleOutlined
+                          style={{
+                            color: 'red',
+                          }}
+                        /> }>
+                             <button>Delete</button>
+      </Popconfirm>
         </div>
       ),
     },
