@@ -90,6 +90,11 @@ const Careers = () => {
       </div>
       {/* Desktop */}
       <div className="py-10 pv:max-md:hidden ">
+        <div className="py-2">
+          <p className="text-start text-[24px] md:max-lg:text-[20px] font-nexa_bold">
+            Please submit your resume titled with Position-Location.
+          </p>
+        </div>
         {careerData.map((item, index) => {
           const isLastItem = index === careerAddressData.length - 1;
 

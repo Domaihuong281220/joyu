@@ -58,6 +58,12 @@ const CategoriesManage = () => {
         console.log(err);
       });
   };
+  const handleEditCategory = (record) => {
+    console.log(record, "kahsdj");
+    navigate("../" + path.CATEGORYEDIT + `/${record._id}`, {
+      state: record,
+    });
+  };
 
   // Declare label for vairiable
   const columns = [
@@ -107,12 +113,12 @@ const CategoriesManage = () => {
       width: 200,
       render: (_, record) => (
         <div className="flex items-center justify-center gap-x-2">
-          {/* <button
+          <button
             className="hover:underline cursor-pointer hover:text-blue-500 "
-            onClick={() => handleEditCategory(record?.id - 1)}
+            onClick={() => handleEditCategory(record)}
           >
             <p className="">Edit</p>
-          </button> */}
+          </button>
 
           <button
             className="hover:underline cursor-pointer hover:text-blue-500"

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { message } from "antd";
 import { toast } from "sonner";
-import { isValidInputCategory } from "../../../../../helpers/validInputs";
+import { isValidInputCategory } from "../../../../../utils/common/validators";
 
 const CategoriesAdd = () => {
   const navigate = useNavigate();

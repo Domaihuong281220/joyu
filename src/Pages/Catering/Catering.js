@@ -27,11 +27,15 @@ const Catering = () => {
     }));
   };
 
+  const [isloading, setIsloading] = useState(false);
+
   const handleSubmit = async (e) => {
     // e.preventDefault();
 
     let check = isValidInputCatering(formData, toast);
+
     if (check === true) {
+      setIsloading(true);
       try {
         const response = await axios.post(
           // `http://localhost:4000/api/sendEmailCatering`,
@@ -42,9 +46,23 @@ const Catering = () => {
 
         // alert("Form submitted successfully!");
         toast.success("Form submitted successfully!");
+        setIsloading(false);
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          date: "",
+          type: "",
+          location: "",
+          guestCount: "",
+          eventDetail: "",
+          specicalRequest: "",
+        });
       } catch (error) {
         console.error("Error submitting form", error);
         toast.error("Failed to submit form.");
+        // setIsloading(false);
+
         // alert("Failed to submit form.");
       }
     }
@@ -189,6 +207,12 @@ const Catering = () => {
           </div>
         </div>
       </div>
+
+      {isloading && (
+        <div className="fixed top-0 left-0 right-0 bottom-0 bg-gray-800 opacity-50 z-50 flex justify-center items-center">
+          <p className="text-white text-xl">Your form is being submitted...</p>
+        </div>
+      )}
     </div>
   );
 };

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { eventProductData } from "../../models/mockdata";
 import { CardNewsProduct } from "../../components";
 import axios from "axios";
-
+import { replaceNewlinesWithBreaks } from "../../utils/Constant";
 const Event = () => {
   const [newsData, setNewsData] = useState([]);
 
@@ -32,16 +32,18 @@ const Event = () => {
       </div>
       <div className="h-[1px] w-full bg-black my-10 pv:max-md:mt-2 pv:max-md:mb-0 "></div>
 
-      <div className=" md:h-[1000px] pv:max-md:mt-[-2.5rem] md:overflow-y-scroll  ">
+      <div className="  pv:max-md:mt-[-2.5rem]   ">
         {newsData.map((item, index) => {
           if (newsData && index < newsData.length - 1) {
             return (
               <>
                 <CardNewsProduct
-                  title={item.title}
+                  title={replaceNewlinesWithBreaks(item.title)}
                   imgTitle={item.titlepic}
                   imgDetail={item.detailpic}
-                  shortdescription={item.shortdescription}
+                  shortdescription={replaceNewlinesWithBreaks(
+                    item.shortdescription
+                  )}
                   longdescription={item.longdescription}
                   code={item._id}
                 />
@@ -52,10 +54,12 @@ const Event = () => {
             return (
               <>
                 <CardNewsProduct
-                  title={item.title}
+                  title={replaceNewlinesWithBreaks(item.title)}
                   imgTitle={item.titlepic}
                   imgDetail={item.detailpic}
-                  shortdescription={item.shortdescription}
+                  shortdescription={replaceNewlinesWithBreaks(
+                    item.shortdescription
+                  )}
                   longdescription={item.longdescription}
                   code={item._id}
                 />

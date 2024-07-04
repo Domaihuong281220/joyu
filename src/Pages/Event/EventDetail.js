@@ -7,6 +7,8 @@ import { useNavigate, useParams, Link, useLocation } from "react-router-dom";
 // import { eventProductDataDetail } from "../../models/mockdata";
 import { useState } from "react";
 import { useEffect } from "react";
+
+import { replaceNewlinesWithBreaks } from "../../utils/Constant";
 const EventDetail = () => {
   let { code } = useParams();
   const [data, setData] = useState({});
@@ -46,16 +48,21 @@ const EventDetail = () => {
         ></img>
       </div>
       <div className="pt-[108px] pb-[10px]  mx-auto w-[76%] pv:max-ph:w-[90%] md:max-lg:w-[90%] pv:max-ph:pt-10">
-        <p className="font-nexa_bold text-start text-[40px] pv:max-md:text-[8vw]">
-          {data.title}
-        </p>
+        <p
+          className="font-nexa_bold text-start text-[40px] pv:max-md:text-[8vw]"
+          dangerouslySetInnerHTML={{
+            __html: replaceNewlinesWithBreaks(data.title),
+          }}
+        ></p>
 
         {/* <div className="w-full h-[1px] bg-black "></div> */}
         <div className="pt-[80px] pv:max-md:pt-4 ">
-          <p className="font-nexa_light text-[30px] text-left pv:max-md:text-[4.5vw] ">
-            {/* {convertedString(data.longdescription)} */}
-            {data.longdescription}
-          </p>
+          <p
+            className="font-nexa_light text-[30px] text-left pv:max-md:text-[4.5vw] "
+            dangerouslySetInnerHTML={{
+              __html: replaceNewlinesWithBreaks(data.longdescription),
+            }}
+          ></p>
         </div>
       </div>
     </div>

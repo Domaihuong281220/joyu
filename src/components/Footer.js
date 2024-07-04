@@ -18,6 +18,7 @@ function Signature() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let check = isValidInputsignUpFooter(formData, toast);
+
     if (check === true) {
       try {
         const response = await axios.post(
@@ -140,7 +141,6 @@ function Signature() {
                 className="flex justify-start items-center  "
               >
                 <input
-                  type="email"
                   className="font-nexa_light h-[100%] text-black  text-[1vw]  px-6 py-[1vw] w-full rounded-l-full "
                   placeholder="Enter your email"
                   onChange={(e) =>
