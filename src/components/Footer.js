@@ -177,7 +177,7 @@ function Signature() {
                 width="60.668"
                 height="60.668"
                 viewBox="0 0 60.668 60.668"
-                className="iconFooter"
+                className="iconFooter cursor-pointer"
                 onClick={() =>
                   window.location.assign(
                     "https://www.facebook.com/JoYuTeaCoffee?mibextid=LQQJ4d"
@@ -218,7 +218,7 @@ function Signature() {
                 width="60.668"
                 height="60.668"
                 viewBox="0 0 60.668 60.668"
-                className="iconFooter"
+                className="iconFooter cursor-pointer"
                 onClick={() =>
                   window.location.assign(
                     "https://www.instagram.com/joyuteacoffee?igsh=eThtejIycmcyNGs2&utm_source=qr"
@@ -270,7 +270,7 @@ function Signature() {
                 width="60.668"
                 height="60.668"
                 viewBox="0 0 60.668 60.668"
-                className="iconFooter"
+                className="iconFooter cursor-pointer"
                 onClick={() =>
                   window.location.assign(
                     "https://www.tiktok.com/@joyuteacoffee?_t=8mz1o24QV26&_r=1"
@@ -318,7 +318,7 @@ function Signature() {
                 width="60.668"
                 height="60.668"
                 viewBox="0 0 60.668 60.668"
-                className="iconFooter"
+                className="iconFooter cursor-pointer"
                 onClick={() =>
                   window.location.assign(
                     "https://m.youtube.com/@joyuteacoffee?si=cOhXUceyII9N8xxS"
@@ -518,7 +518,7 @@ function Signature() {
             width="60.668"
             height="60.668"
             viewBox="0 0 60.668 60.668"
-            className="w-[14vw] h-[14vw]"
+            className="w-[14vw] h-[14vw] cursor-pointer"
             onClick={() =>
               window.location.assign(
                 "https://www.facebook.com/JoYuTeaCoffee?mibextid=LQQJ4d"
@@ -559,7 +559,7 @@ function Signature() {
             width="60.668"
             height="60.668"
             viewBox="0 0 60.668 60.668"
-            className="w-[14vw] h-[14vw]"
+            className="w-[14vw] h-[14vw] cursor-pointer"
             onClick={() =>
               window.location.assign(
                 "https://www.instagram.com/joyuteacoffee?igsh=eThtejIycmcyNGs2&utm_source=qr"
@@ -611,7 +611,7 @@ function Signature() {
             width="60.668"
             height="60.668"
             viewBox="0 0 60.668 60.668"
-            className="w-[14vw] h-[14vw]"
+            className="w-[14vw] h-[14vw] cursor-pointer"
             onClick={() =>
               window.location.assign(
                 "https://www.tiktok.com/@joyuteacoffee?_t=8mz1o24QV26&_r=1"
@@ -659,7 +659,7 @@ function Signature() {
             width="60.668"
             height="60.668"
             viewBox="0 0 60.668 60.668"
-            className="w-[14vw] h-[14vw]"
+            className="w-[14vw] h-[14vw] cursor-pointer"
             onClick={() =>
               window.location.assign(
                 "https://m.youtube.com/@joyuteacoffee?si=cOhXUceyII9N8xxS"

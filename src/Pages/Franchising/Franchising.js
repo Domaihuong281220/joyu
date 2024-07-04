@@ -126,7 +126,7 @@ const Franchising = () => {
               </ul>
               <div className="">
                 <p className="text-start font-nexa_light text-[1.3vw]">
-                  Visit www.joyupro.com for more detail and please contact us
+                  Please contact us
                   via info@joyuteacoffe.com or (757) 264 8881 for any concerns
                   or questions
                 </p>
@@ -267,11 +267,11 @@ const Franchising = () => {
             </div>
             <div className="flex items-center justify-between  pv:max-md:gap-4  pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start ">
               <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] pv:max-md:flex-col pv:max-md:items-start md:max-2xl:text-[14px]">
-                ZIP/POSTAL CODE:{" "}
+                ZIP CODE:{" "}
               </p>
               <input
                 className="w-full pv:max-md:w-full  pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
-                placeholder="Zip / Postal Code"
+                placeholder="Zip Code"
                 onChange={handleChange}
                 value={formData.zipPostalCode}
                 name="zipPostalCode"
@@ -343,6 +343,21 @@ const Franchising = () => {
                   ></textarea>
                 </div>
               </div>
+              <div className="flex items-center justify-between pv:max-md:gap-4  pv:max-md:flex-col pv:max-md:items-start   md:max-2xl:flex-col md:max-2xl:items-start   2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start ">
+                <p className="font-nexa_bold text-[20px] uppercase pv:max-md:text-[4.5vw] md:max-2xl:text-[14px] text-start">
+                  *Please describe your business background/restaurant experience
+                including name(s) of franchise brands :
+              </p>
+            </div>
+            <div className="col-span-3 ">
+              <textarea
+                className=" w-full pv:max-md:w-full md:max-2xl:w-full h-[200px] border-[1px] border-[#707070] rounded-md py-2 px-6"
+                placeholder=""
+                onChange={handleChange}
+                value={formData.businessBackground}
+                name={"businessBackground"}
+              ></textarea>
+            </div>
             </div>
           </div>
         </div>
@@ -401,13 +416,13 @@ const Franchising = () => {
           <div className="grid grid-cols-3 text-right gap-10 items-center ">
             <div className="col-span-1">
               <p className="font-nexa_bold text-[20px] pv:max-md:text-[4.5vw] md:max-2xl:text-[14px]">
-                ZIP / POSTAL CODE:
+                ZIP CODE:
               </p>
             </div>
             <div className="col-span-2">
               <input
                 className=" w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full py-2 px-6"
-                placeholder="Zip / Postal Code"
+                placeholder="Zip Code"
                 onChange={handleChange}
                 name="zipPostalCode"
                 value={formData.zipPostalCode}

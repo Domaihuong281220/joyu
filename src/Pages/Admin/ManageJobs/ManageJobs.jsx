@@ -10,6 +10,9 @@ import { path } from "../../../utils/Constant";
 import { toast } from "sonner";
 import { Loading } from "../../../components";
 import { replaceNewlinesWithBreaks } from "../../../utils/Constant";
+import { Button, Popconfirm  } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
+
 const ManageJobs = () => {
   const navigate = useNavigate();
   const [CareersData, setCareersData] = useState([]);
@@ -149,12 +152,20 @@ const ManageJobs = () => {
             <p className="">Edit</p>
           </button>
 
-          <button
-            className="hover:underline cursor-pointer"
-            onClick={() => handledeleCareers(record._id)}
-          >
-            <p className="">Delete</p>
-          </button>
+          <Popconfirm placement="rightTop"
+                      title="Confirm Deletion" 
+                       description="Are you sure you want to delete this job?"
+                        okText="Delete"
+                        cancelText="Cancel"
+                        onConfirm={() => handledeleCareers(record._id)}
+                       icon={
+                        <QuestionCircleOutlined
+                          style={{
+                            color: 'red',
+                          }}
+                        /> }>
+                             <button>Delete</button>
+      </Popconfirm>
         </div>
       ),
     },

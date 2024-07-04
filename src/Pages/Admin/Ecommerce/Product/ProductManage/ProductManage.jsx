@@ -8,6 +8,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { path } from "../../../../../utils/Constant";
+import { Button, Popconfirm  } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 
 const ProductManage = () => {
   const navigate = useNavigate();
@@ -122,12 +124,20 @@ const ProductManage = () => {
             <p className="">Edit</p>
           </button>
 
-          <button
-            className="hover:underline cursor-pointer hover:text-blue-500 hover:font-bold"
-            onClick={() => handleDeleteProduct(record._id)}
-          >
-            <p className="">Delete</p>
-          </button>
+          <Popconfirm placement="rightTop"
+                      title="Confirm Deletion" 
+                       description="Are you sure you want to delete this product?"
+                        okText="Delete"
+                        cancelText="Cancel"
+                        onConfirm={() =>  handleDeleteProduct(record._id)}
+                       icon={
+                        <QuestionCircleOutlined
+                          style={{
+                            color: 'red',
+                          }}
+                        /> }>
+                             <button>Delete</button>
+      </Popconfirm>
         </div>
       ),
     },
