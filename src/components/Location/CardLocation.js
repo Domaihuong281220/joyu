@@ -43,7 +43,7 @@ const CardLocation = ({
   const formattedHours = formatHours(hours);
 
   return (
-    <div className="flex flex-col pt-[1vw] w-full">
+    <div className="flex flex-col pt-[1vw] w-full locationcard">
       <div className="flex items-start gap-4 w-full">
         <div className="flex flex-col gap-2">
           <p className="text-start uppercase font-nexa_bold text-[1.2vw]">
