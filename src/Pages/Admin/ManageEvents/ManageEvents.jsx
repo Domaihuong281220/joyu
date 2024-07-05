@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { path } from "../../../utils/Constant";
 import { Button, Popconfirm  } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-
+import {replaceNewlinesWithBreaks} from '../../../utils/Constant'
 const ManageEvents = () => {
   const navigate = useNavigate();
   const [newsData, setNewsData] = useState([]);
@@ -108,6 +108,16 @@ const ManageEvents = () => {
       title: "Description",
       dataIndex: "longdescription",
       key: "longdescription",
+
+      render : (e)=>{
+        console.log(e,"dkjashdkjasdh")
+        return <p
+        className="text-start pv:max-md:text-[8vw]"
+        dangerouslySetInnerHTML={{
+          __html: replaceNewlinesWithBreaks(e),
+        }}
+      ></p>
+      }
     },
     {
       title: "short Description",

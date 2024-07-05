@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-
+import {replaceNewlinesWithBreaks} from "../../utils/Constant"
 const ProductDetail = () => {
   const location = useLocation();
   let product = location.state.product; // More concise nullish coalescing operator
@@ -48,7 +48,12 @@ const ProductDetail = () => {
               key={index}
               className="text-[30px] font-nexa_light pv:max-md:font-nexa text-start pv:max-md:text-center pv:max-md:text-[5vw] md:max-xl:text-[24px] pb-[2vw]"
             >
-              {descriptionrow}
+               <p
+                className="text-start pv:max-md:text-[8vw]"
+                dangerouslySetInnerHTML={{
+          __html: replaceNewlinesWithBreaks(descriptionrow),
+        }}
+      ></p>
             </p>
           ))}
         </div>

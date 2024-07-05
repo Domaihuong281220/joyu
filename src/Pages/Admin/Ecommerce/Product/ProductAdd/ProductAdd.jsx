@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Input } from "antd";
 import { Select } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,12 @@ const ProductAdd = () => {
   const [categories, setCategories] = useState([]);
   const [categoriesName, setCategoriesName] = useState([]);
   const [categoryID, setCategoryID] = useState();
+  const [activeStyles, setActiveStyles] = useState({
+    bold: false,
+    italic: false,
+    underline: false,
+  });
+  const editorRef = useRef(null);
 
   const handleCategoryChange = (e) => {
     const selectedCategory = e.target.value;
@@ -29,30 +35,23 @@ const ProductAdd = () => {
 
   useEffect(() => {
     handlegetCategories();
-    // console.log(formData);
   }, []);
 
   const handlegetCategories = async () => {
     await axios
       .get(`${process.env.REACT_APP_SERVER_URL}/joyu/categories`)
       .then((res) => {
-        // console.log(res, "category");
-
-        // Assuming res.data.data is an array of objects with a "name" property
         const names = res.data.data.map((category) => category.name);
         setCategories(res.data.data);
         setCategoriesName(names);
-
-        // setproductData(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  // Handle changes to the file inputs
   const handleFileChange = (image) => {
-    setImage(image); // Update the state
+    setImage(image);
   };
 
   const handleUpload = async () => {
@@ -76,13 +75,15 @@ const ProductAdd = () => {
       return;
     }
 
-
     const formData = new FormData();
-    formData.append("price", price); // Use priceNumber instead of price
+    formData.append("price", price);
     formData.append("categoryID", categoryID);
     formData.append("image", image);
     formData.append("name", productName);
-    formData.append("description", description);
+    formData.append(
+      "description",
+      editorRef.current ? editorRef.current.innerHTML : ""
+    );
 
     try {
       const response = await axios.post(
@@ -106,10 +107,20 @@ const ProductAdd = () => {
     }
   };
 
+  const applyStyle = (command) => {
+    document.execCommand(command);
+    updateActiveStyles();
+  };
+
+  const updateActiveStyles = () => {
+    const bold = document.queryCommandState("bold");
+    const italic = document.queryCommandState("italic");
+    const underline = document.queryCommandState("underline");
+    setActiveStyles({ bold, italic, underline });
+  };
+
   return (
     <div className="">
-      {/* Start Form Create Product */}
-
       <div className="w-[90%] mx-auto h-auto bg-white shadow-xl rounded-lg p-1">
         <div className="flex p-2">
           <p className="text-2xl"> CREATE PRODUCT</p>
@@ -125,10 +136,41 @@ const ProductAdd = () => {
           </div>
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Description</p>
-            <textarea
-              className="w-full h-[200px] border-[1px] p-2"
-              placeholder="Description"
-              onChange={(e) => setDescription(e.target.value)}
+            <div className="flex items-center mb-2">
+              <button
+                onClick={() => applyStyle("bold")}
+                className={`mr-2 px-2 py-1 rounded ${
+                  activeStyles.bold ? "bg-blue-500 text-white" : "bg-gray-200"
+                }`}
+              >
+                <b>B</b>
+              </button>
+              <button
+                onClick={() => applyStyle("italic")}
+                className={`mr-2 px-2 py-1 rounded ${
+                  activeStyles.italic ? "bg-blue-500 text-white" : "bg-gray-200"
+                }`}
+              >
+                <i>I</i>
+              </button>
+              <button
+                onClick={() => applyStyle("underline")}
+                className={`px-2 py-1 rounded ${
+                  activeStyles.underline
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200"
+                }`}
+              >
+                <u>U</u>
+              </button>
+            </div>
+            <div
+              ref={editorRef}
+              contentEditable
+              className="w-full h-[200px] border-[1px] p-2 text-start"
+              onInput={updateActiveStyles}
+              onMouseUp={updateActiveStyles}
+              onKeyUp={updateActiveStyles}
             />
           </div>
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
@@ -162,7 +204,7 @@ const ProductAdd = () => {
             <input
               type="file"
               accept="image/jpeg, image/png"
-              onChange={(e) => handleFileChange(e.target.files[0])} // Manage the first file
+              onChange={(e) => handleFileChange(e.target.files[0])}
             />
           </div>
           <div className="flex justify-center items-center gap-x-4">
@@ -184,8 +226,6 @@ const ProductAdd = () => {
           </div>
         </div>
       </div>
-
-      {/* End Form Create Product  */}
     </div>
   );
 };

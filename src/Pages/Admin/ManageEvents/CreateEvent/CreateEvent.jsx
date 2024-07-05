@@ -1,15 +1,13 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
-import { Breadcrumbs, Input, Textarea } from "antd";
-import { Icon } from "@iconify/react";
-import { Select } from "@chakra-ui/react";
+import React, { useState, useEffect, useRef } from "react";
+import { Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { message } from "antd";
 import { toast } from "sonner";
 
 import { path } from "./../../../../utils/Constant";
+
 const CreateEvent = () => {
   const navigate = useNavigate();
   const [files, setFiles] = useState([]); // Using an array to store files
@@ -17,6 +15,9 @@ const CreateEvent = () => {
   const [longDescription, setLongDescription] = useState("");
   const [shortDescription, setShortDescription] = useState("");
   const [gfsInitialized, setGfsInitialized] = useState(false);
+  const [activeStyles, setActiveStyles] = useState({ bold: false, italic: false, underline: false });
+  const editorRef = useRef(null);
+
   useEffect(() => {
     setTimeout(() => setGfsInitialized(true), 1000);
   }, []);
@@ -30,23 +31,19 @@ const CreateEvent = () => {
 
   const handleUpload = async () => {
     if (files.length < 2 || !files[0] || !files[1]) {
-      // alert("Please select both files first!");
       toast.info("Please select both files Title Image and Detail Image!");
       return;
     }
 
     if (!gfsInitialized) {
-      toast.info(
-        "Image upload functionality not yet ready. Please try again later."
-      );
-
+      toast.info("Image upload functionality not yet ready. Please try again later.");
       return;
     }
 
     const formData = new FormData();
     files.forEach((file) => formData.append("files", file)); // Append each file in the array
     formData.append("title", title);
-    formData.append("longdescription", longDescription);
+    formData.append("longdescription", editorRef.current ? editorRef.current.innerHTML : ""); // Get HTML content
     formData.append("shortdescription", shortDescription);
 
     try {
@@ -70,16 +67,25 @@ const CreateEvent = () => {
     }
   };
 
+  const applyStyle = (command) => {
+    document.execCommand(command);
+    updateActiveStyles();
+  };
+
+  const updateActiveStyles = () => {
+    const bold = document.queryCommandState("bold");
+    const italic = document.queryCommandState("italic");
+    const underline = document.queryCommandState("underline");
+    setActiveStyles({ bold, italic, underline });
+  };
+
   return (
     <div className="">
-      {/* Start Form Create Product */}
       <div className="w-[90%] mx-auto h-auto bg-white shadow-xl rounded-lg p-1">
         <div className="flex p-2">
           <p className="text-2xl"> CREATE NEWS</p>
         </div>
         <div className="px-10 py-4 mx-auto w-[50%] ">
-          {/* Title */}
-
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Name News </p>
             <Input
@@ -89,8 +95,6 @@ const CreateEvent = () => {
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-
-          {/* Short Description */}
 
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">
@@ -107,8 +111,6 @@ const CreateEvent = () => {
             />
           </div>
 
-          {/* Long Description */}
-
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">
               Long Description
@@ -116,23 +118,39 @@ const CreateEvent = () => {
                 (Content to display on the details page)
               </span>
             </p>
-            <textarea
-              className="w-full h-[300px] border-[1px] p-2"
-              placeholder="Subtitle"
-              value={longDescription}
-              onChange={(e) => setLongDescription(e.target.value)}
+            <div className="flex items-center mb-2 ">
+              <button 
+                onClick={() => applyStyle('bold')} 
+                className={`mr-2 px-2 py-1 rounded ${activeStyles.bold ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+              >
+                <b>B</b>
+              </button>
+              <button 
+                onClick={() => applyStyle('italic')} 
+                className={`mr-2 px-2 py-1 rounded ${activeStyles.italic ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+              >
+                <i>I</i>
+              </button>
+              <button 
+                onClick={() => applyStyle('underline')} 
+                className={`px-2 py-1 rounded ${activeStyles.underline ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+              >
+                <u>U</u>
+              </button>
+            </div>
+            <div
+              ref={editorRef}
+              contentEditable
+              className="w-full h-[300px] border-[1px] p-2  text-start"
+              onInput={updateActiveStyles}
+              onMouseUp={updateActiveStyles}
+              onKeyUp={updateActiveStyles}
+              placeholder="Enter the content here..."
             />
           </div>
 
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Title Image</p>
-            {/* <Input
-              className="w-full h-full border-[1px] p-2"
-              placeholder="Tags"
-              onChange={(e) =>
-                setFormData({ ...formData, price: e.target.value })
-              }
-            /> */}
             <input
               type="file"
               accept="image/jpeg, image/png"
@@ -149,33 +167,6 @@ const CreateEvent = () => {
             />
           </div>
 
-          {/* <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
-            <div className="flex justify-between">
-              <input type="file" onChange={""} className="p-3  " />
-
-              <button
-                className="h-auto w-auto p-2 bg-blue-400 rounded-lg"
-                onClick={handleUpload}
-              >
-                Upload
-              </button>
-            </div>
-            <div className="">
-              {imageproduct ? (
-                <img
-                  src={imageproduct}
-                  className="object-cover w-32 h-32 rounded-lg"
-                />
-              ) : (
-                <img
-                  src="https://t3.ftcdn.net/jpg/02/18/21/86/360_F_218218632_jF6XAkcrlBjv1mAg9Ow0UBMLBaJrhygH.jpg"
-                  className="object-cover w-32 h-32 rounded-lg"
-                />
-              )}
-            </div>
-
-            <p className="">jpg , png , jpeg</p>
-          </div> */}
           <div className="flex justify-center items-center gap-x-4">
             <button
               className="w-auto h-auto py-2 px-4 bg-slate-50 border-2 border-blue-300 rounded-lg hover:bg-slate-200 hover:shadow-lg"
@@ -196,8 +187,6 @@ const CreateEvent = () => {
           </div>
         </div>
       </div>
-
-      {/* End Form Create Product  */}
     </div>
   );
 };
