@@ -5,6 +5,8 @@ import { Helmet } from "react-helmet";
 import { Table, Button, Modal, Form, Input } from "antd";
 import axios from "axios";
 import { toast } from "sonner";
+import { Popconfirm } from "antd";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 
 const columns = (handleEdit, handleDelete) => [
   {
@@ -34,7 +36,23 @@ const columns = (handleEdit, handleDelete) => [
     title: "Delete",
     key: "delete",
     render: (_, record) => (
-      <Button onClick={() => handleDelete(record._id)}>Delete</Button>
+      <Popconfirm
+        placement="rightTop"
+        title="Confirm Deletion"
+        description="Are you sure you want to delete this customer?"
+        okText="Delete"
+        cancelText="Cancel"
+        onConfirm={() => handleDelete(record._id)}
+        icon={
+          <QuestionCircleOutlined
+            style={{
+              color: "red",
+            }}
+          />
+        }
+      >
+        <Button danger>Delete</Button>
+      </Popconfirm>
     ),
   },
 ];
@@ -45,6 +63,7 @@ const HomePageMetaTag = () => {
   const [editingItem, setEditingItem] = useState(null);
   const [isCreatingNew, setIsCreatingNew] = useState(false);
   const [form] = Form.useForm();
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -64,7 +83,7 @@ const HomePageMetaTag = () => {
   };
 
   const handleEdit = (record) => {
-    setEditingItem({ ...record });
+    setEditingItem(record);
     setIsModalVisible(true);
     setIsCreatingNew(false);
     form.setFieldsValue(record);
@@ -91,43 +110,43 @@ const HomePageMetaTag = () => {
   };
 
   const handleOk = async () => {
-    setIsModalVisible(false);
-    const values = await form.validateFields();
+    try {
+      const values = await form.validateFields();
+      setIsModalVisible(false);
 
-    if (isCreatingNew) {
-      try {
-        const response = await axios.post(
-          `${process.env.REACT_APP_SERVER_URL}/joyu/metatag`,
-          editingItem
-        );
-        fetchData();
-        toast.success("MetaTag added successfully");
-      } catch (error) {
-        toast.error("Failed to add MetaTag: " + error.message);
-      }
-    } else {
-      if (editingItem) {
+      if (isCreatingNew) {
         try {
-          await axios.put(
-            `${process.env.REACT_APP_SERVER_URL}/joyu/metatag/${editingItem._id}`,
-            editingItem
+          await axios.post(
+            `${process.env.REACT_APP_SERVER_URL}/joyu/metatag`,
+            { ...values, page: "HomePage" }
           );
           fetchData();
-          toast.success("Update successful");
+          toast.success("MetaTag added successfully");
         } catch (error) {
-          toast.error("Update failed: " + error.message);
+          toast.error("Failed to add MetaTag: " + error.message);
+        }
+      } else {
+        if (editingItem) {
+          try {
+            await axios.put(
+              `${process.env.REACT_APP_SERVER_URL}/joyu/metatag/${editingItem._id}`,
+              values
+            );
+            fetchData();
+            toast.success("Update successful");
+          } catch (error) {
+            toast.error("Update failed: " + error.message);
+          }
         }
       }
+    } catch (error) {
+      // Handle validation errors
+      console.error("Validation errors:", error);
     }
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setEditingItem((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -146,54 +165,35 @@ const HomePageMetaTag = () => {
       >
         Add New MetaTag
       </Button>
-      <Table columns={columns(handleEdit, handleDelete)} dataSource={data} />
+      <Table columns={columns(handleEdit, handleDelete)} dataSource={data} rowKey="_id" />
       <Modal
         title={isCreatingNew ? "Add New MetaTag" : "Edit MetaTag"}
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <Form labelCol={{ span: 8 }} wrapperCol={{ span: 16 }}>
+        <Form form={form} labelCol={{ span: 8 }} wrapperCol={{ span: 16 }}>
           <Form.Item
             label="Title"
             name="title"
             rules={[{ required: true, message: "Please input the title!" }]}
           >
-            <Input
-              name="title"
-              value={editingItem?.title}
-              onChange={handleChange}
-            />
+            <Input />
           </Form.Item>
           <Form.Item
             label="Name"
             name="name"
             rules={[{ required: true, message: "Please input the name!" }]}
           >
-            <Input
-              name="name"
-              value={editingItem?.name}
-              onChange={handleChange}
-            />
+            <Input />
           </Form.Item>
           <Form.Item
             label="Content"
             name="content"
             rules={[{ required: true, message: "Please input the content!" }]}
           >
-            <Input
-              name="content"
-              value={editingItem?.content}
-              onChange={handleChange}
-            />
+            <Input />
           </Form.Item>
-          {/* <Form.Item label="Page">
-            <Input
-              name="page"
-              value={editingItem?.page}
-              onChange={handleChange}
-            />
-          </Form.Item> */}
         </Form>
       </Modal>
     </div>

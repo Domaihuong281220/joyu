@@ -10,6 +10,7 @@ export { default as Catering } from "./Catering/Catering";
 export { default as Careers } from "./Careers/Careers";
 export { default as ProductDetail } from "./ProductDetail/ProductDetail";
 export { default as Unsub } from "./Unsubcribe/Unsub.js";
+export { default as Policy } from "./Policy/PolicyPage.js";
 
 // Admin
 

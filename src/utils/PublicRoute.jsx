@@ -12,6 +12,7 @@ import {
   ProductDetail,
   Menu,
   Unsub,
+  Policy,
 } from "../Pages";
 
 import { path } from "./Constant";
@@ -82,6 +83,12 @@ const routes = [
     exact: true,
     component: <Unsub />,
     main: () => <Unsub />,
+  },
+  {
+    path: `${path.POLICY}`,
+    exact: true,
+    component: <Policy />,
+    main: () => <Policy />,
   },
 ];
 

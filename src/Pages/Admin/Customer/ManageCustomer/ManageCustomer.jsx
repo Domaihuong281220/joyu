@@ -8,13 +8,78 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { path } from "../../../../utils/Constant";
-import { Button, Popconfirm  } from 'antd';
+import { Button, Popconfirm, Modal  } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
+import { isValidInputsignUpFooter } from "../../../../utils/common/validators";
 
 const ManageCustomer = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [userData, setUserData] = useState([]);
   const [ismarked, setIsMasked] = useState(true);
+  const [formData, setFormData] = useState({
+    email: "",
+  });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  //Add Customer
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = async () => {
+    let check = isValidInputsignUpFooter(formData, toast);
+  
+    if (check === true) {
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_SERVER_URL}/joyu/customer`,
+          formData
+        );
+  
+        if (response.status === 200) {
+          toast.success("Thank you for subscribing!");
+          setIsModalOpen(false);
+          handlegetUsers()
+        } else {
+          toast.error("Something went wrong, please try again!");
+        }
+      } catch (err) {
+        if (err.response && err.response.status === 409) {
+          // Assuming 409 Conflict for email already exists
+          toast.error("Email already exists!");
+        } else {
+          toast.error("An unexpected error occurred!");
+        }
+        console.log(err);
+      }
+    }
+   
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let check = isValidInputsignUpFooter(formData, toast);
+
+    if (check === true) {
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_SERVER_URL}/joyu/customer`,
+          formData
+        );
+        if (response.status === 200) {
+          toast.success("Thank you for subscribing!");
+        } else {
+          toast.error("Email already exists!");
+        }
+      } catch (err) {
+        toast.error("Email already exists!");
+        console.log(err);
+      }
+    }
+  };
   // API Get ALL user
   const handlegetUsers = async () => {
     try {
@@ -155,6 +220,36 @@ const ManageCustomer = () => {
                 </svg>
                 <p className="">Send email</p>
               </button>
+            </div>
+           
+
+            {/* Add Customer */}
+            <div>
+            <>
+      <Button type="primary" onClick={showModal}>
+        +
+      </Button>
+      <Modal title="Add Customer" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      <form
+                onSubmit={handleSubmit}
+                className="flex justify-start items-center  "
+              >
+                <input
+                  className="font-nexa_light h-[100%] text-black  text-[1vw]  px-6 py-[0.5vw] w-full rounded-xl border border-green-300 "
+                  placeholder="Enter customer email"
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      handleOk();
+                    }
+                  }}
+                />
+              
+              </form>
+      </Modal>
+    </>                 
             </div>
           </div>
           <div className="flex justify-center items-center">

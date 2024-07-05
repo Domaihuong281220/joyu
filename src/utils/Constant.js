@@ -67,6 +67,7 @@ export const path = {
   MANAGEADDRESS: "/manage-address",
   ADDRESSADD: "/address-add",
   ADDRESSEDIT: "/address-edit",
+  POLICY: "/privacy-policy",
 };
 
 export const ScrollToTop = () => {
