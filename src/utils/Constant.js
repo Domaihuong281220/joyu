@@ -62,6 +62,11 @@ export const path = {
   // customer
   CUSTOMERMANAGE: "/manage-customer",
   CREATECUSTOMER: "/create-customer",
+
+  // Address
+  MANAGEADDRESS: "/manage-address",
+  ADDRESSADD: "/address-add",
+  ADDRESSEDIT: "/address-edit",
 };
 
 export const ScrollToTop = () => {

@@ -51,9 +51,14 @@ export { default as CustomerAdd } from "./Admin/Customer/CustomerAdd/CustomerAdd
 
 // Jobs
 
-export { default as ManageJobs } from "./Admin/ManageJobs/ManageJobs.jsx";
-export { default as EditJob } from "./Admin/ManageJobs/EditJob/EditJob.jsx";
-export { default as CreateJob } from "./Admin/ManageJobs/CreateJob/CreateJob.jsx";
+export { default as ManageJobs } from "./Admin/Careers/ManageJobs/ManageJobs.jsx";
+export { default as EditJob } from "./Admin/Careers/ManageJobs/EditJob/EditJob.jsx";
+export { default as CreateJob } from "./Admin/Careers/ManageJobs/CreateJob/CreateJob.jsx";
+
+// Address
+export { default as AddressAdd } from "./Admin/Careers/ManageAddress/AddressAdd/AddressAdd.jsx";
+export { default as AddressEdit } from "./Admin/Careers/ManageAddress/AddressEdit/AddressEdit.jsx";
+export { default as AddressManage } from "./Admin/Careers/ManageAddress/AddressManage/AddressManage.jsx";
 
 // News
 export { default as ManageEvents } from "./Admin/ManageEvents/ManageEvents.jsx";

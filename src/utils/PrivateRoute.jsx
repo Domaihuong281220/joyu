@@ -28,6 +28,9 @@ import {
   LocationManage,
   ManageCustomer,
   CustomerAdd,
+  AddressAdd,
+  AddressEdit,
+  AddressManage,
 } from "../Pages";
 const routes = [
   {
@@ -202,6 +205,27 @@ const routes = [
     exact: true,
     component: <CustomerAdd />,
     main: () => <CustomerAdd />,
+  },
+
+  // Address
+
+  {
+    path: path.MANAGEADDRESS,
+    exact: true,
+    component: <AddressManage />,
+    main: () => <AddressManage />,
+  },
+  {
+    path: path.ADDRESSADD,
+    exact: true,
+    component: <AddressAdd />,
+    main: () => <AddressAdd />,
+  },
+  {
+    path: `${path.ADDRESSEDIT}/:id`,
+    exact: true,
+    component: <AddressEdit />,
+    main: () => <AddressEdit />,
   },
 ];
 

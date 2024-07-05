@@ -23,21 +23,46 @@ const SidebarAd = () => {
 
   const items = [
     {
-      key: "jobs",
+      key: "career",
       label: (
-        <div
-          className=""
-          onClick={() => {
-            navigate("../" + path.JOBMANAGE);
-          }}
-        >
-          <p className=" text-lg">Jobs</p>
+        <div className="">
+          <p className=" text-lg">Careers</p>
         </div>
       ),
       icon: (
-        <Icon icon="oui:ml-outlier-detection-job" className="h-5 w-5"></Icon>
+        <Icon
+          className="h-5 w-5"
+          icon={"healthicons:market-stall-outline"}
+        ></Icon>
       ),
-      children: "",
+      children: [
+        {
+          key: "jobs",
+          label: (
+            <div
+              className=""
+              onClick={() => {
+                navigate("../" + path.JOBMANAGE);
+              }}
+            >
+              <p className=" text-lg">Jobs</p>
+            </div>
+          ),
+        },
+        {
+          key: "address",
+          label: (
+            <div
+              className=""
+              onClick={() => {
+                navigate("../" + path.MANAGEADDRESS);
+              }}
+            >
+              <p className="">Address</p>
+            </div>
+          ),
+        },
+      ],
       type: "",
     },
     {
