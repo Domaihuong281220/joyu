@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { path } from "../../../../../utils/Constant";
 import { Button, Popconfirm } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
+import { render } from "@testing-library/react";
 
 const AddressManage = () => {
   const navigate = useNavigate();
@@ -78,6 +79,26 @@ const AddressManage = () => {
       key: "Position",
     },
     {
+      title: "Availability",
+      dataIndex: "availability",
+      key: "availability",
+
+      render: (e, record) => {
+        console.log(record);
+        return (
+          <div className="">
+            <p
+              className={`${
+                record.availability === true ? "text-green-500" : "text-red-500"
+              }`}
+            >
+              {record.availability === true ? "Available" : "Unavailable"}
+            </p>
+          </div>
+        );
+      },
+    },
+    {
       title: "Action",
       key: "action",
       fixed: "right",
@@ -86,7 +107,7 @@ const AddressManage = () => {
         <div className="flex items-center justify-center gap-x-2">
           <button
             className="hover:underline cursor-pointer hover:text-blue-500 "
-            // onClick={() => handleEditProduct(record)}
+            onClick={() => handleEditAddress(record)}
           >
             <p className="">Edit</p>
           </button>
@@ -97,7 +118,7 @@ const AddressManage = () => {
             description="Are you sure you want to delete this product?"
             okText="Delete"
             cancelText="Cancel"
-            // onConfirm={() => handleDeleteProduct(record._id)}
+            onConfirm={() => handleDeleteAddress(record._id)}
             icon={
               <QuestionCircleOutlined
                 style={{
