@@ -26,7 +26,12 @@ const EditJob = () => {
     responsibility: jobdetail.responsibility,
     image: jobdetail.image,
   });
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState();
+// Change image
+
+const handleImageChange = (image) => {
+  setImage(image); // Update the state
+};
 
   const handleEdit = async (id) => {
     const updateData = new FormData();
@@ -35,11 +40,13 @@ const EditJob = () => {
     updateData.append("availability", formData.availability);
     updateData.append("address", formData.address);
     updateData.append("responsibility", formData.responsibility);
-    if (image) {
-      updateData.append("image", image);
-    } else {
-      updateData.append("image", formData.image); // Make sure the current image path is sent
-    }
+    updateData.append('image', image);
+
+    // if (image) {
+    //   updateData.append("image", image);
+    // } else {
+    //   updateData.append("image", formData.image); // Make sure the current image path is sent
+    // }
     await axios
       .put(`${process.env.REACT_APP_SERVER_URL}/joyu/careers/${id}`, formData)
       .then((res) => {
@@ -144,21 +151,30 @@ const EditJob = () => {
               }}
             />
           </div>
-          {/* <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Current Image</p>
             {formData.image && (
               <img
                 src={`${process.env.REACT_APP_SERVER_URL}/${formData.image}`}
+                
                 alt="Product"
                 className="h-[200px] w-[200px] mb-4"
               />
             )}
-            <input
-              type="file"
-              accept="image/jpeg, image/png"
-              onChange={(e) => setImage(e.target.files[0])}
+               <input
+            type="file"
+            accept="image/jpeg, image/png"
+            onChange={(e) => handleImageChange(e.target.files[0])}
+            className="w-full"
+          />
+          {image && (
+            <img
+              src={URL.createObjectURL(image)}
+              alt="image"
+              className="w-[200px] h-[200px] object-cover"
             />
-          </div> */}
+          )}
+          </div>
 
           <div className="flex justify-center items-center gap-x-4">
             <button

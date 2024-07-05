@@ -62,7 +62,12 @@ export const path = {
   // customer
   CUSTOMERMANAGE: "/manage-customer",
   CREATECUSTOMER: "/create-customer",
+
+  //Privacy Policy
+  POLICY: "/privacy-policy",
 };
+
+
 
 export const ScrollToTop = () => {
   const { pathname } = useLocation();
