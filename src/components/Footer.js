@@ -496,7 +496,7 @@ function Signature() {
         >
           <input
             type="email"
-            className="font-nexa_light text-black  px-[1vw] text-center py-[4vw] w-[100%] text-[4vw] rounded-l-full"
+            className="font-nexa_light text-black  px-[4vw] text-start py-[4vw] w-[100%] text-[4vw] rounded-l-full"
             placeholder="Enter your email"
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
@@ -524,7 +524,7 @@ function Signature() {
       </p>    
     </div>
 
-        <div className="flex space-x-[2vw] justify-start items-start pt-[2.6vw]">
+        <div className="flex space-x-[3.5vw] justify-start items-start pt-[2.6vw]">
           {/* Facebook */}
           {/* <img src={Facebook} alt='' className='w-[14vw] h-[14vw]' onClick={() => window.location.assign("https://www.facebook.com/JoYuTeaCoffee?mibextid=LQQJ4d")} /> */}
           <svg
@@ -713,7 +713,10 @@ function Signature() {
               </g>
             </g>
           </svg>
+          
         </div>
+        <p className="font-nexa text-start text-[3.5vw] tracking-tighter leading-[6.8vw] pt-[3vw]  pb-[3vw]">
+          Copyright JoYu Tea & Coffee 2024. All Rights Reserved</p>
       </div>
     </>
   );
