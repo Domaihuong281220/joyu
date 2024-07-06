@@ -166,8 +166,14 @@ function Signature() {
             </div>
           </div>
           <div className="w-[59vw] h-full flex flex-col">
-            <div className="w-full h-[15.5vw] flex justify-start items-end text-[1.8vw] pl-[3.2vw] pb-[1.5vw]">
-              <p className="font-shopee_bold text-white ">FOLLOW</p>
+            <div className="w-full h-[15.5vw] justify-between flex justify-start items-end text-[1.8vw] pl-[3.2vw] pb-[1.5vw]">
+              <p className="font-shopee_bold text-white">FOLLOW</p>
+              <p className="font-shopee_bold text-white pr-[10vw]">
+                  <a href="/privacy-policy" className="text-white">
+                    PRIVACY NOTICE
+                  </a>
+                </p>              
+                <p></p>
             </div>
             <div className="flex space-x-[1vw] pl-[3.2vw] pt-[2.6vw]">
               {/* Facebook */}
@@ -507,9 +513,17 @@ function Signature() {
           </button>
         </form>
         <div className="h-[0.4vw] w-full bg-gray-300 mt-[12vw] mb-[2vw]"></div>
-        <p className="font-shopee_bold text-left text-white text-[5vw]">
-          FOLLOW
-        </p>
+        <div className='flex justify-between w-full'>
+      <p className="font-shopee_bold text-left text-white text-[4vw]">
+        FOLLOW
+      </p>
+      <p className="font-shopee_bold text-end text-white text-[4vw]">
+        <a href="/privacy-policy" className="text-white">
+          PRIVACY NOTICE
+        </a>
+      </p>    
+    </div>
+
         <div className="flex space-x-[2vw] justify-start items-start pt-[2.6vw]">
           {/* Facebook */}
           {/* <img src={Facebook} alt='' className='w-[14vw] h-[14vw]' onClick={() => window.location.assign("https://www.facebook.com/JoYuTeaCoffee?mibextid=LQQJ4d")} /> */}
