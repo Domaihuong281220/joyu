@@ -124,7 +124,7 @@ const EditEvent = () => {
           <div
             ref={editorRef}
             contentEditable
-            className="w-full h-[300px] border-[1px] p-2  text-start"
+            className="w-full h-[300px] border-[1px] p-2  text-start overflow-y-auto"
             onInput={updateActiveStyles}
             onMouseUp={updateActiveStyles}
             onKeyUp={updateActiveStyles}

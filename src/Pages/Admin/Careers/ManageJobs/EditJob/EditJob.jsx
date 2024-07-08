@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Input } from "antd";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -19,7 +19,12 @@ const EditJob = () => {
     responsibility: jobdetail.responsibility,
     image: jobdetail.image,
   });
-
+  const [activeStyles, setActiveStyles] = useState({
+    bold: false,
+    italic: false,
+    underline: false,
+  });
+  const editorRef = useRef(null);
   const [image, setImage] = useState(null);
 
   const handleImageChange = (event) => {
@@ -32,7 +37,11 @@ const EditJob = () => {
   const handleEdit = async (id) => {
     const updateData = new FormData();
     updateData.append("position", formData.position);
-    updateData.append("description", formData.description);
+    updateData.append(
+      "description",
+      editorRef.current ? editorRef.current.innerHTML : ""
+    ); 
+    // updateData.append("description", formData.description);
     updateData.append("availability", formData.availability);
     updateData.append("responsibility", formData.responsibility);
 
@@ -57,6 +66,17 @@ const EditJob = () => {
       .catch((err) => {
         toast.error("Edit job failed: " + err.message);
       });
+  };
+  const applyStyle = (command) => {
+    document.execCommand(command);
+    updateActiveStyles();
+  };
+
+  const updateActiveStyles = () => {
+    const bold = document.queryCommandState("bold");
+    const italic = document.queryCommandState("italic");
+    const underline = document.queryCommandState("underline");
+    setActiveStyles({ bold, italic, underline });
   };
 
   return (
@@ -84,18 +104,45 @@ const EditJob = () => {
               Description
               <span className="text-[10px] text-red-500">(Limit 500 characters)</span>
             </p>
-            <textarea
-              className="w-full h-[300px] border-[1px] p-2"
-              placeholder="Description"
-              maxLength="500"
-              value={formData.description}
-              onChange={(e) =>
-                setFormData({ ...formData, description: e.target.value })
-              }
-            />
+          
+          <div className="flex items-center mb-2">
+            <button
+              onClick={() => applyStyle("bold")}
+              className={`mr-2 px-2 py-1 rounded ${
+                activeStyles.bold ? "bg-blue-500 text-white" : "bg-gray-200"
+              }`}
+            >
+              <b>B</b>
+            </button>
+            <button
+              onClick={() => applyStyle("italic")}
+              className={`mr-2 px-2 py-1 rounded ${
+                activeStyles.italic ? "bg-blue-500 text-white" : "bg-gray-200"
+              }`}
+            >
+              <i>I</i>
+            </button>
+            <button
+              onClick={() => applyStyle("underline")}
+              className={`px-2 py-1 rounded ${
+                activeStyles.underline ? "bg-blue-500 text-white" : "bg-gray-200"
+              }`}
+            >
+              <u>U</u>
+            </button>
+          </div>
+          <div
+            ref={editorRef}
+            contentEditable
+            className="w-full h-[300px] border-[1px] p-2  text-start overflow-y-auto"
+            onInput={updateActiveStyles}
+            onMouseUp={updateActiveStyles}
+            onKeyUp={updateActiveStyles}
+            dangerouslySetInnerHTML={{ __html: jobdetail.longdescription }}
+          />
+        </div>
             <div className="text-right w-full text-sm text-gray-600">
               {formData.description.length}/500
-            </div>
           </div>
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">

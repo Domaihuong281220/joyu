@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Input } from "antd";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
@@ -27,12 +27,21 @@ const CreateJob = () => {
   const [availability, setavailability] = useState(false);
   // const [address, setaddress] = useState();
   const [image, setImage] = useState();
-
+  const [activeStyles, setActiveStyles] = useState({
+    bold: false,
+    italic: false,
+    underline: false,
+  });
+  const editorRef = useRef(null);
   // console.log(formData, "check");
   const handleCreateJob = async (id) => {
     const formData = new FormData();
     formData.append("position", position); // Use priceNumber instead of price
-    formData.append("description", description);
+    formData.append(
+      "description",
+      editorRef.current ? editorRef.current.innerHTML : ""
+    );
+    // formData.append("description", description);
     formData.append("responsibility", responsibility);
     formData.append("image", image);
     formData.append("availability", availability);
@@ -52,6 +61,17 @@ const CreateJob = () => {
   };
   const handleFileChange = (image) => {
     setImage(image); // Update the state
+  };
+  const applyStyle = (command) => {
+    document.execCommand(command);
+    updateActiveStyles();
+  };
+
+  const updateActiveStyles = () => {
+    const bold = document.queryCommandState("bold");
+    const italic = document.queryCommandState("italic");
+    const underline = document.queryCommandState("underline");
+    setActiveStyles({ bold, italic, underline });
   };
 
   return (
@@ -81,16 +101,44 @@ const CreateJob = () => {
             />
           </div> */}
 
-          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+<div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Description</p>
-            <textarea
-              className="w-full h-[100px] border-[1px] p-2"
-              placeholder="Subtitle"
-              maxLength="500"
-              value={description}
-              onChange={(e) => setdescription(e.target.value)}
+            <div className="flex items-center mb-2">
+              <button
+                onClick={() => applyStyle("bold")}
+                className={`mr-2 px-2 py-1 rounded ${
+                  activeStyles.bold ? "bg-blue-500 text-white" : "bg-gray-200"
+                }`}
+              >
+                <b>B</b>
+              </button>
+              <button
+                onClick={() => applyStyle("italic")}
+                className={`mr-2 px-2 py-1 rounded ${
+                  activeStyles.italic ? "bg-blue-500 text-white" : "bg-gray-200"
+                }`}
+              >
+                <i>I</i>
+              </button>
+              <button
+                onClick={() => applyStyle("underline")}
+                className={`px-2 py-1 rounded ${
+                  activeStyles.underline
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200"
+                }`}
+              >
+                <u>U</u>
+              </button>
+            </div>
+            <div
+              ref={editorRef}
+              contentEditable
+              className="w-full h-[200px] border-[1px] p-2 text-start overflow-y-auto"
+              onInput={updateActiveStyles}
+              onMouseUp={updateActiveStyles}
+              onKeyUp={updateActiveStyles}
             />
-            <div className="text-right w-full text-sm text-gray-600">260</div>
           </div>
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Responsibility</p>

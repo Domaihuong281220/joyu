@@ -232,22 +232,22 @@ const Franchising = () => {
                   name="stateProvince"
                 ></input>
               </div>
-            </div>
+            {/* </div>
             <div className="flex flex-col  pv:max-md:gap-4 pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start ">
               <div className="w-full flex justify-end">
                 <p className="w-[600px] text-right pv:max-md:text-center md:max-2xl:text-center  text-[20px] font-nexa_bold md:max-2xl:text-[14px]  2xl:max-dh_max:text-left pv:max-md:text-[4.5vw] uppercase ">
                   *Please describe your business background/restaurant
                   experience including name(s) of franchise brands :
                 </p>
-              </div>
-              <div className="flex justify-end pv:max-md:w-full md:max-2xl:w-full 2xl:max-dh_max:w-full">
+              </div> */}
+              {/* <div className="flex justify-end pv:max-md:w-full md:max-2xl:w-full 2xl:max-dh_max:w-full">
                 <textarea
                   className=" w-full pv:max-md:w-full md:max-2xl:w-full 2xl:max-dh_max:w-full  h-[150px] border-[1px] border-[#707070] rounded-md p-2"
                   onChange={handleChange}
                   value={formData.businessBackground}
                   name="businessBackground"
                 ></textarea>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="flex flex-col justify-center gap-10">

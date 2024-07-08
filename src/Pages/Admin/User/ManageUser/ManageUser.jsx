@@ -8,6 +8,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { path } from "../../../../utils/Constant";
+import { Button, Popconfirm, Spin } from "antd";
+import { QuestionCircleOutlined } from "@ant-design/icons";
+
 const ManageUser = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [userData, setUserData] = useState([]);
@@ -142,12 +145,24 @@ const ManageUser = () => {
             <p className="">Edit</p>
           </button> */}
 
-          <button
-            className="hover:underline cursor-pointer hover:text-blue-500 hover:font-bold"
-            onClick={() => handledeleUser(record._id)}
+          
+          <Popconfirm
+            placement="rightTop"
+            title="Confirm Deletion"
+            description="Are you sure you want to delete this User?"
+            okText="Delete"
+            cancelText="Cancel"
+            onConfirm={() => handledeleUser(record._id)}
+            icon={
+              <QuestionCircleOutlined
+                style={{
+                  color: "red",
+                }}
+              />
+            }
           >
-            <p className="">Delete</p>
-          </button>
+            <button>Delete</button>
+          </Popconfirm>
         </div>
       ),
     },

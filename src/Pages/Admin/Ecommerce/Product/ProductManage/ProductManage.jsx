@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import { path } from "../../../../../utils/Constant";
 import { Button, Popconfirm } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
-
+import {replaceNewlinesWithBreaks} from '../../../../../utils/Constant'
 const ProductManage = () => {
   const navigate = useNavigate();
   const [productData, setProductData] = useState([]);
@@ -102,6 +102,19 @@ const ProductManage = () => {
           </div>
         </div>
       ),
+    },
+    {
+      title: "Description",
+      dataIndex: "description",
+      key: "description",
+      render : (e)=>{
+        return <p
+        className="text-start pv:max-md:text-[8vw]"
+        dangerouslySetInnerHTML={{
+          __html: replaceNewlinesWithBreaks(e),
+        }}
+      ></p>
+      }
     },
     {
       title: "Price",
