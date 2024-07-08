@@ -8,7 +8,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { path } from "../../../../../utils/Constant";
-import { Button, Popconfirm } from "antd";
+import { Button, Popconfirm, Spin } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { render } from "@testing-library/react";
 
@@ -17,6 +17,7 @@ const AddressManage = () => {
   const [addressData, setAddressdata] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [isloading, setloading] = useState(true);
 
   const handleGetAddress = async () => {
     try {
@@ -29,6 +30,7 @@ const AddressManage = () => {
       }));
       setAddressdata(addresses);
       setFilteredProducts(addresses); // Initialize filtered products
+      setloading(false);
     } catch (error) {
       console.error("Failed to fetch products:", error);
     }
@@ -39,7 +41,7 @@ const AddressManage = () => {
       .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/address/${id}`)
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
-          toast.success("Delete product success");
+          toast.success("Delete address success");
           handleGetAddress();
         }
       })
@@ -115,7 +117,7 @@ const AddressManage = () => {
           <Popconfirm
             placement="rightTop"
             title="Confirm Deletion"
-            description="Are you sure you want to delete this product?"
+            description="Are you sure you want to delete this Address?"
             okText="Delete"
             cancelText="Cancel"
             onConfirm={() => handleDeleteAddress(record._id)}
@@ -158,13 +160,17 @@ const AddressManage = () => {
               </button>
             </div>
           </div>
-          <div className="w-[100%]">
-            <Table
-              columns={columns}
-              dataSource={filteredProducts}
-              pagination={{ pageSize: 15, position: ["bottomCenter"] }}
-            />
-          </div>
+          {isloading ? (
+            <Spin></Spin>
+          ) : (
+            <div className="w-[100%]">
+              <Table
+                columns={columns}
+                dataSource={filteredProducts}
+                pagination={{ pageSize: 15, position: ["bottomCenter"] }}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>

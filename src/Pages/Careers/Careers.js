@@ -9,16 +9,10 @@ import { replaceNewlinesWithBreaks } from "../../utils/Constant";
 const Careers = () => {
   const [careerData, setCareerData] = useState([]);
   const [careersCount, setCareersCount] = useState(0);
-  const [careerAddressData, setCareerAddressData] = useState([]);
   const [availablePositions, setAvailablePositions] = useState([]);
   const [selected, setSelected] = useState();
   const [linkform, setLinkform] = useState();
-
-  const handleChange = (event) => {
-    // console.log("Selected:", event.target.value);
-    setSelected(event.target.value);
-  };
-
+  const [addressPosition, setAddressPosition] = useState([]);
   // Updates the linkform state when selected position changes
   useEffect(() => {
     const selectedPosition = availablePositions.find(
@@ -48,18 +42,33 @@ const Careers = () => {
           (position) => position.availability === "true"
         );
         setCareerData(availableCareers);
-
-        const careerAddresses = availableCareers.map(
-          (career) => career.address
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    const fetchaddressPosition = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/joyu/address`
         );
-        setCareerAddressData(careerAddresses);
+
+        setAddressPosition(response.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchCareers();
+    fetchaddressPosition();
   }, []);
+
+  // get Address Position Avaibility
+  const availableItems = (arr) => {
+    const result = arr.filter((item) => item.availability);
+    return result;
+  };
+
+  console.log(availableItems(addressPosition));
 
   return (
     <div className=" w-[76vw] mx-auto  pv:max-md:pt-[30vw] pv:max-lg:w-[85%] ">
@@ -95,15 +104,16 @@ const Careers = () => {
             Please submit your resume titled with Position-Location.
           </p>
         </div>
-        {careerData.map((item, index) => {
-          const isLastItem = index === careerAddressData.length - 1;
+        {availableItems(addressPosition).map((item, index) => {
+          const isLastItem =
+            index === availableItems(addressPosition).length - 1;
 
           return (
             <>
               <CardCareerAddress
-                title={item.position}
+                title={item.careerId.position}
                 address={item.address}
-                isLast={isLastItem}
+                // isLast={isLastItem}
               ></CardCareerAddress>
             </>
           );
@@ -118,12 +128,12 @@ const Careers = () => {
             titled with Position-Location
           </p>
         </div>
-        {careerData.map((item, index) => {
+        {availableItems(addressPosition).map((item, index) => {
           return (
             <>
               <div className="flex flex-col  py-4 gap-2">
                 <p className="text-start pv:max-ph:text-[20px] ph:max-md:text-[24px] text-primary font-nexa_bold">
-                  {item.position}
+                  {item.careerId.position}
                 </p>
                 <p className="text-start pv:max-ph:text-[18px] ph:max-md:text-[22px]">
                   {item.address}

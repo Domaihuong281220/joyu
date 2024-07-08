@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
-import { Table, message, Select } from "antd";
+import { Table, message, Select, Spin } from "antd";
 import { InputGroup, Input, InputRightElement } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -24,15 +24,11 @@ const ManageJobs = () => {
     });
   };
 
-  const [messageApi, contextHolder] = message.useMessage();
-
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     handlegetCareers();
     handlegetpositon();
   }, []);
-
-  console.log(position, "dlkasd");
 
   // Call API
 
@@ -60,6 +56,22 @@ const ManageJobs = () => {
       });
   };
 
+  useEffect(() => {
+    const tempArr_1 = [];
+    const tempArr_2 = [];
+
+    // child member
+    for (let index = 0; index < position?.length; index++) {
+      const element = position[index];
+      tempArr_1.push({
+        key: element,
+        label: "element",
+      });
+      setPosition(tempArr_1);
+    }
+  }, []);
+
+  console.log(position, "check data");
   // Delete News
 
   const handledeleCareers = async (id) => {
@@ -190,8 +202,6 @@ const ManageJobs = () => {
 
   return (
     <div className="">
-      {contextHolder}
-
       <div className="w-[90%] mx-auto h-auto bg-white shadow-xl rounded-lg p-1">
         <div className="flex p-2">
           <p className="text-2xl">JOBS MANAGE</p>
@@ -268,17 +278,22 @@ const ManageJobs = () => {
               </button>
             </div>
           </div>
-          <div className="w-[100%]">
-            <Table
-              columns={columns}
-              dataSource={CareersData}
-              pagination={{ pageSize: 5, position: ["bottomCenter"] }}
 
-              // scroll={{
-              //   x: "max-content",
-              // }}
-            />
-          </div>
+          {isLoading ? (
+            <Spin></Spin>
+          ) : (
+            <div className="w-[100%]">
+              <Table
+                columns={columns}
+                dataSource={CareersData}
+                pagination={{ pageSize: 5, position: ["bottomCenter"] }}
+
+                // scroll={{
+                //   x: "max-content",
+                // }}
+              />
+            </div>
+          )}
         </div>
         {/* End table categories Manage */}
       </div>

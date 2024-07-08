@@ -45,7 +45,7 @@ const SidebarAd = () => {
                 navigate("../" + path.JOBMANAGE);
               }}
             >
-              <p className=" text-lg">Jobs</p>
+              <p className="">Jobs</p>
             </div>
           ),
         },

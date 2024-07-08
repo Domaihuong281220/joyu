@@ -12,7 +12,6 @@ const ProductEdit = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const data = location.state;
-
   const [addressPosition, setaddressPosition] = useState([]);
 
   const [formData, setFormData] = useState({
@@ -25,6 +24,20 @@ const ProductEdit = () => {
   useEffect(() => {
     handleGetAddress();
   }, []);
+
+  // Remove duplicate elements
+  const getUniquePositions = (positions) => {
+    const unique = [];
+    const map = new Map();
+    for (const position of positions) {
+      if (!map.has(position.careerId._id)) {
+        map.set(position.careerId._id, true);
+        unique.push(position);
+      }
+    }
+    return unique;
+  };
+  const uniquePositions = getUniquePositions(addressPosition);
 
   const handleGetAddress = async () => {
     try {
@@ -86,12 +99,12 @@ const ProductEdit = () => {
             <Select
               className="w-full h-auto"
               placeholder="Select a category"
-              value={formData.careerId}
+              value={formData.careerId.position}
               onChange={(value) => {
-                setFormData({ ...formData, categoryID: value });
+                setFormData({ ...formData, careerId: value });
               }}
             >
-              {addressPosition.map((position) => (
+              {uniquePositions.map((position) => (
                 <Select.Option
                   key={position.careerId._id}
                   value={position.careerId._id}
