@@ -116,7 +116,7 @@ const ManageJobs = () => {
       .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/careers/${id}`)
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
-          toast.success("Delete jobs successfully!");
+          toast.success("Career and associated addresses deleted successfully!");
           handlegetCareers();
           navigate("../" + path.JOBMANAGE);
         }
@@ -152,13 +152,15 @@ const ManageJobs = () => {
       title: "Description",
       dataIndex: "description",
       key: "description",
-      render : (e)=>{
-        return <p
-        className="text-start pv:max-md:text-[8vw]"
-        dangerouslySetInnerHTML={{
-          __html: replaceNewlinesWithBreaks(e),
-        }}
-      ></p>
+      render: (e) => {
+        return (
+          <p
+            className="text-start pv:max-md:text-[8vw]"
+            dangerouslySetInnerHTML={{
+              __html: replaceNewlinesWithBreaks(e),
+            }}
+          ></p>
+        );
       },
     },
     {
@@ -252,45 +254,49 @@ const ManageJobs = () => {
         <div className="flex p-2">
           <p className="text-2xl">JOBS MANAGE</p>
         </div>
+        <div className="p-2 flex gap-4">
+          <Button
+            className="flex items-center gap-2"
+            type="primary"
+            style={{
+              height: 40,
+            }}
+            onClick={() => {
+              handlegetCareers();
+              setSelectedJobTitle({ key: "All", value: "All" });
+              setSelectedStatus({ key: "All", value: "All" });
+            }}
+          >
+            <p className="">refresh All</p>
+            <Icon icon={"mdi:reload"}></Icon>
+          </Button>
+
+          <Button
+            className="flex items-center gap-2"
+            type="primary"
+            style={{
+              height: 40,
+            }}
+            onClick={() => {
+              navigate("../" + path.CREATEJOB);
+            }}
+          >
+            <Icon icon="mdi:package-variant-add" width={24} height={24}></Icon>
+            <p className="">Add New Job</p>
+          </Button>
+        </div>
 
         {/* Start table categories Manage */}
         <div className="">
-          <div className="flex items-center  px-4 py-4 gap-4 justify-between">
-            <div className="flex items-center gap-x-3">
-              <button
-                className="w-auto h-auto p-2 rounded-lg border-2 border-green-300 hover:border-green-500 flex items-center gap-x-2 hover:shadow-lg"
-                onClick={() => {
-                  navigate("../" + path.CREATEJOB);
-                }}
-              >
-                <Icon
-                  icon="mdi:package-variant-add"
-                  width={24}
-                  height={24}
-                ></Icon>
-                <p className="">Add New Job</p>
-              </button>
-            </div>
-            <div className="flex gap-2 items-center">
-              <Button
-                className="flex items-center gap-2"
-                type="primary"
-                onClick={() => {
-                  handlegetCareers();
-                  setSelectedJobTitle({ key: "All", value: "All" });
-                  setSelectedStatus({ key: "All", value: "All" });
-                }}
-              >
-                <p className="">refresh All</p>
-                <Icon icon={"mdi:reload"}></Icon>
-              </Button>
+          <div className="flex gap-2 items-end justify-end  p-4">
+            <div className="flex flex-col gap-2 items-start">
+              <p className="">Job Title</p>
               <Select
                 style={{
                   width: 300,
                   height: 40,
                 }}
                 value={selectedJobTitle}
-                placeholder={"Selected Position"}
                 onChange={(value) => {
                   setSelectedJobTitle({
                     ...selectedJobTitle,
@@ -308,7 +314,9 @@ const ManageJobs = () => {
                   </Select.Option>
                 ))}
               </Select>
-
+            </div>
+            <div className="flex flex-col gap-2 items-start">
+              <p className="">Avaibility status</p>
               <Select
                 style={{
                   width: 300,
@@ -336,21 +344,25 @@ const ManageJobs = () => {
                   </Select.Option>
                 ))}
               </Select>
-
-              <button
-                className="w-auto h-auto p-2 rounded-lg border-2 border-green-300 hover:border-green-500 flex items-center gap-x-2 hover:shadow-lg"
-                onClick={() => {
-                  handlefilter();
-                }}
-              >
-                <Icon
-                  icon="material-symbols-light:search"
-                  width={24}
-                  height={24}
-                ></Icon>
-                <p className="">Find Job</p>
-              </button>
             </div>
+
+            <Button
+              type="primary"
+              className="flex items-center gap-2"
+              style={{
+                height: 40,
+              }}
+              onClick={() => {
+                handlefilter();
+              }}
+            >
+              <Icon
+                icon="material-symbols-light:search"
+                width={24}
+                height={24}
+              ></Icon>
+              <p className="">Find Job</p>
+            </Button>
           </div>
 
           {isLoading ? (
