@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Radio, message } from "antd";
-import { isValidCreateNewUser } from "../../../../helpers/validInputs";
+import { isValidCreateNewUser } from "../../../../utils/common/validators";
 import { path } from "../../../../utils/Constant";
 const UserAdd = () => {
   const RoleOption = ["admin"];

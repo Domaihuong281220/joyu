@@ -12,7 +12,7 @@ import { Radio, message } from "antd";
 import {
   isValidInputsUser,
   isValidInputCreateLocation,
-} from "../../../../helpers/validInputs";
+} from "../../../../utils/common/validators";
 import { path } from "../../../../utils/Constant";
 const CreateLocation = () => {
   const [formData, setFormData] = useState({

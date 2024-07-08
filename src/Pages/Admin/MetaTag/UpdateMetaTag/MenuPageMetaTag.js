@@ -40,7 +40,7 @@ const columns = (handleEdit, handleDelete) => [
       <Popconfirm
         placement="rightTop"
         title="Confirm Deletion"
-        description="Are you sure you want to delete this customer?"
+        description="Are you sure you want to delete this tags?"
         okText="Delete"
         cancelText="Cancel"
         onConfirm={() => handleDelete(record._id)}

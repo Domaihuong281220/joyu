@@ -44,7 +44,7 @@ const UserEdit = () => {
           },
         }
       )
-      
+
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
           toast.success("Edit User successfully!");
