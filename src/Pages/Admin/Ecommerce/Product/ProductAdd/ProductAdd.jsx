@@ -134,6 +134,7 @@ const ProductAdd = () => {
               onChange={(e) => setProductName(e.target.value)}
             />
           </div>
+          
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Description</p>
             <div className="flex items-center mb-2">
@@ -167,7 +168,7 @@ const ProductAdd = () => {
             <div
               ref={editorRef}
               contentEditable
-              className="w-full h-[200px] border-[1px] p-2 text-start"
+              className="w-full h-[200px] border-[1px] p-2 text-start  overflow-y-auto"
               onInput={updateActiveStyles}
               onMouseUp={updateActiveStyles}
               onKeyUp={updateActiveStyles}

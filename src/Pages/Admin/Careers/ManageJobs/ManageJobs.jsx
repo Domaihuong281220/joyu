@@ -152,18 +152,13 @@ const ManageJobs = () => {
       title: "Description",
       dataIndex: "description",
       key: "description",
-      render: (description) => {
-        return (
-          <div className="">
-            <div>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: replaceNewlinesWithBreaks(description),
-                }}
-              />
-            </div>
-          </div>
-        );
+      render : (e)=>{
+        return <p
+        className="text-start pv:max-md:text-[8vw]"
+        dangerouslySetInnerHTML={{
+          __html: replaceNewlinesWithBreaks(e),
+        }}
+      ></p>
       },
     },
     {
