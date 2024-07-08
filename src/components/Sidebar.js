@@ -45,7 +45,6 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   const HandleSideBar = () => {
-
     if (openSidebar === true) {
       setOpenSidebar(false);
       sessionStorage.setItem("openSidebar", false);
@@ -623,8 +622,17 @@ const Sidebar = () => {
             </div>
             <div className="absolute text-white bottom-0 left-0 w-full h-[25vw]  border-t-[1px] border-white">
               <div className="w-[59vw] h-full flex flex-col">
-                <div className="w-full h-[10vw] flex justify-start items-end text-[1.8vw] pl-[3.2vw] pb-[1.5vw]">
+                <div className="w-full h-[10vw] flex justify-start items-end text-[1.8vw] pl-[3.2vw] pb-[1.5vw] gap-4">
                   <p className="font-shopee_bold text-white ">FOLLOW</p>
+                  <a
+                    onClick={() => {
+                      navigate("../" + path.POLICY);
+                      HandleSideBar();
+                    }}
+                    className="text-white hover:underline font-shopee_bold cursor-pointer "
+                  >
+                    PRIVACY NOTICE
+                  </a>
                 </div>
                 <div className="flex space-x-[1vw] pl-[3.2vw] pt-[2.6vw]">
                   {/* Facebook */}
@@ -634,7 +642,7 @@ const Sidebar = () => {
                     width="60.668"
                     height="60.668"
                     viewBox="0 0 60.668 60.668"
-                    className="iconFooter"
+                    className="iconFooter cursor-pointer"
                     onClick={() =>
                       window.location.assign(
                         "https://www.facebook.com/JoYuTeaCoffee?mibextid=LQQJ4d"
@@ -675,7 +683,7 @@ const Sidebar = () => {
                     width="60.668"
                     height="60.668"
                     viewBox="0 0 60.668 60.668"
-                    className="iconFooter"
+                    className="iconFooter cursor-pointer"
                     onClick={() =>
                       window.location.assign(
                         "https://www.instagram.com/joyuteacoffee?igsh=eThtejIycmcyNGs2&utm_source=qr"
@@ -727,7 +735,7 @@ const Sidebar = () => {
                     width="60.668"
                     height="60.668"
                     viewBox="0 0 60.668 60.668"
-                    className="iconFooter"
+                    className="iconFooter cursor-pointer"
                     onClick={() =>
                       window.location.assign(
                         "https://www.tiktok.com/@joyuteacoffee?_t=8mz1o24QV26&_r=1"
@@ -778,7 +786,7 @@ const Sidebar = () => {
                     width="60.668"
                     height="60.668"
                     viewBox="0 0 60.668 60.668"
-                    className="iconFooter"
+                    className="iconFooter cursor-pointer"
                     onClick={() =>
                       window.location.assign(
                         "https://m.youtube.com/@joyuteacoffee?si=cOhXUceyII9N8xxS"
@@ -1189,6 +1197,16 @@ const Sidebar = () => {
               <p className="font-shopee_bold text-left text-white text-[5vw]">
                 FOLLOW
               </p>
+              <a
+                onClick={() => {
+                  navigate("../" + path.POLICY);
+                  HandleSideBar();
+                }}
+                className="text-white hover:underline font-shopee_bold cursor-pointer "
+              >
+                PRIVACY NOTICE
+              </a>
+
               <div className="flex space-x-[2vw]  pt-[2.6vw]">
                 {/* Facebook */}
                 {/* <img src={Facebook} alt='' className='w-[14vw] h-[14vw]' onClick={() => window.location.assign("https://www.facebook.com/JoYuTeaCoffee?mibextid=LQQJ4d")} /> */}

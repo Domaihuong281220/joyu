@@ -15,7 +15,7 @@ import { path } from "../utils/Constant";
 function Signature() {
   const [formData, setFormData] = useState({
     email: "",
-  })
+  });
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -172,11 +172,16 @@ function Signature() {
             <div className="w-full h-[15.5vw] justify-between flex justify-start items-end text-[1.8vw] pl-[3.2vw] pb-[1.5vw]">
               <p className="font-shopee_bold text-white">FOLLOW</p>
               <p className="font-shopee_bold text-white pr-[10vw]">
-              <a onClick={()=>{navigate("../"+path.POLICY)}} href="/privacy-policy" className="text-white hover:underline">
-          PRIVACY NOTICE
-        </a>
-                </p>              
-                <p></p>
+                <a
+                  onClick={() => {
+                    navigate("../" + path.POLICY);
+                  }}
+                  className="text-white hover:underline"
+                >
+                  PRIVACY NOTICE
+                </a>
+              </p>
+              <p></p>
             </div>
             <div className="flex space-x-[1vw] pl-[3.2vw] pt-[2.6vw]">
               {/* Facebook */}
@@ -516,16 +521,22 @@ function Signature() {
           </button>
         </form>
         <div className="h-[0.4vw] w-full bg-gray-300 mt-[12vw] mb-[2vw]"></div>
-        <div className='flex justify-between w-full'>
-      <p className="font-shopee_bold text-left text-white text-[4vw]">
-        FOLLOW
-      </p>
-      <p className="font-shopee_bold text-end text-white text-[4vw]">
-        <a onClick={()=>{navigate("../"+path.POLICY)}} href="/privacy-policy" className="text-white">
-          PRIVACY NOTICE
-        </a>
-      </p>    
-    </div>
+        <div className="flex justify-between w-full">
+          <p className="font-shopee_bold text-left text-white text-[4vw]">
+            FOLLOW
+          </p>
+          <p className="font-shopee_bold text-end text-white text-[4vw]">
+            <a
+              onClick={() => {
+                navigate("../" + path.POLICY);
+              }}
+              href="/privacy-policy"
+              className="text-white"
+            >
+              PRIVACY NOTICE
+            </a>
+          </p>
+        </div>
 
         <div className="flex space-x-[3.5vw] justify-start items-start pt-[2.6vw]">
           {/* Facebook */}
@@ -716,10 +727,10 @@ function Signature() {
               </g>
             </g>
           </svg>
-          
         </div>
         <p className="font-nexa text-start text-[3.5vw] tracking-tighter leading-[6.8vw] pt-[3vw]  pb-[3vw]">
-          Copyright JoYu Tea & Coffee 2024. All Rights Reserved</p>
+          Copyright JoYu Tea & Coffee 2024. All Rights Reserved
+        </p>
       </div>
     </>
   );

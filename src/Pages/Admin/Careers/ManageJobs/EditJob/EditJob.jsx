@@ -40,7 +40,7 @@ const EditJob = () => {
     updateData.append(
       "description",
       editorRef.current ? editorRef.current.innerHTML : ""
-    ); 
+    );
     // updateData.append("description", formData.description);
     updateData.append("availability", formData.availability);
     updateData.append("responsibility", formData.responsibility);
@@ -52,11 +52,15 @@ const EditJob = () => {
     }
 
     await axios
-      .put(`${process.env.REACT_APP_SERVER_URL}/joyu/careers/${id}`, updateData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
+      .put(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/careers/${id}`,
+        updateData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
           toast.success("Edit job successfully!");
@@ -102,52 +106,58 @@ const EditJob = () => {
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">
               Description
-              <span className="text-[10px] text-red-500">(Limit 500 characters)</span>
+              <span className="text-[10px] text-red-500">
+                (Limit 500 characters)
+              </span>
             </p>
-          
-          <div className="flex items-center mb-2">
-            <button
-              onClick={() => applyStyle("bold")}
-              className={`mr-2 px-2 py-1 rounded ${
-                activeStyles.bold ? "bg-blue-500 text-white" : "bg-gray-200"
-              }`}
-            >
-              <b>B</b>
-            </button>
-            <button
-              onClick={() => applyStyle("italic")}
-              className={`mr-2 px-2 py-1 rounded ${
-                activeStyles.italic ? "bg-blue-500 text-white" : "bg-gray-200"
-              }`}
-            >
-              <i>I</i>
-            </button>
-            <button
-              onClick={() => applyStyle("underline")}
-              className={`px-2 py-1 rounded ${
-                activeStyles.underline ? "bg-blue-500 text-white" : "bg-gray-200"
-              }`}
-            >
-              <u>U</u>
-            </button>
+
+            <div className="flex items-center mb-2">
+              <button
+                onClick={() => applyStyle("bold")}
+                className={`mr-2 px-2 py-1 rounded ${
+                  activeStyles.bold ? "bg-blue-500 text-white" : "bg-gray-200"
+                }`}
+              >
+                <b>B</b>
+              </button>
+              <button
+                onClick={() => applyStyle("italic")}
+                className={`mr-2 px-2 py-1 rounded ${
+                  activeStyles.italic ? "bg-blue-500 text-white" : "bg-gray-200"
+                }`}
+              >
+                <i>I</i>
+              </button>
+              <button
+                onClick={() => applyStyle("underline")}
+                className={`px-2 py-1 rounded ${
+                  activeStyles.underline
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200"
+                }`}
+              >
+                <u>U</u>
+              </button>
+            </div>
+            <div
+              ref={editorRef}
+              contentEditable
+              className="w-full h-[300px] border-[1px] p-2  text-start overflow-y-auto"
+              onInput={updateActiveStyles}
+              onMouseUp={updateActiveStyles}
+              onKeyUp={updateActiveStyles}
+              dangerouslySetInnerHTML={{ __html: jobdetail.description }}
+            />
           </div>
-          <div
-            ref={editorRef}
-            contentEditable
-            className="w-full h-[300px] border-[1px] p-2  text-start overflow-y-auto"
-            onInput={updateActiveStyles}
-            onMouseUp={updateActiveStyles}
-            onKeyUp={updateActiveStyles}
-            dangerouslySetInnerHTML={{ __html: jobdetail.longdescription }}
-          />
-        </div>
-            <div className="text-right w-full text-sm text-gray-600">
-              {formData.description.length}/500
+          <div className="text-right w-full text-sm text-gray-600">
+            {formData.description.length}/500
           </div>
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">
               Responsibility
-              <span className="text-[10px] text-red-500">(Limit 500 characters)</span>
+              <span className="text-[10px] text-red-500">
+                (Limit 500 characters)
+              </span>
             </p>
             <textarea
               className="w-full h-[300px] border-[1px] p-2"
