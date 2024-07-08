@@ -9,11 +9,14 @@ import axios from "axios";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { toast, Toaster } from "sonner";
 import { isValidInputsignUpFooter } from "../utils/common/validators";
+import { useNavigate } from "react-router-dom";
+import { path } from "../utils/Constant";
 
 function Signature() {
   const [formData, setFormData] = useState({
     email: "",
-  });
+  })
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -169,9 +172,9 @@ function Signature() {
             <div className="w-full h-[15.5vw] justify-between flex justify-start items-end text-[1.8vw] pl-[3.2vw] pb-[1.5vw]">
               <p className="font-shopee_bold text-white">FOLLOW</p>
               <p className="font-shopee_bold text-white pr-[10vw]">
-                  <a href="/privacy-policy" className="text-white">
-                    PRIVACY NOTICE
-                  </a>
+              <a onClick={()=>{navigate("../"+path.POLICY)}} href="/privacy-policy" className="text-white hover:underline">
+          PRIVACY NOTICE
+        </a>
                 </p>              
                 <p></p>
             </div>
@@ -504,7 +507,7 @@ function Signature() {
           />
           <button
             type="submit"
-            className="w-[60px] h-[100%] py-[1vw] bg-[#848347] flex justify-center items-center rounded-r-[20px]"
+            className="w-[80px] h-[100%] py-[1vw] bg-[#848347] flex justify-center items-center rounded-r-full"
           >
             <Icon
               icon={"mingcute:send-fill"}
@@ -518,7 +521,7 @@ function Signature() {
         FOLLOW
       </p>
       <p className="font-shopee_bold text-end text-white text-[4vw]">
-        <a href="/privacy-policy" className="text-white">
+        <a onClick={()=>{navigate("../"+path.POLICY)}} href="/privacy-policy" className="text-white">
           PRIVACY NOTICE
         </a>
       </p>    
