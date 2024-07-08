@@ -35,7 +35,6 @@ const CreateLocation = () => {
   // console.log(formData)
   const handleCreateLocation = async () => {
     let check = isValidInputCreateLocation(formData, toast);
-    console.log(check, "check");
     if (check) {
       try {
         const response = await axios.post(
@@ -81,7 +80,6 @@ const CreateLocation = () => {
     }
 
     setFormData({ ...formData, hours: newHours });
-    console.log(newHours, "check");
   };
 
   return (

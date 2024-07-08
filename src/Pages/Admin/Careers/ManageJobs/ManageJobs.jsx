@@ -16,16 +16,15 @@ const ManageJobs = () => {
   const navigate = useNavigate();
   const [CareersData, setCareersData] = useState([]);
   const [positions, setPositions] = useState([]);
+  const [status, setStatus] = useState([]);
   const [selectedJobTitle, setSelectedJobTitle] = useState({
     key: "All",
     value: "All",
   });
-  const [selectedStatus, setSelectedStatus] = useState([
-    {
-      key: "All",
-      value: "All",
-    },
-  ]);
+  const [selectedStatus, setSelectedStatus] = useState({
+    key: "All",
+    value: "All",
+  });
 
   const handleEditJob = async (record) => {
     navigate("../" + path.EDITJOB + `/${record._id}`, {
@@ -33,20 +32,40 @@ const ManageJobs = () => {
     });
   };
 
+  const [filterData, setFilterData] = useState({
+    availability: "All",
+    position: "All",
+  });
+
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     handlegetCareers();
     handlegetpositon();
+    handlegetavailability();
   }, []);
 
   // Call API
 
   // Get News
+
   const handlegetCareers = async () => {
     await axios
       .get(`${process.env.REACT_APP_SERVER_URL}/joyu/careers`)
       .then((res) => {
         setCareersData(res.data.data);
+        const tempArr = [];
+        const availabilityValues = [
+          ...new Set(CareersData.map((item) => item.availability)),
+        ];
+
+        for (let index = 0; index < availabilityValues?.length; index++) {
+          const element = availabilityValues[index];
+          tempArr.push({
+            key: element,
+            label: element,
+          });
+          setStatus(tempArr);
+        }
         setIsLoading(false);
       })
       .catch((err) => {
@@ -57,14 +76,33 @@ const ManageJobs = () => {
     await axios
       .get(`${process.env.REACT_APP_SERVER_URL}/joyu/careers/positions`)
       .then((res) => {
-        const tempArr_1 = [];
+        const tempArr = [];
         for (let index = 0; index < res.data.data?.length; index++) {
           const element = res.data.data[index];
-          tempArr_1.push({
+          tempArr.push({
             key: element,
             label: element,
           });
-          setPositions(tempArr_1);
+          setPositions(tempArr);
+        }
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const handlegetavailability = async () => {
+    await axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/joyu/careers/availability`)
+      .then((res) => {
+        const tempArr = [];
+        for (let index = 0; index < res.data.data?.length; index++) {
+          const element = res.data.data[index];
+          tempArr.push({
+            key: element,
+            label: element,
+          });
+          setStatus(tempArr);
         }
         setIsLoading(false);
       })
@@ -86,6 +124,21 @@ const ManageJobs = () => {
       .catch((err) => {
         toast.error("Delete jobs wrong: " + err.message);
       });
+  };
+
+  const handlefilter = async () => {
+    try {
+      const response = await axios.post(
+        // `${process.env.REACT_APP_SERVER_URL}/user`,
+        `${process.env.REACT_APP_SERVER_URL}/joyu/careers/filter`,
+        filterData
+      );
+
+      setCareersData(response.data.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("create failed:", error);
+    }
   };
 
   const columns = [
@@ -198,7 +251,6 @@ const ManageJobs = () => {
       ),
     },
   ];
-
   return (
     <div className="">
       <div className="w-[90%] mx-auto h-auto bg-white shadow-xl rounded-lg p-1">
@@ -224,22 +276,36 @@ const ManageJobs = () => {
                 <p className="">Add New Job</p>
               </button>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-center">
+              <Button
+                className="flex items-center gap-2"
+                type="primary"
+                onClick={() => {
+                  handlegetCareers();
+                  setSelectedJobTitle({ key: "All", value: "All" });
+                  setSelectedStatus({ key: "All", value: "All" });
+                }}
+              >
+                <p className="">refresh All</p>
+                <Icon icon={"mdi:reload"}></Icon>
+              </Button>
               <Select
                 style={{
                   width: 300,
                   height: 40,
                 }}
-                value={selectedJobTitle.value}
+                value={selectedJobTitle}
+                placeholder={"Selected Position"}
                 onChange={(value) => {
                   setSelectedJobTitle({
                     ...selectedJobTitle,
                     value: value,
                   });
+                  setFilterData({ ...filterData, position: value });
                 }}
               >
                 <Select.Option key={"All"} value={"All"}>
-                  {"All"}
+                  All
                 </Select.Option>
                 {positions.map((position) => (
                   <Select.Option key={position.key} value={position.value}>
@@ -248,7 +314,40 @@ const ManageJobs = () => {
                 ))}
               </Select>
 
-              <button className="w-auto h-auto p-2 rounded-lg border-2 border-green-300 hover:border-green-500 flex items-center gap-x-2 hover:shadow-lg">
+              <Select
+                style={{
+                  width: 300,
+                  height: 40,
+                }}
+                placeholder={"Selected status "}
+                value={selectedStatus}
+                onChange={(value) => {
+                  setSelectedStatus({
+                    ...selectedStatus,
+                    value: value,
+                  });
+                  setFilterData({ ...filterData, availability: value });
+                }}
+              >
+                <Select.Option key={"All"} value={"All"}>
+                  All
+                </Select.Option>
+                {status.map((availability) => (
+                  <Select.Option
+                    key={availability.key}
+                    value={availability.value}
+                  >
+                    {availability.key === "true" ? "Available" : "Unavailable"}
+                  </Select.Option>
+                ))}
+              </Select>
+
+              <button
+                className="w-auto h-auto p-2 rounded-lg border-2 border-green-300 hover:border-green-500 flex items-center gap-x-2 hover:shadow-lg"
+                onClick={() => {
+                  handlefilter();
+                }}
+              >
                 <Icon
                   icon="material-symbols-light:search"
                   width={24}

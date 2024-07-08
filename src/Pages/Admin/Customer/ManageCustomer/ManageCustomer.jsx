@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { path } from "../../../../utils/Constant";
-import { Button, Popconfirm, Modal  } from 'antd';
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import { Button, Popconfirm, Modal, Spin } from "antd";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 import { isValidInputsignUpFooter } from "../../../../utils/common/validators";
 
 const ManageCustomer = () => {
@@ -20,6 +20,8 @@ const ManageCustomer = () => {
     email: "",
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
   //Add Customer
   const showModal = () => {
     setIsModalOpen(true);
@@ -27,18 +29,19 @@ const ManageCustomer = () => {
 
   const handleOk = async () => {
     let check = isValidInputsignUpFooter(formData, toast);
-  
+
     if (check === true) {
       try {
         const response = await axios.post(
           `${process.env.REACT_APP_SERVER_URL}/joyu/customer`,
           formData
         );
-  
+
         if (response.status === 200) {
           toast.success("Thank you for subscribing!");
           setIsModalOpen(false);
-          handlegetUsers()
+          handlegetUsers();
+          setIsLoading(false);
         } else {
           toast.error("Something went wrong, please try again!");
         }
@@ -52,7 +55,6 @@ const ManageCustomer = () => {
         console.log(err);
       }
     }
-   
   };
 
   const handleCancel = () => {
@@ -95,6 +97,7 @@ const ManageCustomer = () => {
 
       if (response.status === 200 || response.status === 201) {
         setUserData(response.data);
+        setIsLoading(false);
       } else {
         setUserData([]);
       }
@@ -117,6 +120,7 @@ const ManageCustomer = () => {
         if (res.status === 200 || res.status === 201) {
           toast.success("Delete User successfully!");
           handlegetUsers();
+          setIsLoading(false);
           navigate("../" + path.CUSTOMERMANAGE);
         }
       })
@@ -129,12 +133,6 @@ const ManageCustomer = () => {
   }, []);
   // console.log(userData);
 
-  // console.log(user)
-  const handleEditUser = (record) => {
-    navigate("../" + path.EDITUSER, {
-      state: record,
-    });
-  };
   // navigate
   const navigate = useNavigate();
   // Declare label for table
@@ -160,20 +158,23 @@ const ManageCustomer = () => {
             <p className="">Edit</p>
           </button> */}
 
-<Popconfirm placement="rightTop"
-                      title="Confirm Deletion" 
-                       description="Are you sure you want to delete this customer?"
-                        okText="Delete"
-                        cancelText="Cancel"
-                        onConfirm={() => handledeleUser(record._id)}
-                       icon={
-                        <QuestionCircleOutlined
-                          style={{
-                            color: 'red',
-                          }}
-                        /> }>
-                             <Button danger >Delete</Button>
-      </Popconfirm>
+          <Popconfirm
+            placement="rightTop"
+            title="Confirm Deletion"
+            description="Are you sure you want to delete this customer?"
+            okText="Delete"
+            cancelText="Cancel"
+            onConfirm={() => handledeleUser(record._id)}
+            icon={
+              <QuestionCircleOutlined
+                style={{
+                  color: "red",
+                }}
+              />
+            }
+          >
+            <Button danger>Delete</Button>
+          </Popconfirm>
         </div>
       ),
     },
@@ -221,49 +222,56 @@ const ManageCustomer = () => {
                 <p className="">Send email</p>
               </button>
             </div>
-           
 
             {/* Add Customer */}
             <div>
-            <>
-      <Button type="primary" onClick={showModal}>
-        +
-      </Button>
-      <Modal title="Add Customer" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-      <form
-                onSubmit={handleSubmit}
-                className="flex justify-start items-center  "
-              >
-                <input
-                  className="font-nexa_light h-[100%] text-black  text-[1vw]  px-6 py-[0.5vw] w-full rounded-xl border border-green-300 "
-                  placeholder="Enter customer email"
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      handleOk();
-                    }
+              <>
+                <Button type="primary" onClick={showModal}>
+                  +
+                </Button>
+                <Modal
+                  title="Add Customer"
+                  open={isModalOpen}
+                  onOk={handleOk}
+                  onCancel={handleCancel}
+                >
+                  <form
+                    onSubmit={handleSubmit}
+                    className="flex justify-start items-center  "
+                  >
+                    <input
+                      className="font-nexa_light h-[100%] text-black  text-[1vw]  px-6 py-[0.5vw] w-full rounded-xl border border-green-300 "
+                      placeholder="Enter customer email"
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          handleOk();
+                        }
+                      }}
+                    />
+                  </form>
+                </Modal>
+              </>
+            </div>
+          </div>
+          {isLoading ? (
+            <Spin></Spin>
+          ) : (
+            <div className="flex justify-center items-center">
+              <div className="w-[95%]">
+                <Table
+                  columns={columns}
+                  dataSource={userData}
+                  pagination={{ pageSize: 15, position: ["bottomCenter"] }}
+                  scroll={{
+                    x: "max-content",
                   }}
                 />
-              
-              </form>
-      </Modal>
-    </>                 
+              </div>
             </div>
-          </div>
-          <div className="flex justify-center items-center">
-            <div className="w-[95%]">
-              <Table
-                columns={columns}
-                dataSource={userData}
-                pagination={{ pageSize: 15, position: ["bottomCenter"] }}
-                scroll={{
-                  x: "max-content",
-                }}
-              />
-            </div>
-          </div>
+          )}
         </div>
       </div>
 

@@ -49,7 +49,6 @@ const Location = () => {
         location.address.toLowerCase().includes(searchInput.toLowerCase())
     );
     setFilteredLocations(filtered);
-    console.log(filteredLocations);
   }, [searchInput, locations]);
 
   return (

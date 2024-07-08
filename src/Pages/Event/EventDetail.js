@@ -25,7 +25,6 @@ const EventDetail = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_URL}/joyu/news/${code}`
       );
-      console.log(response.data.data);
       setData(response.data.data);
     } catch (err) {
       console.log(err);

@@ -86,7 +86,6 @@ const AddressManage = () => {
       key: "availability",
 
       render: (e, record) => {
-        console.log(record);
         return (
           <div className="">
             <p

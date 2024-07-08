@@ -110,7 +110,6 @@ const ManageEvents = () => {
       key: "longdescription",
 
       render : (e)=>{
-        console.log(e,"dkjashdkjasdh")
         return <p
         className="text-start pv:max-md:text-[8vw]"
         dangerouslySetInnerHTML={{
