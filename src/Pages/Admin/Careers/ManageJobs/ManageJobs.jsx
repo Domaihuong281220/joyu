@@ -15,8 +15,17 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 const ManageJobs = () => {
   const navigate = useNavigate();
   const [CareersData, setCareersData] = useState([]);
-  const [position, setPosition] = useState([]);
-  // const [messageApi, contextHolder] = message.useMessage();
+  const [positions, setPositions] = useState([]);
+  const [selectedJobTitle, setSelectedJobTitle] = useState({
+    key: "All",
+    value: "All",
+  });
+  const [selectedStatus, setSelectedStatus] = useState([
+    {
+      key: "All",
+      value: "All",
+    },
+  ]);
 
   const handleEditJob = async (record) => {
     navigate("../" + path.EDITJOB + `/${record._id}`, {
@@ -48,31 +57,21 @@ const ManageJobs = () => {
     await axios
       .get(`${process.env.REACT_APP_SERVER_URL}/joyu/careers/positions`)
       .then((res) => {
-        setPosition(res.data.data);
+        const tempArr_1 = [];
+        for (let index = 0; index < res.data.data?.length; index++) {
+          const element = res.data.data[index];
+          tempArr_1.push({
+            key: element,
+            label: element,
+          });
+          setPositions(tempArr_1);
+        }
         setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
-  useEffect(() => {
-    const tempArr_1 = [];
-    const tempArr_2 = [];
-
-    // child member
-    for (let index = 0; index < position?.length; index++) {
-      const element = position[index];
-      tempArr_1.push({
-        key: element,
-        label: "element",
-      });
-      setPosition(tempArr_1);
-    }
-  }, []);
-
-  console.log(position, "check data");
-  // Delete News
 
   const handledeleCareers = async (id) => {
     await axios
@@ -227,47 +226,28 @@ const ManageJobs = () => {
             </div>
             <div className="flex gap-2">
               <Select
-                placeholder="Select Job Title"
                 style={{
-                  width: 200,
+                  width: 300,
                   height: 40,
                 }}
-                options={[
-                  {
-                    value: "jack",
-                    label: "Jack",
-                  },
-                  {
-                    value: "lucy",
-                    label: "Lucy",
-                  },
-                  {
-                    value: "Yiminghe",
-                    label: "yiminghe",
-                  },
-                ]}
-              />
-              <Select
-                placeholder="Select Status"
-                style={{
-                  width: 200,
-                  height: 40,
+                value={selectedJobTitle.value}
+                onChange={(value) => {
+                  setSelectedJobTitle({
+                    ...selectedJobTitle,
+                    value: value,
+                  });
                 }}
-                options={[
-                  {
-                    value: "jack",
-                    label: "Jack",
-                  },
-                  {
-                    value: "lucy",
-                    label: "Lucy",
-                  },
-                  {
-                    value: "Yiminghe",
-                    label: "yiminghe",
-                  },
-                ]}
-              />
+              >
+                <Select.Option key={"All"} value={"All"}>
+                  {"All"}
+                </Select.Option>
+                {positions.map((position) => (
+                  <Select.Option key={position.key} value={position.value}>
+                    {position.value}
+                  </Select.Option>
+                ))}
+              </Select>
+
               <button className="w-auto h-auto p-2 rounded-lg border-2 border-green-300 hover:border-green-500 flex items-center gap-x-2 hover:shadow-lg">
                 <Icon
                   icon="material-symbols-light:search"
