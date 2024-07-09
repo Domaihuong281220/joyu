@@ -182,7 +182,7 @@ function Signature() {
                   onClick={() => {
                     navigate("../" + path.POLICY);
                   }}
-                  className="text-white hover:underline"
+                  className="text-white hover:underline cursor-pointer"
                 >
                   PRIVACY NOTICE
                 </a>
@@ -536,8 +536,7 @@ function Signature() {
               onClick={() => {
                 navigate("../" + path.POLICY);
               }}
-              href="/privacy-policy"
-              className="text-white"
+              className="text-white cursor-pointer"
             >
               PRIVACY NOTICE
             </a>
