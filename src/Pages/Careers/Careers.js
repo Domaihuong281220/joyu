@@ -111,7 +111,7 @@ const Careers = () => {
           return (
             <>
               <CardCareerAddress
-                title={item.careerId.position}
+                title={item?.careerId.position}
                 address={item.address}
                 // isLast={isLastItem}
               ></CardCareerAddress>
