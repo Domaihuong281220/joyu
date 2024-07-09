@@ -13,7 +13,8 @@ const ProductEdit = () => {
   const location = useLocation();
   const data = location.state;
   const [addressPosition, setaddressPosition] = useState([]);
-
+  const [careers, setCareers] = useState([]);
+  const [careersPosition, setcareersPosition] = useState([]);
   const [formData, setFormData] = useState({
     address: data.address,
     position: data.position,
@@ -23,7 +24,27 @@ const ProductEdit = () => {
 
   useEffect(() => {
     handleGetAddress();
+    handlegetCareer();
   }, []);
+
+  // const handlegetpositon = async () => {
+  //   await axios
+  //     .get(`${process.env.REACT_APP_SERVER_URL}/joyu/careers/positions`)
+  //     .then((res) => {
+  //       const tempArr = [];
+  //       for (let index = 0; index < res.data.data?.length; index++) {
+  //         const element = res.data.data[index];
+  //         tempArr.push({
+  //           key: element,
+  //           label: element,
+  //         });
+  //         setaddressPosition(tempArr);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   // Remove duplicate elements
   const getUniquePositions = (positions) => {
@@ -49,7 +70,19 @@ const ProductEdit = () => {
       console.error(err);
     }
   };
+  const handlegetCareer = async () => {
+    await axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/joyu/careers`)
+      .then((res) => {
+        const positions = res.data.data.map((career) => career.position);
+        setCareers(res.data.data);
 
+        setcareersPosition(positions);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const handleEdit = async (id) => {
     try {
       const res = await axios.put(
@@ -64,6 +97,15 @@ const ProductEdit = () => {
     } catch (err) {
       toast.error("Edit Address failed: " + err.message);
     }
+  };
+  const handlePostionChange = (e) => {
+    const selectedposition = e;
+
+    const positionobj = careers.filter(
+      (position) => position.position === selectedposition
+    );
+
+    setFormData({ ...formData, careerId: positionobj[0]._id });
   };
 
   return (
@@ -95,22 +137,17 @@ const ProductEdit = () => {
           </div>
 
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
-            <p className="text-lg">Category</p>
+            <p className="text-lg">Job Position</p>
             <Select
-              className="w-full h-auto"
-              placeholder="Select a category"
-              value={formData.careerId.position}
-              onChange={(value) => {
-                setFormData({ ...formData, careerId: value });
-              }}
+              icon={false}
+              placeholder="Please select position"
+              className="border-[1px] p-2 w-full h-auto"
+              onChange={handlePostionChange}
             >
-              {uniquePositions.map((position) => (
-                <Select.Option
-                  key={position.careerId._id}
-                  value={position.careerId._id}
-                >
-                  {position.careerId.position}
-                </Select.Option>
+              {careersPosition.map((item, index) => (
+                <option key={index} value={item}>
+                  {item}
+                </option>
               ))}
             </Select>
           </div>

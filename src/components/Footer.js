@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Facebook from "../assets/Footer/Facebook.png";
 import IG from "../assets/Footer/IG.png";
@@ -16,6 +16,12 @@ function Signature() {
   const [formData, setFormData] = useState({
     email: "",
   });
+  const [year, setYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    const currentYear = new Date().getFullYear();
+    setYear(currentYear);
+  }, []);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -374,7 +380,7 @@ function Signature() {
               </svg>
             </div>
             <p className="w-full text-start pl-[3.2vw] font-nexa_light font-black  text-white text-[1.1vw] pt-[3.5vw]">
-              Copyright JoYu Tea & Coffee 2022. All Rights Reserved
+              Copyright JoYu Tea & Coffee {year}. All Rights Reserved
             </p>
           </div>
         </div>
@@ -729,7 +735,7 @@ function Signature() {
           </svg>
         </div>
         <p className="font-nexa text-start text-[3.5vw] tracking-tighter leading-[6.8vw] pt-[3vw]  pb-[3vw]">
-          Copyright JoYu Tea & Coffee 2024. All Rights Reserved
+          Copyright JoYu Tea & Coffee {year}. All Rights Reserved
         </p>
       </div>
     </>

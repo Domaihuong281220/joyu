@@ -13,6 +13,7 @@ import axios from "axios";
 import mobileLogo from "../assets/SideBar/Group 5.png";
 import mobileLogo2 from "../assets/SideBar/mobilewhite.png";
 import { toast, Toaster } from "sonner";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const Sidebar = () => {
   const location = useLocation(); // Get the current location
@@ -477,10 +478,12 @@ const Sidebar = () => {
                 To stay up-to-date on our promotions, discounts, sales, special
                 offers and more.
               </p>
-              <form onSubmit={handleSubmit} className="flex justify-start">
+              <form
+                onSubmit={handleSubmit}
+                className="flex justify-start items-center  "
+              >
                 <input
-                  type="email"
-                  className="font-nexa_light text-[#44614f46] mt-[1vw] px-[1vw] py-[1vw] w-[21vw] text-[1vw] rounded-full"
+                  className="font-nexa_light h-[100%] text-black  text-[1vw]  px-6 py-[1vw] w-full rounded-l-full "
                   placeholder="Enter your email"
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
@@ -492,8 +495,14 @@ const Sidebar = () => {
                     }
                   }}
                 />
-                <button type="submit" style={{ display: "none" }}>
-                  Submit
+                <button
+                  type="submit"
+                  className="w-[4.5vw] h-[100%] py-[1vw] bg-[#848347] flex justify-center items-center rounded-r-full"
+                >
+                  <Icon
+                    icon={"mingcute:send-fill"}
+                    className="text-white h-[1.5vw] w-[1.5vw]"
+                  ></Icon>
                 </button>
               </form>
             </div>
@@ -1167,46 +1176,51 @@ const Sidebar = () => {
                   </g>
                 </g>
               </svg>
-              <p className="font-nexa_bold font-black uppercase text-start w-full pt-[10vw] text-[6vw] tracking-tighter">
+              <p className="font-nexa_bold font-black uppercase text-start w-full pt-[10vw] text-[6vw] ">
                 Sign up for our update
               </p>
               <p className="font-nexa text-start text-[4.75vw] w-full tracking-tighter leading-[6.8vw] pt-[2vw] pb-[5vw]">
                 To stay up-to-date on our promotions, discounts, sales, special
                 offers and more.
               </p>
-              <form onSubmit={handleSubmit} className="flex justify-start">
+              <form
+                onSubmit={handleSubmit}
+                className="flex justify-start items-center w-[100%] "
+              >
                 <input
                   type="email"
-                  className="font-nexa_light text-[#44614f46] mt-[1vw] px-[1vw] text-center py-[4vw] w-[83vw] text-[4vw] rounded-full"
+                  className="font-nexa_light text-black  px-[4vw] text-start py-[4vw] w-[100%] text-[4vw] rounded-l-full"
                   placeholder="Enter your email"
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                      handleSubmit(e);
-                    }
-                  }}
                 />
-                <button type="submit" style={{ display: "none" }}>
-                  Submit
+                <button
+                  type="submit"
+                  className="w-[80px] h-[100%] py-[1vw] bg-[#848347] flex justify-center items-center rounded-r-full"
+                >
+                  <Icon
+                    icon={"mingcute:send-fill"}
+                    className="text-white h-6 w-6"
+                  ></Icon>
                 </button>
               </form>
-              <div className="h-[0.4vw] w-full bg-gray-300 mt-[12vw] mb-[3vw]"></div>
-              <p className="font-shopee_bold text-left text-white text-[5vw]">
-                FOLLOW
-              </p>
-              <a
-                onClick={() => {
-                  navigate("../" + path.POLICY);
-                  HandleSideBar();
-                }}
-                className="text-white hover:underline font-shopee_bold cursor-pointer "
-              >
-                PRIVACY NOTICE
-              </a>
 
+              <div className="h-[0.4vw] w-full bg-gray-300 mt-[12vw] mb-[3vw]"></div>
+              <div className="flex items-center  justify-between w-full">
+                <p className="font-shopee_bold text-left text-white text-[5vw]">
+                  FOLLOW
+                </p>
+                <a
+                  onClick={() => {
+                    navigate("../" + path.POLICY);
+                    HandleSideBar();
+                  }}
+                  className="text-white hover:underline font-shopee_bold text-left text-[5vw] cursor-pointer "
+                >
+                  PRIVACY NOTICE
+                </a>
+              </div>
               <div className="flex space-x-[2vw]  pt-[2.6vw]">
                 {/* Facebook */}
                 {/* <img src={Facebook} alt='' className='w-[14vw] h-[14vw]' onClick={() => window.location.assign("https://www.facebook.com/JoYuTeaCoffee?mibextid=LQQJ4d")} /> */}

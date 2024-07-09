@@ -61,7 +61,7 @@ const AddressAdd = () => {
         toast.error("Failed to create address.");
       }
     } catch (error) {
-      toast.error("Failed to create address: " + error.message);
+      toast.error("Failed to create address: " + "Please select position");
     }
   };
 
