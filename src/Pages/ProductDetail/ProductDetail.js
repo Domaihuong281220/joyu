@@ -44,17 +44,13 @@ const ProductDetail = () => {
         </div>
         <div className="">
           {descriptionsplit.map((descriptionrow, index) => (
-            <p
-              key={index}
-              className="text-[30px] font-nexa_light pv:max-md:font-nexa text-start pv:max-md:text-center pv:max-md:text-[5vw] md:max-xl:text-[24px] pb-[2vw]"
-            >
-               <p
-                className="text-start pv:max-md:text-[8vw]"
-                dangerouslySetInnerHTML={{
-          __html: replaceNewlinesWithBreaks(descriptionrow),
-        }}
-      ></p>
-            </p>
+            <div className="w-[95%] mx-auto"><p
+            className="text-start pv:max-md:text-[5vw] font-nexa_light"
+            dangerouslySetInnerHTML={{
+      __html: replaceNewlinesWithBreaks(descriptionrow),
+    }}
+  ></p></div>
+           
           ))}
         </div>
       </div>

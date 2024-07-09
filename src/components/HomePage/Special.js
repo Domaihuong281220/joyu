@@ -12,7 +12,7 @@ function Special() {
   return (
     <div className="bg-primary pv:max-md:bg-white w-full grid grid-cols-5 pv:max-md:grid-cols-1 px-[12%] pv:max-md:px-[5%] py-[3vw] pv:max-md:py-[15vw] gap-[1.5vw]">
       <div
-        className="relative h-fit pv:max-md:flex justify-center items-center"
+        className="relative h-fit pv:max-md:flex justify-center items-center cursor-pointer"
         onClick={() => navigate("/menu#joyu")}
       >
         <img
@@ -25,7 +25,7 @@ function Special() {
         </p>
       </div>
       <div
-        className="relative h-fit pv:max-md:flex justify-center items-center"
+        className="relative h-fit pv:max-md:flex justify-center items-center cursor-pointer"
         onClick={() => navigate("/menu#fullleaf")}
       >
         <img
@@ -38,7 +38,7 @@ function Special() {
         </p>
       </div>
       <div
-        className="relative h-fit pv:max-md:flex justify-center items-center"
+        className="relative h-fit pv:max-md:flex justify-center items-center cursor-pointer"
         onClick={() => navigate("/menu#freshtea")}
       >
         <img
@@ -51,7 +51,7 @@ function Special() {
         </p>
       </div>
       <div
-        className="relative h-fit pv:max-md:flex justify-center items-center"
+        className="relative h-fit pv:max-md:flex justify-center items-center cursor-pointer"
         onClick={() => navigate("/menu#phin")}
       >
         <img
@@ -64,7 +64,7 @@ function Special() {
         </p>
       </div>
       <div
-        className="relative h-fit pv:max-md:flex justify-center items-center"
+        className="relative h-fit pv:max-md:flex justify-center items-center cursor-pointer"
         onClick={() => navigate("/menu#pastries")}
       >
         <img

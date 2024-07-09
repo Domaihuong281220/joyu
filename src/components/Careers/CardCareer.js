@@ -15,7 +15,7 @@ const CardCareer = ({ position, description, Responsibilities, img }) => {
           <div className="text-start pb-[2vw]">
             {/* <p className="font-nexa_light text-[1.3vw]">{description}</p> */}
             <p
-              className="font-nexa_light text-[30px] "
+              className="font-nexa_light text-[1.3vw] "
               // dangerouslySetInnerHTML={{ __html: description }}
               dangerouslySetInnerHTML={{
                 __html: replaceNewlinesWithBreaks(description),
@@ -52,8 +52,10 @@ const CardCareer = ({ position, description, Responsibilities, img }) => {
           </div>
           <div className="w-full h-[1px] bg-black my-4 pv:max-md:hidden"></div>
           <div className="text-start py-2">
-            <p className="font-nexa_light text-[25px] pv:max-ph:text-[20px]">
-              {description}
+            <p className="font-nexa_light text-[25px] pv:max-ph:text-[20px]"  dangerouslySetInnerHTML={{
+                __html: replaceNewlinesWithBreaks(description),
+              }}>
+              
             </p>
           </div>
           {/* <div className="text-start py-2 ">
