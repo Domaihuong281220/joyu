@@ -33,13 +33,40 @@ const EditJob = () => {
       setImage(file);
     }
   };
-
+  const cleanHTML = (html) => {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+  
+    const cleanNode = (node) => {
+      if (node.nodeType === 1) { // Element node
+        const style = node.getAttribute("style");
+        if (style) {
+          const stylesToPreserve = ["font-weight", "font-style", "text-decoration"];
+          const styleMap = style.split(";").reduce((acc, style) => {
+            const [property, value] = style.split(":");
+            if (stylesToPreserve.includes(property.trim())) {
+              acc[property.trim()] = value.trim();
+            }
+            return acc;
+          }, {});
+          node.setAttribute("style", Object.entries(styleMap).map(([property, value]) => `${property}: ${value}`).join("; "));
+        }
+        // Recursively clean child nodes
+        for (let i = 0; i < node.childNodes.length; i++) {
+          cleanNode(node.childNodes[i]);
+        }
+      }
+    };
+  
+    cleanNode(div);
+    return div.innerHTML;
+  };
   const handleEdit = async (id) => {
     const updateData = new FormData();
     updateData.append("position", formData.position);
     updateData.append(
       "description",
-      editorRef.current ? editorRef.current.innerHTML : ""
+      cleanHTML(editorRef.current ? editorRef.current.innerHTML : "")
     ); 
     // updateData.append("description", formData.description);
     updateData.append("availability", formData.availability);
@@ -138,7 +165,7 @@ const EditJob = () => {
             onInput={updateActiveStyles}
             onMouseUp={updateActiveStyles}
             onKeyUp={updateActiveStyles}
-            dangerouslySetInnerHTML={{ __html: jobdetail.longdescription }}
+            dangerouslySetInnerHTML={{ __html: jobdetail.description }}
           />
         </div>
             <div className="text-right w-full text-sm text-gray-600">

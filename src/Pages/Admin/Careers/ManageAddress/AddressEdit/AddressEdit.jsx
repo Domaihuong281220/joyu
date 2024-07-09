@@ -95,10 +95,10 @@ const ProductEdit = () => {
           </div>
 
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
-            <p className="text-lg">Category</p>
+            <p className="text-lg">Position</p>
             <Select
               className="w-full h-auto"
-              placeholder="Select a category"
+              placeholder="Select a Position"
               value={formData.careerId.position}
               onChange={(value) => {
                 setFormData({ ...formData, careerId: value });

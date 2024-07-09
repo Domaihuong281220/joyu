@@ -1,6 +1,7 @@
 /** @format */
 
 import React from "react";
+import {replaceNewlinesWithBreaks} from "../../utils/Constant"
 
 const CardCareer = ({ position, description, Responsibilities, img }) => {
   return (
@@ -14,8 +15,11 @@ const CardCareer = ({ position, description, Responsibilities, img }) => {
           <div className="text-start pb-[2vw]">
             {/* <p className="font-nexa_light text-[1.3vw]">{description}</p> */}
             <p
-              className="font-nexa_light text-[1.3vw]"
-              dangerouslySetInnerHTML={{ __html: description }}
+              className="font-nexa_light text-[30px] "
+              // dangerouslySetInnerHTML={{ __html: description }}
+              dangerouslySetInnerHTML={{
+                __html: replaceNewlinesWithBreaks(description),
+              }}
             ></p>
           </div>
 

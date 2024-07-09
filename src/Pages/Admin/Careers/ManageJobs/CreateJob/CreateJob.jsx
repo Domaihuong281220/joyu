@@ -34,12 +34,42 @@ const CreateJob = () => {
   });
   const editorRef = useRef(null);
   // console.log(formData, "check");
+
+  const cleanHTML = (html) => {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+  
+    const cleanNode = (node) => {
+      if (node.nodeType === 1) { // Element node
+        const style = node.getAttribute("style");
+        if (style) {
+          const stylesToPreserve = ["font-weight", "font-style", "text-decoration"];
+          const styleMap = style.split(";").reduce((acc, style) => {
+            const [property, value] = style.split(":");
+            if (stylesToPreserve.includes(property.trim())) {
+              acc[property.trim()] = value.trim();
+            }
+            return acc;
+          }, {});
+          node.setAttribute("style", Object.entries(styleMap).map(([property, value]) => `${property}: ${value}`).join("; "));
+        }
+        // Recursively clean child nodes
+        for (let i = 0; i < node.childNodes.length; i++) {
+          cleanNode(node.childNodes[i]);
+        }
+      }
+    };
+  
+    cleanNode(div);
+    return div.innerHTML;
+  };
+
   const handleCreateJob = async (id) => {
     const formData = new FormData();
     formData.append("position", position); // Use priceNumber instead of price
     formData.append(
       "description",
-      editorRef.current ? editorRef.current.innerHTML : ""
+      cleanHTML(editorRef.current ? editorRef.current.innerHTML : "")
     );
     // formData.append("description", description);
     formData.append("responsibility", responsibility);

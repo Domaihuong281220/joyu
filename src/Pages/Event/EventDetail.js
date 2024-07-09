@@ -62,6 +62,7 @@ const EventDetail = () => {
               __html: replaceNewlinesWithBreaks(data.longdescription),
             }}
           ></p>
+
         </div>
       </div>
     </div>

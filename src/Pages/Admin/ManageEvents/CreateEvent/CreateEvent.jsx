@@ -29,6 +29,36 @@ const CreateEvent = () => {
     setFiles(newFiles); // Update the state
   };
 
+  // Clean up the HTML content
+  const cleanHTML = (html) => {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+  
+    const cleanNode = (node) => {
+      if (node.nodeType === 1) { // Element node
+        const style = node.getAttribute("style");
+        if (style) {
+          const stylesToPreserve = ["font-weight", "font-style", "text-decoration"];
+          const styleMap = style.split(";").reduce((acc, style) => {
+            const [property, value] = style.split(":");
+            if (stylesToPreserve.includes(property.trim())) {
+              acc[property.trim()] = value.trim();
+            }
+            return acc;
+          }, {});
+          node.setAttribute("style", Object.entries(styleMap).map(([property, value]) => `${property}: ${value}`).join("; "));
+        }
+        // Recursively clean child nodes
+        for (let i = 0; i < node.childNodes.length; i++) {
+          cleanNode(node.childNodes[i]);
+        }
+      }
+    };
+  
+    cleanNode(div);
+    return div.innerHTML;
+  };
+
   const handleUpload = async () => {
     if (files.length < 2 || !files[0] || !files[1]) {
       toast.info("Please select both files Title Image and Detail Image!");
@@ -43,7 +73,7 @@ const CreateEvent = () => {
     const formData = new FormData();
     files.forEach((file) => formData.append("files", file)); // Append each file in the array
     formData.append("title", title);
-    formData.append("longdescription", editorRef.current ? editorRef.current.innerHTML : ""); // Get HTML content
+    formData.append("longdescription", cleanHTML(editorRef.current ? editorRef.current.innerHTML : "")); // Clean HTML content
     formData.append("shortdescription", shortDescription);
 
     try {
