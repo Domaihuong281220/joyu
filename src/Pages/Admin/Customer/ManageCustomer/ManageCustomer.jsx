@@ -131,7 +131,6 @@ const ManageCustomer = () => {
   useEffect(() => {
     handlegetUsers();
   }, []);
-  // console.log(userData);
 
   // navigate
   const navigate = useNavigate();
@@ -197,8 +196,9 @@ const ManageCustomer = () => {
         <div className="">
           <div className="flex items-center justify-between px-4 py-4">
             <div className="flex items-center gap-x-3">
-              <button
-                className="w-auto h-auto p-2 rounded-lg border-2 border-green-300 hover:border-green-500 flex items-center gap-x-2 hover:shadow-lg"
+              <Button
+                className="w-auto h-auto p-2  flex items-center gap-x-2"
+                type="primary"
                 onClick={() => navigate("../" + path.CREATECUSTOMER)}
               >
                 <svg
@@ -220,7 +220,7 @@ const ManageCustomer = () => {
                   <path fill="none" d="M0 0h36v36H0z" />
                 </svg>
                 <p className="">Send email</p>
-              </button>
+              </Button>
             </div>
 
             {/* Add Customer */}

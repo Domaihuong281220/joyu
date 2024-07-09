@@ -8,7 +8,7 @@ import { toast } from "sonner";
 // import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Radio, message } from "antd";
+import { Button, Radio, message } from "antd";
 import {
   isValidInputsUser,
   isValidInputCreateLocation,
@@ -88,14 +88,14 @@ const CreateLocation = () => {
         <div className="flex p-2 justify-between">
           <p className="text-2xl">Create Location</p>
 
-          <button
+          <Button
             className="w-auto h-auto"
             onClick={() => {
               navigate(-1);
             }}
           >
             <Icon icon="tabler:arrow-back" width={24} height={24}></Icon>
-          </button>
+          </Button>
         </div>
 
         <div className="px-10 py-4 mx-auto w-[50%] ">
@@ -193,19 +193,21 @@ const CreateLocation = () => {
             ))}
           </div>
           <div className="flex justify-center items-center gap-x-4">
-            <button
-              className="w-auto h-auto py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg "
+            <Button
+              className="w-auto h-auto py-2 px-4  "
+              type="primary"
               onClick={() => handleCreateLocation()}
             >
               <p className="">Save</p>
-            </button>
+            </Button>
 
-            <button
-              className="w-auto h-auto py-2 px-4 bg-red-50 border-2 border-red-300 rounded-lg hover:bg-red-200 hover:shadow-lg"
+            <Button
+              className="w-auto h-auto py-2 px-4 "
+              danger
               onClick={() => navigate(-1)}
             >
               <p className="">Cancel</p>
-            </button>
+            </Button>
           </div>
         </div>
         {/* End form Add User */}

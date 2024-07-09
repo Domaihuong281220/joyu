@@ -23,7 +23,6 @@ const UserEdit = () => {
   const navigate = useNavigate();
   const location = useLocation();
   let userDetail = location.state;
-  // console.log(userDetail);
   const [formData, setFormData] = useState({
     username: userDetail.username,
     phonenumber: userDetail.phonenumber,

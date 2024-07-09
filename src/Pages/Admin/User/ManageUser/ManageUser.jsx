@@ -62,9 +62,7 @@ const ManageUser = () => {
   useEffect(() => {
     handlegetUsers();
   }, []);
-  // console.log(userData);
 
-  // console.log(user)
   const handleEditUser = (record) => {
     navigate("../" + path.EDITUSER, {
       state: record,

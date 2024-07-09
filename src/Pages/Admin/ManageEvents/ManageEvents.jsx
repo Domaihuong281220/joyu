@@ -7,9 +7,9 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { path } from "../../../utils/Constant";
-import { Button, Popconfirm  } from 'antd';
-import { QuestionCircleOutlined } from '@ant-design/icons';
-import {replaceNewlinesWithBreaks} from '../../../utils/Constant'
+import { Button, Popconfirm } from "antd";
+import { QuestionCircleOutlined } from "@ant-design/icons";
+import { replaceNewlinesWithBreaks } from "../../../utils/Constant";
 const ManageEvents = () => {
   const navigate = useNavigate();
   const [newsData, setNewsData] = useState([]);
@@ -109,14 +109,16 @@ const ManageEvents = () => {
       dataIndex: "longdescription",
       key: "longdescription",
 
-      render : (e)=>{
-        return <p
-        className="text-start pv:max-md:text-[8vw]"
-        dangerouslySetInnerHTML={{
-          __html: replaceNewlinesWithBreaks(e),
-        }}
-      ></p>
-      }
+      render: (e) => {
+        return (
+          <p
+            className="text-start pv:max-md:text-[8vw]"
+            dangerouslySetInnerHTML={{
+              __html: replaceNewlinesWithBreaks(e),
+            }}
+          ></p>
+        );
+      },
     },
     {
       title: "short Description",
@@ -131,32 +133,32 @@ const ManageEvents = () => {
       width: 100,
       render: (_, record) => (
         <div className="flex items-center justify-center gap-x-2">
-          <button
-            className="hover:underline cursor-pointer hover:text-blue-500 "
-            onClick={() => handleEditEvents(record)}
-          >
+          <Button className="" onClick={() => handleEditEvents(record)}>
             <p className="">Edit</p>
-          </button>
+          </Button>
 
-          <Popconfirm placement="rightTop"
-                      title="Confirm Deletion" 
-                       description="Are you sure you want to delete this event?"
-                        okText="Delete"
-                        cancelText="Cancel"
-                        onConfirm={() => hanldedeleNews(record._id)}
-                       icon={
-                        <QuestionCircleOutlined
-                          style={{
-                            color: 'red',
-                          }}
-                        /> }>
-                             <button>Delete</button>
-      </Popconfirm>
+          <Popconfirm
+            placement="rightTop"
+            title="Confirm Deletion"
+            description="Are you sure you want to delete this event?"
+            okText="Delete"
+            cancelText="Cancel"
+            onConfirm={() => hanldedeleNews(record._id)}
+            icon={
+              <QuestionCircleOutlined
+                style={{
+                  color: "red",
+                }}
+              />
+            }
+          >
+            <Button danger>Delete</Button>
+          </Popconfirm>
         </div>
       ),
     },
   ];
-
+  
   return (
     <div className="">
       {contextHolder}
@@ -169,8 +171,9 @@ const ManageEvents = () => {
         <div className="">
           <div className="flex items-center justify-between gap-x-10 px-4 py-4 ">
             <div className="flex items-center gap-x-3">
-              <button
-                className="w-auto h-auto p-2 rounded-lg border-2 border-green-300 hover:border-green-500 flex items-center gap-x-2 hover:shadow-lg"
+              <Button
+                className="w-auto h-auto p-2  flex items-center gap-x-2"
+                type="primary"
                 onClick={() => {
                   navigate("../" + path.CREATEVENT);
                 }}
@@ -181,7 +184,7 @@ const ManageEvents = () => {
                   height={24}
                 ></Icon>
                 <p className="">Add News</p>
-              </button>
+              </Button>
             </div>
           </div>
           <div className="w-[100%]">

@@ -37,12 +37,14 @@ const ManageJobs = () => {
     position: "All",
   });
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
-    handlegetCareers();
-    handlegetpositon();
-    handlegetavailability();
-  }, []);
+    if (!isLoading) {
+      handlegetCareers();
+      handlegetpositon();
+      handlegetavailability();
+    }
+  }, [isLoading]);
 
   // Call API
 
@@ -52,8 +54,8 @@ const ManageJobs = () => {
     await axios
       .get(`${process.env.REACT_APP_SERVER_URL}/joyu/careers`)
       .then((res) => {
-        setCareersData(res.data.data);
         const tempArr = [];
+        setCareersData(res.data.data);
         const availabilityValues = [
           ...new Set(CareersData.map((item) => item.availability)),
         ];
@@ -66,10 +68,12 @@ const ManageJobs = () => {
           });
           setStatus(tempArr);
         }
-        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
   const handlegetpositon = async () => {
@@ -104,10 +108,12 @@ const ManageJobs = () => {
           });
           setStatus(tempArr);
         }
-        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -116,13 +122,18 @@ const ManageJobs = () => {
       .delete(`${process.env.REACT_APP_SERVER_URL}/joyu/careers/${id}`)
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
-          toast.success("Career and associated addresses deleted successfully!");
+          toast.success(
+            "Career and associated addresses deleted successfully!"
+          );
           handlegetCareers();
-          navigate("../" + path.JOBMANAGE);
         }
       })
+
       .catch((err) => {
         toast.error("Delete jobs wrong: " + err.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -220,12 +231,9 @@ const ManageJobs = () => {
       width: 200,
       render: (_, record) => (
         <div className="flex items-center justify-center gap-x-2">
-          <button
-            className="hover:underline cursor-pointer"
-            onClick={() => handleEditJob(record)}
-          >
+          <Button className="" onClick={() => handleEditJob(record)}>
             <p className="">Edit</p>
-          </button>
+          </Button>
 
           <Popconfirm
             placement="rightTop"
@@ -242,7 +250,7 @@ const ManageJobs = () => {
               />
             }
           >
-            <button>Delete</button>
+            <Button danger>Delete</Button>
           </Popconfirm>
         </div>
       ),
@@ -263,8 +271,6 @@ const ManageJobs = () => {
             }}
             onClick={() => {
               handlegetCareers();
-              setSelectedJobTitle({ key: "All", value: "All" });
-              setSelectedStatus({ key: "All", value: "All" });
             }}
           >
             <p className="">refresh All</p>

@@ -1,12 +1,13 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-import { Input } from "antd";
+import { Input, Button } from "antd";
 import { Select } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { path } from "../../../../../utils/Constant";
+import { isValidInputAddress } from "../../../../../utils/common/validators";
 
 const AddressAdd = () => {
   const navigate = useNavigate();
@@ -30,7 +31,6 @@ const AddressAdd = () => {
 
   useEffect(() => {
     handlegetCareer();
-    // console.log(formData);
   }, []);
 
   const handlegetCareer = async () => {
@@ -48,20 +48,23 @@ const AddressAdd = () => {
   };
 
   const handleUpload = async () => {
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/joyu/address`,
-        formData
-      );
+    let check = isValidInputAddress(formData, toast);
+    if (check === true) {
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_SERVER_URL}/joyu/address`,
+          formData
+        );
 
-      if (response.status === 201) {
-        navigate("../" + path.MANAGEADDRESS);
-        toast.success("Address created successfully!");
-      } else {
-        toast.error("Failed to create address.");
+        if (response.status === 201) {
+          navigate("../" + path.MANAGEADDRESS);
+          toast.success("Address created successfully!");
+        } else {
+          toast.error("Failed to create address.");
+        }
+      } catch (error) {
+        toast.error("Failed to create address: " + "Please select position");
       }
-    } catch (error) {
-      toast.error("Failed to create address: " + "Please select position");
     }
   };
 
@@ -114,21 +117,23 @@ const AddressAdd = () => {
           </div>
 
           <div className="flex justify-center items-center gap-x-4">
-            <button
-              className="w-auto h-auto py-2 px-4 bg-slate-50 border-2 border-blue-300 rounded-lg hover:bg-slate-200 hover:shadow-lg"
+            <Button
+              className="w-auto h-auto py-2 px-4"
+              type="default"
               onClick={() => {
                 navigate(-1);
               }}
             >
               <p className="">Back</p>
-            </button>
+            </Button>
 
-            <button
-              className="w-auto h-auto py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg "
+            <Button
+              className="w-auto h-auto py-2 px-4"
+              type="primary"
               onClick={() => handleUpload()}
             >
               <p className="">Save</p>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

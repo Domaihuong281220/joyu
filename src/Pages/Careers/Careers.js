@@ -20,16 +20,13 @@ const Careers = () => {
     );
     if (selectedPosition) {
       setLinkform(selectedPosition.linkform); // Set the corresponding linkform from the found object
-      // console.log(linkform);
     } else {
       setLinkform("#"); // Clear linkform if no matching position found
     }
   }, [selected, availablePositions, linkform]); // React to changes in `selected` or `availablePositions`
 
   // Add another useEffect to observe changes in linkform
-  useEffect(() => {
-    // console.log(linkform);
-  }, [linkform]);
+  useEffect(() => {}, [linkform]);
 
   useEffect(() => {
     const fetchCareers = async () => {
@@ -67,8 +64,6 @@ const Careers = () => {
     const result = arr.filter((item) => item.availability);
     return result;
   };
-
-  console.log(availableItems(addressPosition));
 
   return (
     <div className=" w-[76vw] mx-auto  pv:max-md:pt-[30vw] pv:max-lg:w-[85%] ">

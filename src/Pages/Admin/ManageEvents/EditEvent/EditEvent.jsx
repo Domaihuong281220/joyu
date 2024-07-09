@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Input } from "antd";
+import { Button, Input } from "antd";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { path } from "../../../../utils/Constant";
+import { isValidInputNews } from "../../../../utils/common/validators";
 
 const EditEvent = () => {
   const navigate = useNavigate();
@@ -45,21 +46,24 @@ const EditEvent = () => {
 
     formDataToSend.append("files", titleImage);
     formDataToSend.append("files", detailImage);
+    let check = isValidInputNews(formData, toast);
 
-    try {
-      const response = await axios.put(
-        `${process.env.REACT_APP_SERVER_URL}/joyu/news/${id}`,
-        formDataToSend,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
+    if (check === true) {
+      try {
+        const response = await axios.put(
+          `${process.env.REACT_APP_SERVER_URL}/joyu/news/${id}`,
+          formDataToSend,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          }
+        );
+        if (response.status === 200 || response.status === 201) {
+          toast.success("Edit news successfully!");
+          navigate("../" + path.EVENTMANAGE);
         }
-      );
-      if (response.status === 200 || response.status === 201) {
-        toast.success("Edit news successfully!");
-        navigate("../" + path.EVENTMANAGE);
+      } catch (err) {
+        toast.error("Edit news wrong: " + err.message);
       }
-    } catch (err) {
-      toast.error("Edit news wrong: " + err.message);
     }
   };
 
@@ -115,7 +119,9 @@ const EditEvent = () => {
             <button
               onClick={() => applyStyle("underline")}
               className={`px-2 py-1 rounded ${
-                activeStyles.underline ? "bg-blue-500 text-white" : "bg-gray-200"
+                activeStyles.underline
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200"
               }`}
             >
               <u>U</u>
@@ -185,18 +191,19 @@ const EditEvent = () => {
         </div>
 
         <div className="flex justify-center items-center gap-x-4">
-          <button
-            className="py-2 px-4 bg-slate-50 border-2 border-blue-300 rounded-lg hover:bg-slate-200 hover:shadow-lg"
+          <Button
+            className="w-auto h-auto py-2 px-4 "
             onClick={() => navigate(-1)}
           >
             Back
-          </button>
-          <button
-            className="py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg"
+          </Button>
+          <Button
+            className="w-auto h-auto py-2 px-4"
+            type="primary"
             onClick={() => handleEdit(newsData._id)}
           >
             Save
-          </button>
+          </Button>
         </div>
       </div>
     </div>

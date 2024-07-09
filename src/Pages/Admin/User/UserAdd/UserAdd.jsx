@@ -22,7 +22,6 @@ const UserAdd = () => {
     role: "",
   });
 
-  // console.log(formData)
   const handleCreateUser = async () => {
     let check = isValidCreateNewUser(formData, toast);
 

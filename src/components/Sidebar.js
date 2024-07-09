@@ -39,6 +39,12 @@ const Sidebar = () => {
       console.log(err);
     }
   };
+  const [year, setYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    const currentYear = new Date().getFullYear();
+    setYear(currentYear);
+  }, []);
 
   const [openSidebar, setOpenSidebar] = useState(
     sessionStorage.getItem("openSidebar")
@@ -272,7 +278,7 @@ const Sidebar = () => {
               width="62.868"
               height="60.988"
               viewBox="0 0 62.868 60.988"
-              className="logoSidebar"
+              className="logoSidebar cursor-pointer"
               onClick={() => {
                 navigate("/");
                 setOpenSidebar(false);
@@ -837,7 +843,7 @@ const Sidebar = () => {
                   </svg>
                 </div>
                 <p className="w-full text-start pl-[3.2vw] font-nexa_light font-black  text-white text-[1.3vw] pt-[2vw]">
-                  Copyright JoYu Tea & Coffee 2022. All Rights Reserved
+                  Copyright JoYu Tea & Coffee {year}. All Rights Reserved
                 </p>
               </div>
             </div>

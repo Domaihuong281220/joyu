@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import { path } from "../../../../../utils/Constant";
 import { Button, Popconfirm } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
-import {replaceNewlinesWithBreaks} from '../../../../../utils/Constant'
+import { replaceNewlinesWithBreaks } from "../../../../../utils/Constant";
 const ProductManage = () => {
   const navigate = useNavigate();
   const [productData, setProductData] = useState([]);
@@ -71,8 +71,6 @@ const ProductManage = () => {
     handleGetProduct();
   }, []);
 
-  console.log(productData, "product data");
-
   const columns = [
     {
       title: "STT",
@@ -107,14 +105,16 @@ const ProductManage = () => {
       title: "Description",
       dataIndex: "description",
       key: "description",
-      render : (e)=>{
-        return <p
-        className="text-start pv:max-md:text-[8vw]"
-        dangerouslySetInnerHTML={{
-          __html: replaceNewlinesWithBreaks(e),
-        }}
-      ></p>
-      }
+      render: (e) => {
+        return (
+          <p
+            className="text-start pv:max-md:text-[8vw]"
+            dangerouslySetInnerHTML={{
+              __html: replaceNewlinesWithBreaks(e),
+            }}
+          ></p>
+        );
+      },
     },
     {
       title: "Price",
@@ -133,12 +133,13 @@ const ProductManage = () => {
       width: 200,
       render: (_, record) => (
         <div className="flex items-center justify-center gap-x-2">
-          <button
-            className="hover:underline cursor-pointer hover:text-blue-500 "
+          <Button
+            className=""
+            type="default"
             onClick={() => handleEditProduct(record)}
           >
             <p className="">Edit</p>
-          </button>
+          </Button>
 
           <Popconfirm
             placement="rightTop"
@@ -155,7 +156,7 @@ const ProductManage = () => {
               />
             }
           >
-            <button>Delete</button>
+            <Button danger>Delete</Button>
           </Popconfirm>
         </div>
       ),
@@ -171,25 +172,10 @@ const ProductManage = () => {
         </div>
         <div className="">
           <div className="flex items-center justify-between gap-x-10 px-4 py-4">
-            <div className="flex gap-x-4 w-6/12 justify-center items-center">
-              <InputGroup className="flex items-center w-full">
-                <Input
-                  type="text"
-                  placeholder="Search Product"
-                  value={searchValue}
-                  onChange={handleSearch}
-                  className="text-black w-full h-10 border-b-2 border-black border-solid p-2"
-                />
-                <InputRightElement>
-                  <button className="text-black h-10 flex justify-center items-center">
-                    <Icon icon="material-symbols:search" fontSize={24}></Icon>
-                  </button>
-                </InputRightElement>
-              </InputGroup>
-            </div>
             <div className="flex items-center gap-x-3">
-              <button
-                className="w-auto h-auto p-2 rounded-lg border-2 border-green-300 hover:border-green-500 flex items-center gap-x-2 hover:shadow-lg"
+              <Button
+                className="w-auto h-auto p-2  flex items-center gap-x-2 "
+                type="primary"
                 onClick={() => {
                   navigate("../" + path.PRODUCTADD);
                 }}
@@ -200,7 +186,7 @@ const ProductManage = () => {
                   height={24}
                 ></Icon>
                 <p className="">Add New Product</p>
-              </button>
+              </Button>
             </div>
           </div>
           <div className="w-[100%]">

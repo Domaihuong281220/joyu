@@ -1,12 +1,13 @@
 /** @format */
 
 import React, { useState, useEffect, useRef } from "react";
-import { Input } from "antd";
+import { Button, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 
 import { path } from "./../../../../utils/Constant";
+import { isValidInputNews } from "./../../../../utils/common/validators";
 
 const CreateEvent = () => {
   const navigate = useNavigate();
@@ -15,7 +16,11 @@ const CreateEvent = () => {
   const [longDescription, setLongDescription] = useState("");
   const [shortDescription, setShortDescription] = useState("");
   const [gfsInitialized, setGfsInitialized] = useState(false);
-  const [activeStyles, setActiveStyles] = useState({ bold: false, italic: false, underline: false });
+  const [activeStyles, setActiveStyles] = useState({
+    bold: false,
+    italic: false,
+    underline: false,
+  });
   const editorRef = useRef(null);
 
   useEffect(() => {
@@ -33,12 +38,17 @@ const CreateEvent = () => {
   const cleanHTML = (html) => {
     const div = document.createElement("div");
     div.innerHTML = html;
-  
+
     const cleanNode = (node) => {
-      if (node.nodeType === 1) { // Element node
+      if (node.nodeType === 1) {
+        // Element node
         const style = node.getAttribute("style");
         if (style) {
-          const stylesToPreserve = ["font-weight", "font-style", "text-decoration"];
+          const stylesToPreserve = [
+            "font-weight",
+            "font-style",
+            "text-decoration",
+          ];
           const styleMap = style.split(";").reduce((acc, style) => {
             const [property, value] = style.split(":");
             if (stylesToPreserve.includes(property.trim())) {
@@ -46,7 +56,12 @@ const CreateEvent = () => {
             }
             return acc;
           }, {});
-          node.setAttribute("style", Object.entries(styleMap).map(([property, value]) => `${property}: ${value}`).join("; "));
+          node.setAttribute(
+            "style",
+            Object.entries(styleMap)
+              .map(([property, value]) => `${property}: ${value}`)
+              .join("; ")
+          );
         }
         // Recursively clean child nodes
         for (let i = 0; i < node.childNodes.length; i++) {
@@ -54,46 +69,52 @@ const CreateEvent = () => {
         }
       }
     };
-  
+
     cleanNode(div);
     return div.innerHTML;
   };
 
   const handleUpload = async () => {
+    const formData = new FormData();
+    files.forEach((file) => formData.append("files", file)); // Append each file in the array
+    formData.append("title", title);
+    formData.append(
+      "longdescription",
+      cleanHTML(editorRef.current ? editorRef.current.innerHTML : "")
+    ); // Clean HTML content
+    formData.append("shortdescription", shortDescription);
+    let check = isValidInputNews(formData, toast);
     if (files.length < 2 || !files[0] || !files[1]) {
       toast.info("Please select both files Title Image and Detail Image!");
       return;
     }
 
     if (!gfsInitialized) {
-      toast.info("Image upload functionality not yet ready. Please try again later.");
+      toast.info(
+        "Image upload functionality not yet ready. Please try again later."
+      );
       return;
     }
-
-    const formData = new FormData();
-    files.forEach((file) => formData.append("files", file)); // Append each file in the array
-    formData.append("title", title);
-    formData.append("longdescription", cleanHTML(editorRef.current ? editorRef.current.innerHTML : "")); // Clean HTML content
-    formData.append("shortdescription", shortDescription);
-
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/joyu/news`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+    if (check === true) {
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_SERVER_URL}/joyu/news`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        if (response.status === 200) {
+          navigate("../" + path.EVENTMANAGE);
+          toast.success("Create news successfully!");
+        } else {
+          toast.error("Create news wrong: ");
         }
-      );
-      if (response.status === 200) {
-        navigate("../" + path.EVENTMANAGE);
-        toast.success("Create news successfully!");
-      } else {
-        toast.error("Create news wrong: ");
+      } catch (error) {
+        toast.error("Create news wrong: " + error.message);
       }
-    } catch (error) {
-      toast.error("Create news wrong: " + error.message);
     }
   };
 
@@ -149,21 +170,29 @@ const CreateEvent = () => {
               </span>
             </p>
             <div className="flex items-center mb-2 ">
-              <button 
-                onClick={() => applyStyle('bold')} 
-                className={`mr-2 px-2 py-1 rounded ${activeStyles.bold ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+              <button
+                onClick={() => applyStyle("bold")}
+                className={`mr-2 px-2 py-1 rounded ${
+                  activeStyles.bold ? "bg-blue-500 text-white" : "bg-gray-200"
+                }`}
               >
                 <b>B</b>
               </button>
-              <button 
-                onClick={() => applyStyle('italic')} 
-                className={`mr-2 px-2 py-1 rounded ${activeStyles.italic ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+              <button
+                onClick={() => applyStyle("italic")}
+                className={`mr-2 px-2 py-1 rounded ${
+                  activeStyles.italic ? "bg-blue-500 text-white" : "bg-gray-200"
+                }`}
               >
                 <i>I</i>
               </button>
-              <button 
-                onClick={() => applyStyle('underline')} 
-                className={`px-2 py-1 rounded ${activeStyles.underline ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+              <button
+                onClick={() => applyStyle("underline")}
+                className={`px-2 py-1 rounded ${
+                  activeStyles.underline
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200"
+                }`}
               >
                 <u>U</u>
               </button>
@@ -198,22 +227,23 @@ const CreateEvent = () => {
           </div>
 
           <div className="flex justify-center items-center gap-x-4">
-            <button
-              className="w-auto h-auto py-2 px-4 bg-slate-50 border-2 border-blue-300 rounded-lg hover:bg-slate-200 hover:shadow-lg"
+            <Button
+              className="w-auto h-auto py-2 px-4 "
               onClick={() => {
                 navigate(-1);
               }}
             >
               <p className="">Back</p>
-            </button>
+            </Button>
 
-            <button
-              className="w-auto h-auto py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg "
+            <Button
+              className="w-auto h-auto py-2 px-4 "
+              type="primary"
               onClick={handleUpload}
               disabled={!gfsInitialized}
             >
               <p className="">Save</p>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

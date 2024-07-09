@@ -1,11 +1,10 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import {replaceNewlinesWithBreaks} from "../../utils/Constant"
+import { replaceNewlinesWithBreaks } from "../../utils/Constant";
 const ProductDetail = () => {
   const location = useLocation();
   let product = location.state.product; // More concise nullish coalescing operator
   let categoryID = location.state.categoryID;
-  // console.log("Product name:", product.description);  // Use optional chaining to avoid errors
   const descriptionsplit = product.description.split("<br>");
   if (!product) {
     return <div>No product data available.</div>;
@@ -44,13 +43,14 @@ const ProductDetail = () => {
         </div>
         <div className="">
           {descriptionsplit.map((descriptionrow, index) => (
-            <div className="w-[95%] mx-auto"><p
-            className="text-start pv:max-md:text-[5vw] font-nexa_light"
-            dangerouslySetInnerHTML={{
-      __html: replaceNewlinesWithBreaks(descriptionrow),
-    }}
-  ></p></div>
-           
+            <div className="w-[95%] mx-auto">
+              <p
+                className="text-start pv:max-md:text-[5vw] font-nexa_light"
+                dangerouslySetInnerHTML={{
+                  __html: replaceNewlinesWithBreaks(descriptionrow),
+                }}
+              ></p>
+            </div>
           ))}
         </div>
       </div>

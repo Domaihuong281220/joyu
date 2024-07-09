@@ -31,7 +31,6 @@ const Location = () => {
       );
       setLocations(response.data);
       setFilteredLocations(response.data);
-      // console.log(response.data);
     } catch (error) {
       console.error("Failed to fetch locations:", error);
     }

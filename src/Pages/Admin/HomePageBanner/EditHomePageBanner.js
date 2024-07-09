@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import { Input } from "antd";
+import { Button, Input } from "antd";
 import { Icon } from "@iconify/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -113,22 +113,24 @@ const EditHomePageBanner = () => {
           </div>
 
           <div className="flex justify-center items-center gap-x-4">
-            <button
-              className="w-auto h-auto py-2 px-4 bg-slate-50 border-2 border-blue-300 rounded-lg hover:bg-slate-200 hover:shadow-lg"
+            <Button
+              className="w-auto h-auto py-2 px-4"
+              type="default"
               onClick={() => {
                 navigate(-1);
               }}
             >
               <p className="">Back</p>
-            </button>
-            <button
-              className="w-auto h-auto py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg "
+            </Button>
+            <Button
+              className="w-auto h-auto py-2 px-4  "
+              type="primary"
               onClick={(e) => {
                 apiEditHomePageImage(data._id);
               }}
             >
               Save
-            </button>
+            </Button>
           </div>
         </div>
       </div>

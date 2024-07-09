@@ -1,11 +1,12 @@
 /** @format */
 
 import React, { useState, useRef } from "react";
-import { Input } from "antd";
+import { Button, Input } from "antd";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { path } from "../../../../../utils/Constant";
+import { isValidInputJobs } from "../../../../../utils/common/validators";
 
 const EditJob = () => {
   const navigate = useNavigate();
@@ -82,31 +83,33 @@ const EditJob = () => {
     updateData.append("availability", formData.availability);
     updateData.append("responsibility", formData.responsibility);
 
+    let check = isValidInputJobs(formData, toast);
+    if (check) {
+      await axios
+        .put(
+          `${process.env.REACT_APP_SERVER_URL}/joyu/careers/${id}`,
+          updateData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            toast.success("Edit job successfully!");
+            navigate("../" + path.JOBMANAGE);
+          }
+        })
+        .catch((err) => {
+          toast.error("Edit job failed: " + err.message);
+        });
+    }
     if (image) {
       updateData.append("image", image);
     } else {
       updateData.append("image", formData.image);
     }
-
-    await axios
-      .put(
-        `${process.env.REACT_APP_SERVER_URL}/joyu/careers/${id}`,
-        updateData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
-      .then((res) => {
-        if (res.status === 200 || res.status === 201) {
-          toast.success("Edit job successfully!");
-          navigate("../" + path.JOBMANAGE);
-        }
-      })
-      .catch((err) => {
-        toast.error("Edit job failed: " + err.message);
-      });
   };
   const applyStyle = (command) => {
     document.execCommand(command);
@@ -139,15 +142,8 @@ const EditJob = () => {
               }
             />
           </div>
-
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
-            <p className="text-lg">
-              Description
-              <span className="text-[10px] text-red-500">
-                (Limit 500 characters)
-              </span>
-            </p>
-
+            <p className="text-lg">Description</p>
             <div className="flex items-center mb-2">
               <button
                 onClick={() => applyStyle("bold")}
@@ -176,6 +172,7 @@ const EditJob = () => {
                 <u>U</u>
               </button>
             </div>
+
             <div
               ref={editorRef}
               contentEditable
@@ -185,90 +182,85 @@ const EditJob = () => {
               onKeyUp={updateActiveStyles}
               dangerouslySetInnerHTML={{ __html: jobdetail.description }}
             />
+            <div className="text-right w-full text-sm text-gray-600">
+              {formData.description.length}/500
+            </div>
           </div>
-          <div
-            ref={editorRef}
-            contentEditable
-            className="w-full h-[300px] border-[1px] p-2  text-start overflow-y-auto"
-            onInput={updateActiveStyles}
-            onMouseUp={updateActiveStyles}
-            onKeyUp={updateActiveStyles}
-            dangerouslySetInnerHTML={{ __html: jobdetail.description }}
-          />
-        </div>
-        <div className="text-right w-full text-sm text-gray-600">
-          {formData.description.length}/500
-        </div>
-        <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
-          <p className="text-lg">
-            Responsibility
-            <span className="text-[10px] text-red-500">
-              (Limit 500 characters)
-            </span>
-          </p>
-          <textarea
-            className="w-full h-[300px] border-[1px] p-2"
-            placeholder="Responsibility"
-            maxLength="500"
-            value={formData.responsibility}
-            onChange={(e) =>
-              setFormData({ ...formData, responsibility: e.target.value })
-            }
-          />
-          <div className="text-right w-full text-sm text-gray-600">
-            {formData.responsibility.length}/500
-          </div>
-        </div>
-        <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
-          <p className="text-lg">Availability</p>
-          <input
-            className="border-[1px] p-2"
-            type="checkbox"
-            defaultChecked={jobdetail.availability === "true"}
-            onChange={(e) => {
-              setFormData({
-                ...formData,
-                availability: e.target.checked.toString(),
-              });
-            }}
-          />
-        </div>
-        <div className="w-full flex flex-col gap-y-2 pb-6">
-          <p className="text-lg">Edit Image</p>
-          <img
-            src={`${process.env.REACT_APP_SERVER_URL}/${formData.image}`}
-            alt="current job"
-          />
-          <input
-            type="file"
-            accept="image/jpeg, image/png"
-            onChange={handleImageChange}
-            className="w-full"
-          />
-          {image && (
-            <img
-              src={URL.createObjectURL(image)}
-              alt="New"
-              className="w-[200px] h-[200px] object-cover"
+
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+            <p className="text-lg">
+              Responsibility
+              <span className="text-[10px] text-red-500">
+                (Limit 500 characters)
+              </span>
+            </p>
+            <textarea
+              className="w-full h-[300px] border-[1px] p-2"
+              placeholder="Responsibility"
+              maxLength="500"
+              value={formData.responsibility}
+              onChange={(e) =>
+                setFormData({ ...formData, responsibility: e.target.value })
+              }
             />
-          )}
+
+            <div className="text-right w-full text-sm text-gray-600">
+              {formData.responsibility.length}/500
+            </div>
+          </div>
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+            <p className="text-lg">Availability</p>
+            <input
+              className="border-[1px] p-2"
+              type="checkbox"
+              defaultChecked={jobdetail.availability === "true"}
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  availability: e.target.checked.toString(),
+                });
+              }}
+            />
+          </div>
+          <div className="w-full  flex flex-col gap-y-2 pb-6">
+            <p className="text-lg">Edit Image</p>
+            <img
+              src={`${process.env.REACT_APP_SERVER_URL}/${formData.image}`}
+              alt="current job"
+            />
+            <input
+              type="file"
+              accept="image/jpeg, image/png"
+              onChange={handleImageChange}
+              className="w-full"
+            />
+            {image && (
+              <img
+                src={URL.createObjectURL(image)}
+                alt="New"
+                className="w-[200px] h-[200px] object-cover"
+              />
+            )}
+          </div>
         </div>
-        <div className="flex justify-center items-center gap-x-4">
-          <button
-            className="w-auto h-auto py-2 px-4 bg-slate-50 border-2 border-blue-300 rounded-lg hover:bg-slate-200 hover:shadow-lg"
+
+        <div className="flex justify-center items-center gap-x-4 py-8">
+          <Button
+            className="w-auto h-auto py-2 px-4 "
             onClick={() => {
               navigate(-1);
             }}
           >
             <p>Back</p>
-          </button>
+          </Button>
 
-          <button
-            className="w-auto h-auto py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg"
+          <Button
+            className="w-auto h-auto py-2 px-4"
+            type="primary"
             onClick={() => handleEdit(jobdetail._id)}
           >
             <p>Save</p>
-          </button>
+          </Button>
         </div>
       </div>
     </div>

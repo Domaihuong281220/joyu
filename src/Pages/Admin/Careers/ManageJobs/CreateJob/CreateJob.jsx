@@ -1,14 +1,13 @@
 /** @format */
 
 import React, { useState, useRef } from "react";
-import { Input } from "antd";
+import { Button, Input } from "antd";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { message } from "antd";
 import { toast } from "sonner";
 import { path } from "../../../../../utils/Constant";
-// import { isValidInputCategory } from "../../../../helpers/validInputs";
+import { isValidInputJobs } from "../../../../../utils/common/validators.js";
 
 const CreateJob = () => {
   const navigate = useNavigate();
@@ -33,17 +32,21 @@ const CreateJob = () => {
     underline: false,
   });
   const editorRef = useRef(null);
-  // console.log(formData, "check");
 
   const cleanHTML = (html) => {
     const div = document.createElement("div");
     div.innerHTML = html;
-  
+
     const cleanNode = (node) => {
-      if (node.nodeType === 1) { // Element node
+      if (node.nodeType === 1) {
+        // Element node
         const style = node.getAttribute("style");
         if (style) {
-          const stylesToPreserve = ["font-weight", "font-style", "text-decoration"];
+          const stylesToPreserve = [
+            "font-weight",
+            "font-style",
+            "text-decoration",
+          ];
           const styleMap = style.split(";").reduce((acc, style) => {
             const [property, value] = style.split(":");
             if (stylesToPreserve.includes(property.trim())) {
@@ -51,7 +54,12 @@ const CreateJob = () => {
             }
             return acc;
           }, {});
-          node.setAttribute("style", Object.entries(styleMap).map(([property, value]) => `${property}: ${value}`).join("; "));
+          node.setAttribute(
+            "style",
+            Object.entries(styleMap)
+              .map(([property, value]) => `${property}: ${value}`)
+              .join("; ")
+          );
         }
         // Recursively clean child nodes
         for (let i = 0; i < node.childNodes.length; i++) {
@@ -59,7 +67,7 @@ const CreateJob = () => {
         }
       }
     };
-  
+
     cleanNode(div);
     return div.innerHTML;
   };
@@ -76,18 +84,23 @@ const CreateJob = () => {
     formData.append("image", image);
     formData.append("availability", availability);
     // formData.append("address", address);
-    await axios
-      .post(`${process.env.REACT_APP_SERVER_URL}/joyu/careers`, formData)
-      .then((res) => {
-        if (res.status === 200 || res.status === 201) {
-          toast.success("Create new job successfully!");
 
-          navigate("../" + path.JOBMANAGE);
-        }
-      })
-      .catch((err) => {
-        toast.error("Create job wrong: " + err.message);
-      });
+    let check = isValidInputJobs(formData, toast);
+
+    if (check === true) {
+      await axios
+        .post(`${process.env.REACT_APP_SERVER_URL}/joyu/careers`, formData)
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            toast.success("Create new job successfully!");
+
+            navigate("../" + path.JOBMANAGE);
+          }
+        })
+        .catch((err) => {
+          toast.error("Create job wrong: " + err.message);
+        });
+    }
   };
   const handleFileChange = (image) => {
     setImage(image); // Update the state
@@ -131,7 +144,7 @@ const CreateJob = () => {
             />
           </div> */}
 
-<div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
+          <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Description</p>
             <div className="flex items-center mb-2">
               <button
@@ -190,8 +203,6 @@ const CreateJob = () => {
               type="checkbox"
               onChange={(e) => {
                 setavailability(e.target.checked);
-
-                console.log(availability);
               }}
             />
           </div>
@@ -206,20 +217,21 @@ const CreateJob = () => {
           </div>
 
           <div className="flex justify-center items-center gap-x-4">
-            <button
-              className="w-auto h-auto py-2 px-4 bg-slate-50 border-2 border-blue-300 rounded-lg hover:bg-slate-200 hover:shadow-lg"
+            <Button
+              className="w-auto h-auto py-2 px-4"
               onClick={() => {
                 navigate(-1);
               }}
             >
               <p className="">Back</p>
-            </button>
-            <button
-              className="w-auto h-auto py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg "
+            </Button>
+            <Button
+              className="w-auto h-auto py-2 px-4 "
+              type="primary"
               onClick={() => handleCreateJob()}
             >
               <p className="">Save</p>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

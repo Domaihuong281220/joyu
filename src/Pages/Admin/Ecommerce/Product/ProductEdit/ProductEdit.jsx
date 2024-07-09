@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
-import { Input, Select } from "antd";
+import { Button, Input, Select } from "antd";
 import { Icon } from "@iconify/react";
 import { path } from "../../../../../utils/Constant";
 
@@ -21,7 +21,6 @@ const ProductEdit = () => {
     description: data.description,
     categoryID: data.categoryID._id,
     image: data.image,
-
   });
   const [activeStyles, setActiveStyles] = useState({
     bold: false,
@@ -35,7 +34,9 @@ const ProductEdit = () => {
 
   const handleGetCategories = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/joyu/categories`);
+      const res = await axios.get(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/categories`
+      );
       setCategories(res.data.data);
     } catch (err) {
       console.error(err);
@@ -55,12 +56,17 @@ const ProductEdit = () => {
   const cleanHTML = (html) => {
     const div = document.createElement("div");
     div.innerHTML = html;
-  
+
     const cleanNode = (node) => {
-      if (node.nodeType === 1) { // Element node
+      if (node.nodeType === 1) {
+        // Element node
         const style = node.getAttribute("style");
         if (style) {
-          const stylesToPreserve = ["font-weight", "font-style", "text-decoration"];
+          const stylesToPreserve = [
+            "font-weight",
+            "font-style",
+            "text-decoration",
+          ];
           const styleMap = style.split(";").reduce((acc, style) => {
             const [property, value] = style.split(":");
             if (stylesToPreserve.includes(property.trim())) {
@@ -68,7 +74,12 @@ const ProductEdit = () => {
             }
             return acc;
           }, {});
-          node.setAttribute("style", Object.entries(styleMap).map(([property, value]) => `${property}: ${value}`).join("; "));
+          node.setAttribute(
+            "style",
+            Object.entries(styleMap)
+              .map(([property, value]) => `${property}: ${value}`)
+              .join("; ")
+          );
         }
         // Recursively clean child nodes
         for (let i = 0; i < node.childNodes.length; i++) {
@@ -76,7 +87,7 @@ const ProductEdit = () => {
         }
       }
     };
-  
+
     cleanNode(div);
     return div.innerHTML;
   };
@@ -86,7 +97,7 @@ const ProductEdit = () => {
     updateData.append("price", formData.price);
     updateData.append(
       "description",
-      cleanHTML( editorRef.current ? editorRef.current.innerHTML : "")
+      cleanHTML(editorRef.current ? editorRef.current.innerHTML : "")
     );
     // updateData.append("description", formData.description);
     updateData.append("categoryID", formData.categoryID);
@@ -122,14 +133,6 @@ const ProductEdit = () => {
       <div className="w-[90%] mx-auto h-auto bg-white shadow-xl rounded-lg p-1">
         <div className="flex p-2 justify-between">
           <p className="text-2xl">PRODUCT EDIT</p>
-          <button
-            className="w-auto h-auto"
-            onClick={() => {
-              navigate(-1);
-            }}
-          >
-            <Icon icon="tabler:arrow-back" width={24} height={24}></Icon>
-          </button>
         </div>
 
         <div className="bg-white border-[1px] rounded-md w-[50%] mx-auto p-10">
@@ -158,47 +161,46 @@ const ProductEdit = () => {
             />
           </div>
 
-
-
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
-          <p className="text-lg">Description</p>
-          <div className="flex items-center mb-2">
-            <button
-              onClick={() => applyStyle("bold")}
-              className={`mr-2 px-2 py-1 rounded ${
-                activeStyles.bold ? "bg-blue-500 text-white" : "bg-gray-200"
-              }`}
-            >
-              <b>B</b>
-            </button>
-            <button
-              onClick={() => applyStyle("italic")}
-              className={`mr-2 px-2 py-1 rounded ${
-                activeStyles.italic ? "bg-blue-500 text-white" : "bg-gray-200"
-              }`}
-            >
-              <i>I</i>
-            </button>
-            <button
-              onClick={() => applyStyle("underline")}
-              className={`px-2 py-1 rounded ${
-                activeStyles.underline ? "bg-blue-500 text-white" : "bg-gray-200"
-              }`}
-            >
-              <u>U</u>
-            </button>
+            <p className="text-lg">Description</p>
+            <div className="flex items-center mb-2">
+              <button
+                onClick={() => applyStyle("bold")}
+                className={`mr-2 px-2 py-1 rounded ${
+                  activeStyles.bold ? "bg-blue-500 text-white" : "bg-gray-200"
+                }`}
+              >
+                <b>B</b>
+              </button>
+              <button
+                onClick={() => applyStyle("italic")}
+                className={`mr-2 px-2 py-1 rounded ${
+                  activeStyles.italic ? "bg-blue-500 text-white" : "bg-gray-200"
+                }`}
+              >
+                <i>I</i>
+              </button>
+              <button
+                onClick={() => applyStyle("underline")}
+                className={`px-2 py-1 rounded ${
+                  activeStyles.underline
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200"
+                }`}
+              >
+                <u>U</u>
+              </button>
+            </div>
+            <div
+              ref={editorRef}
+              contentEditable
+              className="w-full h-[300px] border-[1px] p-2  text-start  overflow-y-auto"
+              onInput={updateActiveStyles}
+              onMouseUp={updateActiveStyles}
+              onKeyUp={updateActiveStyles}
+              dangerouslySetInnerHTML={{ __html: data.description }}
+            />
           </div>
-          <div
-            ref={editorRef}
-            contentEditable
-            className="w-full h-[300px] border-[1px] p-2  text-start  overflow-y-auto"
-            onInput={updateActiveStyles}
-            onMouseUp={updateActiveStyles}
-            onKeyUp={updateActiveStyles}
-            dangerouslySetInnerHTML={{ __html: data.description }}
-       
-          />
-        </div>
           {/* <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Description</p>
             <textarea
@@ -210,8 +212,6 @@ const ProductEdit = () => {
               }}
             />
           </div> */}
-
-          
 
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Category</p>
@@ -247,15 +247,26 @@ const ProductEdit = () => {
             />
           </div>
 
-          <div className="flex justify-between items-center">
-            <button
-              className="w-auto h-auto py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg"
+          <div className="flex justify-center items-center gap-x-4">
+            <Button
+              className="w-auto h-auto py-2 px-4"
+              onClick={() => {
+                navigate(-1);
+              }}
+              type="default"
+            >
+              <p className="">Back</p>
+            </Button>
+
+            <Button
+              className="w-auto h-auto py-2 px-4 "
+              type="primary"
               onClick={() => {
                 handleEdit(data._id);
               }}
             >
               <p className="">Save</p>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

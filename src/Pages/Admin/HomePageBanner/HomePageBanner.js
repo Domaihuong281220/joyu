@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import { Icon } from "@iconify/react";
-import { Table } from "antd";
+import { Button, Table } from "antd";
 // import { InputGroup, Input, InputRightElement } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 // import axios from "axios";
@@ -55,12 +55,13 @@ const HomePageBanner = () => {
       width: 200,
       render: (_, record) => (
         <div className="flex items-center justify-center gap-x-2">
-          <button
-            className="hover:underline cursor-pointer hover:text-blue-500 "
+          <Button
+            className=""
+            type="default"
             onClick={() => handleEdit(record)}
           >
             <p className="">Edit</p>
-          </button>
+          </Button>
         </div>
       ),
     },

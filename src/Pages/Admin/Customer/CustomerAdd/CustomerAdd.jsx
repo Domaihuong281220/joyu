@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Icon } from "@iconify/react";
 import { path } from "../../../../utils/Constant";
-
+import { Button } from "antd";
 const CustomerAdd = () => {
   const [formData, setFormData] = useState({
     emailData: "",
@@ -103,14 +103,15 @@ const CustomerAdd = () => {
       <div className="w-[90%] mx-auto h-auto bg-white shadow-xl rounded-lg p-1">
         <div className="flex p-2 justify-between">
           <p className="text-2xl">SEND EMAIL</p>
-          <button
+          <Button
             className="w-auto h-auto"
+            type="default"
             onClick={() => {
               navigate(-1);
             }}
           >
             <Icon icon="tabler:arrow-back" width={24} height={24}></Icon>
-          </button>
+          </Button>
         </div>
 
         <div className="px-10 py-4 mx-auto w-[50%]">
@@ -161,12 +162,13 @@ const CustomerAdd = () => {
             )}
           </div>
 
-          <button
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+          <Button
+            className="mt-4 px-4 py-2 flex items-center "
+            type="primary"
             onClick={handleSendEmail}
           >
-            Send Email
-          </button>
+            <p className=""> Send Email</p>
+          </Button>
         </div>
       </div>
       {isLoading && (

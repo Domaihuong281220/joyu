@@ -5,7 +5,7 @@ import { Input } from "antd";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { message } from "antd";
+import { message, Button } from "antd";
 import { toast } from "sonner";
 import { isValidInputCategory } from "../../../../../utils/common/validators";
 
@@ -64,20 +64,22 @@ const CategoriesAdd = () => {
           </div>
 
           <div className="flex justify-center items-center gap-x-4">
-            <button
-              className="w-auto h-auto py-2 px-4 bg-slate-50 border-2 border-blue-300 rounded-lg hover:bg-slate-200 hover:shadow-lg"
+            <Button
+              className="w-auto h-auto py-2 px-4 "
+              type="default"
               onClick={() => {
                 navigate(-1);
               }}
             >
               <p className="">Back</p>
-            </button>
-            <button
-              className="w-auto h-auto py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg "
+            </Button>
+            <Button
+              className="w-auto h-auto py-2 px-4 "
+              type="primary"
               onClick={() => handleAddcategoryAPI()}
             >
               <p className="">Save</p>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

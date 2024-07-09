@@ -59,7 +59,6 @@ const AddressManage = () => {
   useEffect(() => {
     handleGetAddress();
   }, []);
-  console.log(addressData, "data");
   const columns = [
     {
       title: "STT",
@@ -106,12 +105,13 @@ const AddressManage = () => {
       width: 200,
       render: (_, record) => (
         <div className="flex items-center justify-center gap-x-2">
-          <button
+          <Button
+            type="default"
             className="hover:underline cursor-pointer hover:text-blue-500 "
             onClick={() => handleEditAddress(record)}
           >
             <p className="">Edit</p>
-          </button>
+          </Button>
 
           <Popconfirm
             placement="rightTop"
@@ -128,7 +128,7 @@ const AddressManage = () => {
               />
             }
           >
-            <button>Delete</button>
+            <Button danger>Delete</Button>
           </Popconfirm>
         </div>
       ),
@@ -144,8 +144,9 @@ const AddressManage = () => {
         <div className="">
           <div className="flex items-center justify-between gap-x-10 px-4 py-4">
             <div className="flex items-center gap-x-3">
-              <button
-                className="w-auto h-auto p-2 rounded-lg border-2 border-green-300 hover:border-green-500 flex items-center gap-x-2 hover:shadow-lg"
+              <Button
+                type="primary"
+                className="w-auto h-auto p-2  flex items-center gap-x-2 hover:shadow-lg"
                 onClick={() => {
                   navigate("../" + path.ADDRESSADD);
                 }}
@@ -156,7 +157,7 @@ const AddressManage = () => {
                   height={24}
                 ></Icon>
                 <p className="">Add New Address</p>
-              </button>
+              </Button>
             </div>
           </div>
           {isloading ? (

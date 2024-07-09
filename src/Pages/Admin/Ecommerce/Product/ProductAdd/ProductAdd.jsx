@@ -1,12 +1,13 @@
 /** @format */
 
 import React, { useState, useEffect, useRef } from "react";
-import { Input } from "antd";
+import { Button, Input } from "antd";
 import { Select } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { path } from "../../../../../utils/Constant";
+import { isValidInputProduct } from "../../../../../utils/common/validators";
 
 const ProductAdd = () => {
   const navigate = useNavigate();
@@ -55,11 +56,54 @@ const ProductAdd = () => {
   };
 
   const handleUpload = async () => {
-    if (!image) {
-      toast.error("Please select an image!");
-      return;
-    }
+    const cleanHTML = (html) => {
+      const div = document.createElement("div");
+      div.innerHTML = html;
 
+      const cleanNode = (node) => {
+        if (node.nodeType === 1) {
+          // Element node
+          const style = node.getAttribute("style");
+          if (style) {
+            const stylesToPreserve = [
+              "font-weight",
+              "font-style",
+              "text-decoration",
+            ];
+            const styleMap = style.split(";").reduce((acc, style) => {
+              const [property, value] = style.split(":");
+              if (stylesToPreserve.includes(property.trim())) {
+                acc[property.trim()] = value.trim();
+              }
+              return acc;
+            }, {});
+            node.setAttribute(
+              "style",
+              Object.entries(styleMap)
+                .map(([property, value]) => `${property}: ${value}`)
+                .join("; ")
+            );
+          }
+          // Recursively clean child nodes
+          for (let i = 0; i < node.childNodes.length; i++) {
+            cleanNode(node.childNodes[i]);
+          }
+        }
+      };
+
+      cleanNode(div);
+      return div.innerHTML;
+    };
+
+    const formData = new FormData();
+    formData.append("price", price);
+    formData.append("categoryID", categoryID);
+    formData.append("image", image);
+    formData.append("name", productName);
+    formData.append(
+      "description",
+      cleanHTML(editorRef.current ? editorRef.current.innerHTML : "")
+    );
     if (!productName) {
       toast.error("Please enter the product name!");
       return;
@@ -74,45 +118,10 @@ const ProductAdd = () => {
       toast.error("Please select a category!");
       return;
     }
-
-    const cleanHTML = (html) => {
-      const div = document.createElement("div");
-      div.innerHTML = html;
-    
-      const cleanNode = (node) => {
-        if (node.nodeType === 1) { // Element node
-          const style = node.getAttribute("style");
-          if (style) {
-            const stylesToPreserve = ["font-weight", "font-style", "text-decoration"];
-            const styleMap = style.split(";").reduce((acc, style) => {
-              const [property, value] = style.split(":");
-              if (stylesToPreserve.includes(property.trim())) {
-                acc[property.trim()] = value.trim();
-              }
-              return acc;
-            }, {});
-            node.setAttribute("style", Object.entries(styleMap).map(([property, value]) => `${property}: ${value}`).join("; "));
-          }
-          // Recursively clean child nodes
-          for (let i = 0; i < node.childNodes.length; i++) {
-            cleanNode(node.childNodes[i]);
-          }
-        }
-      };
-    
-      cleanNode(div);
-      return div.innerHTML;
-    };
-
-    const formData = new FormData();
-    formData.append("price", price);
-    formData.append("categoryID", categoryID);
-    formData.append("image", image);
-    formData.append("name", productName);
-    formData.append(
-      "description",
-      cleanHTML(editorRef.current ? editorRef.current.innerHTML : "")
-    );
+    if (!image) {
+      toast.error("Please select an image!");
+      return;
+    }
 
     try {
       const response = await axios.post(
@@ -163,7 +172,7 @@ const ProductAdd = () => {
               onChange={(e) => setProductName(e.target.value)}
             />
           </div>
-          
+
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Description</p>
             <div className="flex items-center mb-2">
@@ -209,6 +218,8 @@ const ProductAdd = () => {
               className="w-full h-full border-[1px] p-2"
               placeholder="Price"
               type="number"
+              step={0.1}
+              min={0}
               onChange={(e) => setPrice(e.target.value)}
             />
           </div>
@@ -238,21 +249,23 @@ const ProductAdd = () => {
             />
           </div>
           <div className="flex justify-center items-center gap-x-4">
-            <button
-              className="w-auto h-auto py-2 px-4 bg-slate-50 border-2 border-blue-300 rounded-lg hover:bg-slate-200 hover:shadow-lg"
+            <Button
+              className="w-auto h-auto py-2 px-4"
               onClick={() => {
                 navigate(-1);
               }}
+              type="default"
             >
               <p className="">Back</p>
-            </button>
+            </Button>
 
-            <button
-              className="w-auto h-auto py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg "
+            <Button
+              className="w-auto h-auto py-2 px-4 "
+              type="primary"
               onClick={() => handleUpload()}
             >
               <p className="">Save</p>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

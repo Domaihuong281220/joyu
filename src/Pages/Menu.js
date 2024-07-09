@@ -27,7 +27,6 @@ function Menu() {
       }));
       categories.reverse();
       setMenu(categories); // Setting the fetched categories to the state.
-      // console.log();
     } catch (error) {
       console.error("Failed to fetch menu:", error);
     }

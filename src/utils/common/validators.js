@@ -147,22 +147,22 @@ export const isValidInputCategory = (formData, toast) => {
   return true;
 };
 export const isValidInputProduct = (formData, toast) => {
-  var regxPrice = new RegExp("^[0-9]$");
   if (!formData.name) {
-    toast.error("name category is required");
+    toast.error("Name product is required");
+    return false;
+  }
+  if (!formData.description) {
+    toast.error("Description is required ");
     return false;
   }
 
   if (!formData.price) {
-    toast.error("price is required ");
+    toast.error("Price is required ");
     return false;
   }
-  if (!regxPrice.test(formData.price)) {
-    toast.info("please enter price only number");
-    return false;
-  }
-  if (!formData.description) {
-    toast.error("description is required ");
+
+  if (!formData.categoryID) {
+    toast.error("Category is required ");
     return false;
   }
 
@@ -230,6 +230,51 @@ export const isValidInputCreateLocation = (formData, toast) => {
   }
   if (!regexPhoneNumber.test(formData.phone)) {
     toast.info("Please enter a unique valid phone number!");
+    return false;
+  }
+
+  return true;
+};
+
+export const isValidInputJobs = (formData, toast) => {
+  if (!formData.position) {
+    toast.error("Name Job is required");
+    return false;
+  }
+
+  if (!formData.description) {
+    toast.error("description is required ");
+    return false;
+  }
+
+  if (!formData.responsibility) {
+    toast.error("responsibility is required ");
+    return false;
+  }
+
+  return true;
+};
+
+export const isValidInputAddress = (formData, toast) => {
+  if (!formData.address) {
+    toast.error("Address is required");
+    return false;
+  }
+
+  return true;
+};
+
+export const isValidInputNews = (formData, toast) => {
+  if (!formData.title) {
+    toast.error("Name News is required");
+    return false;
+  }
+  if (!formData.longdescription) {
+    toast.error("Long description is required");
+    return false;
+  }
+  if (!formData.shortdescription) {
+    toast.error("Short description is required");
     return false;
   }
 

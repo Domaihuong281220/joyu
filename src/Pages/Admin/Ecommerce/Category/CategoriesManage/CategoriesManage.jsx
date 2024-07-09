@@ -54,7 +54,6 @@ const CategoriesManage = () => {
     await axios
       .get(`${process.env.REACT_APP_SERVER_URL}/joyu/categories/`)
       .then((res) => {
-        // console.log(res);
         setcategoryData(res.data.data);
       })
       .catch((err) => {
@@ -115,12 +114,13 @@ const CategoriesManage = () => {
       width: 200,
       render: (_, record) => (
         <div className="flex items-center justify-center gap-x-2">
-          <button
-            className="hover:underline cursor-pointer hover:text-blue-500 "
+          <Button
+            className=" "
+            type="default"
             onClick={() => handleEditCategory(record)}
           >
             <p className="">Edit</p>
-          </button>
+          </Button>
 
           <Popconfirm
             placement="rightTop"
@@ -137,7 +137,7 @@ const CategoriesManage = () => {
               />
             }
           >
-            <button>Delete</button>
+            <Button danger>Delete</Button>
           </Popconfirm>
         </div>
       ),
@@ -162,8 +162,9 @@ const CategoriesManage = () => {
         <div className="">
           <div className="flex items-center justify-between px-4 py-4">
             <div className="flex items-center gap-x-3">
-              <button
-                className="w-auto h-auto p-2 rounded-lg border-2 border-green-300 hover:border-green-500 flex items-center gap-x-2 hover:shadow-lg"
+              <Button
+                type="primary"
+                className="w-auto h-auto p-2 flex items-center gap-x-2"
                 onClick={() => {
                   navigate("../" + path.CATEGORYADD);
                 }}
@@ -174,7 +175,7 @@ const CategoriesManage = () => {
                   height={24}
                 ></Icon>
                 <p className="">Add New Categories</p>
-              </button>
+              </Button>
             </div>
           </div>
           <div className="w-[100%]">

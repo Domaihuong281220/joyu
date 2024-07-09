@@ -6,7 +6,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { path } from "../../../../utils/Constant";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Input } from "antd";
+import { Button, Input } from "antd";
 import { isValidInputCreateLocation } from "../../../../helpers/validInputs";
 const EditLocation = () => {
   const navigate = useNavigate();
@@ -74,14 +74,14 @@ const EditLocation = () => {
       <div className="w-[90%] mx-auto h-auto bg-white shadow-xl rounded-lg p-1">
         <div className="flex p-2 justify-between">
           <p className="text-2xl">LOCATION EDIT</p>
-          <button
+          <Button
             className="w-auto h-auto"
             onClick={() => {
               navigate(-1);
             }}
           >
             <Icon icon="tabler:arrow-back" width={24} height={24}></Icon>
-          </button>
+          </Button>
         </div>
 
         {/* Start Tabs User Edit */}
@@ -187,14 +187,15 @@ const EditLocation = () => {
           </div>
 
           <div className="flex justify-between items-center">
-            <button
-              className="w-auto h-auto py-2 px-4 bg-blue-300 border-2 border-blue-300 rounded-lg hover:bg-blue-500 hover:shadow-lg"
+            <Button
+              className="w-auto h-auto py-2 px-4"
+              type="primary"
               onClick={() => {
                 handleEdit(data._id);
               }}
             >
               <p className="">Save</p>
-            </button>
+            </Button>
           </div>
         </div>
       </div>
