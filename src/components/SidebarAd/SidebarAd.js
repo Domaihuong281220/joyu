@@ -29,6 +29,7 @@ const SidebarAd = () => {
           <p className=" text-lg">Careers</p>
         </div>
       ),
+
       icon: (
         <Icon
           className="h-5 w-5"
@@ -77,7 +78,15 @@ const SidebarAd = () => {
           <p className=" text-lg">News</p>
         </div>
       ),
-      icon: <Icon icon="mdi:events-check" className="h-5 w-5"></Icon>,
+      icon: (
+        <Icon
+          icon="mdi:events-check"
+          className="h-5 w-5"
+          onClick={() => {
+            navigate("../" + path.EVENTMANAGE);
+          }}
+        ></Icon>
+      ),
       children: "",
       type: "",
     },
@@ -93,7 +102,15 @@ const SidebarAd = () => {
           <p className=" text-lg">Tags</p>
         </div>
       ),
-      icon: <Icon icon={"tabler:tag"} className="h-5 w-5"></Icon>,
+      icon: (
+        <Icon
+          icon={"tabler:tag"}
+          className="h-5 w-5"
+          onClick={() => {
+            navigate("../" + path.METATAG);
+          }}
+        ></Icon>
+      ),
       children: "",
       type: "",
     },
@@ -109,7 +126,15 @@ const SidebarAd = () => {
           <p className=" text-lg">Users</p>
         </div>
       ),
-      icon: <Icon icon="mdi:user-outline" className="h-5 w-5"></Icon>,
+      icon: (
+        <Icon
+          icon="mdi:user-outline"
+          className="h-5 w-5"
+          onClick={() => {
+            navigate("../" + path.USERMANAGE);
+          }}
+        ></Icon>
+      ),
       children: "",
       type: "",
     },
@@ -129,6 +154,9 @@ const SidebarAd = () => {
         <Icon
           icon="streamline:information-desk-customer"
           className="h-5 w-5"
+          onClick={() => {
+            navigate("../" + path.CUSTOMERMANAGE);
+          }}
         ></Icon>
       ),
       children: "",
@@ -190,7 +218,13 @@ const SidebarAd = () => {
         </div>
       ),
       icon: (
-        <Icon icon="material-symbols:image-outline" className="h-5 w-5"></Icon>
+        <Icon
+          icon="material-symbols:image-outline"
+          className="h-5 w-5"
+          onClick={() => {
+            navigate("../" + path.HOMEPAGEBANNER);
+          }}
+        ></Icon>
       ),
       children: "",
       type: "",
@@ -207,7 +241,15 @@ const SidebarAd = () => {
           <p className=" text-lg">Location</p>
         </div>
       ),
-      icon: <Icon icon="mynaui:location" className="h-5 w-5"></Icon>,
+      icon: (
+        <Icon
+          icon="mynaui:location"
+          className="h-5 w-5"
+          onClick={() => {
+            navigate("../" + path.LOCATIONMANAGE);
+          }}
+        ></Icon>
+      ),
       children: "",
       type: "",
     },

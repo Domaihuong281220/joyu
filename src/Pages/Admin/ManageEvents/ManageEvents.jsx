@@ -158,7 +158,7 @@ const ManageEvents = () => {
       ),
     },
   ];
-  
+
   return (
     <div className="">
       {contextHolder}
