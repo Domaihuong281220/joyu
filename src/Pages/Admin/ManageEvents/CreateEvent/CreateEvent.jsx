@@ -83,7 +83,7 @@ const CreateEvent = () => {
       cleanHTML(editorRef.current ? editorRef.current.innerHTML : "")
     ); // Clean HTML content
     formData.append("shortdescription", shortDescription);
-    let check = isValidInputNews(formData, toast);
+
     if (files.length < 2 || !files[0] || !files[1]) {
       toast.info("Please select both files Title Image and Detail Image!");
       return;
@@ -95,26 +95,43 @@ const CreateEvent = () => {
       );
       return;
     }
-    if (check === true) {
-      try {
-        const response = await axios.post(
-          `${process.env.REACT_APP_SERVER_URL}/joyu/news`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-        if (response.status === 200) {
-          navigate("../" + path.EVENTMANAGE);
-          toast.success("Create news successfully!");
-        } else {
-          toast.error("Create news wrong: ");
+
+    if (!title) {
+      toast.error("Please enter the News!");
+      return;
+    }
+
+    if (!shortDescription) {
+      toast.error("Please enter the valid Short Description!");
+      return;
+    }
+    if (
+      editorRef.current.innerHTML === undefined ||
+      editorRef.current.innerHTML === "" ||
+      editorRef.current.innerHTML === null
+    ) {
+      toast.error("Please enter the valid Long Description!");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/news`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      } catch (error) {
-        toast.error("Create news wrong: " + error.message);
+      );
+      if (response.status === 200) {
+        navigate("../" + path.EVENTMANAGE);
+        toast.success("Create news successfully!");
+      } else {
+        toast.error("Create news wrong: ");
       }
+    } catch (error) {
+      toast.error("Create news wrong: " + error.message);
     }
   };
 
