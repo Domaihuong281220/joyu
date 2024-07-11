@@ -107,6 +107,28 @@ const ProductEdit = () => {
     } else {
       updateData.append("image", formData.image); // Make sure the current image path is sent
     }
+    if (!formData.name) {
+      toast.error("Please enter the product name!");
+      return;
+    }
+    if (
+      editorRef.current.innerHTML === undefined ||
+      editorRef.current.innerHTML === "" ||
+      editorRef.current.innerHTML === null
+    ) {
+      toast.error("Please enter the valid description!");
+      return;
+    }
+
+    if (!formData.price) {
+      toast.error("Please enter the valid product price!");
+      return;
+    }
+
+    if (!formData.categoryID) {
+      toast.error("Please select a category!");
+      return;
+    }
 
     try {
       const res = await axios.put(

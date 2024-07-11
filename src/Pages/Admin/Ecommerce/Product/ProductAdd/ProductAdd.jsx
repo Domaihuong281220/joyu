@@ -108,6 +108,14 @@ const ProductAdd = () => {
       toast.error("Please enter the product name!");
       return;
     }
+    if (
+      editorRef.current.innerHTML === undefined ||
+      editorRef.current.innerHTML === "" ||
+      editorRef.current.innerHTML === null
+    ) {
+      toast.error("Please enter the valid description!");
+      return;
+    }
 
     if (!price) {
       toast.error("Please enter the valid product price!");

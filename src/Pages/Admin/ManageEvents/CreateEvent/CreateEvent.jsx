@@ -100,17 +100,17 @@ const CreateEvent = () => {
       toast.error("Please enter the News!");
       return;
     }
-
-    if (!shortDescription) {
-      toast.error("Please enter the valid Short Description!");
-      return;
-    }
     if (
       editorRef.current.innerHTML === undefined ||
       editorRef.current.innerHTML === "" ||
       editorRef.current.innerHTML === null
     ) {
       toast.error("Please enter the valid Long Description!");
+      return;
+    }
+
+    if (!shortDescription) {
+      toast.error("Please enter the valid Short Description!");
       return;
     }
 
