@@ -5,7 +5,7 @@ import { CardCareer, CardCareerAddress } from "../../components";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { replaceNewlinesWithBreaks } from "../../utils/Constant";
-import { Select } from "antd";
+import { Select, Button } from "antd";
 
 const Careers = () => {
   const [careerData, setCareerData] = useState([]);
@@ -15,6 +15,7 @@ const Careers = () => {
   const [addressPosition, setAddressPosition] = useState([]);
   const [filterPosition, setFilterPosition] = useState('All');
   const [filterAddress, setFilterAddress] = useState('All');
+  const [filteredAddressPositions, setFilteredAddressPositions] = useState([]);
 
   // Updates the linkform state when selected position changes
   useEffect(() => {
@@ -53,6 +54,7 @@ const Careers = () => {
         );
 
         setAddressPosition(response.data.data);
+        setFilteredAddressPositions(response.data.data); // Initialize with all positions
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -81,11 +83,14 @@ const Careers = () => {
   };
 
   // Filtered address positions
-  const filteredAddressPositions = availableItems(addressPosition).filter(
-    (item) =>
-      (filterPosition === 'All' || item.careerId.position === filterPosition) &&
-      (filterAddress === 'All' || item.address === filterAddress)
-  );
+  const filterAddressPositions = () => {
+    const filtered = availableItems(addressPosition).filter(
+      (item) =>
+        (filterPosition === 'All' || item.careerId.position === filterPosition) &&
+        (filterAddress === 'All' || item.address === filterAddress)
+    );
+    setFilteredAddressPositions(filtered);
+  };
 
   return (
     <div className="w-[76vw] mx-auto pv:max-md:pt-[30vw] pv:max-lg:w-[85%]">
@@ -119,9 +124,9 @@ const Careers = () => {
             Please submit your resume titled with Position-Location.
           </p>
         </div>
-        <div className="flex gap-4 py-2">
-          <div className="flex flex-col gap-2">
-            <p>Filter by Position</p>
+        <div className="flex gap-4 py-4 items-end">
+          <div className="flex flex-col gap-3 ">
+            <p  className="text-start text-[4vw]">Filter by Position</p>
             <Select
               style={{ width: '30vw' }}
               value={filterPosition}
@@ -135,8 +140,8 @@ const Careers = () => {
               ))}
             </Select>
           </div>
-          <div className="flex flex-col gap-2">
-            <p>Filter by Address</p>
+          <div className="flex flex-col gap-3">
+            <p className="text-start text-[4vw]">Filter by Address</p>
             <Select
               style={{ width: '30vw' }}
               value={filterAddress}
@@ -150,7 +155,11 @@ const Careers = () => {
               ))}
             </Select>
           </div>
+          <Button type="primary" onClick={filterAddressPositions}>
+          Find Job
+        </Button>
         </div>
+       
       </div>
       
       {/* Filtered Address Positions (Desktop only) */}
@@ -164,7 +173,7 @@ const Careers = () => {
             ></CardCareerAddress>
           ))
         ) : (
-          <p>No available address positions</p>
+          <p className="text-start">No available address - positions</p>
         )}
       </div>
       
