@@ -100,8 +100,9 @@ const Careers = () => {
           ></CardCareer>
         ))}
       </div>
-      {/* Desktop */}
-      <div className="py-10 pv:max-md:hidden">
+      
+      {/* Filter Section */}
+      <div className="py-10">
         <div className="py-2">
           <p className="text-start text-[24px] md:max-lg:text-[20px] font-nexa_bold">
             Please submit your resume titled with Position-Location.
@@ -140,59 +141,26 @@ const Careers = () => {
           </div>
         </div>
       </div>
-      {availableItems(addressPosition)
-        .filter(
-          (item) =>
-            (filterPosition === 'All' || item.careerId.position === filterPosition) &&
-            (filterAddress === 'All' || item.address === filterAddress)
-        )
-        .map((item, index) => (
-          <CardCareerAddress
-            key={index}
-            title={item?.careerId.position}
-            address={item.address}
-          ></CardCareerAddress>
-        ))}
+      
+      {/* Filtered Address Positions (Desktop only) */}
+      <div className="hidden md:block mb-[2vw]">
+        {availableItems(addressPosition)
+          .filter(
+            (item) =>
+              (filterPosition === 'All' || item.careerId.position === filterPosition) &&
+              (filterAddress === 'All' || item.address === filterAddress)
+          )
+          .map((item, index) => (
+            <CardCareerAddress
+              key={index}
+              title={item?.careerId.position}
+              address={item.address}
+            ></CardCareerAddress>
+          ))}
+      </div>
+      
       {/* Mobile */}
       <div className="py-10 md:hidden">
-        <div className="">
-          <p className="text-start pv:max-ph:text-[18px] ph:max-md:text-[22px] font-nexa_bold">
-            Please submit your resume <br></br>
-            titled with Position-Location
-          </p>
-          <div className="flex gap-4 py-2">
-            <div className="flex flex-col gap-2">
-              <p>Filter by Position</p>
-              <Select
-                style={{ width: '30vw' }}
-                value={filterPosition}
-                onChange={(value) => setFilterPosition(value)}
-              >
-                <Select.Option value="All">All</Select.Option>
-                {getUniquePositions(addressPosition).map((position, index) => (
-                  <Select.Option key={index} value={position}>
-                    {position}
-                  </Select.Option>
-                ))}
-              </Select>
-            </div>
-            <div className="flex flex-col gap-2">
-              <p>Filter by Address</p>
-              <Select
-                style={{ width: '30vw' }}
-                value={filterAddress}
-                onChange={(value) => setFilterAddress(value)}
-              >
-                <Select.Option value="All">All</Select.Option>
-                {getUniqueAddresses(addressPosition).map((address, index) => (
-                  <Select.Option key={index} value={address}>
-                    {address}
-                  </Select.Option>
-                ))}
-              </Select>
-            </div>
-          </div>
-        </div>
         {availableItems(addressPosition)
           .filter(
             (item) =>
