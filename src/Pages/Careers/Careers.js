@@ -126,7 +126,7 @@ const Careers = () => {
         </div>
         <div className="flex gap-4 py-4 items-end">
           <div className="flex flex-col gap-3 ">
-            <p  className="text-start text-[4vw]">Filter by Position</p>
+            <p  className="text-start">Filter by Position</p>
             <Select
               style={{ width: '30vw' }}
               value={filterPosition}
@@ -141,7 +141,7 @@ const Careers = () => {
             </Select>
           </div>
           <div className="flex flex-col gap-3">
-            <p className="text-start text-[4vw]">Filter by Address</p>
+            <p className="text-start">Filter by Address</p>
             <Select
               style={{ width: '30vw' }}
               value={filterAddress}
@@ -163,7 +163,7 @@ const Careers = () => {
       </div>
       
       {/* Filtered Address Positions (Desktop only) */}
-      <div className="hidden md:block">
+      <div className="hidden md:block mb-[4vw]">
         {filteredAddressPositions.length > 0 ? (
           filteredAddressPositions.map((item, index) => (
             <CardCareerAddress
