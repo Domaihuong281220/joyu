@@ -1,18 +1,21 @@
 /** @format */
 
 import React from "react";
-// import { carrerData } from "../../models/mockdata";
 import { CardCareer, CardCareerAddress } from "../../components";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { replaceNewlinesWithBreaks } from "../../utils/Constant";
+import { Select } from "antd";
+
 const Careers = () => {
   const [careerData, setCareerData] = useState([]);
-  const [careersCount, setCareersCount] = useState(0);
   const [availablePositions, setAvailablePositions] = useState([]);
   const [selected, setSelected] = useState();
   const [linkform, setLinkform] = useState();
   const [addressPosition, setAddressPosition] = useState([]);
+  const [filterPosition, setFilterPosition] = useState('All');
+  const [filterAddress, setFilterAddress] = useState('All');
+
   // Updates the linkform state when selected position changes
   useEffect(() => {
     const selectedPosition = availablePositions.find(
@@ -59,94 +62,163 @@ const Careers = () => {
     fetchaddressPosition();
   }, []);
 
-  // get Address Position Avaibility
+  // Get unique address positions
+  const getUniqueAddresses = (arr) => {
+    const addresses = arr.map(item => item.address);
+    return [...new Set(addresses)];
+  };
+
+  // Get unique positions
+  const getUniquePositions = (arr) => {
+    const positions = arr.map(item => item.careerId.position);
+    return [...new Set(positions)];
+  };
+
+  // get Address Position Availability
   const availableItems = (arr) => {
     const result = arr.filter((item) => item.availability);
     return result;
   };
 
   return (
-    <div className=" w-[76vw] mx-auto  pv:max-md:pt-[30vw] pv:max-lg:w-[85%] ">
+    <div className="w-[76vw] mx-auto pv:max-md:pt-[30vw] pv:max-lg:w-[85%]">
       <div className="pt-[12vw] flex pb-[3.6vw] pv:max-md:pb-1">
         <p className="font-nexa_bold pv:max-md:font-nexa pv:max-md:font-black text-[2.6vw] pv:max-md:text-[7vw] text-primary">
           CAREERS
         </p>
       </div>
-      <div className="h-[1px] w-full hidden pv:max-md:block bg-black my-10 pv:max-md:mt-0 pv:max-md:mb-4 "></div>
+      <div className="h-[1px] w-full hidden pv:max-md:block bg-black my-10 pv:max-md:mt-0 pv:max-md:mb-4"></div>
 
       <div className="flex flex-col gap-[5vw]">
-        {careerData?.map((item, index) => {
-          return (
-            <>
-              <CardCareer
-                description={replaceNewlinesWithBreaks(item.description)}
-                // subdesc={item.subde)sc}
-                // title={item.title}
-                Responsibilities={replaceNewlinesWithBreaks(
-                  item.responsibility
-                )}
-                position={item.position}
-                img={item.image}
-              ></CardCareer>
-            </>
-          );
-        })}
+        {careerData?.map((item, index) => (
+          <CardCareer
+            key={index}
+            description={replaceNewlinesWithBreaks(item.description)}
+            Responsibilities={replaceNewlinesWithBreaks(item.responsibility)}
+            position={item.position}
+            img={item.image}
+          ></CardCareer>
+        ))}
       </div>
       {/* Desktop */}
-      <div className="py-10 pv:max-md:hidden ">
+      <div className="py-10 pv:max-md:hidden">
         <div className="py-2">
           <p className="text-start text-[24px] md:max-lg:text-[20px] font-nexa_bold">
             Please submit your resume titled with Position-Location.
           </p>
         </div>
-        {availableItems(addressPosition).map((item, index) => {
-          const isLastItem =
-            index === availableItems(addressPosition).length - 1;
-
-          return (
-            <>
-              <CardCareerAddress
-                title={item?.careerId.position}
-                address={item.address}
-                // isLast={isLastItem}
-              ></CardCareerAddress>
-            </>
-          );
-        })}
+        <div className="flex gap-4 py-2">
+          <div className="flex flex-col gap-2">
+            <p>Filter by Position</p>
+            <Select
+              style={{ width: '30vw' }}
+              value={filterPosition}
+              onChange={(value) => setFilterPosition(value)}
+            >
+              <Select.Option value="All">All</Select.Option>
+              {getUniquePositions(addressPosition).map((position, index) => (
+                <Select.Option key={index} value={position}>
+                  {position}
+                </Select.Option>
+              ))}
+            </Select>
+          </div>
+          <div className="flex flex-col gap-2">
+            <p>Filter by Address</p>
+            <Select
+              style={{ width: '30vw' }}
+              value={filterAddress}
+              onChange={(value) => setFilterAddress(value)}
+            >
+              <Select.Option value="All">All</Select.Option>
+              {getUniqueAddresses(addressPosition).map((address, index) => (
+                <Select.Option key={index} value={address}>
+                  {address}
+                </Select.Option>
+              ))}
+            </Select>
+          </div>
+        </div>
       </div>
-
+      {availableItems(addressPosition)
+        .filter(
+          (item) =>
+            (filterPosition === 'All' || item.careerId.position === filterPosition) &&
+            (filterAddress === 'All' || item.address === filterAddress)
+        )
+        .map((item, index) => (
+          <CardCareerAddress
+            key={index}
+            title={item?.careerId.position}
+            address={item.address}
+          ></CardCareerAddress>
+        ))}
       {/* Mobile */}
-      <div className="py-10 md:hidden ">
+      <div className="py-10 md:hidden">
         <div className="">
           <p className="text-start pv:max-ph:text-[18px] ph:max-md:text-[22px] font-nexa_bold">
             Please submit your resume <br></br>
             titled with Position-Location
           </p>
+          <div className="flex gap-4 py-2">
+            <div className="flex flex-col gap-2">
+              <p>Filter by Position</p>
+              <Select
+                style={{ width: '30vw' }}
+                value={filterPosition}
+                onChange={(value) => setFilterPosition(value)}
+              >
+                <Select.Option value="All">All</Select.Option>
+                {getUniquePositions(addressPosition).map((position, index) => (
+                  <Select.Option key={index} value={position}>
+                    {position}
+                  </Select.Option>
+                ))}
+              </Select>
+            </div>
+            <div className="flex flex-col gap-2">
+              <p>Filter by Address</p>
+              <Select
+                style={{ width: '30vw' }}
+                value={filterAddress}
+                onChange={(value) => setFilterAddress(value)}
+              >
+                <Select.Option value="All">All</Select.Option>
+                {getUniqueAddresses(addressPosition).map((address, index) => (
+                  <Select.Option key={index} value={address}>
+                    {address}
+                  </Select.Option>
+                ))}
+              </Select>
+            </div>
+          </div>
         </div>
-        {availableItems(addressPosition).map((item, index) => {
-          return (
-            <>
-              <div className="flex flex-col  py-4 gap-2">
-                <p className="text-start pv:max-ph:text-[20px] ph:max-md:text-[24px] text-primary font-nexa_bold">
-                  {item.careerId.position}
-                </p>
-                <p className="text-start pv:max-ph:text-[18px] ph:max-md:text-[22px]">
-                  {item.address}
-                </p>
-                <div className="flex justify-start  ">
-                  <button className="bg-[#a2a158] w-[50%] py-2 rounded-lg">
-                    <a
-                      href="mailto:info@joyuteacoffee.com"
-                      className="text-white pv:max-md:font-nexa_bold pv:max-md:font-black pv:max-md:text-[4.5vw] pv:max-md:uppercase font-nexa_bold"
-                    >
-                      Apply
-                    </a>
-                  </button>
-                </div>
+        {availableItems(addressPosition)
+          .filter(
+            (item) =>
+              (filterPosition === 'All' || item.careerId.position === filterPosition) &&
+              (filterAddress === 'All' || item.address === filterAddress)
+          )
+          .map((item, index) => (
+            <div className="flex flex-col py-4 gap-2" key={index}>
+              <p className="text-start pv:max-ph:text-[20px] ph:max-md:text-[24px] text-primary font-nexa_bold">
+                {item.careerId.position}
+              </p>
+              <p className="text-start pv:max-ph:text-[18px] ph:max-md:text-[22px]">
+                {item.address}
+              </p>
+              <div className="flex justify-start">
+                <button className="bg-[#a2a158] w-[50%] py-2 rounded-lg">
+                  <a
+                    href="mailto:info@joyuteacoffee.com"
+                    className="text-white pv:max-md:font-nexa_bold pv:max-md:font-black pv:max-md:text-[4.5vw] pv:max-md:uppercase font-nexa_bold"
+                  >
+                    Apply
+                  </a>
+                </button>
               </div>
-            </>
-          );
-        })}
+            </div>
+          ))}
       </div>
     </div>
   );

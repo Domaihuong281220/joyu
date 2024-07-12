@@ -296,7 +296,7 @@ const Franchising = () => {
               </p>
               <input
                 className="w-full pv:max-md:w-full  pv:max-md:pl-[5vw] pv:max-md:font-nexa_bold pv:max-md:text-[4.5vw]  md:max-2xl:w-full h-14 pv:max-md:h-[15vw] border-[1px] border-[#707070] rounded-full p-2"
-                placeholder="Phone Ex: +1 (757) xxxxx"
+                placeholder="Phone Ex: 1234567890"
                 onChange={handleChange}
                 value={formData.mobile}
                 name="mobile"
@@ -487,7 +487,7 @@ const Franchising = () => {
             <div className="col-span-2">
               <input
                 className=" w-full pv:max-md:w-full md:max-2xl:w-full h-14 border-[1px] border-[#707070] rounded-full py-2 px-6"
-                placeholder="Phone Ex: +1 (757) xxxxx"
+                placeholder="Phone Ex: 1234567890"
                 onChange={handleChange}
                 value={formData.mobile}
                 name="mobile"

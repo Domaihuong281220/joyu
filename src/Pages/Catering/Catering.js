@@ -134,7 +134,7 @@ const Catering = () => {
           ></input>
           <input
             className=" w-full pv:max-md:w-full md:max-2xl:w-full h-[4.2vw] pv:max-md:h-[18vw] pv:max-md:text-[3.5vw]  md:max-lg:h-12 md:max-lg:text-[14px] md:max-lg:w-[90%] mx-auto border-[1px] border-[#707070] rounded-full py-2 px-6"
-            placeholder="Phone Ex: +1 (757) xxxxx"
+            placeholder="Phone Ex: 1234567890"
             value={formData.phone}
             name="phone"
             onChange={handleChange}
