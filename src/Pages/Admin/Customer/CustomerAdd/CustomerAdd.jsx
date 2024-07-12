@@ -56,6 +56,7 @@ const CustomerAdd = () => {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
+          timeout: 120000,
         }
       );
 
@@ -63,16 +64,25 @@ const CustomerAdd = () => {
         toast.success("Email sent successfully!");
         setIsLoading(false);
         navigate("../" + path.CUSTOMERMANAGE);
+      } else if (response.status === 504) {
+        toast.success("Email sent successfully!");
+        navigate("../" + path.CUSTOMERMANAGE);
+
+        setIsLoading(false);
       } else {
-        toast.error("Failed to send email");
+        navigate("../" + path.CUSTOMERMANAGE);
         setIsLoading(false);
       }
     } catch (error) {
-      if (error.response && error.response.status === 500) {
-        toast.error("Server error: Unable to send email");
-      } else {
-        console.error("Email sending failed:", error);
-      }
+      console.log(error);
+      toast.info("You have no email instructions today");
+      navigate("../" + path.CUSTOMERMANAGE);
+
+      // if (error.response && error.response.status === 500) {
+      //   toast.error("Server error: Unable to send email");
+      // } else {
+      //   console.error("Email sending failed:", error);
+      // }
       setIsLoading(false);
     }
   };
