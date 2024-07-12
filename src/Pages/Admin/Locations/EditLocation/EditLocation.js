@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { path } from "../../../../utils/Constant";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button, Input } from "antd";
-import { isValidInputCreateLocation } from "../../../../helpers/validInputs";
+import { isValidInputCreateLocation } from "../../../../utils/common/validators";
 const EditLocation = () => {
   const navigate = useNavigate();
   const location = useLocation();

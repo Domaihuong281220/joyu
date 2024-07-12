@@ -237,10 +237,10 @@ export const isValidInputCreateLocation = (formData, toast) => {
 };
 
 export const isValidInputJobs = (formData, toast) => {
-  if (!formData.position) {
-    toast.error("Name Job is required");
-    return false;
-  }
+  // if (!formData.position) {
+  //   toast.error("Name Job is required");
+  //   return false;
+  // }
 
   if (!formData.description) {
     toast.error("description is required ");

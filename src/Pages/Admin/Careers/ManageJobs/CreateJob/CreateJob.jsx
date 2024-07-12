@@ -11,14 +11,6 @@ import { isValidInputJobs } from "../../../../../utils/common/validators.js";
 
 const CreateJob = () => {
   const navigate = useNavigate();
-  // const [formData, setFormData] = useState({
-  //   position: "",
-  //   description: "",
-  //   responsibility: "",
-  //   availability: "",
-  //   address: "",
-  //   image: "",
-  // });
 
   const [position, setPosition] = useState();
   const [description, setdescription] = useState();
@@ -84,23 +76,35 @@ const CreateJob = () => {
     formData.append("image", image);
     formData.append("availability", availability);
     // formData.append("address", address);
-
-    let check = isValidInputJobs(formData, toast);
-
-    if (check === true) {
-      await axios
-        .post(`${process.env.REACT_APP_SERVER_URL}/joyu/careers`, formData)
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            toast.success("Create new job successfully!");
-
-            navigate("../" + path.JOBMANAGE);
-          }
-        })
-        .catch((err) => {
-          toast.error("Create job wrong: " + err.message);
-        });
+    if (!position) {
+      toast.error("position is required ");
+      return false;
     }
+    if (!editorRef.current.innerHTML) {
+      toast.error("Description is required ");
+      return false;
+    }
+    if (!responsibility) {
+      toast.error("Responsibility is required ");
+      return false;
+    }
+    if (!image) {
+      toast.error("Image is required ");
+      return false;
+    }
+
+    await axios
+      .post(`${process.env.REACT_APP_SERVER_URL}/joyu/careers`, formData)
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
+          toast.success("Create new job successfully!");
+
+          navigate("../" + path.JOBMANAGE);
+        }
+      })
+      .catch((err) => {
+        toast.error("Create job wrong: " + err.message);
+      });
   };
   const handleFileChange = (image) => {
     setImage(image); // Update the state
