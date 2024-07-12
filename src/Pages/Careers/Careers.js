@@ -5,7 +5,7 @@ import { CardCareer, CardCareerAddress } from "../../components";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { replaceNewlinesWithBreaks } from "../../utils/Constant";
-import { Select } from "antd";
+import { Select, Button } from "antd";
 
 const Careers = () => {
   const [careerData, setCareerData] = useState([]);
@@ -15,6 +15,7 @@ const Careers = () => {
   const [addressPosition, setAddressPosition] = useState([]);
   const [filterPosition, setFilterPosition] = useState('All');
   const [filterAddress, setFilterAddress] = useState('All');
+  const [filteredAddressPositions, setFilteredAddressPositions] = useState([]);
 
   // Updates the linkform state when selected position changes
   useEffect(() => {
@@ -53,6 +54,7 @@ const Careers = () => {
         );
 
         setAddressPosition(response.data.data);
+        setFilteredAddressPositions(response.data.data); // Initialize with all positions
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -80,6 +82,16 @@ const Careers = () => {
     return result;
   };
 
+  // Filtered address positions
+  const filterAddressPositions = () => {
+    const filtered = availableItems(addressPosition).filter(
+      (item) =>
+        (filterPosition === 'All' || item.careerId.position === filterPosition) &&
+        (filterAddress === 'All' || item.address === filterAddress)
+    );
+    setFilteredAddressPositions(filtered);
+  };
+
   return (
     <div className="w-[76vw] mx-auto pv:max-md:pt-[30vw] pv:max-lg:w-[85%]">
       <div className="pt-[12vw] flex pb-[3.6vw] pv:max-md:pb-1">
@@ -90,26 +102,31 @@ const Careers = () => {
       <div className="h-[1px] w-full hidden pv:max-md:block bg-black my-10 pv:max-md:mt-0 pv:max-md:mb-4"></div>
 
       <div className="flex flex-col gap-[5vw]">
-        {careerData?.map((item, index) => (
-          <CardCareer
-            key={index}
-            description={replaceNewlinesWithBreaks(item.description)}
-            Responsibilities={replaceNewlinesWithBreaks(item.responsibility)}
-            position={item.position}
-            img={item.image}
-          ></CardCareer>
-        ))}
+        {careerData?.length > 0 ? (
+          careerData.map((item, index) => (
+            <CardCareer
+              key={index}
+              description={replaceNewlinesWithBreaks(item.description)}
+              Responsibilities={replaceNewlinesWithBreaks(item.responsibility)}
+              position={item.position}
+              img={item.image}
+            ></CardCareer>
+          ))
+        ) : (
+          <p>No available career data</p>
+        )}
       </div>
-      {/* Desktop */}
-      <div className="py-10 pv:max-md:hidden">
+      
+      {/* Filter Section */}
+      <div className="py-10">
         <div className="py-2">
           <p className="text-start text-[24px] md:max-lg:text-[20px] font-nexa_bold">
             Please submit your resume titled with Position-Location.
           </p>
         </div>
-        <div className="flex gap-4 py-2">
-          <div className="flex flex-col gap-2">
-            <p>Filter by Position</p>
+        <div className="flex gap-4 py-4 items-end">
+          <div className="flex flex-col gap-3 ">
+            <p  className="text-start">Filter by Position</p>
             <Select
               style={{ width: '30vw' }}
               value={filterPosition}
@@ -123,8 +140,8 @@ const Careers = () => {
               ))}
             </Select>
           </div>
-          <div className="flex flex-col gap-2">
-            <p>Filter by Address</p>
+          <div className="flex flex-col gap-3">
+            <p className="text-start">Filter by Address</p>
             <Select
               style={{ width: '30vw' }}
               value={filterAddress}
@@ -138,68 +155,32 @@ const Careers = () => {
               ))}
             </Select>
           </div>
+          <Button type="primary" onClick={filterAddressPositions}>
+          Find Job
+        </Button>
         </div>
+       
       </div>
-      {availableItems(addressPosition)
-        .filter(
-          (item) =>
-            (filterPosition === 'All' || item.careerId.position === filterPosition) &&
-            (filterAddress === 'All' || item.address === filterAddress)
-        )
-        .map((item, index) => (
-          <CardCareerAddress
-            key={index}
-            title={item?.careerId.position}
-            address={item.address}
-          ></CardCareerAddress>
-        ))}
+      
+      {/* Filtered Address Positions (Desktop only) */}
+      <div className="hidden md:block mb-[4vw]">
+        {filteredAddressPositions.length > 0 ? (
+          filteredAddressPositions.map((item, index) => (
+            <CardCareerAddress
+              key={index}
+              title={item?.careerId.position}
+              address={item.address}
+            ></CardCareerAddress>
+          ))
+        ) : (
+          <p className="text-start">No available address - positions</p>
+        )}
+      </div>
+      
       {/* Mobile */}
       <div className="py-10 md:hidden">
-        <div className="">
-          <p className="text-start pv:max-ph:text-[18px] ph:max-md:text-[22px] font-nexa_bold">
-            Please submit your resume <br></br>
-            titled with Position-Location
-          </p>
-          <div className="flex gap-4 py-2">
-            <div className="flex flex-col gap-2">
-              <p>Filter by Position</p>
-              <Select
-                style={{ width: '30vw' }}
-                value={filterPosition}
-                onChange={(value) => setFilterPosition(value)}
-              >
-                <Select.Option value="All">All</Select.Option>
-                {getUniquePositions(addressPosition).map((position, index) => (
-                  <Select.Option key={index} value={position}>
-                    {position}
-                  </Select.Option>
-                ))}
-              </Select>
-            </div>
-            <div className="flex flex-col gap-2">
-              <p>Filter by Address</p>
-              <Select
-                style={{ width: '30vw' }}
-                value={filterAddress}
-                onChange={(value) => setFilterAddress(value)}
-              >
-                <Select.Option value="All">All</Select.Option>
-                {getUniqueAddresses(addressPosition).map((address, index) => (
-                  <Select.Option key={index} value={address}>
-                    {address}
-                  </Select.Option>
-                ))}
-              </Select>
-            </div>
-          </div>
-        </div>
-        {availableItems(addressPosition)
-          .filter(
-            (item) =>
-              (filterPosition === 'All' || item.careerId.position === filterPosition) &&
-              (filterAddress === 'All' || item.address === filterAddress)
-          )
-          .map((item, index) => (
+        {filteredAddressPositions.length > 0 ? (
+          filteredAddressPositions.map((item, index) => (
             <div className="flex flex-col py-4 gap-2" key={index}>
               <p className="text-start pv:max-ph:text-[20px] ph:max-md:text-[24px] text-primary font-nexa_bold">
                 {item.careerId.position}
@@ -218,7 +199,10 @@ const Careers = () => {
                 </button>
               </div>
             </div>
-          ))}
+          ))
+        ) : (
+          <p>No available address - positions</p>
+        )}
       </div>
     </div>
   );
