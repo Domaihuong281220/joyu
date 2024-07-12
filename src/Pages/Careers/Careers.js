@@ -13,8 +13,8 @@ const Careers = () => {
   const [selected, setSelected] = useState();
   const [linkform, setLinkform] = useState();
   const [addressPosition, setAddressPosition] = useState([]);
-  const [filterPosition, setFilterPosition] = useState('All');
-  const [filterAddress, setFilterAddress] = useState('All');
+  const [filterPosition, setFilterPosition] = useState("All");
+  const [filterAddress, setFilterAddress] = useState("All");
   const [filteredAddressPositions, setFilteredAddressPositions] = useState([]);
 
   // Updates the linkform state when selected position changes
@@ -66,13 +66,13 @@ const Careers = () => {
 
   // Get unique address positions
   const getUniqueAddresses = (arr) => {
-    const addresses = arr.map(item => item.address);
+    const addresses = arr.map((item) => item.address);
     return [...new Set(addresses)];
   };
 
   // Get unique positions
   const getUniquePositions = (arr) => {
-    const positions = arr.map(item => item.careerId.position);
+    const positions = arr.map((item) => item.careerId.position);
     return [...new Set(positions)];
   };
 
@@ -86,8 +86,9 @@ const Careers = () => {
   const filterAddressPositions = () => {
     const filtered = availableItems(addressPosition).filter(
       (item) =>
-        (filterPosition === 'All' || item.careerId.position === filterPosition) &&
-        (filterAddress === 'All' || item.address === filterAddress)
+        (filterPosition === "All" ||
+          item.careerId.position === filterPosition) &&
+        (filterAddress === "All" || item.address === filterAddress)
     );
     setFilteredAddressPositions(filtered);
   };
@@ -116,7 +117,7 @@ const Careers = () => {
           <p>No available career data</p>
         )}
       </div>
-      
+
       {/* Filter Section */}
       <div className="py-10">
         <div className="py-2">
@@ -126,9 +127,9 @@ const Careers = () => {
         </div>
         <div className="flex gap-4 py-4 items-end">
           <div className="flex flex-col gap-3 ">
-            <p  className="text-start">Filter by Position</p>
+            <p className="text-start">Filter by Position</p>
             <Select
-              style={{ width: '30vw' }}
+              style={{ width: "30vw" }}
               value={filterPosition}
               onChange={(value) => setFilterPosition(value)}
             >
@@ -143,7 +144,7 @@ const Careers = () => {
           <div className="flex flex-col gap-3">
             <p className="text-start">Filter by Address</p>
             <Select
-              style={{ width: '30vw' }}
+              style={{ width: "30vw" }}
               value={filterAddress}
               onChange={(value) => setFilterAddress(value)}
             >
@@ -155,13 +156,15 @@ const Careers = () => {
               ))}
             </Select>
           </div>
-          <Button type="primary" onClick={filterAddressPositions}>
-          Find Job
-        </Button>
+          <button
+            onClick={filterAddressPositions}
+            className="bg-[#a2a158] px-4 py-2 rounded-md"
+          >
+            <p className="text-white text-[14px] font-nexa_bold ">Find Job</p>
+          </button>
         </div>
-       
       </div>
-      
+
       {/* Filtered Address Positions (Desktop only) */}
       <div className="hidden md:block mb-[4vw]">
         {filteredAddressPositions.length > 0 ? (
@@ -176,7 +179,7 @@ const Careers = () => {
           <p className="text-start">No available address - positions</p>
         )}
       </div>
-      
+
       {/* Mobile */}
       <div className="py-10 md:hidden">
         {filteredAddressPositions.length > 0 ? (
