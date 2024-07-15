@@ -143,7 +143,6 @@ const ManageUser = () => {
             <p className="">Edit</p>
           </button> */}
 
-          
           <Popconfirm
             placement="rightTop"
             title="Confirm Deletion"
@@ -210,13 +209,14 @@ const ManageUser = () => {
         <div className="">
           <div className="flex items-center justify-between px-4 py-4">
             <div className="flex items-center gap-x-3">
-              <button
-                className="w-auto h-auto p-2 rounded-lg border-2 border-green-300 hover:border-green-500 flex items-center gap-x-2 hover:shadow-lg"
+              <Button
+                type="primary"
+                className="w-auto h-auto p-2 rounded-lg  flex items-center gap-x-2 hover:shadow-lg"
                 onClick={() => navigate("../" + path.CREATEUSER)}
               >
                 <Icon icon="mdi:user-add" width={24} height={24}></Icon>
                 <p className="">Add New User</p>
-              </button>
+              </Button>
             </div>
           </div>
           <div className="flex justify-center items-center">
