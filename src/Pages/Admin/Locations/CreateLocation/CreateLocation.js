@@ -9,10 +9,7 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button, Radio, message } from "antd";
-import {
-  isValidInputsUser,
-  isValidInputCreateLocation,
-} from "../../../../utils/common/validators";
+import { isValidInputCreateLocation } from "../../../../utils/common/validators";
 import { path } from "../../../../utils/Constant";
 const CreateLocation = () => {
   const [formData, setFormData] = useState({

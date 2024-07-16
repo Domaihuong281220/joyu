@@ -215,7 +215,6 @@ export const isValidCreateNewUser = (formData, toast) => {
   return true;
 };
 export const isValidInputCreateLocation = (formData, toast) => {
-  const regexPhoneNumber = /^\d{10}$/;
   if (!formData.name) {
     toast.error(" Loaction name is required!");
     return false;
@@ -226,10 +225,6 @@ export const isValidInputCreateLocation = (formData, toast) => {
   }
   if (!formData.phone) {
     toast.error("Phone Number is required!");
-    return false;
-  }
-  if (!regexPhoneNumber.test(formData.phone)) {
-    toast.info("Please enter a unique valid phone number!");
     return false;
   }
 

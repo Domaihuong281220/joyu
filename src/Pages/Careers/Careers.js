@@ -166,7 +166,7 @@ const Careers = () => {
       </div>
 
       {/* Filtered Address Positions (Desktop only) */}
-      <div className="hidden md:block mb-[4vw]">
+      <div className="hidden md:block mb-[4vw] h-[300px] overflow-y-scroll  no-scrollbar">
         {filteredAddressPositions.length > 0 ? (
           filteredAddressPositions.map((item, index) => (
             <CardCareerAddress

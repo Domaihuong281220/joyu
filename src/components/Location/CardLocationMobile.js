@@ -43,88 +43,6 @@ const CardLocationMobile = ({
   const formattedHours = formatHours(hours);
 
   return (
-    // <div className="flex flex-col pt-[1vw] w-full">
-    //   <div className="flex items-start gap-4 w-full">
-    //     <div className="flex flex-col gap-2">
-    //       <p className="text-start uppercase font-nexa_bold text-[1.2vw]">
-    //         {title}
-    //       </p>
-    //       <div className="flex flex-col gap-1">
-    //         <div className="flex gap-2">
-    //           <Icon className="w-[1.2vw] h-[1.2vw]" icon={"mdi:location"} />
-    //           <p className="font-nexa_light text-start text-[1vw]">{address}</p>
-    //         </div>
-    //         <div className="flex gap-2">
-    //           <Icon
-    //             className="w-[1.2vw] h-[1.2vw]"
-    //             icon={"ic:baseline-phone"}
-    //           />
-    //           <p className="font-nexa_light text-start text-[1vw]">{phone}</p>
-    //         </div>
-    //       </div>
-    //     </div>
-    //     <div className="flex flex-col items-center justify-center gap-2">
-    //       <button
-    //         className={` ${
-    //           available === true ? "bg-primary w-[8vw]" : "bg-white w-fit"
-    //         } rounded-lg py-[0.5vw] border-[0.1vw] border-gray-300 flex justify-center`}
-    //         onClick={
-    //           available
-    //             ? () => {
-    //                 window.location.assign(pickup);
-    //               }
-    //             : () => {
-    //                 navigate("/location");
-    //               }
-    //         }
-    //       >
-    //         <p
-    //           className={` font-nexa_bold text-[1vw] ${
-    //             available
-    //               ? "text-white "
-    //               : "text-black w-fit px-[0.5vw] text-center "
-    //           }`}
-    //         >
-    //           {available ? "PICK UP" : "COMING SOON"}
-    //         </p>
-    //       </button>
-    //       {available ? (
-    //         <button
-    //           className={` bg-black rounded-lg w-[8vw] py-[0.5vw] border-[0.1vw] border-gray-300 flex justify-center`}
-    //           onClick={() => {
-    //             window.location.assign(delivery);
-    //           }}
-    //         >
-    //           <p className="text-white font-nexa_bold text-[1vw] ">DELIVERY</p>
-    //         </button>
-    //       ) : (
-    //         <></>
-    //       )}
-    //     </div>
-    //   </div>
-    //   <div className="">
-    //     <div className="py-4">
-    //       <p className="text-[1.2vw] font-nexa_bold text-start">
-    //         WORKING HOURS
-    //       </p>
-    //     </div>
-    //     <div className="grid grid-cols-2 w-[70%]">
-    //       {Object.keys(formattedHours).map((day) => (
-    //         <React.Fragment key={day}>
-    //           <p className="text-[1.2vw] font-nexa_bold text-start">
-    //             {day.toUpperCase()}
-    //           </p>
-    //           <p className="text-[1.2vw] font-nexa text-start">
-    //             {formattedHours[day].open === "Closed"
-    //               ? "Closed"
-    //               : `${formattedHours[day].open} - ${formattedHours[day].close}`}
-    //           </p>
-    //         </React.Fragment>
-    //       ))}
-    //     </div>
-    //   </div>
-    // </div>
-
     <div className="py-3">
       <div className="flex flex-col gap-4">
         <p className="text-[4.1vw] font-nexa font-bold text-start">{title}</p>
@@ -184,11 +102,11 @@ const CardLocationMobile = ({
 
         {Object.keys(formattedHours).map((day) => (
           <React.Fragment key={day}>
-            <div className="grid grid-cols-2 gap-[10vw] pv:max-md:gap-0 w-full">
-              <p className="font-nexa_bold pv:max-md:text-[4vw] text-start">
+            <div className="grid grid-cols-5 gap-[10vw] pv:max-md:gap-0 w-full">
+              <p className="font-nexa_bold pv:max-md:text-[4vw] text-start col-span-2">
                 {day.toUpperCase()}
               </p>
-              <p className="font-nexa pv:max-md:text-[4vw] text-start">
+              <p className="font-nexa pv:max-md:text-[4vw] text-start col-span-3">
                 {formattedHours[day].open === "Closed"
                   ? "Closed"
                   : `${formattedHours[day].open} - ${formattedHours[day].close}`}
