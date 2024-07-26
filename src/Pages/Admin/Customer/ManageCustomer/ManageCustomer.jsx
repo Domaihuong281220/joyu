@@ -96,7 +96,11 @@ const ManageCustomer = () => {
       );
 
       if (response.status === 200 || response.status === 201) {
-        setUserData(response.data);
+        const usersWithStt = response.data.map((user, index) => ({
+          ...user,
+          stt: index + 1,
+        }));
+        setUserData(usersWithStt);
         setIsLoading(false);
       } else {
         setUserData([]);
@@ -136,6 +140,12 @@ const ManageCustomer = () => {
   const navigate = useNavigate();
   // Declare label for table
   const columns = [
+    {
+      title: "STT",
+      dataIndex: "stt",
+      key: "stt",
+      fixed: "left",
+    },
     {
       title: "Email",
       dataIndex: "email",
