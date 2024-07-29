@@ -105,21 +105,7 @@ function Menu() {
       {menu.map((category, index) => (
         <div
           key={index}
-          className={`pv:max-md:text-center,${
-            category.products.length < 3
-              ? "flex flex-col justify-start items-start px-[11.7%] pv:max-md:px-[5%] mt-[5vw] h-[30vw] pv:max-md:h-[100vw]"
-              : category.products.length < 5
-              ? "flex flex-col justify-start items-start px-[11.7%] pv:max-md:px-[5%] mt-[5vw] h-[30vw]  pv:max-md:h-[182vw]"
-              : category.products.length < 7
-              ? "flex flex-col justify-start items-start px-[11.7%] pv:max-md:px-[5%] mt-[5vw] h-[30vw]  pv:max-md:h-[265vw]"
-              : category.products.length < 9
-              ? "flex flex-col justify-start items-start px-[11.7%] pv:max-md:px-[5%] mt-[5vw] h-[55vw]  pv:max-md:h-[360vw]"
-              : category.products.length < 11
-              ? "flex flex-col justify-start items-start px-[11.7%] pv:max-md:px-[5%] mt-[5vw] h-[55vw]  pv:max-md:h-[420vw]"
-              : category.products.length < 13
-              ? "flex flex-col justify-start items-start px-[11.7%] pv:max-md:px-[5%] mt-[5vw] h-[55vw] pv:max-md:h-[530vw]"
-              : "flex flex-col justify-start items-start px-[11.7%] pv:max-md:px-[5%] mt-[5vw] h-[79vw]  pv:max-md:h-[565vw]"
-          }`}
+          className={`pv:max-md:text-center flex flex-col justify-start items-start px-[11.7%] pv:max-md:px-[5%] mt-[5vw] h-full`}
           id={category.category.split(" ")[0].toLowerCase()}
         >
           <p className="font-nexa_bold pv:max-md:font-nexa text-start pv:max-md:text-center font-bold uppercase text-[2.7vw] pv:max-md:text-[8vw] pv:max-md:leading-[8vw] leading-[2.2vw]">
