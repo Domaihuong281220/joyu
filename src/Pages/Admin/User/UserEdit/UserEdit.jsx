@@ -1,25 +1,15 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Breadcrumbs, Input } from "@material-tailwind/react";
+import { Input } from "@material-tailwind/react";
 import { Icon } from "@iconify/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
-import {
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-  Select,
-} from "@chakra-ui/react";
-import { isValidInputsUser } from "../../../../helpers/validInputs";
 import { toast } from "sonner";
 import { path } from "../../../../utils/Constant";
 
 const UserEdit = () => {
-  // const [startDate, setStartDate] = useState(new Date());
   const navigate = useNavigate();
   const location = useLocation();
   let userDetail = location.state;
@@ -27,9 +17,7 @@ const UserEdit = () => {
     username: userDetail.username,
     phonenumber: userDetail.phonenumber,
     newpassword: userDetail.password,
-    // newpassword: userDetail.password,
   });
-  // console.log(formData);
   const handleEdit = async () => {
     await axios
       .put(

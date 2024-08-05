@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  FreshTea,
-  FullleafMilktea,
-  JoyuSpecials,
-  PhinCoffee,
-  Topping,
-} from "../components";
+
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import { path } from "../utils/Constant";

@@ -1,16 +1,11 @@
 /** @format */
 
 import { Routes, Route } from "react-router-dom";
-// import { Footer, Header } from "../components";
 
 import PrivateLayout from "./PrivateLayout";
 import PublicLayout from "./PublicLayout";
 import PublicRoute from "../utils/PublicRoute";
 import PrivateRoute from "../utils/PrivateRoute";
-// import { Sidebar, Footer } from "../components";
-// import { useState, useEffect } from "react";
-
-// import { Sidebar } from "../components";
 
 const DefaultLayout = (props) => {
   //Routes
@@ -30,13 +25,9 @@ const DefaultLayout = (props) => {
     }
     return result;
   };
-  
-    return (
-    <>
-      {/* <Header /> */}
-      {/* <Routes>{showContentMenu(routes)}</Routes>
-      <Footer /> */}
 
+  return (
+    <>
       <Routes>
         <Route element={<PublicLayout />}>{showContentMenu(PublicRoute)}</Route>
 
@@ -47,8 +38,6 @@ const DefaultLayout = (props) => {
       {/* <Footer /> */}
     </>
   );
-
-  
 };
 
 export default DefaultLayout;

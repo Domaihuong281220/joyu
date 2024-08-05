@@ -16,84 +16,13 @@
   list-style: circle;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-/* Select */
-
-.custom-select {
-  min-width: 300px;
-  position: relative;
-}
-
-select {
-  appearance: none;
-  /*  safari  */
-  -webkit-appearance: none;
-  /*  other styles for aesthetics */
-  width: 100%;
-  font-size: 1.15rem;
-  padding: 0.675em 6em 0.675em 1em;
-  color: #000;
-  cursor: pointer;
-}
-
-.custom-select::before,
-.custom-select::after {
-  --size: 0.3rem;
-  content: "";
-  position: absolute;
-  right: 1rem;
-  pointer-events: none;
-  color: #4a4a4a;
-  
-}
 
 
 
 
-/* Style for the dropdown arrow */
-.custom-select::after {
-  content: '\25BC'; /* Unicode character for down arrow */
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  color: #4a4a4a;
 
-}
-/* Style for the dropdown list */
-.custom-select select:focus + .dropdown-content {
-  display: block;
-}
+
+
 
 .custom_input {
   position: absolute;
@@ -150,12 +79,6 @@ and (-webkit-min-device-pixel-ratio: 1) {
   
 }
 
-.scroll-container {
-  display: flex;
-  overflow-x: auto;
-  white-space: nowrap;
-  padding: 20px 0; /* Adjust padding as needed */
-}
 
 .card {
   flex: 0 0 auto; /* Prevent items from growing */

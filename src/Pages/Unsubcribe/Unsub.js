@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import img from "../../assets/unsubscribe-email.png";
 import { path } from "../../utils/Constant";
 import { useNavigate } from "react-router-dom";
 function Unsub() {
@@ -14,7 +13,6 @@ function Unsub() {
           setCounter(counter - 1);
         }, 1000);
       }
-
       if (counter == 0) {
         navigate(navigatePath);
       }

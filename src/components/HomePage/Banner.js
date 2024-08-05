@@ -52,12 +52,12 @@ function Banner() {
       <img
         src={`${process.env.REACT_APP_SERVER_URL}/${bannerDesktop}`}
         alt=""
-        className="object-cover pv:max-md:hidden"
+        className="object-cover w-full pv:max-md:hidden"
       />
       <img
         src={`${process.env.REACT_APP_SERVER_URL}/${bannerMobile}`}
         alt=""
-        className="h-[70vh] object-cover w-full pv:max-md:block hidden"
+        className="h-[70vh] object-cover w-full  md:hidden"
       />
       <button
         className="font-nexa_bold text-primary uppercase bg-white absolute z-10 bottom-[5vw] right-[12vw] h-fit rounded-full px-[4vw] py-[1.1vw] text-[1.5vw] pv:max-md:hidden "

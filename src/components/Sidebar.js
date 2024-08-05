@@ -5,14 +5,12 @@ import React, { useEffect, useState } from "react";
 import sidebarBG from "../assets/SideBar/sidebarbg.png";
 import sidebarmobileBG from "../assets/SideBar/sidebarmobile.png";
 import { useNavigate, useLocation } from "react-router-dom";
-import Facebook from "../assets/Footer/Facebook.png";
-import IG from "../assets/Footer/IG.png";
-import Youtube from "../assets/Footer/Youtube.png";
+
 import { path } from "../utils/Constant";
 import axios from "axios";
 import mobileLogo from "../assets/SideBar/Group 5.png";
 import mobileLogo2 from "../assets/SideBar/mobilewhite.png";
-import { toast, Toaster } from "sonner";
+import { toast } from "sonner";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 const Sidebar = () => {
@@ -137,6 +135,8 @@ const Sidebar = () => {
                 setOpenSidebar(false);
                 sessionStorage.setItem("openSidebar", false);
               }}
+              value={"menu"}
+              type="button"
             >
               Menu
             </button>
@@ -217,6 +217,7 @@ const Sidebar = () => {
                 setOpenSidebar(false);
                 sessionStorage.setItem("openSidebar", false);
               }}
+              type="button"
             >
               Menu
             </button>
@@ -332,6 +333,7 @@ const Sidebar = () => {
                   setOpenSidebar(false);
                   sessionStorage.setItem("openSidebar", false);
                 }}
+                type="button"
               >
                 Menu
               </button>
@@ -639,208 +641,72 @@ const Sidebar = () => {
               <div className="w-[59vw] h-full flex flex-col">
                 <div className="w-full h-[10vw] flex justify-start items-end text-[1.8vw] pl-[3.2vw] pb-[1.5vw] gap-4">
                   <p className="font-shopee_bold text-white ">FOLLOW</p>
-                  <a
+                  <button
                     onClick={() => {
                       navigate("../" + path.POLICY);
                       HandleSideBar();
                     }}
                     className="text-white hover:underline font-shopee_bold cursor-pointer "
                   >
-                    PRIVACY NOTICE
-                  </a>
+                    <p className="">PRIVACY NOTICE</p>
+                  </button>
                 </div>
                 <div className="flex space-x-[1vw] pl-[3.2vw] pt-[2.6vw]">
-                  {/* Facebook */}
-                  {/* <img src={Facebook} alt='' className='iconFooter' onClick={() => window.location.assign("https://www.facebook.com/JoYuTeaCoffee?mibextid=LQQJ4d")} /> */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="60.668"
-                    height="60.668"
-                    viewBox="0 0 60.668 60.668"
-                    className="iconFooter cursor-pointer"
+                  <div
+                    className=" cursor-pointer w-[60px] h-[60px] border-[1px] border-white rounded-xl flex justify-center items-center"
                     onClick={() =>
                       window.location.assign(
                         "https://www.facebook.com/JoYuTeaCoffee?mibextid=LQQJ4d"
                       )
                     }
                   >
-                    <g
-                      id="Group_184"
-                      data-name="Group 184"
-                      transform="translate(-26.729 -1509.641)"
-                    >
-                      <rect
-                        id="Rectangle_64"
-                        data-name="Rectangle 64"
-                        width="59.668"
-                        height="59.668"
-                        rx="11.207"
-                        transform="translate(27.229 1510.141)"
-                        fill="none"
-                        stroke="#fff"
-                        stroke-miterlimit="10"
-                        stroke-width="1"
-                      />
-                      <path
-                        id="Path_37"
-                        data-name="Path 37"
-                        d="M34.957,18.013c1.611,0,4.336.024,4.336.024V12.564s-1.9-.048-4.383,0-8.6.236-8.6,7.439v4.644H21.57v5.686h4.739V48.1h6.776V30.333h5.544l.664-5.686H33.085V20s.261-1.99,1.872-1.99"
-                        transform="translate(26.729 1509.641)"
-                        fill="#fff"
-                      />
-                    </g>
-                  </svg>
+                    <Icon
+                      icon={"gg:facebook"}
+                      className="iconFooter cursor-pointer text-white"
+                    ></Icon>
+                  </div>
 
-                  {/* Instagram */}
-                  {/* <img src={IG} alt='' className='iconFooter' onClick={() => window.location.assign("https://www.instagram.com/joyuteacoffee?igsh=eThtejIycmcyNGs2&utm_source=qr")} /> */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="60.668"
-                    height="60.668"
-                    viewBox="0 0 60.668 60.668"
-                    className="iconFooter cursor-pointer"
+                  <div
+                    className=" cursor-pointer w-[60px] h-[60px] border-[1px] border-white rounded-xl flex justify-center items-center"
                     onClick={() =>
                       window.location.assign(
                         "https://www.instagram.com/joyuteacoffee?igsh=eThtejIycmcyNGs2&utm_source=qr"
                       )
                     }
                   >
-                    <g
-                      id="Group_186"
-                      data-name="Group 186"
-                      transform="translate(-103.896 -1509.641)"
-                    >
-                      <path
-                        id="Rectangle_65"
-                        data-name="Rectangle 65"
-                        d="M11.207,0H48.462A11.206,11.206,0,0,1,59.668,11.206V48.461A11.207,11.207,0,0,1,48.461,59.668H11.207A11.207,11.207,0,0,1,0,48.461V11.207A11.207,11.207,0,0,1,11.207,0Z"
-                        transform="translate(104.396 1510.141)"
-                        fill="none"
-                        stroke="#fff"
-                        stroke-miterlimit="10"
-                        stroke-width="1"
-                      />
-                      <path
-                        id="Path_38"
-                        data-name="Path 38"
-                        d="M90.663,23.741a11.47,11.47,0,0,1,1.64-6.278,8.923,8.923,0,0,1,4.764-3.626,18.607,18.607,0,0,1,6.025-.667q5.848-.012,11.7.037a11,11,0,0,1,6.141,1.717,8.528,8.528,0,0,1,3.787,5.824,26.676,26.676,0,0,1,.379,4.407c.019,4.2-.027,8.392-.094,12.587a10.173,10.173,0,0,1-1.413,5.217,8.755,8.755,0,0,1-4.977,3.882,19.238,19.238,0,0,1-5.962.655q-5.741.012-11.481-.028a11.6,11.6,0,0,1-5.731-1.349,8.693,8.693,0,0,1-4.158-5.178,18.378,18.378,0,0,1-.642-4.7c-.014-.28-.039-9.283.025-12.5M94.006,38.72a5.871,5.871,0,0,0,2.261,4.191,7.5,7.5,0,0,0,4.565,1.405,133.7,133.7,0,0,0,15.454-.162,6.14,6.14,0,0,0,3.148-1.206,6.427,6.427,0,0,0,2.447-5.326c.1-3.861.077-7.726.063-11.588a40.37,40.37,0,0,0-.219-4.144,5.862,5.862,0,0,0-1.928-3.858,6.654,6.654,0,0,0-4.473-1.619c-4.193-.084-8.388-.143-12.581-.116a15.269,15.269,0,0,0-4.6.506A5.664,5.664,0,0,0,94,21.968c-.234,3.016-.2,14.809,0,16.752"
-                        transform="translate(26.729 1509.641)"
-                        fill="#fff"
-                      />
-                      <path
-                        id="Path_39"
-                        data-name="Path 39"
-                        d="M107.9,21.508a8.842,8.842,0,1,1-8.921,8.752,8.845,8.845,0,0,1,8.921-8.752m5.69,8.9a5.718,5.718,0,1,0-5.666,5.64,5.744,5.744,0,0,0,5.666-5.64"
-                        transform="translate(26.729 1509.641)"
-                        fill="#fff"
-                      />
-                      <path
-                        id="Path_40"
-                        data-name="Path 40"
-                        d="M117.069,23.206a2.033,2.033,0,0,1-2.1-2.024,2.108,2.108,0,0,1,4.216.019,2.027,2.027,0,0,1-2.119,2"
-                        transform="translate(26.729 1509.641)"
-                        fill="#fff"
-                      />
-                    </g>
-                  </svg>
+                    <Icon
+                      icon={"lets-icons:insta"}
+                      className="iconFooter cursor-pointer text-white"
+                    ></Icon>
+                  </div>
 
-                  {/* Tiktok */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="60.668"
-                    height="60.668"
-                    viewBox="0 0 60.668 60.668"
-                    className="iconFooter cursor-pointer"
+                  <div
+                    className=" cursor-pointer w-[60px] h-[60px] border-[1px] border-white flex rounded-xl justify-center items-center"
                     onClick={() =>
                       window.location.assign(
                         "https://www.tiktok.com/@joyuteacoffee?_t=8mz1o24QV26&_r=1"
                       )
                     }
                   >
-                    <defs>
-                      <clipPath id="clip-path">
-                        <rect
-                          id="Rectangle_211"
-                          width="31.828"
-                          height="36.393"
-                          transform="translate(0 0)"
-                          fill="none"
-                        />
-                      </clipPath>
-                    </defs>
-                    <g
-                      id="Group_167"
-                      transform="translate(-1538.856 -3073.001)"
-                    >
-                      <path
-                        id="Rectangle_93"
-                        d="M11.207,0H48.462A11.206,11.206,0,0,1,59.668,11.206V48.461A11.207,11.207,0,0,1,48.461,59.668H11.207A11.207,11.207,0,0,1,0,48.461V11.207A11.207,11.207,0,0,1,11.207,0Z"
-                        transform="translate(1539.356 3073.501)"
-                        fill="none"
-                        stroke="#fff"
-                        strokeMiterlimit="10"
-                        strokeWidth="1"
-                      />
-                      <g
-                        id="Group_78"
-                        transform="translate(1553.276 3085.154)"
-                        clipPath="url(#clip-path)"
-                      >
-                        <path
-                          id="Path_13440"
-                          d="M31.036,8.5A7.894,7.894,0,0,1,23.142.6c0-.03,0-.061,0-.091h0V0H16.928V24.824A5.355,5.355,0,1,1,13,19.659V13.341a11.571,11.571,0,1,0,0,22.967A11.569,11.569,0,0,0,23.142,24.824V11.473a8.854,8.854,0,0,0,8.686,3.192V8.459q-.391.039-.793.039"
-                          transform="translate(0 -0.002)"
-                          fill="#fff"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                  {/* Youtube */}
-                  {/* <img src={Youtube} alt='' className='iconFooter' onClick={() => window.location.assign("https://m.youtube.com/@joyuteacoffee?si=cOhXUceyII9N8xxS")} /> */}
-                  <svg
-                    width="60.668"
-                    height="60.668"
-                    viewBox="0 0 60.668 60.668"
-                    className="iconFooter cursor-pointer"
+                    <Icon
+                      icon={"ic:baseline-tiktok"}
+                      className="iconFooter cursor-pointer text-white"
+                    ></Icon>
+                  </div>
+
+                  <div
+                    className=" cursor-pointer w-[60px] h-[60px] border-[1px] border-white rounded-xl flex justify-center items-center"
                     onClick={() =>
                       window.location.assign(
                         "https://m.youtube.com/@joyuteacoffee?si=cOhXUceyII9N8xxS"
                       )
                     }
                   >
-                    <defs>
-                      <clipPath id="clip-path">
-                        <rect
-                          id="Rectangle_326"
-                          width="38.395"
-                          height="26.885"
-                          fill="none"
-                        />
-                      </clipPath>
-                    </defs>
-                    <g id="Group_185" transform="translate(-261.039 -1509.641)">
-                      <rect
-                        id="Rectangle_64"
-                        width="59.668"
-                        height="59.668"
-                        rx="11.207"
-                        transform="translate(261.539 1510.141)"
-                        fill="none"
-                        stroke="#fff"
-                        strokeMiterlimit="10"
-                        strokeWidth="1"
-                      />
-                      <g id="Group_162" transform="translate(272.176 1526.533)">
-                        <g id="Group_161" clipPath="url(#clip-path)">
-                          <path
-                            id="Path_13741"
-                            d="M14.037.064Q21.06-.113,28.084.19c1.521.075,3.042.156,4.554.337a7.444,7.444,0,0,1,2.414.59A4.823,4.823,0,0,1,37.634,4.34a31.883,31.883,0,0,1,.653,5.372,65,65,0,0,1-.053,8.311,27.819,27.819,0,0,1-.615,4.584,4.82,4.82,0,0,1-2.6,3.176,8.391,8.391,0,0,1-2.655.606c-2.332.249-4.677.331-7.021.4q-7.5.223-15-.1a47.416,47.416,0,0,1-5.688-.507A4.843,4.843,0,0,1,1.21,23.714a8.327,8.327,0,0,1-.736-2.687A59.072,59.072,0,0,1,0,13.555,62.016,62.016,0,0,1,.419,6.247a8.978,8.978,0,0,1,.847-3.182A4.822,4.822,0,0,1,3.384,1.1,8.491,8.491,0,0,1,6.072.491C8.718.214,11.38.14,14.037.064M15.357,7.7q0,5.744,0,11.488L25.3,13.443Q20.331,10.568,15.357,7.7Z"
-                            fill="#fff"
-                          />
-                        </g>
-                      </g>
-                    </g>
-                  </svg>
+                    <Icon
+                      icon={"mdi:youtube"}
+                      className="iconFooter cursor-pointer text-white"
+                    ></Icon>
+                  </div>
                 </div>
                 <p className="w-full text-start pl-[3.2vw] font-nexa_light font-black  text-white text-[1.3vw] pt-[2vw]">
                   Copyright JoYu Tea & Coffee {year}. All Rights Reserved
@@ -878,6 +744,7 @@ const Sidebar = () => {
                   setOpenSidebar(false);
                   sessionStorage.setItem("openSidebar", false);
                 }}
+                type="button"
               >
                 Menu
               </button>
@@ -1217,205 +1084,72 @@ const Sidebar = () => {
                 <p className="font-shopee_bold text-left text-white text-[5vw]">
                   FOLLOW
                 </p>
-                <a
+                <button
                   onClick={() => {
                     navigate("../" + path.POLICY);
                     HandleSideBar();
                   }}
                   className="text-white hover:underline font-shopee_bold text-left text-[5vw] cursor-pointer "
                 >
-                  PRIVACY NOTICE
-                </a>
+                  <p className=""> PRIVACY NOTICE</p>
+                </button>
               </div>
               <div className="flex space-x-[2vw]  pt-[2.6vw]">
-                {/* Facebook */}
-                {/* <img src={Facebook} alt='' className='w-[14vw] h-[14vw]' onClick={() => window.location.assign("https://www.facebook.com/JoYuTeaCoffee?mibextid=LQQJ4d")} /> */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="60.668"
-                  height="60.668"
-                  viewBox="0 0 60.668 60.668"
-                  className="w-[14vw] h-[14vw]"
+                <div
+                  className=" cursor-pointer w-[14vw] h-[14vw] border-[1px] border-white rounded-xl flex justify-center items-center"
                   onClick={() =>
                     window.location.assign(
                       "https://www.facebook.com/JoYuTeaCoffee?mibextid=LQQJ4d"
                     )
                   }
                 >
-                  <g
-                    id="Group_184"
-                    data-name="Group 184"
-                    transform="translate(-26.729 -1509.641)"
-                  >
-                    <rect
-                      id="Rectangle_64"
-                      data-name="Rectangle 64"
-                      width="59.668"
-                      height="59.668"
-                      rx="11.207"
-                      transform="translate(27.229 1510.141)"
-                      fill="none"
-                      stroke="#fff"
-                      stroke-miterlimit="10"
-                      stroke-width="1"
-                    />
-                    <path
-                      id="Path_37"
-                      data-name="Path 37"
-                      d="M34.957,18.013c1.611,0,4.336.024,4.336.024V12.564s-1.9-.048-4.383,0-8.6.236-8.6,7.439v4.644H21.57v5.686h4.739V48.1h6.776V30.333h5.544l.664-5.686H33.085V20s.261-1.99,1.872-1.99"
-                      transform="translate(26.729 1509.641)"
-                      fill="#fff"
-                    />
-                  </g>
-                </svg>
+                  <Icon
+                    icon={"gg:facebook"}
+                    className="w-[10vw] h-[10vw] cursor-pointer text-white"
+                  ></Icon>
+                </div>
 
-                {/* Instagram */}
-                {/* <img src={IG} alt='' className='w-[14vw] h-[14vw]' onClick={() => window.location.assign("https://www.instagram.com/joyuteacoffee?igsh=eThtejIycmcyNGs2&utm_source=qr")} /> */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="60.668"
-                  height="60.668"
-                  viewBox="0 0 60.668 60.668"
-                  className="w-[14vw] h-[14vw]"
+                <div
+                  className=" cursor-pointer w-[14vw] h-[14vw] border-[1px] border-white rounded-xl flex justify-center items-center"
                   onClick={() =>
                     window.location.assign(
                       "https://www.instagram.com/joyuteacoffee?igsh=eThtejIycmcyNGs2&utm_source=qr"
                     )
                   }
                 >
-                  <g
-                    id="Group_186"
-                    data-name="Group 186"
-                    transform="translate(-103.896 -1509.641)"
-                  >
-                    <path
-                      id="Rectangle_65"
-                      data-name="Rectangle 65"
-                      d="M11.207,0H48.462A11.206,11.206,0,0,1,59.668,11.206V48.461A11.207,11.207,0,0,1,48.461,59.668H11.207A11.207,11.207,0,0,1,0,48.461V11.207A11.207,11.207,0,0,1,11.207,0Z"
-                      transform="translate(104.396 1510.141)"
-                      fill="none"
-                      stroke="#fff"
-                      stroke-miterlimit="10"
-                      stroke-width="1"
-                    />
-                    <path
-                      id="Path_38"
-                      data-name="Path 38"
-                      d="M90.663,23.741a11.47,11.47,0,0,1,1.64-6.278,8.923,8.923,0,0,1,4.764-3.626,18.607,18.607,0,0,1,6.025-.667q5.848-.012,11.7.037a11,11,0,0,1,6.141,1.717,8.528,8.528,0,0,1,3.787,5.824,26.676,26.676,0,0,1,.379,4.407c.019,4.2-.027,8.392-.094,12.587a10.173,10.173,0,0,1-1.413,5.217,8.755,8.755,0,0,1-4.977,3.882,19.238,19.238,0,0,1-5.962.655q-5.741.012-11.481-.028a11.6,11.6,0,0,1-5.731-1.349,8.693,8.693,0,0,1-4.158-5.178,18.378,18.378,0,0,1-.642-4.7c-.014-.28-.039-9.283.025-12.5M94.006,38.72a5.871,5.871,0,0,0,2.261,4.191,7.5,7.5,0,0,0,4.565,1.405,133.7,133.7,0,0,0,15.454-.162,6.14,6.14,0,0,0,3.148-1.206,6.427,6.427,0,0,0,2.447-5.326c.1-3.861.077-7.726.063-11.588a40.37,40.37,0,0,0-.219-4.144,5.862,5.862,0,0,0-1.928-3.858,6.654,6.654,0,0,0-4.473-1.619c-4.193-.084-8.388-.143-12.581-.116a15.269,15.269,0,0,0-4.6.506A5.664,5.664,0,0,0,94,21.968c-.234,3.016-.2,14.809,0,16.752"
-                      transform="translate(26.729 1509.641)"
-                      fill="#fff"
-                    />
-                    <path
-                      id="Path_39"
-                      data-name="Path 39"
-                      d="M107.9,21.508a8.842,8.842,0,1,1-8.921,8.752,8.845,8.845,0,0,1,8.921-8.752m5.69,8.9a5.718,5.718,0,1,0-5.666,5.64,5.744,5.744,0,0,0,5.666-5.64"
-                      transform="translate(26.729 1509.641)"
-                      fill="#fff"
-                    />
-                    <path
-                      id="Path_40"
-                      data-name="Path 40"
-                      d="M117.069,23.206a2.033,2.033,0,0,1-2.1-2.024,2.108,2.108,0,0,1,4.216.019,2.027,2.027,0,0,1-2.119,2"
-                      transform="translate(26.729 1509.641)"
-                      fill="#fff"
-                    />
-                  </g>
-                </svg>
+                  <Icon
+                    icon={"lets-icons:insta"}
+                    className="w-[10vw] h-[10vw] cursor-pointer text-white"
+                  ></Icon>
+                </div>
 
-                {/* Tiktok */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="60.668"
-                  height="60.668"
-                  viewBox="0 0 60.668 60.668"
-                  className="w-[14vw] h-[14vw]"
+                <div
+                  className=" cursor-pointer w-[14vw] h-[14vw] border-[1px] border-white flex rounded-xl justify-center items-center"
                   onClick={() =>
                     window.location.assign(
                       "https://www.tiktok.com/@joyuteacoffee?_t=8mz1o24QV26&_r=1"
                     )
                   }
                 >
-                  <defs>
-                    <clipPath id="clip-path">
-                      <rect
-                        id="Rectangle_211"
-                        width="31.828"
-                        height="36.393"
-                        transform="translate(0 0)"
-                        fill="none"
-                      />
-                    </clipPath>
-                  </defs>
-                  <g id="Group_167" transform="translate(-1538.856 -3073.001)">
-                    <path
-                      id="Rectangle_93"
-                      d="M11.207,0H48.462A11.206,11.206,0,0,1,59.668,11.206V48.461A11.207,11.207,0,0,1,48.461,59.668H11.207A11.207,11.207,0,0,1,0,48.461V11.207A11.207,11.207,0,0,1,11.207,0Z"
-                      transform="translate(1539.356 3073.501)"
-                      fill="none"
-                      stroke="#fff"
-                      strokeMiterlimit="10"
-                      strokeWidth="1"
-                    />
-                    <g
-                      id="Group_78"
-                      transform="translate(1553.276 3085.154)"
-                      clipPath="url(#clip-path)"
-                    >
-                      <path
-                        id="Path_13440"
-                        d="M31.036,8.5A7.894,7.894,0,0,1,23.142.6c0-.03,0-.061,0-.091h0V0H16.928V24.824A5.355,5.355,0,1,1,13,19.659V13.341a11.571,11.571,0,1,0,0,22.967A11.569,11.569,0,0,0,23.142,24.824V11.473a8.854,8.854,0,0,0,8.686,3.192V8.459q-.391.039-.793.039"
-                        transform="translate(0 -0.002)"
-                        fill="#fff"
-                      />
-                    </g>
-                  </g>
-                </svg>
-                {/* Youtube */}
-                {/* <img src={Youtube} alt='' className='w-[14vw] h-[14vw]' onClick={() => window.location.assign("https://m.youtube.com/@joyuteacoffee?si=cOhXUceyII9N8xxS")} /> */}
-                <svg
-                  width="60.668"
-                  height="60.668"
-                  viewBox="0 0 60.668 60.668"
-                  className="w-[14vw] h-[14vw]"
+                  <Icon
+                    icon={"ic:baseline-tiktok"}
+                    className="w-[10vw] h-[10vw] cursor-pointer text-white"
+                  ></Icon>
+                </div>
+
+                <div
+                  className=" cursor-pointer w-[14vw] h-[14vw] border-[1px] border-white rounded-xl flex justify-center items-center"
                   onClick={() =>
                     window.location.assign(
                       "https://m.youtube.com/@joyuteacoffee?si=cOhXUceyII9N8xxS"
                     )
                   }
                 >
-                  <defs>
-                    <clipPath id="clip-path">
-                      <rect
-                        id="Rectangle_326"
-                        width="38.395"
-                        height="26.885"
-                        fill="none"
-                      />
-                    </clipPath>
-                  </defs>
-                  <g id="Group_185" transform="translate(-261.039 -1509.641)">
-                    <rect
-                      id="Rectangle_64"
-                      width="59.668"
-                      height="59.668"
-                      rx="11.207"
-                      transform="translate(261.539 1510.141)"
-                      fill="none"
-                      stroke="#fff"
-                      strokeMiterlimit="10"
-                      strokeWidth="1"
-                    />
-                    <g id="Group_162" transform="translate(272.176 1526.533)">
-                      <g id="Group_161" clipPath="url(#clip-path)">
-                        <path
-                          id="Path_13741"
-                          d="M14.037.064Q21.06-.113,28.084.19c1.521.075,3.042.156,4.554.337a7.444,7.444,0,0,1,2.414.59A4.823,4.823,0,0,1,37.634,4.34a31.883,31.883,0,0,1,.653,5.372,65,65,0,0,1-.053,8.311,27.819,27.819,0,0,1-.615,4.584,4.82,4.82,0,0,1-2.6,3.176,8.391,8.391,0,0,1-2.655.606c-2.332.249-4.677.331-7.021.4q-7.5.223-15-.1a47.416,47.416,0,0,1-5.688-.507A4.843,4.843,0,0,1,1.21,23.714a8.327,8.327,0,0,1-.736-2.687A59.072,59.072,0,0,1,0,13.555,62.016,62.016,0,0,1,.419,6.247a8.978,8.978,0,0,1,.847-3.182A4.822,4.822,0,0,1,3.384,1.1,8.491,8.491,0,0,1,6.072.491C8.718.214,11.38.14,14.037.064M15.357,7.7q0,5.744,0,11.488L25.3,13.443Q20.331,10.568,15.357,7.7Z"
-                          fill="#fff"
-                        />
-                      </g>
-                    </g>
-                  </g>
-                </svg>
+                  <Icon
+                    icon={"mdi:youtube"}
+                    className="w-[10vw] h-[10vw] cursor-pointer text-white"
+                  ></Icon>
+                </div>
               </div>
             </div>
           </div>

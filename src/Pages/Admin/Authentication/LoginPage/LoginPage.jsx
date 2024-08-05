@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
-import { Icon } from "@iconify/react";
+
 import { path, useOnKeyPress } from "../../../../utils/Constant";
 import imgBackground from "../../../../assets/Login/background.png";
 import LogoAdmin from "../../../../assets/Login/logo_admin.png";
@@ -11,7 +11,6 @@ import axios from "axios";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const user = JSON.parse(sessionStorage.getItem("UserInformation"));
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
@@ -53,7 +52,7 @@ const LoginPage = () => {
       style={{ backgroundImage: `url("${imgBackground}")` }}
     >
       <div className="flex mx-auto w-[90%] items-center pt-4 text-white">
-        <img className="w-[100px]" src={LogoAdmin}></img>
+        <img className="w-[100px]" src={LogoAdmin} alt="Logo"></img>
       </div>
       <div className="w-[50%] mt-[10%]   mx-auto h-auto rounded-r-2xl">
         <div className="mx-auto w-[90%] bg-white p-8 rounded-md">

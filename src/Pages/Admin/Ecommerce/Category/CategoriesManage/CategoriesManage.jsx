@@ -1,18 +1,13 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-import { Breadcrumbs } from "@material-tailwind/react";
 import { Icon } from "@iconify/react";
 import { Table, message } from "antd";
 import { InputGroup, Input, InputRightElement } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { path } from "../../../../../utils/Constant";
-import imgCate_1 from "../../../../../assets/cate_1.png";
-import imgCate_2 from "../../../../../assets/cate_2.png";
-import imgCate_3 from "../../../../../assets/cate_3.png";
-import imgCate_4 from "../../../../../assets/cate_4.png";
-import imgCate_5 from "../../../../../assets/cate_5.png";
+
 import { Button, Popconfirm } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 

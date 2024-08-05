@@ -1,12 +1,9 @@
 /** @format */
 
-import { Card, List, ListItem, ListItemPrefix } from "@material-tailwind/react";
-
 import { Icon } from "@iconify/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { path } from "../../utils/Constant";
-import imgLogo from "../../assets/Login/logo_admin.png";
 import { Menu, Popover, Button, Switch } from "antd";
 import { Popconfirm } from "antd";
 
@@ -267,27 +264,8 @@ const SidebarAd = () => {
   );
   const navigate = useNavigate();
 
-  const [openEcommerce, setOpenEcommerce] = useState(true);
-  const [openUser, setOpenUsers] = useState(false);
-  const handleOpenEcommerce = () => setOpenEcommerce((cur) => !cur);
-  const handleOpenUsers = () => setOpenUsers((cur) => !cur);
-
   return (
     <>
-      {/* <div className="">
-        <div className="py-2">
-          <p className="font-bold text-xl">JOYU ADMIN</p>
-        </div>
-
-        <Menu
-          defaultSelectedKeys={["1"]}
-          defaultOpenKeys={["sub1"]}
-          mode="inline"
-          theme="light"
-          inlineCollapsed={collapsed}
-          items={items}
-        />
-      </div> */}
       <div
         className={
           theme === "dark"
@@ -331,27 +309,6 @@ const SidebarAd = () => {
         </div>
 
         <div className={`w-[350px] ${collapsed ? "hidden" : "block"}`}>
-          {/* <div className="flex justify-between items-center text-[14px] p-4">
-            <div className="flex items-center gap-1">
-              <button>
-                <img
-                  className="h-14 w-14 rounded-full object-cover shadow-sm "
-                  src={""}
-                ></img>
-              </button>
-
-              <div
-                className={
-                  theme === "dark"
-                    ? "text-white flex flex-col"
-                    : "text-black flex flex-col"
-                }
-              >
-                <p className="">Nguyen Van Tay</p>
-                <p className="">nguyenvantay061999@gmail.com</p>
-              </div>
-            </div>
-          </div> */}
           <div className={`p-2 flex justify-around items-center `}>
             <Popconfirm
               placement="bottomRight"
@@ -396,6 +353,7 @@ const SidebarAd = () => {
                 <img
                   className="h-14 w-14 rounded-full object-cover shadow-sm "
                   src={""}
+                  alt="Content"
                 ></img>
               </button>
             </Popover>

@@ -1,7 +1,7 @@
 import React from "react";
 
-import coldbrew from "../../assets/HomePage/coldbrew.png";
-import fruitjuice from "../../assets/HomePage/fruitjuice.png";
+import coldbrew from "../../assets/HomePage/coldbrew.webp";
+import fruitjuice from "../../assets/HomePage/fruitjuice.webp";
 import { useNavigate } from "react-router-dom";
 import { path } from "../../utils/Constant";
 
@@ -27,10 +27,10 @@ function Signature() {
             Order now
           </button>
         </div>
-        <img src={coldbrew} alt="" className="w-[37%]" />
+        <img src={coldbrew} alt="" className="w-[37%] rounded-se-[120px]" />
       </div>
       <div className="pv:max-md:hidden flex w-full h-[27vw] space-x-6">
-        <img src={fruitjuice} alt="" className="w-[37%]" />
+        <img src={fruitjuice} alt="" className="w-[37%] rounded-ss-[120px]" />
         <div className="bg-[#FCD990] rounded-br-[5vw] w-[59.1%] flex flex-col justify-center px-[4.5vw]">
           <p className="uppercase text-start font-shopee_regular text-[2.8vw]">
             Make a splash
@@ -52,7 +52,7 @@ function Signature() {
 
       {/* mobile */}
       <div className="hidden pv:max-md:flex flex-col w-full h-[190vw] space-y-6">
-        <img src={coldbrew} alt="" className="w-full" />
+        <img src={coldbrew} alt="" className="w-full rounded-se-[125px]" />
         <div className="bg-[#F0F0F0] w-full flex flex-col justify-center items-center h-fit p-[4vw]">
           <p className="uppercase  font-nexa font-black text-[5vw] mt-[8vw]">
             Dreamy new cold brew
@@ -71,7 +71,7 @@ function Signature() {
         </div>
       </div>
       <div className="hidden pv:max-md:flex flex-col w-full h-[180vw] space-y-6">
-        <img src={fruitjuice} alt="" className="w-full" />
+        <img src={fruitjuice} alt="" className="w-full rounded-ss-[125px]" />
         <div className="bg-[#FCD990] w-full flex flex-col justify-center items-center h-fit p-[4.5vw]">
           <p className="uppercase  font-nexa font-black text-[5vw] mt-[8vw]">
             Make a splash

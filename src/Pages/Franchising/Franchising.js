@@ -1,9 +1,9 @@
 /** @format */
 
 import React, { useState } from "react";
-import img_Frachising from "../../assets/Frachising/frachising_1.png";
+import img_Frachising from "../../assets/Frachising/frachising_1.webp";
 import axios from "axios";
-import { Toaster, toast } from "sonner";
+import { toast } from "sonner";
 import { isValidInputFrachising } from "../../utils/common/validators";
 const Franchising = () => {
   const [formData, setFormData] = useState({
@@ -126,9 +126,8 @@ const Franchising = () => {
               </ul>
               <div className="">
                 <p className="text-start font-nexa_light text-[1.3vw]">
-                  Please contact us
-                  via info@joyuteacoffe.com or (757) 264 8881 for any concerns
-                  or questions
+                  Please contact us via info@joyuteacoffe.com or (757) 264 8881
+                  for any concerns or questions
                 </p>
               </div>
             </div>
@@ -232,7 +231,7 @@ const Franchising = () => {
                   name="stateProvince"
                 ></input>
               </div>
-            {/* </div>
+              {/* </div>
             <div className="flex flex-col  pv:max-md:gap-4 pv:max-md:flex-col pv:max-md:items-start md:max-2xl:flex-col md:max-2xl:items-start  2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start ">
               <div className="w-full flex justify-end">
                 <p className="w-[600px] text-right pv:max-md:text-center md:max-2xl:text-center  text-[20px] font-nexa_bold md:max-2xl:text-[14px]  2xl:max-dh_max:text-left pv:max-md:text-[4.5vw] uppercase ">
@@ -345,19 +344,19 @@ const Franchising = () => {
               </div>
               <div className="flex items-center justify-between pv:max-md:gap-4  pv:max-md:flex-col pv:max-md:items-start   md:max-2xl:flex-col md:max-2xl:items-start   2xl:max-dh_max:flex-col 2xl:max-dh_max:items-start ">
                 <p className="font-nexa_bold text-[20px] uppercase pv:max-md:text-[4.5vw] md:max-2xl:text-[14px] text-start">
-                  *Please describe your business background/restaurant experience
-                including name(s) of franchise brands :
-              </p>
-            </div>
-            <div className="col-span-3 ">
-              <textarea
-                className=" w-full pv:max-md:w-full md:max-2xl:w-full h-[200px] border-[1px] border-[#707070] rounded-md py-2 px-6"
-                placeholder=""
-                onChange={handleChange}
-                value={formData.businessBackground}
-                name={"businessBackground"}
-              ></textarea>
-            </div>
+                  *Please describe your business background/restaurant
+                  experience including name(s) of franchise brands :
+                </p>
+              </div>
+              <div className="col-span-3 ">
+                <textarea
+                  className=" w-full pv:max-md:w-full md:max-2xl:w-full h-[200px] border-[1px] border-[#707070] rounded-md py-2 px-6"
+                  placeholder=""
+                  onChange={handleChange}
+                  value={formData.businessBackground}
+                  name={"businessBackground"}
+                ></textarea>
+              </div>
             </div>
           </div>
         </div>

@@ -1,9 +1,9 @@
 /** @format */
 
 import React from "react";
-import imgBanner from "../../assets/OurStory/banner.png";
-import imgstory_1 from "../../assets/OurStory/story_1.png";
-import imgstory_2 from "../../assets/OurStory/story_2.png";
+import imgBanner from "../../assets/OurStory/banner.webp";
+import imgstory_1 from "../../assets/OurStory/story_1.webp";
+import imgstory_2 from "../../assets/OurStory/story_2.webp";
 const OurStory = () => {
   return (
     <div className="pb-10 pv:max-md:pt-[38vw] pv:max-md:flex flex-col items-center">

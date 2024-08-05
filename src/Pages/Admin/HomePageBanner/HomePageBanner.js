@@ -5,16 +5,9 @@ import axios from "axios";
 
 import { Icon } from "@iconify/react";
 import { Button, Table } from "antd";
-// import { InputGroup, Input, InputRightElement } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
-// import { path } from "../../../../../utils/Constant";
-import imgCate_1 from "../../../assets/cate_1.png";
+
 import { path } from "../../../utils/Constant";
-// import imgCate_2 from "../../../../../assets/cate_2.png";
-// import imgCate_3 from "../../../../../assets/cate_3.png";
-// import imgCate_4 from "../../../../../assets/cate_4.png";
-// import imgCate_5 from "../../../../../assets/cate_5.png";
 
 const HomePageBanner = () => {
   const navigate = useNavigate();
