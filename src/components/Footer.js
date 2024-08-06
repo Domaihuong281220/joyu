@@ -113,7 +113,8 @@ function Signature() {
                     transform="translate(0 4.574)"
                     fill="#fff"
                     stroke="#fff"
-                    stroke-width="3"
+                    strokeWidth="3"
+                    
                   />
                   <path
                     id="Path_30"
@@ -122,7 +123,7 @@ function Signature() {
                     transform="translate(-181.837 0.728)"
                     fill="#fff"
                     stroke="#fff"
-                    stroke-width="3"
+                    strokeWidth="3"
                   />
                   <path
                     id="Path_32"
@@ -162,11 +163,12 @@ function Signature() {
                 <button
                   type="submit"
                   className="w-[4.5vw] h-[100%] py-[1vw] bg-[#848347] flex justify-center items-center rounded-r-full"
+                  aria-label="Send" // Adding accessible label here
                 >
                   <Icon
                     icon={"mingcute:send-fill"}
                     className="text-white h-[1.5vw] w-[1.5vw]"
-                  ></Icon>
+                  />
                 </button>
               </form>
             </div>
@@ -385,11 +387,9 @@ function Signature() {
           <button
             type="submit"
             className="w-[80px] h-[100%] py-[1vw] bg-[#848347] flex justify-center items-center rounded-r-full"
+            aria-label="Send" // Provides a clear label for the button's function
           >
-            <Icon
-              icon={"mingcute:send-fill"}
-              className="text-white h-6 w-6"
-            ></Icon>
+            <Icon icon={"mingcute:send-fill"} className="text-white h-6 w-6" />
           </button>
         </form>
         <div className="h-[0.4vw] w-full bg-gray-300 mt-[12vw] mb-[2vw]"></div>

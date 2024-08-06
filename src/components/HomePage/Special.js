@@ -16,7 +16,9 @@ function Special() {
       >
         <img
           src={specials}
-          alt=""
+          alt="Description of the image" // Always provide descriptive alt text
+          width="600" // Set a fixed width
+          height="400" // Set a fixed height
           className="rounded-[10vw] pv:max-md:rounded-[50vw] object-contain w-full hover:opacity-50"
         />
         <p className="absolute uppercase top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-nexa_light font-black text-[1.8vw] pv:max-md:font-nexa_bold pv:max-md:text-[12vw] pv:max-md:leading-[12vw] leading-[2vw]">
@@ -29,7 +31,9 @@ function Special() {
       >
         <img
           src={milktea}
-          alt=""
+          alt="Description of the image" // Always provide descriptive alt text
+          width="600" // Set a fixed width
+          height="400" // Set a fixed height
           className="rounded-[10vw] pv:max-md:rounded-[50vw] object-contain w-full hover:opacity-50"
         />
         <p className="absolute uppercase top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-nexa_light font-black text-[1.8vw] pv:max-md:font-nexa_bold pv:max-md:text-[12vw] pv:max-md:leading-[12vw] leading-[2vw]">
@@ -42,7 +46,9 @@ function Special() {
       >
         <img
           src={tea}
-          alt=""
+          alt="Description of the image" // Always provide descriptive alt text
+          width="600" // Set a fixed width
+          height="400" // Set a fixed height
           className="rounded-[10vw] pv:max-md:rounded-[50vw] object-contain w-full hover:opacity-50"
         />
         <p className="absolute uppercase top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-nexa_light font-black text-[1.8vw] pv:max-md:font-nexa_bold pv:max-md:text-[12vw] pv:max-md:leading-[12vw] leading-[2vw]">
@@ -55,7 +61,9 @@ function Special() {
       >
         <img
           src={coffee}
-          alt=""
+          alt="Description of the image" // Always provide descriptive alt text
+          width="600" // Set a fixed width
+          height="400" // Set a fixed height
           className="rounded-[10vw] pv:max-md:rounded-[50vw] object-contain w-full hover:opacity-50"
         />
         <p className="absolute uppercase top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-nexa_light font-black text-[1.8vw] pv:max-md:font-nexa_bold pv:max-md:text-[12vw] pv:max-md:leading-[12vw] leading-[2vw]">
@@ -68,7 +76,9 @@ function Special() {
       >
         <img
           src={pastries}
-          alt=""
+          alt="Description of the image" // Always provide descriptive alt text
+          width="600" // Set a fixed width
+          height="400" // Set a fixed height
           className="rounded-[10vw] pv:max-md:rounded-[50vw] object-contain w-full hover:opacity-50"
         />
         <p className="absolute uppercase top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-nexa_light font-black text-[1.8vw] pv:max-md:font-nexa_bold pv:max-md:text-[12vw] pv:max-md:leading-[12vw] leading-[2vw]">

@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Input } from "@material-tailwind/react";
+import { Input } from "antd";
 import { Icon } from "@iconify/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";

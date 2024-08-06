@@ -10,6 +10,8 @@ import { path } from "../utils/Constant";
 import axios from "axios";
 import mobileLogo from "../assets/SideBar/Group 5.png";
 import mobileLogo2 from "../assets/SideBar/mobilewhite.png";
+import menu_close from "../assets/SideBar/menu_close.png";
+import menu_open from "../assets/SideBar/menu_open.png";
 import { toast } from "sonner";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
@@ -160,7 +162,7 @@ const Sidebar = () => {
                     transform="translate(1647 124.5)"
                     fill="none"
                     stroke="#000"
-                    stroke-width="1"
+                    strokeWidth="1"
                   />
                   <line
                     id="Line_25"
@@ -169,7 +171,7 @@ const Sidebar = () => {
                     transform="translate(1647 107.5)"
                     fill="none"
                     stroke="#000"
-                    stroke-width="1"
+                    strokeWidth="1"
                   />
                   <line
                     id="Line_2"
@@ -178,7 +180,7 @@ const Sidebar = () => {
                     transform="translate(1647 141.5)"
                     fill="none"
                     stroke="#000"
-                    stroke-width="1"
+                    strokeWidth="1"
                   />
                 </g>
               </svg>
@@ -221,48 +223,16 @@ const Sidebar = () => {
             >
               Menu
             </button>
-            <button onClick={() => HandleSideBar()} className="h-[14vw]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="70"
-                height="70"
-                viewBox="0 0 47 35"
-                className="w-[7vw]"
-              >
-                <g
-                  id="Group_17"
-                  data-name="Group 17"
-                  transform="translate(-1647 -107)"
-                >
-                  <line
-                    id="Line_1"
-                    data-name="Line 1"
-                    x2="47"
-                    transform="translate(1647 124.5)"
-                    fill="none"
-                    stroke="#000"
-                    stroke-width="1"
-                  />
-                  <line
-                    id="Line_25"
-                    data-name="Line 25"
-                    x2="47"
-                    transform="translate(1647 107.5)"
-                    fill="none"
-                    stroke="#000"
-                    stroke-width="1"
-                  />
-                  <line
-                    id="Line_2"
-                    data-name="Line 2"
-                    x2="47"
-                    transform="translate(1647 141.5)"
-                    fill="none"
-                    stroke="#000"
-                    stroke-width="1"
-                  />
-                </g>
-              </svg>
+            <button
+              onClick={() => HandleSideBar()}
+              className="h-[14vw] flex flex-col justify-end"
+              aria-label="Open menu" // Adding accessible name here
+            >
+              <img
+                className="w-[30px] h-[30px]"
+                src={menu_open}
+                alt="Menu open icon" // Adding descriptive alt text for the image
+              />
             </button>
           </div>
         </div>
@@ -363,7 +333,7 @@ const Sidebar = () => {
                         transform="translate(1630.897 120.733)"
                         fill="none"
                         stroke="#fff"
-                        stroke-width="1"
+                        strokeWidth="1"
                       />
                     </g>
                     <g id="Group_165" data-name="Group 165">
@@ -375,7 +345,7 @@ const Sidebar = () => {
                         transform="translate(1625.103 114)"
                         fill="none"
                         stroke="#fff"
-                        stroke-width="1"
+                        strokeWidth="1"
                       />
                       <g
                         id="Ellipse_1"
@@ -383,7 +353,7 @@ const Sidebar = () => {
                         transform="translate(1623 109)"
                         fill="none"
                         stroke="#fff"
-                        stroke-width="1"
+                        strokeWidth="1"
                       >
                         <circle cx="25" cy="25" r="25" stroke="none" />
                         <circle cx="25" cy="25" r="24.5" fill="none" />
@@ -459,7 +429,7 @@ const Sidebar = () => {
                     transform="translate(0 4.574)"
                     fill="#fff"
                     stroke="#fff"
-                    stroke-width="3"
+                    strokeWidth="3"
                   />
                   <path
                     id="Path_30"
@@ -468,7 +438,7 @@ const Sidebar = () => {
                     transform="translate(-181.837 0.728)"
                     fill="#fff"
                     stroke="#fff"
-                    stroke-width="3"
+                    strokeWidth="3"
                   />
                   <path
                     id="Path_32"
@@ -748,60 +718,16 @@ const Sidebar = () => {
               >
                 Menu
               </button>
-              <button onClick={() => HandleSideBar()} className="h-[14vw]">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="70"
-                  height="70"
-                  viewBox="0 0 50 50"
-                  className="w-[7vw]"
-                >
-                  <g
-                    id="Group_166"
-                    data-name="Group 166"
-                    transform="translate(-1623 -109)"
-                  >
-                    <g
-                      id="Group_10"
-                      data-name="Group 10"
-                      transform="translate(-5.897 -6.733)"
-                    >
-                      <line
-                        id="Line_1"
-                        data-name="Line 1"
-                        x2="46.397"
-                        y2="40.89"
-                        transform="translate(1630.897 120.733)"
-                        fill="none"
-                        stroke="#fff"
-                        stroke-width="1"
-                      />
-                    </g>
-                    <g id="Group_165" data-name="Group 165">
-                      <line
-                        id="Line_2"
-                        data-name="Line 2"
-                        y1="40.89"
-                        x2="45.897"
-                        transform="translate(1625.103 114)"
-                        fill="none"
-                        stroke="#fff"
-                        stroke-width="1"
-                      />
-                      <g
-                        id="Ellipse_1"
-                        data-name="Ellipse 1"
-                        transform="translate(1623 109)"
-                        fill="none"
-                        stroke="#fff"
-                        stroke-width="1"
-                      >
-                        <circle cx="25" cy="25" r="25" stroke="none" />
-                        <circle cx="25" cy="25" r="24.5" fill="none" />
-                      </g>
-                    </g>
-                  </g>
-                </svg>
+              <button
+                onClick={() => HandleSideBar()}
+                className="h-[14vw] flex flex-col justify-end"
+                aria-label="Close menu" // Adding accessible name here
+              >
+                <img
+                  className="w-[30px] h-[30px]"
+                  src={menu_close}
+                  alt="Close menu icon" // Adding descriptive alt text for the image
+                />
               </button>
             </div>
           </div>
@@ -1071,11 +997,12 @@ const Sidebar = () => {
                 <button
                   type="submit"
                   className="w-[80px] h-[100%] py-[1vw] bg-[#848347] flex justify-center items-center rounded-r-full"
+                  aria-label="Send" // Adding an accessible name for the button
                 >
                   <Icon
                     icon={"mingcute:send-fill"}
                     className="text-white h-6 w-6"
-                  ></Icon>
+                  />
                 </button>
               </form>
 

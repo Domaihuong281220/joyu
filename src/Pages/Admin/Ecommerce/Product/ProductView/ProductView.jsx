@@ -1,9 +1,6 @@
 /** @format */
 
 import React from "react";
-import { Icon } from "@iconify/react";
-import { Breadcrumbs } from "@material-tailwind/react";
-import { Divider } from "antd";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 const ProductView = () => {
   const navigate = useNavigate();

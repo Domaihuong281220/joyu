@@ -10,7 +10,6 @@ import { toast } from "sonner";
 import { path } from "../../../../../utils/Constant";
 import { Button, Popconfirm, Spin } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
-import { render } from "@testing-library/react";
 
 const AddressManage = () => {
   const navigate = useNavigate();

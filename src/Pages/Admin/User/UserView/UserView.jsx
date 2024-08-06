@@ -1,7 +1,6 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Breadcrumbs, Input } from "@material-tailwind/react";
 import { Icon } from "@iconify/react";
 import {
   Tabs,
