@@ -1,7 +1,7 @@
 import React from "react";
 
-import coldbrew from "../../assets/HomePage/coldbrew.webp";
-import fruitjuice from "../../assets/HomePage/fruitjuice.webp";
+import coldbrew from "../../assets/HomePage/coldbrew.png";
+import fruitjuice from "../../assets/HomePage/fruitjuice.png";
 import { useNavigate } from "react-router-dom";
 import { path } from "../../utils/Constant";
 
@@ -33,7 +33,7 @@ function Signature() {
           alt="Description of the image" // Always provide a descriptive alt text
           width="600" // Set the width
           height="400" // Set the height
-          className="w-[37%] rounded-se-[120px]"
+          className="w-[37%]  rounded-se-[125px]"
         />
       </div>
       <div className="pv:max-md:hidden flex w-full h-[27vw] space-x-6">
@@ -43,7 +43,7 @@ function Signature() {
           alt="Description of the image" // Always provide a descriptive alt text
           width="600" // Set the width
           height="400" // Set the height
-          className="w-[37%] rounded-ss-[120px]"
+          className="w-[37%] rounded-ss-[125px] "
         />
         <div className="bg-[#FCD990] rounded-br-[5vw] w-[59.1%] flex flex-col justify-center px-[4.5vw]">
           <p className="uppercase text-start font-shopee_regular text-[2.8vw]">
@@ -98,7 +98,7 @@ function Signature() {
           alt="A refreshing fruit juice" // Always provide a descriptive alt text
           width="800" // Set the width in pixels
           height="600" // Set the height in pixels
-          className="w-full rounded-ss-[125px]"
+          className="w-full rounded-ss-[125px] "
         />
         <div className="bg-[#FCD990] w-full flex flex-col justify-center items-center h-fit p-[4.5vw]">
           <p className="uppercase  font-nexa font-black text-[5vw] mt-[8vw]">

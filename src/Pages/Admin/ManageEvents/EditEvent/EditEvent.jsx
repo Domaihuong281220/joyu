@@ -84,7 +84,7 @@ const EditEvent = () => {
       <div className="flex p-2">
         <p className="text-2xl">EDIT NEWS</p>
       </div>
-      <div className="px-10 py-4 mx-auto w-[50%]">
+      <div className="px-10 py-4 mx-auto w-[100%]">
         <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
           <p className="text-lg">Name News</p>
           <Input
@@ -148,7 +148,7 @@ const EditEvent = () => {
             }
           />
         </div>
-        <div className="w-full flex flex-col gap-y-2 pb-6">
+        <div className="w-[50%] flex flex-col gap-y-2 pb-6">
           <p className="text-lg">Image Title</p>
           <img
             src={`${process.env.REACT_APP_SERVER_URL}/${newsData.titlepic}`}
@@ -169,7 +169,7 @@ const EditEvent = () => {
           )}
         </div>
 
-        <div className="w-full flex flex-col gap-y-2 pb-6">
+        <div className="w-[50%] flex flex-col gap-y-2 pb-6">
           <p className="text-lg">Image Detail</p>
           <img
             src={`${process.env.REACT_APP_SERVER_URL}/${newsData.detailpic}`}

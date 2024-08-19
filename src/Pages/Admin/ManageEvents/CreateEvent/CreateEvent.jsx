@@ -153,7 +153,7 @@ const CreateEvent = () => {
         <div className="flex p-2">
           <p className="text-2xl"> CREATE NEWS</p>
         </div>
-        <div className="px-10 py-4 mx-auto w-[50%] ">
+        <div className="px-10 py-4 mx-auto w-[100%] ">
           <div className="w-full h-auto flex flex-col justify-start items-start gap-y-2 pb-6">
             <p className="text-lg">Name News </p>
             <Input
@@ -173,7 +173,7 @@ const CreateEvent = () => {
             </p>
             <textarea
               className="w-full h-[300px] border-[1px] p-2"
-              placeholder="Subtitle"
+              placeholder="Short Description"
               value={shortDescription}
               onChange={(e) => setShortDescription(e.target.value)}
             />

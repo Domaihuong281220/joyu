@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import img_Frachising from "../../assets/Frachising/frachising_1.webp";
+import img_Frachising from "../../assets/Frachising/frachising_1.png";
 import axios from "axios";
 import { toast } from "sonner";
 import { isValidInputFrachising } from "../../utils/common/validators";

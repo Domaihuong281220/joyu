@@ -1,6 +1,6 @@
 /** @format */
 import React, { useState, useEffect } from "react";
-import { Table, message } from "antd";
+import { Input, Table, message, notification } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
@@ -8,16 +8,18 @@ import { path } from "../../../../utils/Constant";
 import { Button, Popconfirm, Modal, Spin } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { isValidInputsignUpFooter } from "../../../../utils/common/validators";
+import { Icon } from "@iconify/react/dist/iconify.js";
+const { Search } = Input;
 
 const ManageCustomer = () => {
-  const [messageApi, contextHolder] = message.useMessage();
   const [userData, setUserData] = useState([]);
-  const [ismarked, setIsMasked] = useState(true);
   const [formData, setFormData] = useState({
     email: "",
   });
+  const [searchStr, setSearchStr] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  // Serach
 
   //Add Customer
   const showModal = () => {
@@ -129,9 +131,48 @@ const ManageCustomer = () => {
         toast.error("Delete User wrong: " + err.message);
       });
   };
+
+  // Api search Email
+
+  // Search users by email
+  const searchUsers = async (searchStr) => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/joyu/customer/search`,
+        { email: searchStr },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "x-secret-key": "Domoishi2024",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        const usersWithStt = response.data.map((user, index) => ({
+          ...user,
+          stt: index + 1,
+        }));
+        setUserData(usersWithStt);
+      } else {
+        setUserData([]);
+      }
+    } catch (error) {
+      console.error("Error searching users:", error);
+      setUserData([]);
+    }
+  };
+
   useEffect(() => {
-    handlegetUsers();
-  }, []);
+    if (searchStr === "") {
+      handlegetUsers(); // Fetch all users if search string is empty
+    } else {
+      searchUsers(searchStr); // Search users by email
+    }
+  }, [searchStr]);
+  const handleSearchChange = (e) => {
+    setSearchStr(e.target.value);
+  };
 
   // navigate
   const navigate = useNavigate();
@@ -192,11 +233,9 @@ const ManageCustomer = () => {
 
   return (
     <div className="">
-      {contextHolder}
-
       {/* Start Table UserList */}
 
-      <div className="w-[90%] mx-auto h-auto bg-white shadow-xl rounded-lg p-1">
+      <div className="w-[95%] mx-auto h-auto bg-white shadow-xl rounded-lg p-1">
         <div className="flex p-2">
           <p className="text-2xl">CUSTOMERS LIST</p>
         </div>
@@ -228,6 +267,14 @@ const ManageCustomer = () => {
                 </svg>
                 <p className="">Send email</p>
               </Button>
+              <div className="flex gap-2">
+                <Input
+                  className="w-[300px]"
+                  placeholder="Enter Email"
+                  value={searchStr}
+                  onChange={handleSearchChange} // Handle search input change
+                />
+              </div>
             </div>
 
             {/* Add Customer */}

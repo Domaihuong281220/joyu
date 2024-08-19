@@ -1,9 +1,9 @@
 import React from "react";
-import specials from "../../assets/HomePage/specicals.webp";
-import milktea from "../../assets/HomePage/milktea.webp";
-import tea from "../../assets/HomePage/tea.webp";
-import coffee from "../../assets/HomePage/coffee.webp";
-import pastries from "../../assets/HomePage/pastries.webp";
+import specials from "../../assets/HomePage/specials.png";
+import milktea from "../../assets/HomePage/milktea.png";
+import tea from "../../assets/HomePage/tea.png";
+import coffee from "../../assets/HomePage/coffee.png";
+import pastries from "../../assets/HomePage/pastries.jpg";
 import { useNavigate } from "react-router-dom";
 
 function Special() {

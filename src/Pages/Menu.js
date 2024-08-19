@@ -44,7 +44,6 @@ function Menu() {
 
   useEffect(() => {
     const menuString = sessionStorage.getItem("menu"); // Retrieve the stored string
-
     if (!menuString) {
       handlegetMenu();
     } else {
