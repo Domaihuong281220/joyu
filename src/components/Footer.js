@@ -31,9 +31,14 @@ function Signature() {
           `${process.env.REACT_APP_SERVER_URL}/joyu/customer`,
           formData
         );
-        if (response.status === 200) {
+
+        if (response.status === 200 && response.data.err === 0) {
           toast.success("Thank you for subscribing!");
-        } else {
+        }
+        if (response.status === 200 && response.data.err === 1) {
+          toast.error("Email does not exist");
+        }
+        if (response.status === 500) {
           toast.error("Email already exists!");
         }
       } catch (err) {
@@ -114,7 +119,6 @@ function Signature() {
                     fill="#fff"
                     stroke="#fff"
                     strokeWidth="3"
-                    
                   />
                   <path
                     id="Path_30"
